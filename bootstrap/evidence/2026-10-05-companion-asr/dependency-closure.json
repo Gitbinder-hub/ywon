@@ -1,0 +1,14 @@
+{
+  "Windows": {
+    "metadataDependencyClosure": "pass",
+    "runtimeInstall": "NOT_RUN"
+  },
+  "Linux": {
+    "metadataDependencyClosure": "pass",
+    "runtimeInstall": "pass on Linux only"
+  },
+  "Darwin": {
+    "metadataDependencyClosure": "pass",
+    "runtimeInstall": "NOT_RUN"
+  }
+}

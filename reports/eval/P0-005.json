@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "p0-t2-photosyn-002",
+  "topic": "Как работает фотосинтез у растений — за 30 секунд",
+  "fixture": "bootstrap/fixtures/P0-T2-photosynthesis-002.json",
+  "briefHash": "f9a7fa6224195e0ec3790311c52e8ee9a33d66c20d082d7854ee4fcc8cb95c47",
+  "inputHash": "130e2c6f5dbe05ed6fb606ccea27e0c4acb0aa098f0a2591a93d0d4d1b17d75e",
+  "requestHash": "130e2c6f5dbe05ed6fb606ccea27e0c4acb0aa098f0a2591a93d0d4d1b17d75e",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Как работает фотосинтез",
+      "narration": "Растения — настоящие волшебники! Они берут воду из почвы через корни и углекислый газ из воздуха. Под лучами солнца зеленые листья запускают магию: хлорофилл преобразует свет в чистую энергию. В результате растение создает питательную глюкозу для своего роста и выделяет в атмосферу кислород, которым мы дышим. Вот так природа создает жизнь!",
+      "scenes": [
+        {
+          "caption": "Шаг 1: Вода и газ",
+          "imagePrompt": "A close up of green plant roots absorbing water drops from dark rich soil, cinematic lighting, 4k"
+        },
+        {
+          "caption": "Шаг 2: Солнечная магия",
+          "imagePrompt": "Bright golden sun rays shining through vibrant green leaves of a forest tree, glowing effect, detailed"
+        },
+        {
+          "caption": "Шаг 3: Кислород для жизни",
+          "imagePrompt": "A beautiful lush green plant with sparkling oxygen bubbles on its leaves, macro photography, peaceful atmosphere"
+        }
+      ]
+    },
+    "images": [
+      "A close up of green plant roots absorbing water drops from dark rich soil, cinematic lighting, 4k",
+      "Bright golden sun rays shining through vibrant green leaves of a forest tree, glowing effect, detailed",
+      "A beautiful lush green plant with sparkling oxygen bubbles on its leaves, macro photography, peaceful atmosphere"
+    ],
+    "tts": "Растения — настоящие волшебники! Они берут воду из почвы через корни и углекислый газ из воздуха. Под лучами солнца зеленые листья запускают магию: хлорофилл преобразует свет в чистую энергию. В результате растение создает питательную глюкозу для своего роста и выделяет в атмосферу кислород, которым мы дышим. Вот так природа создает жизнь!"
+  },
+  "assetHashes": {
+    "textSha256": "8bfd40642e495d7eedb13d20250ece34ddeddf9b27886418b472a22f0290417e",
+    "imageSha256": [
+      "919a5e6ce4fcda28f17a6d23a3e14706c0b27442dca48c5573f260bbc30132bc",
+      "4a94bf2eaf3672b29f1fe0be8188529d7d5767fbb99b97af11b14777deafd88a",
+      "0d55494b28294b7a95f5f284bcb87e027fab05c0df52a69c2858c5ecb5233872"
+    ],
+    "ttsSha256": "b5ddd9e076335f9f125c4a898800bf2a4db1fc071826988c971dc3068e81f150",
+    "wavBytes": 1298274,
+    "mp4Sha256": "740e3fab1d1bda681769fd83c523bea90407ce8400a6de3be141afac85c68ded",
+    "mp4Bytes": 1036240
+  },
+  "mp4": {
+    "path": "outputs/p0-t2-photosyn-002/result.mp4",
+    "sha256": "740e3fab1d1bda681769fd83c523bea90407ce8400a6de3be141afac85c68ded",
+    "bytes": 1036240,
+    "durationSec": 29.125,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "p0-t2-photosyn-002",
+    "topic": "Как работает фотосинтез у растений — за 30 секунд",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "usable",
+    "minutes": 4,
+    "reason": "strict 30±2 pass 29.13s, intelligible ru, 3 visuals h264 1280x720 aac",
+    "criticalFailure": null,
+    "dimensions": {
+      "technical": "pass 29.13s",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": true,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

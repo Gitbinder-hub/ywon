@@ -1,0 +1,45 @@
+{
+  "amendment_id": "A-20261003",
+  "base_commit": "274b11ea66b552e8d1d003a4fa3652faf350b53b",
+  "verified_source_commit": "873ec2b4781dd8924f688213bc9fb98d153a108a",
+  "scope": "prepared patch directory, NOT full original checkout",
+  "checks": {
+    "scoped_amendment_checker": "pass",
+    "python_compile": "pass",
+    "json_parse_unique_requirements_26_overlay_tasks_12": "pass",
+    "AGENTS_CLAUDE_identical": "pass",
+    "remote_19_git_blob_hashes_equal_local_bytes": "pass"
+  },
+  "not_run": [
+    "full project.py validate/status/next",
+    "make spec-check",
+    "make check",
+    "archive hash validation",
+    "generated registry views equality",
+    "runtime/media/economics/QA evaluation",
+    "domain/trademark legal clearance"
+  ],
+  "paid_provider_calls": 0,
+  "local_compute_and_assistant_cost_usd": null,
+  "remote_git_blob_sha1": {
+    "docs/governance/ARCHITECT_AMENDMENT_2026-10-03.md": "1a3e7859c953f74780ad858d56e546b94b965c1a",
+    "docs/governance/BRAND_NAME.md": "333bdeb14eda5356a8e2f13438b45f880f4d23bc",
+    "docs/architecture/ARCHITECT_FOUNDATION.md": "ee4e0744a0a95b23c20010da25618c4148e2fe56",
+    "docs/production/AUTONOMOUS_EXECUTION.md": "cc648375fea64307a1ba677c1d20ad445e219c3b",
+    "docs/economics/GENERATION_RESERVE.md": "6c118afdf5d55bd80207ef9c9ed84dba6db728b9",
+    "docs/production/RECOVERY_CONTROLLER.md": "366c2aa3a17d0baa8654263b1c1dd77f372e2c42",
+    "docs/studio/SCENE_COMPILER.md": "088bde282e77f304a7aa0367082ce54d1c38db98",
+    "docs/studio/HIGGSFIELD_SUBSTITUTION.md": "a33e604d6161c8db7a0a593d3da772937cf845f9",
+    "docs/quality/ARCHITECT_ACCEPTANCE.md": "c4540b1e860b1179acec91138d484fdae0ad089c",
+    "docs/learning/EVOLUTION_AND_LAB.md": "42f48501fc027835c5d097c6cad37b0076d47c63",
+    "tasks/architect_acceptance_overlay.json": "fe1460beae8c7dace31865edc484a389cb91f2a7",
+    "scripts/check_architect_spec.py": "99eb91e848ac907290f1e1d2a4796032bccb8baf",
+    "handoffs/ARCHITECT_SPEC_2026-10-03.md": "168701339af5f6ea7bf8e4fe3bea0af295dab6a2",
+    "docs/production/09_JEWEL_CORE.md": "b9fc7cec98ac9fab9bd76679985b910ff5393667",
+    "docs/INDEX.md": "a59098db18f91cd335925543a7fd3e2534b56407",
+    "AGENTS.md": "943622fd0e7ef974b70c0bf4bab6e31a37e2b995",
+    "CLAUDE.md": "943622fd0e7ef974b70c0bf4bab6e31a37e2b995",
+    "README.md": "0789f2e927123fe90012add81a192163ce44cfca",
+    "docs/requirements.json": "aae0a7d3d3eb7546f6e2c0cedd0ac66b95af8e0f"
+  }
+}

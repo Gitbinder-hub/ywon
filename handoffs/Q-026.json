@@ -1,0 +1,78 @@
+{
+  "task_id": "Q-026",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-026 Cinema/camera/Blender/multishot (P5 stub): per-preset fidelity verified on real outputs, continuity drift and no free fallback. packages/cinema-camera/src/types+index, 2 tests PASS (131 total).",
+  "changed_files": [
+    "packages/cinema-camera/src/types.ts",
+    "packages/cinema-camera/src/index.ts",
+    "tests/cinema-camera.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/cinema-camera.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/cinema-camera.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/cinema-camera.test.ts",
+      "notes": "2/2 PASS: AC1 fidelity verified, AC2 drift + no free fallback"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts tests/external-users.test.ts tests/founding-creator.test.ts tests/analytics-import.test.ts tests/golden-library.test.ts tests/experiments.test.ts tests/p5-decomposition.test.ts tests/cinema-camera.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/cinema-camera.test.ts",
+      "notes": "131/131 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/cinema-camera/src/types.ts",
+        "packages/cinema-camera/src/index.ts",
+        "tests/cinema-camera.test.ts"
+      ],
+      "reason": "Per-preset fidelity/control/geometry with verified flag on real outputs."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/cinema-camera/src/index.ts",
+        "tests/cinema-camera.test.ts"
+      ],
+      "reason": "Continuity drift measured against threshold, no free fallback to cheaper fidelity."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Presets are stub metadata, not real Blender renders",
+    "Drift is scalar px, not actual reprojection"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-026 then Q-027 auto-montage"
+  ],
+  "recommended_next_tasks": [
+    "Q-027"
+  ],
+  "required_owner_checks": [
+    "Confirm stub presets acceptable vs real camera bench",
+    "Review fallback disclosure"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype). Note Q-026 paid=true but stubbed."
+  }
+}

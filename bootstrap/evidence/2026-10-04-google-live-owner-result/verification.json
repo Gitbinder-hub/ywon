@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-041",
+  "status": "REVIEW",
+  "source": "owner_reported_cli_and_visual_inspection",
+  "runId": "google-p0-002",
+  "command": "architect_google_spike.ts assemble",
+  "result": {
+    "ok": true,
+    "status": "completed",
+    "paidCalls": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "mp4": "result-recovered.mp4",
+    "sha256": "7763eb2ae8b336d702b13f6d809b041829d24102bea5eed0c7c4600539bd8602"
+  },
+  "ownerObservation": {
+    "durationSecondsApprox": 24,
+    "narrationTopic": "sky",
+    "slideChanges": 3,
+    "voiceQuality": "good/normal"
+  },
+  "assertions": {
+    "additionalProviderCallsDuringAssembly": false,
+    "apiKeyCommitted": false,
+    "mediaCommitted": false,
+    "invoiceVerified": false,
+    "productStageAccepted": false
+  },
+  "limitations": [
+    "CLI result and qualitative playback are owner-reported.",
+    "Generated media and local manifest remain outside Git.",
+    "Estimated maximum is not a provider invoice.",
+    "No production integration, CI, deploy, main merge or Q-status change."
+  ]
+}

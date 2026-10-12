@@ -1,0 +1,82 @@
+{
+  "platform": "Linux headless Chromium",
+  "input": "browser fake audio device backed by synthetic WAV",
+  "actualWebAudio": true,
+  "realUserMicrophone": false,
+  "windowsNotRun": true,
+  "cases": [
+    {
+      "name": "initial microphone off; consent required",
+      "status": "pass"
+    },
+    {
+      "name": "real Chromium getUserMedia/WebAudio with synthetic input, meter positive",
+      "status": "pass"
+    },
+    {
+      "name": "WebAudio test-tone output interrupted while microphone remains active",
+      "status": "pass"
+    },
+    {
+      "name": "mute physically ends actual Chromium media tracks",
+      "status": "pass"
+    },
+    {
+      "name": "withdraw consent stops actual capture",
+      "status": "pass"
+    },
+    {
+      "name": "blur event cleanup stops actual capture",
+      "status": "pass"
+    },
+    {
+      "name": "desktop layout no horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px layout no horizontal overflow; controls >=44px",
+      "status": "pass"
+    },
+    {
+      "name": "new controller view revokes old view and stops its media tracks",
+      "status": "pass"
+    },
+    {
+      "name": "late microphone permission/stream resolution after mute cannot resurrect capture",
+      "status": "pass"
+    },
+    {
+      "name": "late old stream cannot stop a newer explicitly activated capture",
+      "status": "pass"
+    },
+    {
+      "name": "simulated permission denial cleans controller and displays error",
+      "status": "pass"
+    },
+    {
+      "name": "45-second idle actually closes browser media tracks despite status polling",
+      "status": "pass"
+    },
+    {
+      "name": "local process loss stops actual browser audio",
+      "status": "pass"
+    },
+    {
+      "name": "no external page requests/raw audio payloads or page errors",
+      "status": "pass"
+    }
+  ],
+  "externalPageRequests": 0,
+  "pageErrors": [],
+  "postPayloadKeys": [
+    "command",
+    "sequence"
+  ],
+  "screenshots": [
+    "desktop-idle.png",
+    "desktop-active.png",
+    "desktop-muted.png",
+    "mobile-idle.png",
+    "permission-error.png"
+  ]
+}

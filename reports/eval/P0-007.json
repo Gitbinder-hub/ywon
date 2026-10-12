@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "p0-t3-recycle-001",
+  "topic": "Что такое переработка пластика и зачем она нужна",
+  "fixture": "bootstrap/fixtures/P0-T3-recycling.json",
+  "briefHash": "9f3e7d4f054a91419a31d7100f3530456887fb0d097e2ed0fc6bb0bda2ba533f",
+  "inputHash": "14dc8fd0141cf860d94dbcadf020241578c7fcf2b5c2316669329471c9873e1c",
+  "requestHash": "14dc8fd0141cf860d94dbcadf020241578c7fcf2b5c2316669329471c9873e1c",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Что такое переработка пластика и зачем она нужна",
+      "narration": "Переработка пластика — это важный процесс превращения отходов в новые полезные вещи. Это помогает сократить количество мусора на свалках, экономит природные ресурсы и защищает окружающую среду от загрязнения. Каждый из нас может внести свой вклад, просто разделяя мусор дома и сдавая его в специальные контейнеры. Заботиться о планете просто!",
+      "scenes": [
+        {
+          "caption": "Что такое переработка пластика",
+          "imagePrompt": "A colorful pile of plastic bottles and containers being sorted in a modern recycling facility, bright lighting, clean vector style illustration."
+        },
+        {
+          "caption": "Зачем она нужна",
+          "imagePrompt": "A green Earth globe surrounded by recycling symbols and clean nature, representing environmental protection, minimalist graphic design."
+        },
+        {
+          "caption": "Вклад каждого",
+          "imagePrompt": "A person happily putting a plastic bottle into a recycling bin, outdoor park background, warm and friendly animation style."
+        }
+      ]
+    },
+    "images": [
+      "A colorful pile of plastic bottles and containers being sorted in a modern recycling facility, bright lighting, clean vector style illustration.",
+      "A green Earth globe surrounded by recycling symbols and clean nature, representing environmental protection, minimalist graphic design.",
+      "A person happily putting a plastic bottle into a recycling bin, outdoor park background, warm and friendly animation style."
+    ],
+    "tts": "Переработка пластика — это важный процесс превращения отходов в новые полезные вещи. Это помогает сократить количество мусора на свалках, экономит природные ресурсы и защищает окружающую среду от загрязнения. Каждый из нас может внести свой вклад, просто разделяя мусор дома и сдавая его в специальные контейнеры. Заботиться о планете просто!"
+  },
+  "assetHashes": {
+    "textSha256": "92285521af8ef3721b55b582cc56ea8cc03dd02ae621eaa12d888c6d28dd1beb",
+    "imageSha256": [
+      "15aeae992f55a03c28a6739bc06789c87794e5f9fbe369a6efb955ae144d164f",
+      "3c6b688bf47c774164312dcee7bb39869b7e14b3b7a545deefb1bd089fa60a49",
+      "99a926e58baeaa2902aff97d1a900ffc5115198945bcaca57433c847028022a7"
+    ],
+    "ttsSha256": "1225357d6cde5ff7c56b0237b5db4ff2ca8f70cbca899136d0d86824417e00f0",
+    "wavBytes": 1183074,
+    "mp4Sha256": "b10282cbc67b32aeb5a80a83a8d24f69a80e489779fcf5c34b7b272a09817bdd",
+    "mp4Bytes": 933641
+  },
+  "mp4": {
+    "path": "outputs/p0-t3-recycle-001/result.mp4",
+    "sha256": "b10282cbc67b32aeb5a80a83a8d24f69a80e489779fcf5c34b7b272a09817bdd",
+    "bytes": 933641,
+    "durationSec": 26.791667,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "p0-t3-recycle-001",
+    "topic": "Что такое переработка пластика и зачем она нужна",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "reject",
+    "minutes": 6,
+    "reason": "duration_outside_30+-2",
+    "criticalFailure": [
+      "duration_outside_30+-2"
+    ],
+    "dimensions": {
+      "technical": "fail duration 26.79s outside 30±2",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": false,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ШОУ КЛОУНОВ — Невероятная реклама 10 сек</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800;900&family=Comfortaa:wght@700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pink:#FF006E;--yellow:#FFBE0B;--blue:#3A86FF;--violet:#8338EC;--orange:#FB5607;--mint:#06FFA5}
+body{background:#0a0a14; display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Rubik',system-ui; overflow:hidden}
+.stage-wrap{width:min(960px,96vw); aspect-ratio:16/9; position:relative; filter:drop-shadow(0 30px 60px rgba(0,0,0,.6));}
+.stage{width:100%;height:100%; background:#1a0a2e; border-radius:28px; overflow:hidden; position:relative; border:4px solid #fff; box-shadow:0 0 0 8px #FFBE0B, 0 0 60px rgba(255,0,110,.5);}
+
+/* animated mesh bg */
+.bg{position:absolute;inset:0; background:
+  radial-gradient(800px 500px at 15% 20%, #FF006E 0%, transparent 60%),
+  radial-gradient(700px 400px at 85% 30%, #3A86FF 0%, transparent 60%),
+  radial-gradient(600px 500px at 50% 90%, #8338EC 0%, transparent 60%),
+  radial-gradient(900px 600px at 70% 80%, #FB5607 0%, transparent 60%),
+  linear-gradient(180deg,#1a0a2e 0%, #2d0b4a 100%);
+  animation:bgShift 8s ease-in-out infinite alternate}
+@keyframes bgShift{0%{filter:hue-rotate(0deg) saturate(1.2)}100%{filter:hue-rotate(18deg) saturate(1.5)}}
+.stripes{position:absolute;top:0;left:0;right:0;height:38px; background:repeating-linear-gradient(90deg, #FFBE0B 0 28px, #fff 28px 56px, #FF006E 56px 84px, #fff 84px 112px); animation:stripeMove 1s linear infinite; box-shadow:0 6px 20px rgba(0,0,0,.3); z-index:5}
+@keyframes stripeMove{to{background-position:112px 0}}
+.lights{position:absolute;top:38px;left:0;right:0;height:18px; display:flex; justify-content:space-around; align-items:center; z-index:6; padding:0 12px}
+.light{width:14px;height:14px;border-radius:50%; background:#FFBE0B; box-shadow:0 0 10px #FFBE0B, 0 0 20px #FFBE0B; animation:blink .4s steps(2) infinite}
+.light:nth-child(even){background:#fff; box-shadow:0 0 10px #fff; animation-delay:.2s}
+.light:nth-child(3n){background:#06FFA5; box-shadow:0 0 10px #06FFA5; animation-delay:.1s}
+@keyframes blink{0%,100%{opacity:1; transform:scale(1)}50%{opacity:.4; transform:scale(.7)}}
+
+/* confetti */
+.confetti{position:absolute;inset:0; overflow:hidden; pointer-events:none; z-index:4}
+.conf{position:absolute; width:12px; height:18px; top:-20px; animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg) translateX(0)} 100%{transform:translateY(110vh) rotate(720deg) translateX(40px)}}
+
+/* balloons */
+.balloons{position:absolute;inset:0; pointer-events:none; z-index:3}
+.balloon{position:absolute; bottom:-60px; animation:float 5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center}
+.balloon i{width:62px;height:78px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; display:block; position:relative; box-shadow:inset -10px -12px 20px rgba(0,0,0,.2), 0 8px 18px rgba(0,0,0,.25)}
+.balloon i::after{content:''; position:absolute; left:18px; top:14px; width:16px; height:22px; background:rgba(255,255,255,.55); border-radius:50%; transform:rotate(-18deg); filter:blur(.5px)}
+.balloon span{width:2px; height:70px; background:linear-gradient(#ffffff90, transparent); margin-top:-4px; transform-origin:top; animation:stringSway 2s ease-in-out infinite alternate}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
+@keyframes stringSway{to{transform:rotate(6deg)}}
+
+/* content */
+.content{position:absolute; inset:56px 0 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:10; padding:18px 24px 22px; text-align:center}
+.badge{display:inline-flex; align-items:center; gap:8px; background:#fff; color:#1a0a2e; font:800 12px/1 'Rubik'; letter-spacing:.14em; padding:8px 14px; border-radius:100px; transform:rotate(-1.5deg); animation:badgePop .6s cubic-bezier(.34,1.56,.64,1) .2s both; box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.badge b{background:#FF006E; color:#fff; padding:3px 8px; border-radius:100px; font-size:11px}
+@keyframes badgePop{0%{transform:rotate(-1.5deg) scale(0)}100%{transform:rotate(-1.5deg) scale(1)}}
+.title{margin:14px 0 2px; line-height:.86; position:relative}
+.title .line1{font:900 62px/1 'Rubik'; letter-spacing:-.04em; color:#fff; display:block; -webkit-text-stroke:3px #1a0a2e; paint-order:stroke fill; text-shadow:0 6px 0 #1a0a2e, 0 14px 30px rgba(0,0,0,.35); animation:titleIn .7s cubic-bezier(.34,1.56,.64,1) .35s both}
+.title .line1 em{font-style:normal; background:linear-gradient(90deg,#FFBE0B,#FF006E,#8338EC,#3A86FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; filter:drop-shadow(0 2px 0 #1a0a2e)}
+.title .line2{font:900 54px/1 'Rubik'; color:#FFBE0B; display:block; letter-spacing:-.03em; -webkit-text-stroke:2.5px #1a0a2e; paint-order:stroke fill; text-shadow:0 5px 0 #1a0a2e; animation:titleIn .7s cubic-bezier(.34,1.56,.64,1) .5s both}
+@keyframes titleIn{0%{transform:scale(.3) rotate(-6deg); opacity:0}100%{transform:scale(1) rotate(0); opacity:1}}
+.clown-row{display:flex; align-items:center; justify-content:center; gap:10px; margin:6px 0 8px; animation:fadeUp .6s ease .75s both}
+.clown-emoji{font-size:42px; animation:juggle 1.6s ease-in-out infinite; filter:drop-shadow(0 6px 12px rgba(0,0,0,.4))}
+.clown-emoji:nth-child(2){animation-delay:.2s}
+.clown-emoji:nth-child(3){animation-delay:.4s}
+@keyframes juggle{0%,100%{transform:translateY(0) rotate(-4deg) scale(1)} 50%{transform:translateY(-10px) rotate(4deg) scale(1.08)}}
+@keyframes fadeUp{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)}}
+.features{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:8px 0 12px; animation:fadeUp .6s ease .9s both}
+.chip{background:rgba(255,255,255,.96); color:#1a0a2e; font:800 11px/1 'Rubik'; letter-spacing:.06em; padding:9px 12px; border-radius:100px; display:inline-flex; align-items:center; gap:6px; box-shadow:0 6px 16px rgba(0,0,0,.2); transform:rotate(var(--r));}
+.chip:nth-child(1){--r:-1.2deg} .chip:nth-child(2){--r:1deg} .chip:nth-child(3){--r:-.7deg} .chip:nth-child(4){--r:.9deg}
+.chip i{width:22px;height:22px;border-radius:50%; display:grid; place-items:center; font-size:13px; color:#fff}
+.cta{animation:fadeUp .6s ease 1.05s both; position:relative}
+.cta-btn{background:linear-gradient(90deg,#FF006E,#FB5607,#FFBE0B); background-size:200% 100%; color:#fff; border:3px solid #fff; font:900 18px/1 'Rubik'; letter-spacing:.02em; padding:14px 28px; border-radius:100px; cursor:pointer; box-shadow:0 10px 30px rgba(255,0,110,.45), 0 0 0 6px rgba(255,255,255,.18); animation:gradientShift 2s linear infinite, pulse 1.1s ease-in-out infinite; display:inline-flex; align-items:center; gap:10px; text-shadow:0 2px 0 rgba(0,0,0,.2); transform:rotate(-.6deg)}
+.cta-btn:hover{transform:rotate(-.6deg) scale(1.05)}
+@keyframes gradientShift{to{background-position:200% 0}}
+@keyframes pulse{0%,100%{box-shadow:0 10px 30px rgba(255,0,110,.45), 0 0 0 6px rgba(255,255,255,.18)} 50%{box-shadow:0 14px 38px rgba(255,0,110,.6), 0 0 0 10px rgba(255,255,255,.12)}}
+.cta small{display:block; margin-top:8px; color:rgba(255,255,255,.92); font:700 12px/1.2 'Comfortaa'; letter-spacing:.02em; text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.tel{font:900 16px 'Rubik'; color:#FFBE0B; -webkit-text-stroke:1px #1a0a2e; paint-order:stroke fill; letter-spacing:.04em}
+
+/* stars */
+.star{position:absolute; color:#FFBE0B; font-size:18px; animation:twinkle 1.2s ease-in-out infinite; pointer-events:none; z-index:11; filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0deg); opacity:1}50%{transform:scale(1.5) rotate(15deg); opacity:.7}}
+
+/* progress */
+.progress{position:absolute; bottom:0; left:0; right:0; height:6px; background:rgba(255,255,255,.2); z-index:20}
+.progress-bar{height:100%; width:100%; background:linear-gradient(90deg,#FFBE0B,#FF006E,#3A86FF,#06FFA5); transform-origin:left; animation:progress 10s linear infinite}
+@keyframes progress{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+.timer{position:absolute; top:60px; right:14px; z-index:20; background:rgba(0,0,0,.55); backdrop-filter:blur(8px); color:#fff; font:800 11px 'Rubik'; letter-spacing:.08em; padding:6px 10px; border-radius:100px; border:1px solid rgba(255,255,255,.25); display:flex; align-items:center; gap:6px}
+.timer i{width:8px;height:8px;background:#ff3b30;border-radius:50%; box-shadow:0 0 8px #ff3b30; animation:blink .6s steps(2) infinite}
+.controls{position:absolute; bottom:14px; right:14px; z-index:20; display:flex; gap:8px}
+.ctrl{background:rgba(255,255,255,.92); border:none; padding:8px 12px; border-radius:100px; font:800 11px 'Rubik'; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,.25); transition:.15s}
+.ctrl:hover{transform:translateY(-1px) scale(1.03)}
+.ctrl:active{transform:scale(.97)}
+
+/* curtain reveal */
+.curtain{position:absolute; inset:0; display:flex; z-index:15; pointer-events:none}
+.curt{flex:1; background:linear-gradient(180deg,#7a0a2a,#3d0616); border-right:2px solid rgba(255,255,255,.15); position:relative; overflow:hidden; animation:curtainOpen 1s cubic-bezier(.77,0,.175,1) .1s both}
+.curt:last-child{border-right:none; border-left:2px solid rgba(255,255,255,.15); animation-name:curtainOpenR}
+.curt::after{content:''; position:absolute; inset:0; background:repeating-linear-gradient(90deg, transparent 0 28px, rgba(255,255,255,.04) 28px 30px)}
+@keyframes curtainOpen{0%{transform:translateX(0)}100%{transform:translateX(-102%)}}
+@keyframes curtainOpenR{0%{transform:translateX(0)}100%{transform:translateX(102%)}}
+
+@media(max-width:640px){
+  .title .line1{font-size:38px} .title .line2{font-size:34px}
+  .chip{font-size:10px; padding:7px 10px}
+  .cta-btn{font-size:15px; padding:12px 18px}
+  .stage{border-radius:20px}
+}
+</style>
+</head>
+<body>
+<div class="stage-wrap">
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+    <div class="stripes"></div>
+    <div class="lights" id="lights"></div>
+    <div class="confetti" id="confetti"></div>
+    <div class="balloons" id="balloons"></div>
+
+    <!-- curtain -->
+    <div class="curtain" id="curtain"><div class="curt"></div><div class="curt"></div></div>
+
+    <div class="timer"><i></i><span id="timer">00:10</span> • 10 СЕК ШОУ</div>
+
+    <!-- floating stars -->
+    <div class="star" style="left:8%;top:22%">✦</div>
+    <div class="star" style="left:88%;top:18%; animation-delay:.3s; color:#06FFA5">✦</div>
+    <div class="star" style="left:14%;top:72%; animation-delay:.6s; color:#fff">✦</div>
+    <div class="star" style="left:82%;top:68%; animation-delay:.2s">✦</div>
+    <div class="star" style="left:50%;top:12%; animation-delay:.4s; color:#FFBE0B; font-size:22px">★</div>
+
+    <div class="content">
+      <div class="badge"><b>★ ХИТ 2026</b> 200+ ПРАЗДНИКОВ В ГОД</div>
+      <div class="title">
+        <span class="line1">ШОУ <em>КЛОУНОВ</em></span>
+        <span class="line2">НА ЗАКАЗ 🤡</span>
+      </div>
+      <div class="clown-row">
+        <span class="clown-emoji">🤹‍♂️</span>
+        <span class="clown-emoji" style="font-size:52px">🤡</span>
+        <span class="clown-emoji">🎈</span>
+      </div>
+      <div class="features">
+        <span class="chip"><i style="background:#FF006E">🎉</i> ДЕТСКИЕ ПРАЗДНИКИ</span>
+        <span class="chip"><i style="background:#3A86FF">🎪</i> КОРПОРАТИВЫ</span>
+        <span class="chip"><i style="background:#06FFA5; color:#111">💍</i> СВАДЬБЫ</span>
+        <span class="chip"><i style="background:#FFBE0B; color:#111">🎁</i> ВЫЕЗД 24/7</span>
+      </div>
+      <div class="cta">
+        <button class="cta-btn" onclick="replay()">ЗАКАЗАТЬ ШОУ — СКИДКА 20% <span>→</span></button>
+        <small>Фокусы • Шарики • Мыльные пузыри • Дискотека<br><span class="tel">8 800 555-69-69</span> • работаем по всей России</small>
+      </div>
+    </div>
+
+    <div class="progress"><div class="progress-bar" id="pbar"></div></div>
+    <div class="controls">
+      <button class="ctrl" onclick="replay()">↻ Replay 10с</button>
+      <button class="ctrl" id="pauseBtn" onclick="togglePause()">⏸ Пауза</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// lights
+const lights = document.getElementById('lights');
+for(let i=0;i<22;i++){ const d=document.createElement('div'); d.className='light'; d.style.animationDelay=(i*0.07%2)+'s'; lights.appendChild(d); }
+// confetti
+const conf = document.getElementById('confetti');
+const colors=['#FF006E','#FFBE0B','#3A86FF','#8338EC','#06FFA5','#FB5607','#ffffff'];
+for(let i=0;i<36;i++){
+  const el=document.createElement('div'); el.className='conf';
+  el.style.left=(Math.random()*100)+'%';
+  el.style.background=colors[i%colors.length];
+  el.style.animationDuration=(3+Math.random()*4)+'s';
+  el.style.animationDelay=(Math.random()*3)+'s';
+  el.style.transform=`rotate(${Math.random()*360}deg)`;
+  el.style.borderRadius=(Math.random()>.5?'50%':'4px');
+  el.style.width=(8+Math.random()*10)+'px';
+  el.style.height=(10+Math.random()*14)+'px';
+  conf.appendChild(el);
+}
+// balloons
+const b = document.getElementById('balloons');
+const bcolors=['#FF006E','#3A86FF','#FFBE0B','#8338EC','#06FFA5','#FB5607'];
+const bleft=[6,18,78,88,50,35];
+bcolors.forEach((c,i)=>{
+  const w=document.createElement('div'); w.className='balloon';
+  w.style.left=bleft[i]+'%'; w.style.animationDelay=(i*0.4)+'s'; w.style.animationDuration=(4+Math.random()*2)+'s';
+  w.innerHTML=`<i style="background:radial-gradient(circle at 30% 30%, #fff 0, ${c} 55%)"></i><span></span>`;
+  b.appendChild(w);
+});
+
+// 10 sec timer
+let t=10, paused=false, iv;
+const timerEl=document.getElementById('timer');
+const pbar=document.getElementById('pbar');
+function tick(){
+  if(paused) return;
+  t-=0.1;
+  if(t<=0){ t=10; restartAnims(); }
+  timerEl.textContent='00:'+String(Math.ceil(t)).padStart(2,'0');
+}
+function restartAnims(){
+  document.querySelectorAll('.line1,.line2,.badge,.clown-row,.features,.cta').forEach(el=>{
+    el.style.animation='none'; el.offsetHeight; el.style.animation='';
+  });
+  const c=document.getElementById('curtain');
+  c.style.display='flex';
+  c.innerHTML='<div class="curt"></div><div class="curt"></div>';
+  c.offsetHeight;
+  setTimeout(()=>{ c.style.display='none'; },1100);
+  pbar.style.animation='none'; pbar.offsetHeight; pbar.style.animation='';
+}
+iv=setInterval(tick,100);
+
+function replay(){
+  t=10; paused=false; document.getElementById('pauseBtn').textContent='⏸ Пауза';
+  document.getElementById('stage').style.animation='none'; document.getElementById('stage').offsetHeight;
+  restartAnims();
+  pbar.style.animationPlayState='running';
+}
+function togglePause(){
+  paused=!paused;
+  document.getElementById('pauseBtn').textContent=paused?'▶ Пуск':'⏸ Пауза';
+  pbar.style.animationPlayState=paused?'paused':'running';
+  document.querySelectorAll('.conf,.balloon,.bg,.light,.star').forEach(el=> el.style.animationPlayState=paused?'paused':'running');
+}
+// hide curtain after first play
+setTimeout(()=>{ document.getElementById('curtain').style.display='none'; },1200);
+</script>
+</body>
+</html>

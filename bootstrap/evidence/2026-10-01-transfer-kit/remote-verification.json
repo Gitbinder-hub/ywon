@@ -1,0 +1,35 @@
+{
+  "repository": "Ywoom-space/Ywoom",
+  "pull_request": "https://github.com/Ywoom-space/Ywoom/pull/1",
+  "branch": "bootstrap/spec-v04-foundation",
+  "verified_head": "123b25f8677f14876179327792a19b586b7329cb",
+  "verified_base": "971b26aca5d3dbb29d6d95239a9b395b83cfb978",
+  "pr_state": "open",
+  "draft": true,
+  "remote_import": "pending_confirmed",
+  "remote_docs_tree": "3a620d3160dad7879d59cb768eb72e0c8296ae0a",
+  "local_v02_archive_docs_tree": "3a620d3160dad7879d59cb768eb72e0c8296ae0a",
+  "matching_runtime_blobs": {
+    "apps/api/src/server.ts": "e8d971183eb8829a0911b73752cce7d689d6312f",
+    "apps/web/public/app.js": "8464a077533ed0772814400470ce1d52103b4b52",
+    "apps/web/public/index.html": "2984b48249377aee4b0141bb380e10034c1451f0",
+    "apps/web/public/style.css": "ee31cff3f240d53969d11f61e1f00e1af41d796c",
+    "packages/contracts/src/index.ts": "970b6245e5a685173cb236aad5bf7031817178d8",
+    "packages/core/src/dry-run.ts": "950f626f0a4d66ff5fb4d0dfe644d1de896f1bd0",
+    "workers/media/probe.py": "ad8759390ecdb3865e0032f338bafbc1ff914de1",
+    "workers/media/test_probe.py": "9ea004e24e6d217244d306f843b6bfadb7579828"
+  },
+  "coverage": "Eight runtime/code-test blob IDs compared; not a full remote checkout or full-tree hash comparison. Remote tsconfig/pins/RU/EN contents also read; formatting differs.",
+  "git_transport": {
+    "command": "GIT_TERMINAL_PROMPT=0 timeout 15 git ls-remote https://github.com/Ywoom-space/Ywoom.git refs/heads/bootstrap/spec-v04-foundation refs/heads/main",
+    "exit_code": 128,
+    "error": "Could not resolve host: github.com"
+  },
+  "github_check_runs": {
+    "http_status": 403,
+    "error": "Resource not accessible by personal access token",
+    "ci_success": "unknown"
+  },
+  "remote_writes": false,
+  "source": "GitHub MCP reads during this follow-up; historical local hashes not treated as fresh results"
+}

@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv-asr/
+local-asr-runtime/
+local-asr-config/
+local-asr-setup.json
+.env
+.env.*
+!.env.example
+node_modules/
+outputs/
+run-media/
+*.mp4
+*.mov
+*.wav
+*.mp3
+# Store large/private evidence separately with permitted URI/hash and reports.
+
+.Ywoom-offline/

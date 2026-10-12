@@ -1,0 +1,7 @@
+runConfig:
+  runCommand: node apps/api/src/server.ts
+  environmentVariables:
+    - variable: Ywoom_CLOUD
+      value: "1"
+    - variable: NODE_ENV
+      value: production

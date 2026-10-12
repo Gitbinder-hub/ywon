@@ -1,0 +1,90 @@
+{
+  "task_id": "Q-013",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-013 First Skill Runtime and minimal Router (P2 prototype): typed recipe id/version with fidelity/budget/retries/reports/capability, version pinned, honest 2D motion presets (pan/zoom/push_in/shake as 2d_approximation not orbit), unsupported orbit denied by fidelity guard, proven P0 google-p0 path included with fixture vs live eval separated (live requires explicit budget). packages/skill-runtime/src/types+index, 4 tests PASS (78 total).",
+  "changed_files": [
+    "packages/skill-runtime/src/types.ts",
+    "packages/skill-runtime/src/index.ts",
+    "tests/skill-runtime.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/skill-runtime.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/skill-runtime.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/skill-runtime.test.ts",
+      "notes": "4/4 PASS: AC1 typed recipe version pinned budget/retries/fidelity, AC2 P0 path + fixture/live separation, AC3 honest 2D presets unsupported orbit denied"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/skill-runtime.test.ts",
+      "notes": "78/78 PASS (10 budget+6 workflow+9 auth+11 api+4 contracts+9 editable+8 shell+9 cost-vis+6 director+4 skill+1 auth-api extra), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/skill-runtime/src/types.ts",
+        "packages/skill-runtime/src/index.ts",
+        "tests/skill-runtime.test.ts"
+      ],
+      "reason": "Typed recipe with id/version, fidelity budget/retries/reports/capability fields validated, version pinned (duplicate version denied, retrieval by id@version), fidelity guard prevents 2d preset presented as exact_3d/orbit."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/skill-runtime/src/index.ts",
+        "tests/skill-runtime.test.ts"
+      ],
+      "reason": "Proven P0 provider path google-p0@ p0-002 included in router candidates; recorded fixtures and live eval separated via RouterMode fixture vs live + liveAllowed flag — live without explicit budget denied."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/skill-runtime/src/index.ts",
+        "tests/skill-runtime.test.ts"
+      ],
+      "reason": "Several honest 2D motion presets (pan-2d/zoom-2d/push_in-2d/shake-2d) with fidelity 2d_approximation and explicit 'not orbit' limitations; exact_3d request with only 2d presets returns unsupported, not fake orbit; execute denies orbit-fake preset."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Offline registry only — skill versions not yet persisted to Postgres, no real provider capability manifest fetch",
+    "Router cost is placeholder minor units, not measured accepted-result cost from live benchmark",
+    "Blender/exact_3d presets remain P5 future — only 2d_approximation implemented"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-013 then Q-042 four roles dispatcher before full P2 pipeline",
+    "Q-039 editors + Q-040 journey slices for P2 Q-014 pipeline"
+  ],
+  "recommended_next_tasks": [
+    "Q-042",
+    "Q-039"
+  ],
+  "required_owner_checks": [
+    "Confirm P0 fixture path separation and honest 2D fidelity acceptable for P2",
+    "Review router not promising exact orbit without geometry evidence"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

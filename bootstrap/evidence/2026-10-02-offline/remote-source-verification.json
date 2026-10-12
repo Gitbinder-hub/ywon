@@ -1,0 +1,24 @@
+{
+  "task": "B-002",
+  "checked_on": "2026-10-02",
+  "repository": "Ywoom-space/Ywoom",
+  "branch": "bootstrap/spec-v04-foundation",
+  "base_commit": "b90c853634c1654ea6b73356038c4163a80083f1",
+  "code_commit": "4502eb2a3b836384cf732731c75478263f3711e1",
+  "source_publication": "COMPLETE",
+  "runtime_source_verification": "PASS",
+  "method": "GitHub root directory tree/blob hashes re-read and matched git ls-tree HEAD; matching trees recursively bind all descendant names/content/modes",
+  "matched_runtime_paths": {
+    "apps": "98f8e322ec5c092f4f31e1c2f8e86d1d17fac9f9",
+    "workers": "1ba80447723b44da1a5fe46981841237363d54c3",
+    "tests": "23eb4e00153b28263579bf5f88624a02cb506926",
+    "package.json": "aae60e58cb95f8748a75b74e5c1913e2f03015e8",
+    ".gitignore": "579d96a1057e1b661d10172ae724f7346b30f64f"
+  },
+  "preserved_main": "971b26aca5d3dbb29d6d95239a9b395b83cfb978",
+  "q_tasks_changed": false,
+  "protected_policy_budget_auth_dependencies_workflows_changed": false,
+  "product_stage_acceptance": false,
+  "github_ci": "unknown; earlier check-run retrieval HTTP403",
+  "raw_local_logs": "inside previously delivered source ZIP; summary committed separately"
+}

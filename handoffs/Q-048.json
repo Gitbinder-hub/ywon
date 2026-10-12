@@ -1,0 +1,132 @@
+{
+  "task_id": "Q-048",
+  "agent": "opas/mirasim",
+  "session": "2026-10-11T00:05:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-048 Товары/Реклама/Видео decomposition: chosen studio scoped (tovary-hero protected product + reclama-banner variants lineage + video-shorts 30-60s), platform profiles versioned, claims/QA rubric honest, bounded tasks with real budgets/rights linked to F42/F27 and Q-030G gate, region-edit/variants/carousel/Stories capability split with unsupported disclosed. Built on scaffold 9 skills + 5 recipes + Skill Lab promotion path.",
+  "changed_files": [
+    "packages/p5-decomposition/src/index.ts",
+    "skills/tovary-hero/skill.yaml",
+    "skills/tovary-hero/SKILL.md",
+    "skills/reklama-banner/skill.yaml",
+    "skills/reklama-banner/SKILL.md",
+    "skills/video-shorts/skill.yaml",
+    "skills/video-shorts/SKILL.md",
+    "skills/code-scaffold/skill.yaml",
+    "skills/code-scaffold/SKILL.md",
+    "skills/code-scaffold/prompts/code-brief.md",
+    "skills/bot-factory/skill.yaml",
+    "skills/bot-factory/SKILL.md",
+    "skills/freelance-autopilot/skill.yaml",
+    "skills/freelance-autopilot/SKILL.md",
+    "recipes/tovary-ywon-bundle.yaml",
+    "recipes/reklama-ywon-bundle.yaml",
+    "recipes/video-shorts-pack.yaml",
+    "apps/api/src/skills.ts",
+    "apps/api/src/server.ts",
+    "apps/web/public/skills.html",
+    "apps/web/public/skills.css",
+    "apps/web/public/skills.js",
+    "apps/web/public/index.html",
+    "apps/web/public/studio.html",
+    "apps/web/public/settings.html",
+    "apps/web/public/billing.html",
+    "tests/q048-studio.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "node scripts/check_skills.mjs",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "skills/tovary-hero/skill.yaml",
+      "notes": "check_skills PASS: 9 skills validated (3 new studio + 3 code + 3 base)"
+    },
+    {
+      "command": "node --test tests/q048-studio.test.ts tests/p5-decomposition.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/q048-studio.test.ts",
+      "notes": "6/6 PASS: AC1 inputs/profiles/protected/QA scoped, AC2 bounded tasks/real budgets/Q-030G gate, AC3 capability split"
+    },
+    {
+      "command": "node --check apps/api/src/skills.ts && node --check apps/api/src/server.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "apps/api/src/skills.ts",
+      "notes": "syntax check passed — /api/skills + /api/skills/:id + skills.html/js/css wired"
+    },
+    {
+      "command": "python -I scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/q048-studio.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/p5-decomposition/src/index.ts",
+        "skills/tovary-hero/skill.yaml",
+        "skills/tovary-hero/SKILL.md",
+        "skills/reklama-banner/skill.yaml",
+        "skills/reklama-banner/SKILL.md",
+        "skills/video-shorts/skill.yaml",
+        "skills/video-shorts/SKILL.md",
+        "tests/q048-studio.test.ts",
+        "recipes/tovary-ywon-bundle.yaml",
+        "recipes/reklama-ywon-bundle.yaml",
+        "recipes/video-shorts-pack.yaml"
+      ],
+      "reason": "Товары (cutout+SKU+claims+protected_region+aspect), Реклама (offer/audience/landing/proofs/CTA/platform/variants), Видео (hook/voice/duration/platform/source) with platform profiles and QA rubric (human_claim_approval, variants_lineage, duration_ok/source_sufficient/hook_present) scoped per MODES_AND_RECIPESMS; 3 recipes bundle them."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/p5-decomposition/src/index.ts",
+        "tests/q048-studio.test.ts"
+      ],
+      "reason": "Decomposition expanded to 6 tasks (Q-025-1..2 + Q-048-1..4) each with featureId F42/F27/F18/F24, budgetMinor>0 and rightsChecked, DAG linked, gateDependsOn covers all impl tasks, not whole catalog DONE."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/p5-decomposition/src/index.ts",
+        "skills/tovary-hero/skill.yaml",
+        "skills/reklama-banner/skill.yaml",
+        "skills/video-shorts/skill.yaml",
+        "tests/q048-studio.test.ts"
+      ],
+      "reason": "Region edit (IMAGE_EDITOR masks) kept future not universal, variants lineage explicit, carousel/Stories stickers not claimed by banner, all 3 skill.yaml list supported/degraded/unsupported and forbidden_this_iteration, bonus code/bot/freelance family extra."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Skills remain draft until Lab-promoted via Q-032; no real provider holdout yet",
+    "Image-gen background/relight capability manifest still stub — needs verified pricing/provenance before paid eval",
+    "UI /skills factory page needs manual smoke in WebView2 (localhost_only), not auto-e2e"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-048, then run Lab holdout/canary for one studio skill with approved spend",
+    "Verify image-gen provider manifest and pricing for tovary-hero budget forecast",
+    "Manual WebView2 smoke: /skills grid, drawer read/edit/lab tabs, search chips"
+  ],
+  "recommended_next_tasks": [
+    "Q-034"
+  ],
+  "required_owner_checks": [
+    "Confirm Товары/Реклама/Видео scope acceptable",
+    "Approve real eval budget before paid image-gen promotion"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline decomposition + skill YAML + UI scaffold)."
+  }
+}

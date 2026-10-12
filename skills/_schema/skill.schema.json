@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ywoom.local/schemas/skill.schema.json",
+  "title": "Ywon Skill Recipe — 15_STUDIO_SKILLS.md typed graph",
+  "type": "object",
+  "required": ["id", "version", "status", "execution_fidelity", "input_schema", "output_schema", "required_capabilities", "budget", "retries", "reports", "steps"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$", "description": "skill id, stable technical ID" },
+    "version": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$" },
+    "status": { "enum": ["draft", "canary", "active", "deprecated"] },
+    "scope": { "enum": ["studio", "global"], "default": "studio" },
+    "execution_fidelity": { "enum": ["exact_3d", "supported_control", "prompt_guidance", "2d_approximation"], "description": "exact_3d requires geometry; prompt_guidance is approximate; 2d_approximation is honest 2D" },
+    "input_schema": { "type": "object" },
+    "output_schema": { "type": "object" },
+    "required_capabilities": { "type": "array", "items": { "type": "string" } },
+    "optional_capabilities": { "type": "array", "items": { "type": "string" } },
+    "budget": {
+      "type": "object",
+      "required": ["limitMinor", "currency"],
+      "properties": {
+        "limitMinor": { "type": "integer", "minimum": 0 },
+        "worstCaseMinor": { "type": "integer", "minimum": 0 },
+        "retryCostMinor": { "type": "integer", "minimum": 0 },
+        "currency": { "enum": ["USD"] },
+        "cancellationRule": { "type": "string" }
+      }
+    },
+    "retries": {
+      "type": "object",
+      "required": ["maxAttempts", "backoffMs"],
+      "properties": {
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "backoffMs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "reports": {
+      "type": "object",
+      "required": ["deliveryReport", "costReport", "qaReport"],
+      "properties": {
+        "deliveryReport": { "type": "boolean" },
+        "costReport": { "type": "boolean" },
+        "qaReport": { "type": "boolean" },
+        "openIssues": { "type": "boolean" }
+      }
+    },
+    "steps": { "type": "array", "items": { "type": "string" } },
+    "approval": { "type": "array", "items": { "type": "string" } },
+    "model_templates": { "type": "object", "additionalProperties": { "type": "string" } },
+    "supported_outcomes": { "type": "array", "items": { "type": "string" } },
+    "degraded_outcomes": { "type": "array", "items": { "type": "string" } },
+    "unsupported_outcomes": { "type": "array", "items": { "type": "string" } },
+    "forbidden_this_iteration": { "type": "array", "items": { "type": "string" } },
+    "curiosity_reserve": { "type": ["integer", "null"], "minimum": 0, "maximum": 10, "description": "5-10% slice inside GenerationUnit cap, burns on delivery" },
+    "presets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "version", "kind", "fidelity"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$" },
+          "version": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$" },
+          "kind": { "enum": ["pan", "zoom", "push_in", "shake", "transition"] },
+          "fidelity": { "enum": ["exact_3d", "supported_control", "prompt_guidance", "2d_approximation"] },
+          "requires": { "type": "array", "items": { "type": "string" } },
+          "maxDurationSec": { "type": "integer", "minimum": 1 },
+          "description": { "type": "string" },
+          "limitations": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

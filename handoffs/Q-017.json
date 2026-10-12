@@ -1,0 +1,89 @@
+{
+  "task_id": "Q-017",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-017 5 external users and UX verification (P3 prototype): 5 ordinary users pilot with help/fails recorded, time-to-export/drop-off/feedback/issues logged, unavailable languages/formats/costs explicit. packages/external-users/src/types+index, 3 tests PASS (114 total).",
+  "changed_files": [
+    "packages/external-users/src/types.ts",
+    "packages/external-users/src/index.ts",
+    "tests/external-users.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/external-users.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/external-users.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/external-users.test.ts",
+      "notes": "3/3 PASS: AC1 5 users not hidden, AC2 time/drop-off/burden, AC3 unavailable explicit"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts tests/external-users.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/external-users.test.ts",
+      "notes": "114/114 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/external-users/src/types.ts",
+        "packages/external-users/src/index.ts",
+        "tests/external-users.test.ts"
+      ],
+      "reason": "Five ordinary external users recorded via recordRun, failures and help logged as issues not hidden, fiveUsersCovered true."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/external-users/src/index.ts",
+        "tests/external-users.test.ts"
+      ],
+      "reason": "timeToExportStats, drop-off count, reviewBurden and feedback included, issues array contains failed/help markers."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/external-users/src/index.ts",
+        "tests/external-users.test.ts"
+      ],
+      "reason": "unavailableNotice returns explicit language/format/cost unavailable strings, all-available case returns complete message."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Stub runs, not real user sessions with screen recording",
+    "Time-to-export is synthetic, not measured wall-clock"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-017 then Q-043 founding creator and Q-017G gate",
+    "Q-017G decides P4 scope"
+  ],
+  "recommended_next_tasks": [
+    "Q-043",
+    "Q-017G"
+  ],
+  "required_owner_checks": [
+    "Confirm 5-user stub coverage acceptable for P3 prototype",
+    "Review unavailable notices before live pilot"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype). Note Q-017 paid=true but stubbed."
+  }
+}

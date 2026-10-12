@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "base_commit": "ef2206c0c4f3ed648bbad4bcea5cfbd5f165465c",
+  "scope": "B-053/B-054 fresh scoped partial-genuine-source checks",
+  "platform": "Linux sandbox, not desktop OS certification",
+  "tools": {
+    "node": "24.14.1",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130"
+  },
+  "tests": {
+    "total": 103,
+    "passed": 103,
+    "failed": 0,
+    "skipped": 0,
+    "retained_prior_subset": 64,
+    "new_dispatch": 20,
+    "new_voice": 19,
+    "files": [
+      "tests/companion.test.ts",
+      "tests/companion-dispatch.test.ts",
+      "tests/companion-voice.test.ts",
+      "tests/architect-google-live.test.ts",
+      "tests/architect-live-result.test.ts",
+      "tests/architect-live-result-store.test.ts",
+      "tests/live-results-api.test.ts"
+    ]
+  },
+  "strict_typecheck": {
+    "result": "pass",
+    "configuration": "bootstrap/B051.tsconfig.json",
+    "local_override": "Only typeRoots to installed /vercel/sandbox/node_modules/@types; original strict options retained"
+  },
+  "commands": [
+    "node <installed-typescript>/bin/tsc -p <local-typeRoots-only-config>",
+    "node --test tests/companion.test.ts tests/companion-dispatch.test.ts tests/companion-voice.test.ts tests/architect-google-live.test.ts tests/architect-live-result.test.ts tests/architect-live-result-store.test.ts tests/live-results-api.test.ts",
+    "node scripts/companion_voice_demo.ts"
+  ],
+  "initial_attempt": {
+    "result": "failed",
+    "problems": [
+      "Local /data has no module resolution for require.resolve(typescript/package.json); use discovered installed compiler path",
+      "Native Node24 strip-only mode rejects constructor parameter properties; replaced with explicit fields/assignments"
+    ],
+    "final_rerun": "103/103 tests and strict typecheck PASS"
+  },
+  "actual_checks": [
+    "Actual local SQLite + files + ephemeral Ed25519 key verification",
+    "Signed exact replay/task-operation conflict/current grants and policy expiry/revocation at checkpoints",
+    "Abrupt embedding callback failure with durable signed-task resume",
+    "Inherited real child SIGKILL recovery and concurrent local admission tests rerun",
+    "Synthetic voice state/effects/proposals; no microphone or speech provider",
+    "Inherited actual FFmpeg/ffprobe mocked-media and localhost read-only HTTP tests rerun"
+  ],
+  "not_run": [
+    "complete checkout make check/spec-check/project.py/CI",
+    "Windows10/11/macOS/Linux desktop microphone/GUI/distribution",
+    "SaaS auth/real device pairing/production persisted policy/transport",
+    "microphone/AEC/wake/classifier/ASR/TTS/provider duplex/voice biometrics",
+    "audio latency/false activation/quality/CPU benchmark",
+    "paid provider/usage/invoice/cost cap integration"
+  ],
+  "provider_calls": 0,
+  "microphone_opened": false,
+  "paid_calls": 0,
+  "local_http_test": true,
+  "product_stage_acceptance": false,
+  "owner_acceptance": null,
+  "tested_source_sha256": {
+    "packages/companion-protocol/src/index.ts": "ff420ff90d6439e5990291db9f0edfda22010eb4b6f2fc08ba9ed720a30628b0",
+    "packages/companion-protocol/src/dispatch.ts": "345c02b7a8ae6bd970fad0f3e3e4b0e29498b75a7268af6cf04c574e70482311",
+    "packages/companion/src/files.ts": "50575dce620ac7ec2a12f083b3243b853bbebab819c8245f8847804f4191e021",
+    "packages/companion/src/runner.ts": "4572027e1eb9752f76bce5f597d035952acde898284ef7d4844ac41520f0df85",
+    "packages/companion/src/signed-dispatch.ts": "bfbc43bccdef5529f68939ef3b83eba412125be9d10967de853e6b49ff37fffa",
+    "packages/companion/src/voice-session.ts": "592c083b1106cd6b85a2b7e6e6d73415aa6e881d43bf07bc71927be4471cd9a4",
+    "scripts/companion_voice_demo.ts": "4b3743a8c0ad51ad85f2cf2534fa297859ff8ab76e00e0acff048606abb6338c",
+    "tests/companion.test.ts": "1449229ecb838428120d9771e4a1c52d87634cea2023044849241fc1de6fd6c8",
+    "tests/companion-dispatch.test.ts": "751709773d7ac48f409a2ce80a01b3e27a8e6249922397a48b89e44b37c481f7",
+    "tests/companion-voice.test.ts": "759354e63b5a980725153817390daa94a9cdeea3060715ea2612e5e6b137ef1a",
+    "packages/architect/src/google-live.ts": "569434c531cf96361e0f04821f10bdb60b6b144715bc6e1896c6b33b0922b5bc",
+    "packages/architect/src/live-result.ts": "e1719ec30b66756f9e71a149a8d3af3d1928c48c14072969f8e7702d8a4a44f3",
+    "tests/architect-google-live.test.ts": "5cc0dcdd78e5572a22360aa6d004913ce88e8bbbe87435d828dfeccc3930ca9c",
+    "tests/architect-live-result.test.ts": "286f83e19314e6118784665f998b7479e797da82e4c726899016b3e4134a99bc",
+    "tests/architect-live-result-store.test.ts": "c1ff4506157e6b1b051d9e2fb2a79cd4b1591b0b4f0ff1a4018d786d08f9a865",
+    "tests/live-results-api.test.ts": "3151a709614a09e52a2649b2f45cfcb5099893be0e4936576d7934cef7ffb9e2",
+    "bootstrap/B051.tsconfig.json": "85d1ef02ecd0b0ff028e2be0102a86d989bbebc5254c78bc86532b6325f08de4"
+  },
+  "synthetic_demo": {
+    "mode": "synthetic_voice_control_demo",
+    "productionReady": false,
+    "microphoneOpened": false,
+    "audioPlayed": false,
+    "providerCalls": 0,
+    "executionAllowed": false,
+    "activationEffects": [
+      "start_capture"
+    ],
+    "backgroundIgnored": true,
+    "interruptionEffects": [
+      "cancel_response",
+      "flush_playback"
+    ],
+    "staleAudioIgnored": true,
+    "sleepEffects": [
+      "flush_playback",
+      "stop_capture",
+      "close_transport"
+    ],
+    "finalState": "closed"
+  }
+}

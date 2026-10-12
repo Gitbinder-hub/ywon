@@ -1,0 +1,13 @@
+npm run check
+
+> Ywoom-foundation@0.0.1 check
+> npm run typecheck && npm test && node --check apps/web/public/app.js
+
+
+> Ywoom-foundation@0.0.1 typecheck
+> tsc --noEmit
+
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+make: *** [Makefile:5: bootstrap-check] Error 1

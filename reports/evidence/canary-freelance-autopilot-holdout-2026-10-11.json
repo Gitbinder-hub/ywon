@@ -1,0 +1,43 @@
+{
+  "skillId": "freelance-autopilot",
+  "version": "1.0.0",
+  "labStage": "canary",
+  "scope": "small",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 47,
+    "honest": true,
+    "seedExclusion": "golden ∩ holdout = ∅"
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "casesTotal": 4,
+    "reportHash": "21fd568e4d01c7e8599ddacbe194ea21683e67f74bf27935e4b33030c718e9c1"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "approvedMinor": 3000,
+    "reportHash": "a51defeb637ae7ad0d89fc5392d420eea26640c4d813f56d99fd3ad0ed808f33"
+  },
+  "canary": {
+    "skillId": "freelance-autopilot",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:29.568Z",
+    "active": true
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; auto_bid_without_approval forbidden; gate_10percent enforced",
+  "at": "2026-10-10T17:17:29.569Z"
+}

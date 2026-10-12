@@ -1,0 +1,48 @@
+﻿# docs/studio/MODES_AND_RECIPES.md â€” Ð¢Ð¾Ð²Ð°Ñ€Ñ‹: hero photo (protected product)
+id: tovary-hero
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: supported_control
+input_schema:
+  type: object
+  required: [product_cutout_id, sku, claims]
+  properties:
+    product_cutout_id: { type: string, minLength: 1, description: approved source cutout hash }
+    sku: { type: string, minLength: 1 }
+    claims: { type: array, items: { type: string, minLength: 1 } }
+    required_texts: { type: array, items: { type: string } }
+    protected_region: { type: string, description: keep product pixels, background only }
+    aspect: { type: string, enum: ["1:1", "4:5", "16:9"], default: "1:1" }
+output_schema:
+  type: object
+  required: [artifact_id, preview_url, manifest_hash, qa]
+  properties:
+    artifact_id: { type: string }
+    preview_url: { type: string }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+    qa: { type: object, required: [ocr_signal, visual_signal], properties: { ocr_signal: { type: string }, visual_signal: { type: string }, critical_passed: { type: boolean } } }
+required_capabilities: [image-gen]
+optional_capabilities: [background-gen, relight]
+budget:
+  limitMinor: 6000
+  worstCaseMinor: 6000
+  retryCostMinor: 6000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 900
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_sku_claims, verify_protected_region, compose_background, qa_ocr_visual, human_claim_approval, report]
+approval: [human_claim_approval]
+supported_outcomes: [hero_composed, approved_cutout_reused]
+degraded_outcomes: [relight_changed_product_needs_review]
+unsupported_outcomes: [missing_protected_cutout, invented_claim]
+forbidden_this_iteration: [synthetic_testimonial_as_product_photo, invented_sku_property]
+curiosity_reserve: 6
+presets: []

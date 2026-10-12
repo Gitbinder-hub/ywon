@@ -1,0 +1,25 @@
+# Recipe: static-promo — bounded static layout/text recipe for P2 editor loop
+# Validates docs/studio/MODES_AND_RECIPES.md: one bounded static recipe with editable overlays/text.
+id: static-promo
+version: "1.0.0"
+status: draft
+kind: image
+profile: "1:1"
+steps:
+  - id: brief
+    skill: null
+  - id: layout
+    skill: null
+    note: editable overlays/local transforms/text, source retention per F43
+  - id: text_blocks
+    skill: null
+    note: structured blocks/selected diff, F44
+  - id: qa
+    gate: ContentReview
+  - id: export
+    outputs: [png, manifest, cost_report]
+supported_outcomes: [exported]
+degraded_outcomes: []
+unsupported_outcomes: [region_edit_requires_P5_capability]
+budget: { baselineMinor: 8000, reservePercent: 20, currency: USD }
+provenance: { borrowed_mechanism_from: OpenMontage style playbooks, code: original }

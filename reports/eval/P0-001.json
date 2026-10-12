@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "google-p0-002",
+  "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+  "fixture": "bootstrap/fixtures/B036-google-live.json",
+  "briefHash": "fe49d04a31496c773205be09571664c15fba93d3bf824de9949491a49614a10f",
+  "inputHash": "895e99ed5d1bd1b7ba3bf9a812bf6a46e3a9eb953a459c591f0fffe9dd2a220c",
+  "requestHash": "895e99ed5d1bd1b7ba3bf9a812bf6a46e3a9eb953a459c591f0fffe9dd2a220c",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Почему небо голубое?",
+      "narration": "Солнечный свет кажется нам белым, но он состоит из всех цветов радуги. Когда лучи достигают Земли, они сталкиваются с молекулами воздуха. Синий свет рассеивается намного сильнее остальных из-за своей короткой длины волны. Именно поэтому, поднимая глаза вверх, мы видим бескрайнее голубое небо над нами.",
+      "scenes": [
+        {
+          "caption": "Солнечный свет и радуга",
+          "imagePrompt": "A bright sun shining in the clear sky with a subtle rainbow spectrum visible in the light rays, minimalist style, educational illustration"
+        },
+        {
+          "caption": "Рассеивание света в атмосфере",
+          "imagePrompt": "Scientific visualization of light waves scattering through air molecules, blue light bouncing in different directions, clean vector art"
+        },
+        {
+          "caption": "Голубое небо над землей",
+          "imagePrompt": "A beautiful bright blue sky with soft white clouds viewed from a green meadow, peaceful nature photography"
+        }
+      ]
+    },
+    "images": [
+      "A bright sun shining in the clear sky with a subtle rainbow spectrum visible in the light rays, minimalist style, educational illustration",
+      "Scientific visualization of light waves scattering through air molecules, blue light bouncing in different directions, clean vector art",
+      "A beautiful bright blue sky with soft white clouds viewed from a green meadow, peaceful nature photography"
+    ],
+    "tts": "Солнечный свет кажется нам белым, но он состоит из всех цветов радуги. Когда лучи достигают Земли, они сталкиваются с молекулами воздуха. Синий свет рассеивается намного сильнее остальных из-за своей короткой длины волны. Именно поэтому, поднимая глаза вверх, мы видим бескрайнее голубое небо над нами."
+  },
+  "assetHashes": {
+    "textSha256": "a34bf004e69e5e4bbdea269c6792e9cf4800a649d1b1b11305d90fad9f313d7c",
+    "imageSha256": [
+      "8d52bed97dea490df1d36b77f6019320d761cf87bf9b96ba19592cb53e6f965c",
+      "7b1e2d2c7ccf0aed9b6a0ea943e15b4773f9848a5c1bfe86d63de470a7448a87",
+      "19fcc0d183992e3e29e50bbee34a331439c65310af247bfa29eb3707311a6209"
+    ],
+    "ttsSha256": "ee26af220a4d1a46bdd5b73a905e99f8b39beb6b67124da84a1f6d59c91ad490",
+    "wavBytes": 1062114,
+    "mp4Sha256": "eefc0af90f34ae55b780730e411a1a0736a84d025c3b22e1bea44ad711d6a1e3",
+    "mp4Bytes": 830811
+  },
+  "mp4": {
+    "path": "outputs/google-p0-002/result.mp4",
+    "sha256": "eefc0af90f34ae55b780730e411a1a0736a84d025c3b22e1bea44ad711d6a1e3",
+    "bytes": 830811,
+    "durationSec": 24.041667,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "google-p0-002",
+    "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "reject",
+    "minutes": 6,
+    "reason": "duration_outside_30+-2",
+    "criticalFailure": [
+      "duration_outside_30+-2"
+    ],
+    "dimensions": {
+      "technical": "fail duration 24.04s outside 30±2",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": false,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

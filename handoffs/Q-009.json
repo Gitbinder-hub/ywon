@@ -1,0 +1,99 @@
+{
+  "task_id": "Q-009",
+  "agent": "cline/Ywon-PC",
+  "session": "2026-10-07T03:03:46+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-009 budget reserve/ledger/reconcile (P1 offline prototype): single authoritative ledger (BudgetLedger), atomic multi-scope reserve, 20% generation reserve B/R/C frozen, pricing versions/attempts/corrections + zero waste, pending append-only, migration 003, kill switch. 10 tests PASS (42 total).",
+  "changed_files": [
+    "packages/budget/src/types.ts",
+    "packages/budget/src/ledger.ts",
+    "packages/budget/src/reserve.ts",
+    "packages/budget/src/index.ts",
+    "infra/migrations/003_budget_ledger.sql",
+    "tests/budget-reserve.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "infra/migrations/003_budget_ledger.sql",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/budget-reserve.test.ts",
+      "notes": "10/10 PASS: 20% B/R/C exactly C, atomic no partial, pending->commit+corrected, idempotency, unknown never zero, pricing/waste, B=0, kill switch, concurrent, migration"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/budget-reserve.test.ts",
+      "notes": "42/42 PASS (10 budget+6 workflow+26 existing), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/budget/src/ledger.ts",
+        "packages/budget/src/reserve.ts",
+        "tests/budget-reserve.test.ts",
+        "infra/migrations/003_budget_ledger.sql"
+      ],
+      "reason": "Atomic scope reservations: reserve() atomically checks ALL scopes before mutation (cap_exceeded => no partial, 400+400 ok 200 denied, reserved 400). Concurrent 11x100 limit 1000 => 10 passes (fencing sequential; PG SELECT FOR UPDATE). Overlay A-20261003-Q-009-1: frozen B/R/C + pending liabilities enforced, operation/attempt changes do not reset limits."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/budget/src/types.ts",
+        "packages/budget/src/ledger.ts",
+        "packages/budget/src/reserve.ts",
+        "tests/budget-reserve.test.ts",
+        "infra/migrations/003_budget_ledger.sql"
+      ],
+      "reason": "CostEntry estimate|pending|confirmed|corrected, pricingVersion preserved via commit, generatedSeconds/usedSeconds, waste_ratio 100/0=>null not 0. Append-only ledger, operation_id UNIQUE, DECIMAL minor units (199+40). Overlay A-20261003: invoice never zero still held."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/budget/src/reserve.ts",
+        "packages/budget/src/ledger.ts",
+        "tests/budget-reserve.test.ts"
+      ],
+      "reason": "Unknown/cancelled reconcile: unknown/running keep pending+reserved never zero, succeeded without billed denied, with billed commits, failed=>release. Pending append-only. Kill switch ledger.setKillSwitch() outside agent denies new reserves, reconcile allowed. Overlay A-20261005-Q-009-1: single authoritative ledger shared across runtimes, stale offline cannot authorise, research separate scopeIds, usage/invoice evidence separate pending vs confirmed+corrected."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Offline in-memory not PG -- sequential fencing, нужен PG lock (003 ready)",
+    "No Live provider -- poll/reconcile mock, live eval отдельно",
+    "Pending==reserved для held -- detached pending недоучёт покрыть в Q-010"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-010 storage/provenance",
+    "Q-036 editable-doc",
+    "Q-037 cost visibility >10% after live pricing"
+  ],
+  "recommended_next_tasks": [
+    "Q-010",
+    "Q-036"
+  ],
+  "required_owner_checks": [
+    "Confirm offline ledger enough for P1, PG integration Q-010",
+    "Accept frozen B/R/C 20% as ceiling not surcharge, unit=one result"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline). Minor units integer."
+  }
+}

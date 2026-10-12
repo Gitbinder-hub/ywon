@@ -1,0 +1,54 @@
+﻿# docs/production/15_STUDIO_SKILLS.md â€” b-roll planning with stock vs generation decision
+id: b-roll-planning
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: prompt_guidance
+input_schema:
+  type: object
+  required: [script_beats]
+  properties:
+    script_beats: { type: array, items: { type: string, minLength: 1 }, minItems: 1 }
+    available_stock_ids: { type: array, items: { type: string } }
+    allow_generation: { type: boolean, default: true }
+    protected_entities: { type: array, items: { type: string } }
+    budget_remaining_minor: { type: integer, minimum: 0 }
+output_schema:
+  type: object
+  required: [plan, manifest_hash]
+  properties:
+    plan:
+      type: array
+      items:
+        type: object
+        required: [beat_index, source, estimate_minor]
+        properties:
+          beat_index: { type: integer, minimum: 0 }
+          source: { type: string, enum: [stock, generated, placeholder] }
+          asset_id: { type: string }
+          estimate_minor: { type: integer, minimum: 0 }
+          rights_note: { type: string }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+required_capabilities: []
+optional_capabilities: [stock-pexels, stock-unsplash, image-gen, video-gen]
+budget:
+  limitMinor: 4000
+  worstCaseMinor: 4000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 1
+  backoffMs: 0
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [score_beats, allocate_stock_vs_gen, rights_check, estimate, report]
+approval: [plan]
+supported_outcomes: [plan_ready]
+degraded_outcomes: [placeholder_for_uncovered_beat]
+unsupported_outcomes: [no_source_for_protected_entity]
+forbidden_this_iteration: [synthetic_testimonial_as_stock]
+curiosity_reserve: 5
+presets: []

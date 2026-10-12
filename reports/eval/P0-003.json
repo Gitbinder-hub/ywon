@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "p0-t1-sky-003",
+  "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+  "fixture": "bootstrap/fixtures/P0-T1-sky-003.json",
+  "briefHash": "fe49d04a31496c773205be09571664c15fba93d3bf824de9949491a49614a10f",
+  "inputHash": "2d6891d3b0ae72a415ca1495320e2b61600eee4da4ee68aa454e6dbd209296e8",
+  "requestHash": "2d6891d3b0ae72a415ca1495320e2b61600eee4da4ee68aa454e6dbd209296e8",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Почему небо голубое?",
+      "narration": "Солнечный свет кажется нам белым, но на самом деле он состоит из всех цветов радуги. Когда этот свет достигает Земли, он сталкивается с атмосферой. Синие и фиолетовые лучи рассеиваются молекулами воздуха намного сильнее остальных цветов благодаря своей короткой длине волны. Именно это рассеяние делает дневное небо привычного для нас голубого цвета.",
+      "scenes": [
+        {
+          "caption": "Белый солнечный свет",
+          "imagePrompt": "A bright yellow sun shining in space with white light beams streaming towards Earth, minimalist vector illustration, educational style"
+        },
+        {
+          "caption": "Рассеяние света в атмосфере",
+          "imagePrompt": "Rays of light scattering through gas molecules in the Earth atmosphere, glowing blue light particles, physics concept, clean design"
+        },
+        {
+          "caption": "Голубое небо над головой",
+          "imagePrompt": "A peaceful bright blue sky with soft white clouds on a sunny day, minimal flat vector art, clear daylight"
+        }
+      ]
+    },
+    "images": [
+      "A bright yellow sun shining in space with white light beams streaming towards Earth, minimalist vector illustration, educational style",
+      "Rays of light scattering through gas molecules in the Earth atmosphere, glowing blue light particles, physics concept, clean design",
+      "A peaceful bright blue sky with soft white clouds on a sunny day, minimal flat vector art, clear daylight"
+    ],
+    "tts": "Солнечный свет кажется нам белым, но на самом деле он состоит из всех цветов радуги. Когда этот свет достигает Земли, он сталкивается с атмосферой. Синие и фиолетовые лучи рассеиваются молекулами воздуха намного сильнее остальных цветов благодаря своей короткой длине волны. Именно это рассеяние делает дневное небо привычного для нас голубого цвета."
+  },
+  "assetHashes": {
+    "textSha256": "57d81fe82e6921058ad0864ef4496a7cd1572d12a4b2ff896fcbdfa7ab4da003",
+    "imageSha256": [
+      "e8ce8e831491bebfa0444ecd6205258dc0480243e8c8a1dc7094255e8e234506",
+      "9b3f4f0d99d0393d5b54bae43754390a32716a31cdb0e911062d1154e5cd8608",
+      "4d29fb9732f88c89948b0f671de45e963808c75c0af99d179df318649c1bc504"
+    ],
+    "ttsSha256": "d25026be50643be84aa8d65570d0ae1cd14e2aca3b056dbc9476df85dbb8e6cd",
+    "wavBytes": 1202274,
+    "mp4Sha256": "8b3937838ef4effaa267c8670f483a60a90a0f9f44117e5b5c88c24068789c88",
+    "mp4Bytes": 623890
+  },
+  "mp4": {
+    "path": "outputs/p0-t1-sky-003/result.mp4",
+    "sha256": "8b3937838ef4effaa267c8670f483a60a90a0f9f44117e5b5c88c24068789c88",
+    "bytes": 623890,
+    "durationSec": 26.875,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "p0-t1-sky-003",
+    "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "reject",
+    "minutes": 6,
+    "reason": "duration_outside_30+-2",
+    "criticalFailure": [
+      "duration_outside_30+-2"
+    ],
+    "dimensions": {
+      "technical": "fail duration 26.88s outside 30±2",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": false,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

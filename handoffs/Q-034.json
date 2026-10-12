@@ -1,0 +1,89 @@
+{
+  "task_id": "Q-034",
+  "agent": "opas/mirasim",
+  "session": "2026-10-11T00:12:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-034 Marketplace (P6): skill provenance/licenses/signature verification, supply-chain pinned + signatures, sandbox branch + CI gate, tenant isolation cross-leak check, moderation queue, publish only when all gates pass, ownership. AC2: demand/economics/support/security owner acceptance — useful script != market-ready. Built on top of Q-032 Skill Lab scaffold + Q-048 studios.",
+  "changed_files": [
+    "packages/marketplace/src/types.ts",
+    "packages/marketplace/src/index.ts",
+    "packages/marketplace/package.json",
+    "tests/marketplace.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "node --test tests/marketplace.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/marketplace.test.ts",
+      "notes": "3/3 PASS: AC1 provenance/signature/supply/sandbox/isolation/moderation, AC2 economics owner gate"
+    },
+    {
+      "command": "node --test tests/marketplace.test.ts tests/q048-studio.test.ts tests/skill-lab.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/marketplace.test.ts",
+      "notes": "10/10 PASS with Q-048 + Lab regression"
+    },
+    {
+      "command": "node scripts/check_skills.mjs",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "skills/tovary-hero/skill.yaml",
+      "notes": "check_skills PASS: 9 skills validated"
+    },
+    {
+      "command": "python -I scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/marketplace.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/marketplace/src/types.ts",
+        "packages/marketplace/src/index.ts",
+        "tests/marketplace.test.ts"
+      ],
+      "reason": "Provenance author/license/signature (MIT/proprietary/https), supply-chain depsPinned+signatures, sandbox labs/scout branch + CI, tenant isolation crossTenantLeak=false, moderation pending/approved/rejected with reason — publish only when verified+passed+approved."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/marketplace/src/index.ts",
+        "tests/marketplace.test.ts"
+      ],
+      "reason": "Demand/economics/support/security owner acceptance: demandEconomics + economicsAccept requires securityReviewed + supportScope + ownerConfirmed — internal useful script not auto market-ready."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Marketplace UI still prototype — /skills factory shows local skills, marketplace publish is API-only until WebView2 moderation UI lands",
+    "Supply-chain signatures computed from yaml+md bundle sha256 — not yet GPG-signed publisher key",
+    "Public rollout still gated on Q-032 Lab real eval with approved spend"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-034, then Lab canary one studio skill + marketplace moderation smoke",
+    "Wire marketplace moderation UI into /skills drawer (lab tab)",
+    "Add GPG-signed publisher key provenance when central registry selected"
+  ],
+  "recommended_next_tasks": [
+    "Q-035G"
+  ],
+  "required_owner_checks": [
+    "Confirm marketplacemoderation scope acceptable",
+    "Approve economics/support/security scope before public rollout"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline marketplace + Lab scaffold)."
+  }
+}

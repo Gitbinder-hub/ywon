@@ -1,0 +1,101 @@
+{
+  "task_id": "Q-004",
+  "agent": "cline/act (Claude Opus 5.5 via Cline)",
+  "session": "2026-10-06T09:15:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-004 dry-формализация без нового платного прогона: реальный MP4 google-p0-002 (Q-002 live 2026-10-06 24.04s 830KB h264 1280x720) переиспользован как P0 spike — manifest/script/narration/scenes hashes, cost 110300/250000 R20% C132360, QA/human review и воспроизводимость задокументированы в reports/Q004_SPIKE_2026-10-06.md.",
+  "changed_files": [
+    "reports/Q004_SPIKE_2026-10-06.md",
+    "handoffs/Q-004.json"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/Q004_SPIKE_2026-10-06.md",
+      "notes": "PASS spec/task/handoff/archive. Product/media NOT tested by validate."
+    },
+    {
+      "command": "reuse outputs/google-p0-002 (Q-002 live)",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "outputs/google-p0-002/manifest.json",
+      "notes": "completed paidCalls true 5 calls (1 text +3 image +1 tts) models gemini-3.5-flash-lite/3.1-flash-lite-image/3.8-flash-lite-tts, 110300 micros <250000, inputHash 895e99ed..., durationContract strict 2s fullNarration true"
+    },
+    {
+      "command": "python sha256 check + dir listing",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "outputs/google-p0-002/result.mp4",
+      "notes": "result.mp4 830811 sha eefc0af90f34ae55... dir: manifest.json script.json narration.wav scene-01..03.png scenes.txt result.mp4; Q-002 ffprobe h264 1280x720 aac 24.041667s relaxed >=5s waived per owner chat"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "reports/Q004_SPIKE_2026-10-06.md",
+        "outputs/google-p0-002/manifest.json",
+        "outputs/google-p0-002/result.mp4",
+        "bootstrap/fixtures/B036-google-live.json"
+      ],
+      "reason": "Один полный реальный MP4 из утверждённых Google входов (не mock): runId google-p0-002 text+3image+tts pooled FFmpeg 1280x720 h264/aac 830KB — артефакт live-провайдера, B036 T1 baseline."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "reports/Q004_SPIKE_2026-10-06.md",
+        "outputs/google-p0-002/manifest.json",
+        "outputs/google-p0-002/script.json"
+      ],
+      "reason": "Manifest/inputs/prompts/models/assets hashes/costs/all attempts сохранены без секретов: inputHash, completedCalls sha, mp4 sha/bytes, estimated 110300 approved 250000 withinCap true, 1 attempt 0 rejects."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "reports/Q004_SPIKE_2026-10-06.md",
+        "outputs/google-p0-002/manifest.json"
+      ],
+      "reason": "Technical QA (Q-002 ffprobe h264/aac decodeable, звук, python sha) + human rubric usable-minor 0/8 critical, ~5 мин; unknown policy no auto-retry/reconcile соблюдена. Duration 24.04s вне strict 30±2 но внутри relaxed >=5s waived как smoke."
+    },
+    {
+      "id": "AC4",
+      "result": "pass",
+      "evidence": [
+        "reports/Q004_SPIKE_2026-10-06.md",
+        "packages/architect/src/google-live.ts",
+        "bootstrap/fixtures/B036-google-live.json"
+      ],
+      "reason": "Скрипт/окружение/лимит/cancel воспроизводимы: node --env-file=.env scripts/architect_google_spike.ts --live --fixture B036 --output-root outputs/<runId> max 250000, GOOGLE_API_KEY env x-goog-api-key, FFmpeg WinGet Links, модели/цены Q002, ограничения зафиксированы."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "24.04s вне strict 30±2 — для Q-005 strict; этот smoke не доказывает strict PASS",
+    "Estimate 110300 != invoice/налоги/FX; pricing может измениться",
+    "Russia not in Google regions excerpt — риск блокировки аккаунта"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner review reports/Q004_SPIKE_2026-10-06.md",
+    "Q-005 9 runs (T1x3+T2x3+T3x3) по схеме Q-003 §3 после отдельной сметы freeze baseline",
+    "Новый 30±2 strict прогон только по explicit да"
+  ],
+  "recommended_next_tasks": [
+    "Q-005"
+  ],
+  "required_owner_checks": [
+    "Принять reuse google-p0-002 как Q-004 spike без нового spend",
+    "Подтвердить strict 30±2 gating для Q-005"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No new paid calls in Q-004 (dry reuse). Historical spend google-p0-002 0.1103 accounted in Q-002. Reserve 20% R=0.022 C=0.132 within per-run cap 0.25."
+  }
+}

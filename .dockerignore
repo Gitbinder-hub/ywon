@@ -1,0 +1,6 @@
+node_modules
+.Ywoom-offline
+.git
+outputs
+reports
+tmp*

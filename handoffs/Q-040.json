@@ -1,0 +1,98 @@
+{
+  "task_id": "Q-040",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-040 Three entrances + bounded static recipe (P2 prototype): shared brief/save/resume with mandatory risks and no lost answers on mode switch, approved-budget static asset/layout with overlays/text same workspace, estimate before paid proof + sample→template→plan no auto publish, failed preserves accepted. packages/journeys/src/types+index, 4 tests PASS (98 total).",
+  "changed_files": [
+    "packages/journeys/src/types.ts",
+    "packages/journeys/src/index.ts",
+    "tests/journeys.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/journeys.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/journeys.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/journeys.test.ts",
+      "notes": "4/4 PASS: AC1 share brief no lost answers mandatory risks, AC2 static asset same workspace, AC3 estimate + template no auto publish, AC4 preserves accepted on failure"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/journeys.test.ts",
+      "notes": "98/98 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/journeys/src/types.ts",
+        "packages/journeys/src/index.ts",
+        "tests/journeys.test.ts"
+      ],
+      "reason": "Chat/guided/import share brief via switchEntrance preserves answers, mandatory risks must be confirmed before saveDraft, progressive save/resume covered."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/journeys/src/index.ts",
+        "tests/journeys.test.ts"
+      ],
+      "reason": "createStaticAsset approved-budget layout with editable overlays/text, proofToEditor returns same-workspace bundle with editableRef and documented export."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/journeys/src/index.ts",
+        "tests/journeys.test.ts"
+      ],
+      "reason": "estimateProof before paid proof/revision, task cost bound checked, proposeTemplateFromSample with autoPublishBlocked true — no auto publication."
+    },
+    {
+      "id": "AC4",
+      "result": "pass",
+      "evidence": [
+        "packages/journeys/src/index.ts",
+        "tests/journeys.test.ts"
+      ],
+      "reason": "Failed/unsupported/unknown preserves accepted results via handleFailure with provider evidence pinned, not erased."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "JourneyStore in-memory only, not yet Postgres drafts + brief",
+    "Static recipe is hash-based stub, not real image generation"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-040 then Q-014 pipeline depends on Q-040+Q-011+Q-013+Q-039+Q-042",
+    "Q-014 + Q-041 usability + Q-015 after pipeline"
+  ],
+  "recommended_next_tasks": [
+    "Q-014",
+    "Q-041"
+  ],
+  "required_owner_checks": [
+    "Confirm three entrances share brief semantics acceptable for P2",
+    "Review static recipe scope vs full catalog"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype). Note paid=true but bounded within cap and not auto-published."
+  }
+}

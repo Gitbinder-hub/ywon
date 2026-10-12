@@ -1,0 +1,7 @@
+{
+  "apphosting": {
+    "backendId": "ywon-factory",
+    "rootDir": ".",
+    "ignore": ["node_modules", ".git", ".Ywoom-offline"]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-05",
+  "scope": "local Windows packaging of existing B-056; REVIEW only",
+  "archive": "outputs/companion-windows-2026-10-05/Ywon-Companion-Windows-0.0.3.zip",
+  "sha256": "a2ee4e92555f544c1961199713d038a168feec2cd5f8e7b5d00a989956efc921",
+  "bytes": 147072,
+  "files": 60,
+  "environment": {
+    "os": "Windows 10 build 19045 x64",
+    "node": "24.19.0",
+    "python": "3.14.8",
+    "git_checkout": false
+  },
+  "checks": {
+    "three_original_package_manifests": "PASS",
+    "latest_runtime_vs_current_project_bytes": "PASS",
+    "source_tree_project_validate_status_next": "PASS",
+    "scoped_architect_full_links": "PASS",
+    "selected_in_process_tests": {"pass": 55, "fail": 0, "skipped": 0},
+    "zip_crc": "PASS",
+    "extracted_manifest_hashes": "PASS",
+    "extracted_demo_two_synthetic_files": "PASS",
+    "cmd_start_launcher": "PASS: starts loopback host with ASR/model/paidCalls false",
+    "cmd_asr_without_config": "PASS: refuses startup, no download or install",
+    "browser_initial_state": "PASS: page accessibility tree shows muted and ASR disconnected",
+    "full_suite": "NOT_RUN_SUCCESSFULLY: sandbox worker spawn EPERM; escalation not executed because approval service HTTP 503",
+    "browser_screenshot_and_logs": "NOT_RUN: approval service HTTP 503",
+    "microphone_speaker_real_hardware": "NOT_RUN",
+    "vosk_native_python_compatibility": "NOT_RUN",
+    "windows11": "NOT_RUN",
+    "full_make_check_typecheck_ci": "NOT_RUN"
+  },
+  "test_servers": "stopped after checks",
+  "runtime_code_changed": false,
+  "original_packages_changed": false,
+  "q_state_changed": false,
+  "dependencies_installed": false,
+  "paid_calls": 0,
+  "production_ready": false,
+  "handoff": "reports/COMPANION_WINDOWS_PACKAGE_2026-10-05.md",
+  "transitions_retained": ["TR-05", "TR-06", "TR-10"]
+}

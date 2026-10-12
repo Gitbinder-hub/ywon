@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-050",
+  "status": "REVIEW",
+  "tests": {
+    "new": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "availablePartialSuite": {
+      "passed": 181,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "scope": "media boundary, CLI and tests",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    },
+    "cliSyntax": "PASS",
+    "pythonWorkersCompile": 4,
+    "actualCliFixtures": 2
+  },
+  "verified": [
+    "tenant/project/asset-derived object key",
+    "quarantine-first ingest",
+    "MIME and byte bounds",
+    "unknown-field/path/URL/success injection refusal",
+    "identity and tenant binding blockers",
+    "scan/rights/deletion/retention/TTL blockers",
+    "separate publication publisher approval",
+    "no signed URL or authority flags",
+    "offline CLI only"
+  ],
+  "notRun": [
+    "complete checkout and pinned toolchain wrapper",
+    "full npm/make/CI",
+    "production auth/Postgres/queue/object storage/scanner/signer",
+    "cloud vendor selection",
+    "owner/product task acceptance"
+  ],
+  "sideEffects": {
+    "network": false,
+    "credentialsUsed": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "uploads": false,
+    "signedUrls": 0,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Contract inputs are fixtures, not authenticated production records.",
+    "Signer readiness is not delivery authorization.",
+    "ADR is proposed and does not select or provision infrastructure."
+  ]
+}

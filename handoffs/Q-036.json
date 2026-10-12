@@ -1,0 +1,90 @@
+{
+  "task_id": "Q-036",
+  "agent": "cline/Ywon-PC",
+  "session": "2026-10-08T04:30:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-036 Media-neutral editable document/data contracts — packages/editable-document (types/store/renderer/index), migration 005 content_items/variants/editable_documents/document_revisions/editor_commands/variant_approvals with tenant FK + fake-episode guards + 2MiB + hash. Store: item/variant/document/revision with optimistic concurrency, hash binding, approval invalidation, rollback never erases, renderer capabilities. 9 tests PASS.",
+  "changed_files": [
+    "packages/editable-document/package.json",
+    "packages/editable-document/src/types.ts",
+    "packages/editable-document/src/renderer.ts",
+    "packages/editable-document/src/store.ts",
+    "packages/editable-document/src/index.ts",
+    "infra/migrations/005_editable_documents.sql",
+    "tests/editable-document.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "infra/migrations/005_editable_documents.sql",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/editable-document.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/editable-document.test.ts",
+      "notes": "9/9 PASS: AC1 no-fake-episodes/kind compat/locale explicit, AC2 tenant FK/optimistic concurrency/approval hash/invalidation/retention-source/rollback/journal, AC3 renderer caps/unsupported outcomes/migration"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/editable-document/src/types.ts",
+        "packages/editable-document/src/store.ts",
+        "packages/editable-document/src/renderer.ts",
+        "tests/editable-document.test.ts",
+        "infra/migrations/005_editable_documents.sql"
+      ],
+      "reason": "Typed content item/variant/document/revision/layer/timeline/text/sequence contracts; no fake episodes (text/image episodeId rejected), video/sequence explicit relation, kind-incompatible document denied, tenant-local content_locale en/ru never guessed."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/editable-document/src/store.ts",
+        "infra/migrations/005_editable_documents.sql",
+        "tests/editable-document.test.ts"
+      ],
+      "reason": "Tenant-consistent FK (variant/document workspace equals item workspace), optimistic concurrency via baseRevision (conflict_base_revision), approval bound to hash+exportProfile (hash_mismatch rejected) invalidates only affected variant on edit, retentionPolicyId/sourceRefs preserved, safe migration (PRIMARY KEY workspace_id,id, octet_length 2MiB, rollback creates new revision never erases journal)."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/editable-document/src/renderer.ts",
+        "tests/editable-document.test.ts",
+        "infra/migrations/005_editable_documents.sql"
+      ],
+      "reason": "Preview/server renderer capability schema getCapabilities r1 + officialSource; forbidden HTML/remote code denied, unsupported nodes resolve to read_only/degraded/blocked; bounds/fonts checked; exact tool choice separate ADR (version pinned)."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "DB CHECK kind compat uses permissive true fallback (needs real episodes/channels rows in prod PG)",
+    "Per-item invalidation invalidates all variants of item on edit — finer per-document tracking deferred",
+    "Max JSON 2MiB + DB octet_length enforced, HTML sandbox scope separate task"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-044 Factory boundary (docs/architecture/PLATFORM_SHELL.md)",
+    "Q-036 owner accept before P2 editors"
+  ],
+  "recommended_next_tasks": [
+    "Q-044"
+  ],
+  "required_owner_checks": [
+    "Confirm media-neutral contracts + migration 005 tenant guards acceptable for P1",
+    "Review renderer capabilities vs future ADR tool choice"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

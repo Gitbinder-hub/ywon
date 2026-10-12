@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ywoom â€” ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/shell.css"><script src="/shell.js" defer></script></head>
+<body><div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">Ywoom<span>FACTORY</span></div>
+  <div class="hint">ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ â€” ÑÐ·Ñ‹Ðº, Ð¿Ñ€Ð¾ÐµÐºÑ‚Ñ‹, Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ.</div>
+  <nav class="side-nav">
+    <a href="/"><span class="ico">â—‰</span> Ð—Ð°Ð²Ð¾Ð´</a>
+    <a href="/studio"><span class="ico">ðŸŽ¬</span> Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</a>
+    <a href="/journey"><span class="ico">ðŸ§­</span> ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚</a>
+    <a href="/billing"><span class="ico">ðŸ’³</span> ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</a>
+  </nav>
+  <div class="side-sep"></div>
+  <nav class="side-nav"><a href="/studio"><span class="ico">ðŸ“</span> ÐŸÑ€Ð¾ÐµÐºÑ‚Ñ‹</a><a href="/settings" class="active"><span class="ico">âš™ï¸</span> ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</a></nav>
+  <div class="sidebar-footer"><span class="dot"></span>Ywoom 0.16 Â· <span style="color:#8ea0bf">ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</span></div>
+</aside>
+<div class="app-content">
+  <div class="app-top"><div class="crumb"><a href="/" style="color:var(--muted)">Ð—Ð°Ð²Ð¾Ð´</a> Â· <strong>ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</strong></div><div class="app-top-actions"><a href="/studio" class="btn">Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</a></div></div>
+  <main class="page page-narrow">
+    <h1 class="h1">ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</h1>
+    <section class="card2">
+      <h2 class="h2">Ð¡Ð¸ÑÑ‚ÐµÐ¼Ð°</h2>
+      <div class="grid2">
+        <div><label>Ð¯Ð·Ñ‹Ðº Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹ÑÐ°<select id="set-lang"><option value="ru">Ð ÑƒÑÑÐºÐ¸Ð¹</option><option value="en">English</option></select></label></div>
+        <div><label>ÐŸÐ¾Ñ€Ñ‚ Ð·Ð°Ð²Ð¾Ð´Ð°<input id="set-port" value="3000" disabled><span class="sub">ÐœÐµÐ½ÑÐµÑ‚ÑÑ Ñ‡ÐµÑ€ÐµÐ· Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½ÑƒÑŽ PORT, Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ 3000</span></label></div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div><label>ÐŸÐ°Ð¿ÐºÐ° Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð²<code>.Ywoom-offline</code><input id="set-folder" value=".Ywoom-offline (Ð² Ð¿Ð°Ð¿ÐºÐµ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹)" disabled></label>
+          <p class="sub">Ð¥Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ñ€ÑÐ´Ð¾Ð¼ Ñ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð¾Ð¹. Ð¡Ð±Ñ€Ð¾Ñ â€” ÑƒÐ´Ð°Ð»Ð¸ Ð¿Ð°Ð¿ÐºÑƒ Ð¿Ñ€Ð¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾Ð¼ Ywoom.</p></div>
+        <div><label>Ð“Ð¾Ñ€ÑÑ‡Ð¸Ðµ ÐºÐ»Ð°Ð²Ð¸ÑˆÐ¸<div class="sub"><span class="kbd">Ctrl</span> + <span class="kbd">N</span> â€” Ð½Ð¾Ð²Ñ‹Ð¹ Ð¿Ñ€Ð¾ÐµÐºÑ‚ Â· <span class="kbd">Ctrl</span> + <span class="kbd">S</span> â€” ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ</div></label></div>
+      </div>
+    </section>
+    <section class="card" style="margin-top:14px">
+      <h2 class="h2">Ðž Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ðµ</h2>
+      <div style="display:flex;gap:16px;align-items:center">
+        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#8ed8be,#3a6b5e);display:flex;align-items:center;justify-content:center;color:#0d2118;font-weight:900;font-size:22px">Y</div>
+        <div><div style="font-weight:800">Ywoom Factory 0.16</div><div class="sub">Ð›Ð¾ÐºÐ°Ð»ÑŒÐ½Ñ‹Ð¹ Ð·Ð°Ð²Ð¾Ð´ ÐºÐ¾Ð½Ñ‚ÐµÐ½Ñ‚Ð° Â· WebView2 Â· Node 24 Â· FFmpeg</div><div class="sub" id="health-line"><span class="dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:6px"></span>ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°...</div></div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="fetch('/api/health').then(r=>r.json()).then(j=>document.getElementById('health-line').textContent='Ð¡ÐµÑ€Ð²ÐµÑ€: '+j.mode+' Â· productReady:'+j.productReady).catch(()=>document.getElementById('health-line').textContent='Ð¡ÐµÑ€Ð²ÐµÑ€ Ð½Ðµ Ð¾Ñ‚Ð²ÐµÑ‡Ð°ÐµÑ‚')">ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÑÐµÑ€Ð²ÐµÑ€</button>
+        <button class="btn" onclick="localStorage.clear();alert('ÐšÑÑˆ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ð° Ð¾Ñ‡Ð¸Ñ‰ÐµÐ½. ÐŸÐµÑ€ÐµÐ·Ð°Ð³Ñ€ÑƒÐ·Ð¸ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ.')">Ð¡Ð±Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€</button>
+        <a class="btn" href="https://github.com/Ywoom-space/Ywoom" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+    <section class="card2" style="margin-top:14px">
+      <h2 class="h2">ÐžÐ±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ</h2>
+      <p class="sub">ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ð¹ Ð¿Ð¾ÐºÐ° Ð²Ñ€ÑƒÑ‡Ð½ÑƒÑŽ â€” ÑÐºÐ°Ñ‡Ð°Ð¹ Ð½Ð¾Ð²Ñ‹Ð¹ <code>Ywoom-Setup-0.16.exe</code> Ð¸ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸ Ð¿Ð¾Ð²ÐµÑ€Ñ….</p>
+      <button class="btn btn-primary" onclick="alert('Ð¢Ñ‹ ÑƒÐ¶Ðµ Ð½Ð° 0.16 â€” ÑÑ‚Ð¾ ÑÐ²ÐµÐ¶Ð¸Ð¹ Ð±Ð¸Ð»Ð´. Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ â€” 0.16.')">ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ</button>
+    </section>
+    <footer style="margin-top:18px;border-top:1px solid var(--line);padding-top:14px;color:#7a8599;font-size:11px"><a href="/">Ð—Ð°Ð²Ð¾Ð´</a> Â· <a href="/studio">Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</a> Â· <a href="/billing">ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</a></footer>
+  </main>
+</div>
+</div>
+<script>
+document.getElementById('set-lang').value = localStorage.getItem('ywoom_lang') || 'ru';
+document.getElementById('set-lang').addEventListener('change', e=>{ localStorage.setItem('ywoom_lang', e.target.value); location.reload(); });
+fetch('/api/health').then(r=>r.json()).then(j=>{
+  const el=document.getElementById('health-line');
+  el.innerHTML='<span class="dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:6px"></span>Ð¡ÐµÑ€Ð²ÐµÑ€: '+j.mode+' Â· DB:'+(j.dbConfigured?'on':'off')+' Â· S3:'+(j.s3Configured?'on':'off');
+}).catch(()=>{ document.getElementById('health-line').textContent='Ð¡ÐµÑ€Ð²ÐµÑ€ Ð½Ðµ Ð¾Ñ‚Ð²ÐµÑ‡Ð°ÐµÑ‚'; });
+</script>
+</body></html>

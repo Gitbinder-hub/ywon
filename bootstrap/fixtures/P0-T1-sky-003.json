@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "runId": "p0-t1-sky-003",
+  "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+  "language": "ru",
+  "durationSec": 30,
+  "aspectRatio": "16:9",
+  "sceneCount": 3,
+  "voice": "Kore",
+  "maxEstimatedUsdMicros": 250000
+}

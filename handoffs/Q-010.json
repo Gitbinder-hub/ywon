@@ -1,0 +1,97 @@
+{
+  "task_id": "Q-010",
+  "agent": "cline/Ywon-PC",
+  "session": "2026-10-08T02:38:12+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-010 Storage, provenance и повторный монтаж (P1 offline prototype): StorageStore quarantine->verified via scan clean+rights approved+consent, private object keys workspaces/{ws}/projects/{proj}/assets/{id}/v1/{sha} derived server-side, pinned manifest renderer/fonts/source refs + manifestHash, delete last verified denied with forceDelete+restore, consent revocation -> blocked, remount available/unavailable, hash verification, migration 004. 11 tests PASS (53 total).",
+  "changed_files": [
+    "packages/storage/src/types.ts",
+    "packages/storage/src/store.ts",
+    "packages/storage/src/manifest.ts",
+    "packages/storage/src/index.ts",
+    "infra/migrations/004_storage.sql",
+    "tests/storage.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "infra/migrations/004_storage.sql",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/storage.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/storage.test.ts",
+      "notes": "11/11 PASS: AC1 objectKey/mime/manifest hash/verifyCopy, AC2 retention/consent/delete-last/force+restore, AC3 remount available/unavailable, tenant isolation, migration 004"
+    },
+    {
+      "command": "node --test tests/storage.test.ts tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/storage.test.ts",
+      "notes": "53/53 PASS (11 storage+10 budget+6 workflow+26 existing), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/storage/src/store.ts",
+        "packages/storage/src/manifest.ts",
+        "packages/storage/src/types.ts",
+        "tests/storage.test.ts",
+        "infra/migrations/004_storage.sql"
+      ],
+      "reason": "Pinned exact assets/manifest/renderer/fonts refs и проверяемая копия по hash: ingest derives private objectKey server-side (workspaces/{ws}/projects/{proj}/assets/{id}/v1/{sha}) caller injection ignored, mime/size limits per kind, pinManifest with rendererVersion/fontRefs/sourceAssetRefs/manifestHash sha256+verifyManifest tamper false, verifyCopyByHash payload sha checked, hash_mismatch_not_verified."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/storage/src/store.ts",
+        "packages/storage/src/types.ts",
+        "tests/storage.test.ts",
+        "infra/migrations/004_storage.sql"
+      ],
+      "reason": "Retain/delete/restore и consent/rights links не теряют последнюю копию молча: retention policy unknown denied, consent_missing then approved->verified then revoke->blocked, delete last verified denied would_lose_last_verified_copy, forceDelete explicit wouldLoseLastCopy true, restore -> blocked with audit, cross-tenant denied."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/storage/src/store.ts",
+        "tests/storage.test.ts"
+      ],
+      "reason": "Тест повторного монтажа/отсутствующего asset явно показывает available/unavailable: planRemount returns available verified vs unavailable with reasons deleted/state_quarantined/not_found, tenant-isolated (ws-b not_found), objectKey+sha pinned refs exposed, verified vs quarantined/deleted/missing distinguishable."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Offline in-memory not Postgres/S3 -- migration 004 ready, real object store/scanner needed for prod",
+    "No real malware scanner/model storage -- verify is stubbed via scanResult input"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-010G gate review when Q-008/Q-009/Q-010 evidence complete",
+    "Q-036 editable-doc contracts",
+    "Q-044 factory boundary"
+  ],
+  "recommended_next_tasks": [
+    "Q-036",
+    "Q-044"
+  ],
+  "required_owner_checks": [
+    "Confirm offline storage prototype acceptable for P1",
+    "Review retention policies and consent revocation semantics before PG integration"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

@@ -1,0 +1,717 @@
+{
+  "schema_version": 1,
+  "features": [
+    {
+      "id": "F01",
+      "title": "Аккаунты, workspace, роли и команды",
+      "first_phase": "P1",
+      "implementation_tasks": [
+        "Q-007"
+      ],
+      "expansion_tasks": [
+        "Q-033"
+      ],
+      "activation_gate": "Q-005G",
+      "acceptance_intent": "Массовая tenant-модель без owner bypass; later team collaboration.",
+      "dependencies": [],
+      "future_notes": "Массовая tenant-модель без owner bypass; later team collaboration.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F02",
+      "title": "Creator Genome и память предпочтений",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-011"
+      ],
+      "expansion_tasks": [
+        "Q-019"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Факты человека отдельно от presentation и consent.",
+      "dependencies": [],
+      "future_notes": "Факты человека отдельно от presentation и consent.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F03",
+      "title": "Launch Interview и Strategy Engine",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-011"
+      ],
+      "expansion_tasks": [
+        "Q-020"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Короткий запуск + полный progressive interview/3 стратегии.",
+      "dependencies": [],
+      "future_notes": "Короткий запуск + полный progressive interview/3 стратегии.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F04",
+      "title": "Expert Amplifier",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-011",
+        "Q-014"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Full interviews/coach/value hypotheses расширить после demand.",
+      "dependencies": [],
+      "future_notes": "Full interviews/coach/value hypotheses расширить после demand.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F05",
+      "title": "Иерархия и Series Bible",
+      "first_phase": "P1",
+      "implementation_tasks": [
+        "Q-006",
+        "Q-011"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-005G",
+      "acceptance_intent": "Project/channel/series/episode канон; primary-channel consistency.",
+      "dependencies": [],
+      "future_notes": "Project/channel/series/episode канон; primary-channel consistency.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F06",
+      "title": "Director Chat и карточки",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-012"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Typed commands, versioned approvals, later advanced studio intents.",
+      "dependencies": [],
+      "future_notes": "Typed commands, versioned approvals, later advanced studio intents.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F07",
+      "title": "План, расписание и автономность",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-012",
+        "Q-014"
+      ],
+      "expansion_tasks": [
+        "Q-032"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Pilot now, monthly schedule/L3-L4 только отдельный policy gate.",
+      "dependencies": [
+        "F06",
+        "F15"
+      ],
+      "future_notes": "Pilot now, monthly schedule/L3-L4 только отдельный policy gate.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F08",
+      "title": "Shorts/explainer pipeline и tiers",
+      "first_phase": "P0",
+      "implementation_tasks": [
+        "Q-004",
+        "Q-014"
+      ],
+      "expansion_tasks": [
+        "Q-029"
+      ],
+      "activation_gate": "Q-001",
+      "acceptance_intent": "Первый bounded narrated формат; другие жанры позже.",
+      "dependencies": [],
+      "future_notes": "Первый bounded narrated формат; другие жанры позже.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F09",
+      "title": "Long documentary/narrative",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-029"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Монтаж длинных блоков, не гарантия continuous AI scene.",
+      "dependencies": [
+        "F08",
+        "F24"
+      ],
+      "future_notes": "Монтаж длинных блоков, не гарантия continuous AI scene.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F10",
+      "title": "Carousel/posts/Stories",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-029"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Layout/fonts/market-specific QA.",
+      "dependencies": [],
+      "future_notes": "Layout/fonts/market-specific QA.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F11",
+      "title": "Автомонтаж исходников",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-027"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Clip extraction/reframe/ASR/subs/B-roll; insufficient_material outcome.",
+      "dependencies": [
+        "F12",
+        "F24"
+      ],
+      "future_notes": "Clip extraction/reframe/ASR/subs/B-roll; insufficient_material outcome.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F12",
+      "title": "Медиатека и user cloud storage",
+      "first_phase": "P1",
+      "implementation_tasks": [
+        "Q-010",
+        "Q-015"
+      ],
+      "expansion_tasks": [
+        "Q-033"
+      ],
+      "activation_gate": "Q-005G",
+      "acceptance_intent": "Exact assets/provenance; Google Drive/Dropbox/OneDrive adapters по выбранному demand.",
+      "dependencies": [],
+      "future_notes": "Exact assets/provenance; Google Drive/Dropbox/OneDrive adapters по выбранному demand.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F13",
+      "title": "Публикация и платформы",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-015"
+      ],
+      "expansion_tasks": [
+        "Q-033"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Manual required; YouTube official optional; Instagram/TikTok после review.",
+      "dependencies": [
+        "F01",
+        "F15"
+      ],
+      "future_notes": "Manual required; YouTube official optional; Instagram/TikTok после review.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F14",
+      "title": "Аналитика audience/retention",
+      "first_phase": "P4",
+      "implementation_tasks": [
+        "Q-018"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-017G",
+      "acceptance_intent": "Correct API availability/cohort windows, descriptive first.",
+      "dependencies": [
+        "F13"
+      ],
+      "future_notes": "Correct API availability/cohort windows, descriptive first.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F15",
+      "title": "Budget/Cost Ledger/reserve",
+      "first_phase": "P1",
+      "implementation_tasks": [
+        "Q-009"
+      ],
+      "expansion_tasks": [
+        "Q-033"
+      ],
+      "activation_gate": "Q-005G",
+      "acceptance_intent": "Atomic reserves, invoice reconciliation, accepted unit economics.",
+      "dependencies": [],
+      "future_notes": "Atomic reserves, invoice reconciliation, accepted unit economics.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F16",
+      "title": "Model Router/direct/aggregator",
+      "first_phase": "P0",
+      "implementation_tasks": [
+        "Q-002",
+        "Q-013"
+      ],
+      "expansion_tasks": [
+        "Q-032"
+      ],
+      "activation_gate": "Q-001",
+      "acceptance_intent": "Capability-compatible fallback, pricing/terms verified.",
+      "dependencies": [],
+      "future_notes": "Capability-compatible fallback, pricing/terms verified.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F17",
+      "title": "Skill Runtime и evals",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-013"
+      ],
+      "expansion_tasks": [
+        "Q-032"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Typed graph/reports/versioning/mechanical vs real eval.",
+      "dependencies": [],
+      "future_notes": "Typed graph/reports/versioning/mechanical vs real eval.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F18",
+      "title": "Cinema rig/60+ camera presets",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-026"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Exact/prompt/2D fidelity, no unsupported fake orbit.",
+      "dependencies": [
+        "F16",
+        "F17"
+      ],
+      "future_notes": "Exact/prompt/2D fidelity, no unsupported fake orbit.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F19",
+      "title": "Blender previz/3D/control",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-026"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Hardware/control input acceptance checked before claim.",
+      "dependencies": [
+        "F18"
+      ],
+      "future_notes": "Hardware/control input acceptance checked before claim.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F20",
+      "title": "Multishot и Storyboard Lock",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-026"
+      ],
+      "expansion_tasks": [
+        "Q-028"
+      ],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Anchors/state/style/continuity evaluation.",
+      "dependencies": [
+        "F18",
+        "F21"
+      ],
+      "future_notes": "Anchors/state/style/continuity evaluation.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F21",
+      "title": "Character Pack/recast/wardrobe",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-028"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Model-specific identity calibration, consistent wardrobe/location.",
+      "dependencies": [
+        "F12",
+        "F16"
+      ],
+      "future_notes": "Model-specific identity calibration, consistent wardrobe/location.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F22",
+      "title": "Twin/voice identity/consents",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-028"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Documented consent/revocation and disclosure.",
+      "dependencies": [
+        "F21",
+        "F01"
+      ],
+      "future_notes": "Documented consent/revocation and disclosure.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F23",
+      "title": "VFX-пресеты",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-029"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Rights-safe effects/compositing; benchmark per preset.",
+      "dependencies": [
+        "F17"
+      ],
+      "future_notes": "Rights-safe effects/compositing; benchmark per preset.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F24",
+      "title": "Timeline UI и editor exports",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-014"
+      ],
+      "expansion_tasks": [
+        "Q-027"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Minimal render now, advanced UI/EDL/FCPXML later verified.",
+      "dependencies": [],
+      "future_notes": "Minimal render now, advanced UI/EDL/FCPXML later verified.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F25",
+      "title": "Edit-by-intent/inpaint/relight/upscale",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-029"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Отдельные capabilities, video edit not universal.",
+      "dependencies": [
+        "F16",
+        "F17"
+      ],
+      "future_notes": "Отдельные capabilities, video edit not universal.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F26",
+      "title": "Звук/TTS/music/SFX/lipsync",
+      "first_phase": "P0",
+      "implementation_tasks": [
+        "Q-004",
+        "Q-014"
+      ],
+      "expansion_tasks": [
+        "Q-028"
+      ],
+      "activation_gate": "Q-001",
+      "acceptance_intent": "Consent/licenses and sync; music generated not auto rights-clear.",
+      "dependencies": [],
+      "future_notes": "Consent/licenses and sync; music generated not auto rights-clear.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F27",
+      "title": "One-click Apps/UGC/product/trailer/thumbnail",
+      "first_phase": "P5",
+      "implementation_tasks": [
+        "Q-029"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-020G",
+      "acceptance_intent": "Explainer first; no false real-use testimonial.",
+      "dependencies": [],
+      "future_notes": "Explainer first; no false real-use testimonial.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F28",
+      "title": "Языки/subtitles/dub/mirrors",
+      "first_phase": "P2",
+      "implementation_tasks": [
+        "Q-011",
+        "Q-014"
+      ],
+      "expansion_tasks": [
+        "Q-028"
+      ],
+      "activation_gate": "Q-010G",
+      "acceptance_intent": "Native supported language now; multilingual timeline and platform support later.",
+      "dependencies": [
+        "F26",
+        "F24"
+      ],
+      "future_notes": "Native supported language now; multilingual timeline and platform support later.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F29",
+      "title": "Golden Library и reuse",
+      "first_phase": "P4",
+      "implementation_tasks": [
+        "Q-019"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-017G",
+      "acceptance_intent": "Quality+rights+acceptance, diversity/tenant-safe.",
+      "dependencies": [
+        "F12",
+        "F14"
+      ],
+      "future_notes": "Quality+rights+acceptance, diversity/tenant-safe.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F30",
+      "title": "Эксперименты/гипотезы",
+      "first_phase": "P4",
+      "implementation_tasks": [
+        "Q-020"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-017G",
+      "acceptance_intent": "Inconclusive allowed; sample/assignment pre-registered.",
+      "dependencies": [
+        "F14"
+      ],
+      "future_notes": "Inconclusive allowed; sample/assignment pre-registered.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F31",
+      "title": "Skill Lab/canary/rollback",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-032"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Holdout real eval and finite budget before activation.",
+      "dependencies": [
+        "F17",
+        "F29"
+      ],
+      "future_notes": "Holdout real eval and finite budget before activation.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F32",
+      "title": "Model Scout/Benchmark Suite",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-032"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Candidate reports/approval, no auto untrusted prod adapters.",
+      "dependencies": [
+        "F16",
+        "F17"
+      ],
+      "future_notes": "Candidate reports/approval, no auto untrusted prod adapters.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F33",
+      "title": "Trend Harvester",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-032"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Suggestions/source provenance/rights; task split by architect.",
+      "dependencies": [
+        "F31"
+      ],
+      "future_notes": "Suggestions/source provenance/rights; task split by architect.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F34",
+      "title": "Hook/CTR/retention advisors",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-032"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Heuristic first; learned models only sufficient valid data/holdout.",
+      "dependencies": [
+        "F14",
+        "F30"
+      ],
+      "future_notes": "Heuristic first; learned models only sufficient valid data/holdout.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F35",
+      "title": "Dev Stack и IDE handoff",
+      "first_phase": "P0",
+      "implementation_tasks": [],
+      "expansion_tasks": [],
+      "activation_gate": "Q-001",
+      "acceptance_intent": "Spec-tooling ready, product agents/runner не implemented; tasks separate.",
+      "dependencies": [],
+      "future_notes": "Spec-tooling ready, product agents/runner не implemented; tasks separate.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": true
+    },
+    {
+      "id": "F36",
+      "title": "JEWEL Ops Director",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-032"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Monitor/suggest/staging branches, independent review.",
+      "dependencies": [
+        "F35",
+        "F15"
+      ],
+      "future_notes": "Monitor/suggest/staging branches, independent review.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F37",
+      "title": "SaaS/billing/quotas/support",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-033"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Scale acceptance after demand/load/security/restore evidence.",
+      "dependencies": [
+        "F01",
+        "F15"
+      ],
+      "future_notes": "Scale acceptance after demand/load/security/restore evidence.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F38",
+      "title": "Marketplace/templates/user skills",
+      "first_phase": "P6",
+      "implementation_tasks": [
+        "Q-034"
+      ],
+      "expansion_tasks": [],
+      "activation_gate": "Q-030G",
+      "acceptance_intent": "Sandbox/signatures/provenance/moderation before external sharing.",
+      "dependencies": [
+        "F17",
+        "F37"
+      ],
+      "future_notes": "Sandbox/signatures/provenance/moderation before external sharing.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F39",
+      "title": "Mobile client",
+      "first_phase": "FUTURE",
+      "implementation_tasks": [],
+      "expansion_tasks": [],
+      "activation_gate": "owner approval after demand/rights/economics",
+      "acceptance_intent": "После demand/устойчивого API/UX и отдельного owner budget.",
+      "dependencies": [
+        "F37"
+      ],
+      "future_notes": "После demand/устойчивого API/UX и отдельного owner budget.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F40",
+      "title": "Open-weight/GPU/LoRA/own tuning",
+      "first_phase": "FUTURE",
+      "implementation_tasks": [],
+      "expansion_tasks": [],
+      "activation_gate": "owner approval after demand/rights/economics",
+      "acceptance_intent": "После measured TCO/licensing/data sufficiency и owner gate.",
+      "dependencies": [
+        "F16",
+        "F29"
+      ],
+      "future_notes": "После measured TCO/licensing/data sufficiency и owner gate.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    },
+    {
+      "id": "F41",
+      "title": "JEWEL Business/Capital/Personal/Physical",
+      "first_phase": "FUTURE",
+      "implementation_tasks": [],
+      "expansion_tasks": [],
+      "activation_gate": "owner approval after demand/rights/economics",
+      "acceptance_intent": "Optional exploration после core дохода/demand/safety/legal gate; не обещание релиза.",
+      "dependencies": [
+        "F36",
+        "F37"
+      ],
+      "future_notes": "Optional exploration после core дохода/demand/safety/legal gate; не обещание релиза.",
+      "progress_rule": "statuses from accepted task state; first_scope accepted is NOT complete future scope",
+      "spec_tooling_ready": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "skillId": "ffmpeg-technical",
+  "version": "1.0.0",
+  "labStage": "canary",
+  "scope": "small",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 48,
+    "honest": true,
+    "seedExclusion": "golden ∩ holdout = ∅"
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "casesTotal": 4,
+    "reportHash": "7cfb014168fac26dca63f3c3ace26eb0e1f3335909cc21c5ede949b9aa5f923b"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "approvedMinor": 5000,
+    "reportHash": "e547b160c97de0514023826746047179ffeeae43d30138158d5a9d7f6086ff49"
+  },
+  "canary": {
+    "skillId": "ffmpeg-technical",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:29.516Z",
+    "active": true
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; orbit forbidden; not orbit honest",
+  "at": "2026-10-10T17:17:29.517Z"
+}

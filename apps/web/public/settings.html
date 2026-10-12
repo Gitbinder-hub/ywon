@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ywoom — Настройки</title>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#3a3c45">
+<link rel="stylesheet" href="/design.css">
+<script src="/pwa.js" defer></script><script src="/home.js" defer></script>
+</head>
+<body>
+<div class="yw-shell" style="position:relative;overflow:hidden;width:100%;min-height:100vh;display:flex;color:#ecebf4;font-family:'Rubik','Nunito',system-ui,sans-serif;background:#3a3c45">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+<div style="position:absolute;left:-120px;bottom:-140px;width:520px;height:460px;border-radius:50%;background:#7d9cff;opacity:.11;filter:blur(90px)"></div>
+<div style="position:absolute;left:46%;top:-160px;width:420px;height:320px;border-radius:50%;background:#a58cf5;opacity:.10;filter:blur(90px)"></div>
+<div style="position:absolute;right:-140px;bottom:-120px;width:520px;height:420px;border-radius:50%;background:#f58a9e;opacity:.11;filter:blur(90px)"></div>
+</div>
+
+<nav class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
+<div style="padding:0 16px 28px">
+<div style="font-size:26px;font-weight:600;letter-spacing:.12em">YWOOM</div>
+<div class="m" style="font-size:12px;margin-top:4px">Автономная мастерская контента</div>
+</div>
+<a class="nav" href="/"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"></path></svg></span>Главная</a>
+<a class="nav" href="/studio"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>Студия</a>
+<a class="nav" href="/journey"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span>Контент-план</a>
+<a class="nav" href="/skills"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span>Скилы</a>
+<a class="nav" href="/billing"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"></path></svg></span>Аналитика</a>
+<a class="nav conv" aria-current="page" href="/settings" style="color:#fff"><span class="ic zone" style="color:#2a2b35"><i style="left:-30%;top:-30%;width:90%;height:90%;background:#f58a9e"></i><i style="right:-30%;bottom:-30%;width:90%;height:90%;background:#b9a6ff"></i><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"></path><circle cx="15" cy="8" r="2"></circle><circle cx="9" cy="16" r="2"></circle></svg></span>Настройки</a>
+<div class="hol" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div><div class="m" style="font-size:12px">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600">$—</div></div>
+<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap">Пополнить</a>
+</div>
+</nav>
+
+<main class="yw-main" style="position:relative;flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:22px">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+<div><div class="m" style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Архитектор · Настройки</div><h1 style="margin:0;font-size:30px;font-weight:500;letter-spacing:-.01em;line-height:1.1">Настройки, доступы и Companion</h1></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn hol" href="/" style="padding:10px 16px;border-radius:18px;text-decoration:none">На главную</a></div>
+</header>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:10px">Система · 3.1 PWA</h2>
+<p class="m" style="margin-bottom:12px;font-size:13px;line-height:1.5">Установи как приложение: на десктопе — кнопка в адресной строке, на телефоне — «Добавить на главный экран». Оффлайн — оболочка кэшируется, данные остаются в <code style="background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px">.Ywoom-offline</code>.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<div><label class="m" style="font-size:13px">Язык интерфейса<select id="set-lang" style="display:block;width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#35373f;color:#ecebf4"><option value="ru">Русский</option><option value="en">English</option></select></label></div>
+<div><label class="m" style="font-size:13px">Порт мастерской<input id="set-port" value="3000" disabled style="display:block;width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#2e2f37;color:#8ea0bf"><span class="m" style="font-size:11px">Меняется через переменную PORT, по умолчанию 3000</span></label></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px">
+<div><label class="m" style="font-size:13px">Папка проектов <code style="background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px">.Ywoom-offline</code><input id="set-folder" value=".Ywoom-offline (в папке программы)" disabled style="display:block;width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#2e2f37;color:#8ea0bf"></label>
+<p class="m" style="font-size:12px;margin-top:6px">Хранится рядом с программой. Сброс — удали папку при закрытом Ywoom.</p></div>
+<div><label class="m" style="font-size:13px">Горячие клавиши<div class="m" style="font-size:12px;margin-top:6px;line-height:1.5"><span style="border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;background:rgba(255,255,255,.05)">Ctrl</span> + <span style="border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;background:rgba(255,255,255,.05)">N</span> — новый проект · <span style="border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;background:rgba(255,255,255,.05)">Ctrl</span> + <span style="border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;background:rgba(255,255,255,.05)">S</span> — сохранить</div></label></div>
+</div>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:12px">О программе</h2>
+<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+<div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#7d9cff,#a58cf5);display:flex;align-items:center;justify-content:center;color:#1b2038;font-weight:800;font-size:22px;flex:none">Y</div>
+<div><div style="font-weight:700;font-size:15px">Ywoom Мастерская 3.1</div><div class="m" style="font-size:13px">Автономная мастерская контента · WebView2 · Node 24 · FFmpeg</div><div class="m" style="font-size:12px;margin-top:4px" id="health-line"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:6px"></span>Проверка...</div></div>
+</div>
+<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn conv" onclick="fetch('/api/health').then(r=>r.json()).then(j=>document.getElementById('health-line').textContent='Сервер: '+j.mode+' · productReady:'+j.productReady).catch(()=>document.getElementById('health-line').textContent='Сервер не отвечает')" style="padding:10px 16px;border-radius:18px;color:#fff">Проверить сервер</button>
+<button class="btn hol" onclick="localStorage.clear();alert('Кэш браузера очищен. Перезагрузи страницу.')" style="padding:10px 16px;border-radius:18px">Сбросить браузер</button>
+<a class="btn hol" href="https://github.com/Ywoom-space/Ywoom" target="_blank" rel="noopener" style="padding:10px 16px;border-radius:18px;text-decoration:none">GitHub</a>
+</div>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:8px">Хранилище</h2>
+<p class="m" style="font-size:13px">Локальная папка <code style="background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px">.Ywoom-offline</code> рядом с программой. Всё оффлайн.</p>
+<div id="storage-info" class="m" style="margin-top:10px;font-size:13px">Загрузка...</div>
+<div id="storage-chart" style="margin-top:10px;display:flex;gap:6px;align-items:end;height:42px;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:8px;background:#35373f" aria-label="График хранилища MiB по типам"></div>
+<div id="storage-breakdown" class="m" style="margin-top:6px;font-size:12px"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+<button id="refresh-storage" class="btn hol" style="padding:10px 16px;border-radius:18px">Обновить</button>
+<button id="clear-cache" class="btn hol" style="padding:10px 16px;border-radius:18px">Очистить кэш</button>
+<button class="btn hol" style="padding:10px 16px;border-radius:18px" onclick="navigator.clipboard && navigator.clipboard.writeText('.Ywoom-offline').then(()=>alert('Скопировано: .Ywoom-offline')).catch(()=>prompt('Путь:', '.Ywoom-offline'))">Копировать путь</button>
+</div>
+<p class="m" style="margin-top:8px;font-size:12px">Очистка: закрой Ywoom и удали папку <code style="background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px">.Ywoom-offline</code>.</p>
+<div id="trash-box" style="margin-top:12px"></div>
+<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button id="load-trash" class="btn hol" style="padding:10px 16px;border-radius:18px">Показать корзину</button><button id="clear-trash" class="btn hol" style="padding:10px 16px;border-radius:18px;color:#ff8a8a">Очистить корзину</button></div>
+<script>
+document.getElementById("clear-trash")?.addEventListener("click", ()=>{ if(!confirm("Очистить всю корзину?")) return; fetch("/api/offline/projects/trash").then(r=>r.json()).then(arr=> Promise.all(arr.map(p=> fetch(`/api/offline/projects/${p.id}/hard-delete`,{method:"DELETE"})))).then(()=>{ document.getElementById("trash-box").textContent="Корзина очищена"; location.reload(); }).catch(()=>alert("Не удалось очистить")); });
+document.getElementById("load-trash")?.addEventListener("click", ()=>{ fetch("/api/offline/projects/trash").then(r=>r.json()).then(arr=>{ const box=document.getElementById("trash-box"); box.replaceChildren(); if(!arr.length){ box.textContent="Корзина пуста"; return; } arr.forEach(p=>{ const row=document.createElement("div"); row.className="card"; row.style.padding="12px"; row.style.marginTop="8px"; row.style.display="flex"; row.style.justifyContent="space-between"; row.style.alignItems="center"; row.style.borderRadius="14px"; row.innerHTML=`<span><strong>${p.title}</strong> <span class="m">удалён ${new Date(p.deletedAt).toLocaleString()}</span></span>`; const g=document.createElement("div"); g.style.display="flex"; g.style.gap="6px"; const b1=document.createElement("button"); b1.className="btn hol"; b1.textContent="Восстановить"; b1.style.padding="8px 12px"; b1.style.borderRadius="12px"; b1.addEventListener("click", ()=> fetch(`/api/offline/projects/${p.id}/restore`,{method:"POST"}).then(r=>{ if(!r.ok) throw new Error(); location.reload(); }).catch(()=>alert("Не удалось"))); const b2=document.createElement("button"); b2.className="btn hol"; b2.textContent="Удалить навсегда"; b2.style.color="#ff8a8a"; b2.style.padding="8px 12px"; b2.style.borderRadius="12px"; b2.addEventListener("click", ()=>{ if(!confirm("Удалить навсегда?")) return; fetch(`/api/offline/projects/${p.id}/hard-delete`,{method:"DELETE"}).then(r=>{ if(!r.ok) throw new Error(); location.reload(); }).catch(()=>alert("Не удалось")); }); g.append(b1,b2); row.append(g); box.append(row); }); }).catch(()=> document.getElementById("trash-box").textContent="Не удалось"); });
+</script>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:8px">Ченджлог</h2>
+<div class="m" style="line-height:1.8;font-size:13px">
+<strong style="color:#ecebf4">3.1</strong> — шары deeplink + PWA + адаптив ·<br>
+<strong style="color:#ecebf4">3.0</strong> — PWA shell, мобильная полировка ·<br>
+<strong style="color:#ecebf4">1.0</strong> — теги/поиск/превью/корзина/лимиты ·
+</div>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:8px">Обновления</h2>
+<p class="m" style="font-size:13px">Текущая версия: <strong style="color:#ecebf4">3.1</strong> · канал local.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px">
+<button id="check-updates" class="btn conv" style="padding:10px 16px;border-radius:18px;color:#fff">Проверить обновления</button>
+<span id="upd-status" class="m" style="font-size:13px"></span>
+</div>
+</section>
+
+<footer style="border-top:1px solid rgba(255,255,255,.08);padding-top:14px;color:#8ea0bf;font-size:12px;display:flex;gap:12px;flex-wrap:wrap"><a href="/" style="color:#b7c8ff">Автономная мастерская</a><a href="/studio" style="color:#b7c8ff">Студия</a><a href="/billing" style="color:#b7c8ff">Аналитика</a></footer>
+</main>
+</div>
+<script>
+document.getElementById('set-lang').value = localStorage.getItem('ywoom_lang') || 'ru';
+document.getElementById('set-lang').addEventListener('change', e=>{ localStorage.setItem('ywoom_lang', e.target.value); location.reload(); });
+document.getElementById('check-updates')?.addEventListener('click', ()=>{
+  const el=document.getElementById('upd-status');
+  el.textContent='Проверяю...';
+  fetch('/api/updates').then(r=>r.json()).then(j=>{
+    el.textContent = j.upToDate ? 'У тебя свежая версия '+j.current+' ✓' : 'Доступна '+j.latest+' (сейчас '+j.current+')';
+  }).catch(()=> el.textContent='Не удалось проверить — сервер не отвечает');
+});
+function renderStorageChart(j){
+  const chart=document.getElementById('storage-chart'), bd=document.getElementById('storage-breakdown');
+  if(!chart) return;
+  const by = [
+    { label:'Проекты', value: Math.min(4, j.projects*0.02), color:'#7d9cff' },
+    { label:'Сборки', value: Math.min(8, j.jobs*0.08), color:'#a58cf5' },
+    { label:'Медиа', value: Number(j.totalAssetMiB)||0, color:'#f58a9e' },
+  ];
+  const sum=Math.max(0.1, by.reduce((s,x)=>s+x.value,0));
+  chart.replaceChildren();
+  by.forEach(b=>{
+    const w=Math.max(4, (b.value/sum)*100);
+    const bar=document.createElement('div'); bar.title=b.label+': '+b.value.toFixed(2)+' MiB';
+    bar.style.cssText=`flex:0 0 ${w}%;height:26px;border-radius:8px;background:${b.color};opacity:0.95`;
+    chart.append(bar);
+  });
+  if(bd) bd.textContent = by.map(b=> b.label+' '+b.value.toFixed(2)+' MiB').join(' · ');
+}
+function refreshStorage(){
+  const el=document.getElementById('storage-info');
+  if(!el) return;
+  el.textContent='Загрузка...';
+  fetch('/api/storage').then(r=>r.json()).then(j=>{
+    el.textContent = `Проектов: ${j.projects} · Сборок: ${j.jobs} · Материалов: ${j.assets} · ${j.totalAssetMiB} MiB`;
+    renderStorageChart(j);
+  }).catch(()=> el.textContent='Не удалось прочитать хранилище');
+}
+document.getElementById('refresh-storage')?.addEventListener('click', refreshStorage);
+document.getElementById('clear-cache')?.addEventListener('click', ()=>{
+  if(!confirm('Очистить кэш сборок?')) return;
+  document.getElementById('storage-info').textContent = 'Кэш — закрой Ywoom и удали папку .Ywoom-offline/jobs для полной очистки. Перезапусти.';
+  setTimeout(refreshStorage, 1500);
+});
+refreshStorage();
+setTimeout(()=> document.getElementById('check-updates')?.click(), 800);
+fetch('/api/health').then(r=>r.json()).then(j=>{
+  const el=document.getElementById('health-line');
+  el.setAttribute('role','status'); el.setAttribute('aria-live','polite');
+  el.innerHTML='<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:6px"></span>Сервер: '+j.mode+' · DB:'+(j.dbConfigured?'on':'off')+' · S3:'+(j.s3Configured?'on':'off');
+}).catch(()=>{ document.getElementById('health-line').textContent='Сервер не отвечает'; });
+</script>
+</body></html>

@@ -1,0 +1,9 @@
+{
+  "task_id": "B-004",
+  "verified_commit": "c379f4d862a417c4e2aacf872b7f6b974f9b6548",
+  "result": "pass",
+  "matched_files": 13,
+  "method": "GitHub directory blob SHA1 matched exact tested local payload bytes",
+  "scope": "six code/test/fixture/config files and seven documentation/evidence files; not full repository regression",
+  "paid_provider_calls": 0
+}

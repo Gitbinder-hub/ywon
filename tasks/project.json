@@ -1,0 +1,3227 @@
+{
+  "schema_version": 1,
+  "spec_version": "0.4.0",
+  "updated_at": "2026-10-10T16:56:03+00:00",
+  "product_implementation": "in_progress; see accepted tasks and evidence",
+  "current_phase": "P6",
+  "task_history_policy": "DONE requires owner acceptance; REVIEW does not unblock dependencies",
+  "phase_order": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6"
+  ],
+  "phase_gates": {
+    "P0": "Q-005G",
+    "P1": "Q-010G",
+    "P2": "Q-015G",
+    "P3": "Q-017G",
+    "P4": "Q-020G",
+    "P5": "Q-030G",
+    "P6": "Q-035G"
+  },
+  "selected_expansion_tasks": [
+    "Q-025"
+  ],
+  "selected_scale_tasks": [
+    "Q-031"
+  ],
+  "tasks": [
+    {
+      "id": "Q-001",
+      "title": "Владелец принимает v0.4 и рамки P0",
+      "phase": "P0",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [],
+      "context": [
+        "docs/governance/14_OPEN_DECISIONS.md",
+        "docs/product/17_MASTER_PLAN.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/CHANGE_IMPACT_v0.4.md",
+        "docs/localization/LANGUAGE_COVERAGE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец принял evidence-first P0→P6, расширенный базовый P2 и отдельный all-client release gate; future scope сохранён."
+        },
+        {
+          "id": "AC2",
+          "text": "Записаны утверждённые live-eval/development cap, валюта, период, stop rule и разрешение paid calls либо явно zero spend."
+        },
+        {
+          "id": "AC3",
+          "text": "Записаны поддерживаемые pilot language/voice/material rights и manual review."
+        },
+        {
+          "id": "AC4",
+          "text": "Отчёт approval без секретов содержит owner/date/choices; unresolved choices явно перечислены."
+        }
+      ],
+      "scope": "Владелец принимает v0.4 и рамки P0",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-06T06:42:43+00:00",
+      "handoff": "handoffs/Q-001.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T06:42:43+00:00",
+        "note": "pay-as-you-go unlimited, per-run cap .25-1.00 media / -5 Architect, 20% repair with explicit approve, WebView2 yes",
+        "owner_confirmed": true,
+        "handoff_sha256": "ef5fac6038c73cb405c272a921e044f433d5efc2aaeb1b117d418f8ef57b7704"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:42:43+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "pay-as-you-go unlimited, per-run cap .25-1.00 media / -5 Architect, 20% repair with explicit approve, WebView2 yes"
+        }
+      ]
+    },
+    {
+      "id": "Q-002",
+      "title": "Проверить реальные API, цены, права и совместимость",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-001"
+      ],
+      "context": [
+        "docs/production/06_MODEL_ROUTER.md",
+        "docs/security/13_POLICIES_RISKS.md",
+        "docs/research/HIGGSFIELD_EXPRESS_RESEARCH.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Для каждого кандидата official source/checked_at/model ID/region/access/commercial rights записаны."
+        },
+        {
+          "id": "AC2",
+          "text": "Duration/rounding/audio/ref/control/idempotency/cancel/retention ограничения подтверждены или unknown."
+        },
+        {
+          "id": "AC3",
+          "text": "Выбран минимальный image/TTS/video path и резерв, с владельцем согласованы стоимость и ограничения."
+        }
+      ],
+      "scope": "Проверить реальные API, цены, права и совместимость",
+      "out_of_scope": "Установка непроверенных навыков, широкий Router/Studio, paid benchmarks до Q-003.",
+      "paid_calls": false,
+      "assignee": "cline/act",
+      "session": "2026-10-06T07:30:25+00:00",
+      "handoff": "handoffs/Q-002.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T08:37:45+00:00",
+        "note": "AC3: marshrut Google primary 3.5-flash-lite / 3.1-flash-lite-image / 3.8-flash-lite-tts v limite 0.25 (fakt 0.1103+0.022 rezerva) prinyat 2026-10-06, artefakt 24s otdalneye bez vtorogo progona, duration relax do >=5s po resheniyu vladeltsa",
+        "owner_confirmed": true,
+        "handoff_sha256": "a91ba2b30a638bcfe14d5b767e15ad2e622a5d475e21e4de4aa50e78d0018aec"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T07:30:25+00:00",
+          "action": "start",
+          "by": "cline/act",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T07:41:53+00:00",
+          "action": "submit",
+          "by": "cline/act",
+          "note": "handoffs/Q-002.json"
+        },
+        {
+          "at": "2026-10-06T08:37:45+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "AC3: marshrut Google primary 3.5-flash-lite / 3.1-flash-lite-image / 3.8-flash-lite-tts v limite 0.25 (fakt 0.1103+0.022 rezerva) prinyat 2026-10-06, artefakt 24s otdalneye bez vtorogo progona, duration relax do >=5s po resheniyu vladeltsa"
+        }
+      ]
+    },
+    {
+      "id": "Q-003",
+      "title": "Согласовать задания, quality rubric и план реальных evals",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-002"
+      ],
+      "context": [
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/economics/10_COST_AND_BUDGET.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Задания/источники/права, target language/format и reference set зафиксированы до теста."
+        },
+        {
+          "id": "AC2",
+          "text": "Владелец принял quality/critical failure/cost/human-time envelope и число запусков в бюджете."
+        },
+        {
+          "id": "AC3",
+          "text": "Схема run report учитывает все попытки, rejected outputs и small-sample limits."
+        }
+      ],
+      "scope": "Согласовать задания, quality rubric и план реальных evals",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "cline/act",
+      "session": "2026-10-06T08:42:55+00:00",
+      "handoff": "handoffs/Q-003.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T09:07:22+00:00",
+        "note": "Owner chat 2026-10-06: da — Q-003 plan accepted (T1-T3 3x3=9, rubric 8 failures, B/R/C + human-time, report schema). See reports/Q003_EVAL_PLAN_2026-10-06.md",
+        "owner_confirmed": true,
+        "handoff_sha256": "7afda5d08408ada22d310f716f8942d198396efe4696cfa76022098cc7ffed4c"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T08:42:55+00:00",
+          "action": "start",
+          "by": "cline/act",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T08:47:54+00:00",
+          "action": "submit",
+          "by": "cline/act",
+          "note": "handoffs/Q-003.json"
+        },
+        {
+          "at": "2026-10-06T09:07:22+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner chat 2026-10-06: da — Q-003 plan accepted (T1-T3 3x3=9, rubric 8 failures, B/R/C + human-time, report schema). See reports/Q003_EVAL_PLAN_2026-10-06.md"
+        }
+      ]
+    },
+    {
+      "id": "Q-004",
+      "title": "Реальный CLI spike: narrated explainer → MP4",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-003"
+      ],
+      "context": [
+        "docs/production/05_PIPELINE.md",
+        "docs/production/06_MODEL_ROUTER.md",
+        "docs/economics/10_COST_AND_BUDGET.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Один полный реальный MP4 из утверждённых image/TTS/optional video входов, не mock."
+        },
+        {
+          "id": "AC2",
+          "text": "Manifest/inputs/prompts/models/assets hashes/costs/all attempts/report сохранены без секретов."
+        },
+        {
+          "id": "AC3",
+          "text": "Технический QA и человеческая оценка выполнены; unknown job не оплачивается повторно вслепую."
+        },
+        {
+          "id": "AC4",
+          "text": "Скрипт запуска/окружение/лимит/cancel и ограничения воспроизводимы для следующего агента."
+        }
+      ],
+      "scope": "Реальный CLI spike: narrated explainer → MP4",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": "cline/act",
+      "session": "2026-10-06T09:16:18+00:00",
+      "handoff": "handoffs/Q-004.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T09:19:07+00:00",
+        "note": "Owner chat 2026-10-06: da — Q-004 dry reuse google-p0-002 accepted as real spike (no new spend) AC1-AC4 per reports/Q004_SPIKE_2026-10-06.md strict 30+-2 gated for Q-005",
+        "owner_confirmed": true,
+        "handoff_sha256": "db8393dfada5caae68477e376d170c92ff9a86926cd168f904e5ac2157563d8e"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T09:16:18+00:00",
+          "action": "start",
+          "by": "cline/act",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T09:18:30+00:00",
+          "action": "submit",
+          "by": "cline/act",
+          "note": "handoffs/Q-004.json"
+        },
+        {
+          "at": "2026-10-06T09:19:07+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner chat 2026-10-06: da — Q-004 dry reuse google-p0-002 accepted as real spike (no new spend) AC1-AC4 per reports/Q004_SPIKE_2026-10-06.md strict 30+-2 gated for Q-005"
+        }
+      ]
+    },
+    {
+      "id": "Q-005",
+      "title": "Повторные реальные запуски и отчёт пригодности/экономики",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-004"
+      ],
+      "context": [
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/quality/12_QUALITY_AND_TESTING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Выполнен согласованный набор запусков, все успехи/неудачи и расходы учтены."
+        },
+        {
+          "id": "AC2",
+          "text": "Human rubric, cost distribution, intervention minutes и recurring defects опубликованы."
+        },
+        {
+          "id": "AC3",
+          "text": "Вывод go/rework/pivot не скрывает small sample/quality gaps и предлагает следующий scope."
+        }
+      ],
+      "scope": "Повторные реальные запуски и отчёт пригодности/экономики",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": "cline/act",
+      "session": "2026-10-06T09:24:25+00:00",
+      "handoff": "handoffs/Q-005.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T09:51:13+00:00",
+        "note": "Owner chat 2026-10-06: da - Q-005 9 runs 1/9 strict rework per aggregate",
+        "owner_confirmed": true,
+        "handoff_sha256": "4aedaabc5ebe0fce07a7ffe9eed83d7fab490dfb75e115f69dea854919252f30"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T09:24:25+00:00",
+          "action": "start",
+          "by": "cline/act",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T09:49:36+00:00",
+          "action": "submit",
+          "by": "cline/act",
+          "note": "handoffs/Q-005.json"
+        },
+        {
+          "at": "2026-10-06T09:51:13+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner chat 2026-10-06: da - Q-005 9 runs 1/9 strict rework per aggregate"
+        }
+      ]
+    },
+    {
+      "id": "Q-005G",
+      "title": "Гейт P0: стоит ли строить пользовательский продукт",
+      "phase": "P0",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-005"
+      ],
+      "context": [
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/governance/11_ROADMAP.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец просмотрел реальное медиа/затраты/отчёт и принял go для ограниченного формата."
+        },
+        {
+          "id": "AC2",
+          "text": "Residual risks и required fixes внесены в задачи; бюджет/рамки P1 подтверждены."
+        }
+      ],
+      "scope": "Гейт P0: стоит ли строить пользовательский продукт",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-06T09:58:00+00:00",
+      "handoff": "handoffs/Q-005G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T09:58:00+00:00",
+        "note": "GO conditional: P0 1/9 strict rework duration+pad then P1",
+        "owner_confirmed": true,
+        "handoff_sha256": "03b35a1f783f6c2203492d15994dbeaebdfb2b20c284c7cb52d97c7d134617e2"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T09:58:00+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "GO conditional: P0 1/9 strict rework duration+pad then P1"
+        }
+      ]
+    },
+    {
+      "id": "Q-006",
+      "title": "Scaffold, контракты и согласованная схема",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-005G"
+      ],
+      "context": [
+        "docs/architecture/03_ARCHITECTURE.md",
+        "docs/architecture/04_DATA_MODEL.md",
+        "docs/adr/0001-modular-monolith-contracts-first.md",
+        "docs/architecture/EDITABLE_DOCUMENT_CONTRACT.md",
+        "docs/architecture/PLATFORM_SHELL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "ADR выбирает поддерживаемые web/API/auth/queue tools; minimal monorepo и reproducible local run."
+        },
+        {
+          "id": "AC2",
+          "text": "Contracts включают primary channel/language/Bible versions/consents/operations/reservations."
+        },
+        {
+          "id": "AC3",
+          "text": "Schema/migrations покрывают tenant consistency, constraints и migration safety."
+        },
+        {
+          "id": "AC4",
+          "text": "make check приложения и mock-only CI явно отдельно от spec-check."
+        }
+      ],
+      "scope": "Scaffold, контракты и согласованная схема",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "cline/act",
+      "session": "2026-10-06T10:02:31+00:00",
+      "handoff": "handoffs/Q-006.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-06T11:21:13+00:00",
+        "note": "accept Q-006 scaffold per reports/Q006_SCAFFOLD_2026-10-06.md",
+        "owner_confirmed": true,
+        "handoff_sha256": "471d09c6d343d41a0529030fa11f939dce8da672d71de134471c53c8b0583059"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T10:02:31+00:00",
+          "action": "start",
+          "by": "cline/act",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T11:20:26+00:00",
+          "action": "submit",
+          "by": "cline/act",
+          "note": "handoffs/Q-006.json"
+        },
+        {
+          "at": "2026-10-06T11:21:13+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "accept Q-006 scaffold per reports/Q006_SCAFFOLD_2026-10-06.md"
+        }
+      ]
+    },
+    {
+      "id": "Q-007",
+      "title": "Auth, роли и tenant-isolation end-to-end",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-006"
+      ],
+      "context": [
+        "docs/security/20_SECURITY_AND_OPERATIONS.md",
+        "docs/architecture/04_DATA_MODEL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Email/session roles и API enforcement работают; secrets не в git/log."
+        },
+        {
+          "id": "AC2",
+          "text": "Тесты users/workspaces/API/worker/storage запрещают cross-tenant доступ."
+        },
+        {
+          "id": "AC3",
+          "text": "Media/URL ingest limits и SSRF/sandbox plan проверены или явно ограничены."
+        }
+      ],
+      "scope": "Auth, роли и tenant-isolation end-to-end",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "cline/Ywon-PC",
+      "session": "2026-10-07T02:04:22+00:00",
+      "handoff": "handoffs/Q-007.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-07T02:30:42+00:00",
+        "note": "Owner accepts Q-007 auth/tenant prototype.",
+        "owner_confirmed": true,
+        "handoff_sha256": "6aace7f63afe33820e6c8483ced4b01ef0cc8c6c9df0cda30804ba4ef1e4a21b"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T02:04:22+00:00",
+          "action": "start",
+          "by": "cline/Ywon-PC",
+          "note": ""
+        },
+        {
+          "at": "2026-10-07T02:27:11+00:00",
+          "action": "submit",
+          "by": "cline/Ywon-PC",
+          "note": "handoffs/Q-007.json"
+        },
+        {
+          "at": "2026-10-07T02:30:42+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-007 auth/tenant prototype."
+        }
+      ]
+    },
+    {
+      "id": "Q-008",
+      "title": "Durable workflow, journal и recovery",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-006"
+      ],
+      "context": [
+        "docs/architecture/03_ARCHITECTURE.md",
+        "docs/production/05_PIPELINE.md",
+        "docs/production/09_JEWEL_CORE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Persisted steps/leases/operation IDs/outbox/retry/dead-letter и cancellation semantics."
+        },
+        {
+          "id": "AC2",
+          "text": "Crash-after-submit/unknown outcome/duplicate callbacks не вызывают blind resubmit."
+        },
+        {
+          "id": "AC3",
+          "text": "Journal append-only; reversible/compensating actions явно различимы."
+        }
+      ],
+      "scope": "Durable workflow, journal и recovery",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "cline/Ywon-PC",
+      "session": "2026-10-07T02:32:42+00:00",
+      "handoff": "handoffs/Q-008.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-07T02:50:05+00:00",
+        "note": "Owner accepts Q-008 durable journal offline prototype.",
+        "owner_confirmed": true,
+        "handoff_sha256": "e4f2568ad815bd59bee3ae9360825b33c85aaf28d5a2bc079b525db636f4fdc5"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T02:32:42+00:00",
+          "action": "start",
+          "by": "cline/Ywon-PC",
+          "note": ""
+        },
+        {
+          "at": "2026-10-07T02:49:16+00:00",
+          "action": "submit",
+          "by": "cline/Ywon-PC",
+          "note": "handoffs/Q-008.json"
+        },
+        {
+          "at": "2026-10-07T02:50:05+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-008 durable journal offline prototype."
+        }
+      ]
+    },
+    {
+      "id": "Q-009",
+      "title": "Budget reserve, ledger и invoice reconciliation",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-006",
+        "Q-008"
+      ],
+      "context": [
+        "docs/economics/10_COST_AND_BUDGET.md",
+        "docs/architecture/04_DATA_MODEL.md",
+        "docs/economics/COST_VISIBILITY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Atomic scope reservations не позволяют parallel overspend в integration test."
+        },
+        {
+          "id": "AC2",
+          "text": "Оценка/факт/pricing versions/attempts/corrections и zero-kept waste учтены."
+        },
+        {
+          "id": "AC3",
+          "text": "Unknown/cancelled jobs проходят reconcile; kill switch вне агента; security review приложен."
+        }
+      ],
+      "scope": "Budget reserve, ledger и invoice reconciliation",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "cline/Ywon-PC",
+      "session": "2026-10-07T03:03:46+00:00",
+      "handoff": "handoffs/Q-009.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T05:06:25+00:00",
+        "note": "Owner accepts Q-009 budget reserve/ledger/reconciliation per handoff Q-009.json - frozen B/R/C + atomic reserve ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "846c9e81d2c5c82d43879c9700cfa583bbaa128c459cea992026687fd3fa98cb"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T03:03:46+00:00",
+          "action": "start",
+          "by": "cline/Ywon-PC",
+          "note": ""
+        },
+        {
+          "at": "2026-10-07T03:59:06+00:00",
+          "action": "submit",
+          "by": "cline/Ywon-PC",
+          "note": "handoffs/Q-009.json"
+        },
+        {
+          "at": "2026-10-08T05:06:25+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-009 budget reserve/ledger/reconciliation per handoff Q-009.json - frozen B/R/C + atomic reserve ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-010",
+      "title": "Storage, provenance и повторный монтаж",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-006",
+        "Q-007"
+      ],
+      "context": [
+        "docs/architecture/03_ARCHITECTURE.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Pinned exact assets/manifest/renderer/fonts refs и проверяемая копия по hash."
+        },
+        {
+          "id": "AC2",
+          "text": "Retain/delete/restore и consent/rights links не теряют последнюю копию молча."
+        },
+        {
+          "id": "AC3",
+          "text": "Тест повторного монтажа/отсутствующего asset явно показывает available/unavailable."
+        }
+      ],
+      "scope": "Storage, provenance и повторный монтаж",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "cline/Ywon-PC",
+      "session": "2026-10-07T06:22:35+00:00",
+      "handoff": "handoffs/Q-010.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T03:02:09+00:00",
+        "note": "Owner confirmed Q-010 storage/provenance 2026-10-07",
+        "owner_confirmed": true,
+        "handoff_sha256": "389319aa66f8c60ecda316aec81a19b5cf2434fce2c85982cddd0ec7283067ad"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T06:22:35+00:00",
+          "action": "start",
+          "by": "cline/Ywon-PC",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T02:39:14+00:00",
+          "action": "submit",
+          "by": "cline/Ywon-PC",
+          "note": "handoffs/Q-010.json"
+        },
+        {
+          "at": "2026-10-08T03:02:09+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner confirmed Q-010 storage/provenance 2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "Q-010G",
+      "title": "Гейт P1: надёжность и безопасность основания",
+      "phase": "P1",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-007",
+        "Q-008",
+        "Q-009",
+        "Q-010",
+        "Q-036",
+        "Q-037",
+        "Q-044"
+      ],
+      "context": [
+        "docs/quality/12_QUALITY_AND_TESTING.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Owner/reviewer просмотрел failure/recovery/tenancy/budget evidence, critical gaps устранены."
+        },
+        {
+          "id": "AC2",
+          "text": "Приняты границы P2 и real API budget, защищённые paths/репозиторные ограничения настроены."
+        }
+      ],
+      "scope": "Гейт P1: надёжность и безопасность основания",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-08T05:22:10+00:00",
+      "handoff": "handoffs/Q-010G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T05:22:10+00:00",
+        "note": "Owner accepts P1 foundation per reports/P1_GATE_2026-10-08.md - all 7 deps DONE, reliability/security reviewed, P2 scope/budget confirmed",
+        "owner_confirmed": true,
+        "handoff_sha256": "dc5504c1321f9d891fb99a4f6d49397782aa5d0eeff50f903c83c37f1afd90c7"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T05:22:10+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts P1 foundation per reports/P1_GATE_2026-10-08.md - all 7 deps DONE, reliability/security reviewed, P2 scope/budget confirmed"
+        }
+      ]
+    },
+    {
+      "id": "Q-011",
+      "title": "Короткий онбординг, Genome и канон серии",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/product/07_CREATOR_GENOME.md",
+        "docs/architecture/04_DATA_MODEL.md",
+        "docs/localization/16_LOCALIZATION.md",
+        "docs/product/MANUAL_JOURNEY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Обязательные язык/подача/бюджет/согласия/review подтверждаются пользователем без owner bypass."
+        },
+        {
+          "id": "AC2",
+          "text": "Progressive interview/save/resume, facts tiers и versioned Bible resolution работают."
+        },
+        {
+          "id": "AC3",
+          "text": "Series B не видит канон A; primary-channel language однозначен в tests."
+        }
+      ],
+      "scope": "Короткий онбординг, Genome и канон серии",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T11:15:10+00:00",
+      "handoff": "handoffs/Q-011.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T11:18:22+00:00",
+        "note": "Owner accepts Q-011 onboarding/genome per handoff Q-011.json - mandatory gating + tiers + isolation ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "f424c5bd0e41c192bcf60fbfd71226d9c134022951dc091fb5a4203263b0fc7e"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T11:15:10+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T11:18:10+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-011.json"
+        },
+        {
+          "at": "2026-10-08T11:18:22+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-011 onboarding/genome per handoff Q-011.json - mandatory gating + tiers + isolation ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-012",
+      "title": "Director Chat, карточки и typed approvals",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/production/06_MODEL_ROUTER.md",
+        "docs/product/02_PRD_QWOOM_MVP.md",
+        "docs/production/FOUR_ROLES.md",
+        "docs/economics/COST_VISIBILITY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Commands validated by schema/role/version; карточки script/estimate/revise/stop."
+        },
+        {
+          "id": "AC2",
+          "text": "Никаких direct provider side effects или policy/budget обходов из LLM."
+        },
+        {
+          "id": "AC3",
+          "text": "Stale artifact approvals инвалидируются; malformed output/injection cases покрыты."
+        }
+      ],
+      "scope": "Director Chat, карточки и typed approvals",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T05:33:09+00:00",
+      "handoff": "handoffs/Q-012.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T05:37:19+00:00",
+        "note": "Owner accepts Q-012 Director Chat per handoff Q-012.json - typed approvals/cards/injection guard ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "5bfe01293ebca549e6f0ee2045ffe0736f91d07c8bcfa9d0eeedd0f8e7360818"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T05:33:09+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T05:37:09+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-012.json"
+        },
+        {
+          "at": "2026-10-08T05:37:19+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-012 Director Chat per handoff Q-012.json - typed approvals/cards/injection guard ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-013",
+      "title": "First Skill Runtime и минимальный Router",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/production/15_STUDIO_SKILLS.md",
+        "docs/production/06_MODEL_ROUTER.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Typed recipe с budget/retries/reports/capability fidelity; version pinned."
+        },
+        {
+          "id": "AC2",
+          "text": "Доказанный P0 provider path включён, recorded fixtures и live eval разделены."
+        },
+        {
+          "id": "AC3",
+          "text": "Несколько честных 2D motion presets; unsupported movement не выдаётся за exact orbit."
+        }
+      ],
+      "scope": "First Skill Runtime и минимальный Router",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T05:58:10+00:00",
+      "handoff": "handoffs/Q-013.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T06:06:11+00:00",
+        "note": "Owner accepts Q-013 skill runtime/router per handoff Q-013.json - typed recipes + honest 2d presets + fixture/live split ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "654cdc6e6b39797f3c48d237420bc6f1fc8a20dd730db0febdd1c561b0aba7f3"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T05:58:10+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T06:05:09+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-013.json"
+        },
+        {
+          "at": "2026-10-08T06:06:11+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-013 skill runtime/router per handoff Q-013.json - typed recipes + honest 2d presets + fixture/live split ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-014",
+      "title": "Пользовательский pipeline, QA, точечные правки и export",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-011",
+        "Q-012",
+        "Q-013",
+        "Q-039",
+        "Q-042"
+      ],
+      "context": [
+        "docs/production/05_PIPELINE.md",
+        "docs/quality/12_QUALITY_AND_TESTING.md",
+        "docs/studio/VIDEO_EDITOR.md",
+        "docs/studio/TEXT_AND_SEQUENCE_EDITOR.md",
+        "docs/quality/STUDIO_ACCEPTANCE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Обычный пользователь получает real 30–60 с MP4/subs/metadata/cost report."
+        },
+        {
+          "id": "AC2",
+          "text": "Script/final human approval; targeted revision preserves accepted unaffected assets."
+        },
+        {
+          "id": "AC3",
+          "text": "Technical QA и content review различены, failure/unknown/budget stop видимы."
+        },
+        {
+          "id": "AC4",
+          "text": "Детерминированный mocked E2E и approved real E2E evidence сохранены."
+        }
+      ],
+      "scope": "Пользовательский pipeline, QA, точечные правки и export",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T02:16:34+00:00",
+      "handoff": "handoffs/Q-014.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T02:20:09+00:00",
+        "note": "Owner accepts Q-014 pipeline per handoff Q-014.json - MP4/QA gates/revisions/E2E distinguished ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "03331b4f4e59a199477b7b39a61ba7feabb79f8895db70cead74176e85b88b26"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T02:16:34+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T02:19:18+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-014.json"
+        },
+        {
+          "at": "2026-10-09T02:20:09+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-014 pipeline per handoff Q-014.json - MP4/QA gates/revisions/E2E distinguished ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-015",
+      "title": "Медиатека, manual publishing и optional YouTube API",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-014"
+      ],
+      "context": [
+        "docs/security/13_POLICIES_RISKS.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Медиатека с правами/provenance/availability и полный manual publish package."
+        },
+        {
+          "id": "AC2",
+          "text": "YouTube audit/quota/OAuth/disclosure состояние проверено официально; API optional."
+        },
+        {
+          "id": "AC3",
+          "text": "Если API включён: duplicate/upload-reconcile/approval-version tests; если нет — явный documented limitation."
+        }
+      ],
+      "scope": "Медиатека, manual publishing и optional YouTube API",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T02:54:21+00:00",
+      "handoff": "handoffs/Q-015.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:00:09+00:00",
+        "note": "Owner accepts Q-015 media library/publish per handoff Q-015.json - manual package + YouTube optional ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "4671a24daf475ff3d43978f1ce228702fe70566491ab70714a86cc8ceb32d928"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T02:54:21+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T02:59:16+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-015.json"
+        },
+        {
+          "at": "2026-10-09T03:00:09+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-015 media library/publish per handoff Q-015.json - manual package + YouTube optional ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-015G",
+      "title": "Гейт P2: первый usable продукт",
+      "phase": "P2",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-014",
+        "Q-015",
+        "Q-040",
+        "Q-041"
+      ],
+      "context": [
+        "docs/product/02_PRD_QWOOM_MVP.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец как обычный пользователь прошёл цикл и просмотрел финал/цены."
+        },
+        {
+          "id": "AC2",
+          "text": "Scope/known gaps/неподдерживаемые функции видны, P3 budget и protocol приняты."
+        }
+      ],
+      "scope": "Гейт P2: первый usable продукт",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-09T03:08:22+00:00",
+      "handoff": "handoffs/Q-015G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:08:22+00:00",
+        "note": "Owner accepts P2 usable product per reports/P2_GATE_2026-10-09.md - novice flow/QA/publish offline prototype ok, P3 scope confirmed",
+        "owner_confirmed": true,
+        "handoff_sha256": "bb7a1439331ded9bc884a46636fcc872ffe4914d21cde285927b02c775d0bde7"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:08:22+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts P2 usable product per reports/P2_GATE_2026-10-09.md - novice flow/QA/publish offline prototype ok, P3 scope confirmed"
+        }
+      ]
+    },
+    {
+      "id": "Q-016",
+      "title": "Серия реальных эпизодов: повторяемость и нагрузка человека",
+      "phase": "P3",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-015G"
+      ],
+      "context": [
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/economics/10_COST_AND_BUDGET.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Согласованное число разных real episodes без cherry-picking, QA/acceptance/cost/human minutes."
+        },
+        {
+          "id": "AC2",
+          "text": "Failures root causes/repair cost и evidence pinned; threshold decisions с uncertainty."
+        },
+        {
+          "id": "AC3",
+          "text": "Критические бюджетные/privacy/publish инциденты отдельно и устранены до expansion."
+        }
+      ],
+      "scope": "Серия реальных эпизодов: повторяемость и нагрузка человека",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T03:11:29+00:00",
+      "handoff": "handoffs/Q-016.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:17:12+00:00",
+        "note": "Owner accepts Q-016 episode series per handoff Q-016.json - repeatability stub ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "0256bed087317981679d529fac52270d20dc1c8d7d47833fb6c8eaf9c5b50d9a"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:11:29+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T03:16:20+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-016.json"
+        },
+        {
+          "at": "2026-10-09T03:17:12+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-016 episode series per handoff Q-016.json - repeatability stub ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-017",
+      "title": "5 внешних пользователей и проверка UX",
+      "phase": "P3",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-016"
+      ],
+      "context": [
+        "docs/product/07_CREATOR_GENOME.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/product/MANUAL_JOURNEY.md",
+        "docs/quality/STUDIO_ACCEPTANCE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "5 ordinary external users проходят pilot; помощь/провалы записаны, не спрятаны."
+        },
+        {
+          "id": "AC2",
+          "text": "Observed time-to-usable-export/drop-offs/review burden/feedback и issues зарегистрированы."
+        },
+        {
+          "id": "AC3",
+          "text": "Недоступные языки/форматы/стоимость явно сообщены пользователю."
+        }
+      ],
+      "scope": "5 внешних пользователей и проверка UX",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T03:22:15+00:00",
+      "handoff": "handoffs/Q-017.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:26:12+00:00",
+        "note": "Owner accepts Q-017 external users per handoff Q-017.json - 5 users + dropoff/feedback ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "e417c1baa3d7d728af7fae4fe9a3ec850279311ef2b4bcae39e7043207db760c"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:22:15+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T03:25:20+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-017.json"
+        },
+        {
+          "at": "2026-10-09T03:26:12+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-017 external users per handoff Q-017.json - 5 users + dropoff/feedback ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-017G",
+      "title": "Гейт P3: доказанный формат и приоритет расширения",
+      "phase": "P3",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-017",
+        "Q-043"
+      ],
+      "context": [
+        "docs/product/17_MASTER_PLAN.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец принимает observed quality/economics/UX или назначает rework, не декларативный успех."
+        },
+        {
+          "id": "AC2",
+          "text": "Выбран next investment и scope P4; full feature map остаётся актуальной."
+        }
+      ],
+      "scope": "Гейт P3: доказанный формат и приоритет расширения",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-09T03:44:08+00:00",
+      "handoff": "handoffs/Q-017G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:44:08+00:00",
+        "note": "Owner accepts P3 gate per reports/P3_GATE_2026-10-09.md - quality/economics/UX with uncertainty and P4 scope confirmed",
+        "owner_confirmed": true,
+        "handoff_sha256": "525465b1dbe34c29a1370ef16a37094526397efd8dc290545545f029dbaefa3a"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:44:08+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts P3 gate per reports/P3_GATE_2026-10-09.md - quality/economics/UX with uncertainty and P4 scope confirmed"
+        }
+      ]
+    },
+    {
+      "id": "Q-018",
+      "title": "Analytics import, cohorts и корректность данных",
+      "phase": "P4",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-017G"
+      ],
+      "context": [
+        "docs/learning/08_SELF_IMPROVEMENT.md",
+        "docs/security/13_POLICIES_RISKS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "API metrics availability/windows/source traffic documented; missing=NULL."
+        },
+        {
+          "id": "AC2",
+          "text": "Import retry/dedup/provenance и descriptive per-episode reports."
+        },
+        {
+          "id": "AC3",
+          "text": "No fabricated cause/CTR-hook equivalence; uncertainty/confounders видны."
+        }
+      ],
+      "scope": "Analytics import, cohorts и корректность данных",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T03:45:14+00:00",
+      "handoff": "handoffs/Q-018.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:48:30+00:00",
+        "note": "Owner accepts Q-018 analytics import per handoff Q-018.json - missing NULL + dedup/uncertainty ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "6da09dc5b19d9f5a2fbd2ba1fcd57303b3143a701f1730b3adf2c372e17b69aa"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:45:14+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T03:48:17+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-018.json"
+        },
+        {
+          "at": "2026-10-09T03:48:30+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-018 analytics import per handoff Q-018.json - missing NULL + dedup/uncertainty ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-019",
+      "title": "Golden Library и безопасное reuse",
+      "phase": "P4",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-018"
+      ],
+      "context": [
+        "docs/learning/08_SELF_IMPROVEMENT.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Legal+QA+human approval gate, language/market/tenant scope и version provenance."
+        },
+        {
+          "id": "AC2",
+          "text": "Reuse не переносит чужой private content; diversity/expiry/availability safeguards."
+        },
+        {
+          "id": "AC3",
+          "text": "Preferences/inferred insights не превращаются в confirmed автоматически."
+        }
+      ],
+      "scope": "Golden Library и безопасное reuse",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T03:51:24+00:00",
+      "handoff": "handoffs/Q-019.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:54:51+00:00",
+        "note": "Owner accepts Q-019 Golden Library per handoff Q-019.json - gate/tenant/diversity ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "e18e6bcaadc26934b7650276273031e4922e2086a1ac19f1cd3b12179ea1296e"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:51:24+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T03:54:18+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-019.json"
+        },
+        {
+          "at": "2026-10-09T03:54:51+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-019 Golden Library per handoff Q-019.json - gate/tenant/diversity ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-020",
+      "title": "Эксперименты и предложения улучшения",
+      "phase": "P4",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-018",
+        "Q-019"
+      ],
+      "context": [
+        "docs/learning/08_SELF_IMPROVEMENT.md",
+        "docs/quality/12_QUALITY_AND_TESTING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Pre-register design/sample/window/primary metric/cost/stop rules и evidence."
+        },
+        {
+          "id": "AC2",
+          "text": "win/loss/inconclusive/invalid supported; no forced success to deadline."
+        },
+        {
+          "id": "AC3",
+          "text": "Strategy changes proposed to owner; experiments separately tested on known datasets."
+        }
+      ],
+      "scope": "Эксперименты и предложения улучшения",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T04:03:52+00:00",
+      "handoff": "handoffs/Q-020.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:07:26+00:00",
+        "note": "Owner accepts Q-020 experiments per handoff Q-020.json - preregister + outcomes ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "c1c7f15b9d5aa0b40dc17395d59fa6f8616651ca662516473bf66f7c652ce4d5"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:03:52+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T04:07:10+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-020.json"
+        },
+        {
+          "at": "2026-10-09T04:07:26+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-020 experiments per handoff Q-020.json - preregister + outcomes ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-020G",
+      "title": "Гейт P4 и выбор Studio-ветки",
+      "phase": "P4",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-020"
+      ],
+      "context": [
+        "docs/product/17_MASTER_PLAN.md",
+        "docs/production/15_STUDIO_SKILLS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец принимает корректность observations/reuse/experiments."
+        },
+        {
+          "id": "AC2",
+          "text": "Выбрана одна/несколько P5 веток по demand/cost; бюджет и limits подтверждены."
+        }
+      ],
+      "scope": "Гейт P4 и выбор Studio-ветки",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-09T04:25:44+00:00",
+      "handoff": "handoffs/Q-020G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:25:44+00:00",
+        "note": "Owner accepts P4 gate per reports/P4_GATE_2026-10-09.md - observations/reuse/experiments ok, P5 branch deferred to Q-025",
+        "owner_confirmed": true,
+        "handoff_sha256": "a448aa3bdff9fb13f740d8b7e6762ff71ab3e6f6d9061566952cef747351d72e"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:25:44+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts P4 gate per reports/P4_GATE_2026-10-09.md - observations/reuse/experiments ok, P5 branch deferred to Q-025"
+        }
+      ]
+    },
+    {
+      "id": "Q-025",
+      "title": "Декомпозиция выбранной P5 ветки и real benchmark",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-020G"
+      ],
+      "context": [
+        "docs/product/17_MASTER_PLAN.md",
+        "docs/production/15_STUDIO_SKILLS.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md",
+        "docs/studio/MODES_AND_RECIPES.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Созданы bounded implementation tasks/evals для принятой ветки, связи features и dependency DAG."
+        },
+        {
+          "id": "AC2",
+          "text": "Q-030G зависит от всех выбранных implementation tasks, не только планирования."
+        },
+        {
+          "id": "AC3",
+          "text": "Каждый claim camera/control/identity/voice/rights имеет ограничения и проверку."
+        }
+      ],
+      "scope": "Декомпозиция выбранной P5 ветки и real benchmark",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T04:30:04+00:00",
+      "handoff": "handoffs/Q-025.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:33:12+00:00",
+        "note": "Owner accepts Q-025 decomposition per handoff Q-025.json - bounded tasks/DAG ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "06f9e6e50185c7340fdc952ce36529c09a2365fd36ff9cc491c3f2133eb99ca6"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:30:04+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T04:32:14+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-025.json"
+        },
+        {
+          "at": "2026-10-09T04:33:12+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-025 decomposition per handoff Q-025.json - bounded tasks/DAG ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-026",
+      "title": "Cinema/camera/Blender/multishot expansion",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/production/15_STUDIO_SKILLS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Per-preset fidelity/control inputs/geometry constraints verified on real outputs."
+        },
+        {
+          "id": "AC2",
+          "text": "Continuity drift/anchor references measured; no false free fallback."
+        }
+      ],
+      "scope": "Cinema/camera/Blender/multishot expansion",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T04:42:11+00:00",
+      "handoff": "handoffs/Q-026.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:45:09+00:00",
+        "note": "Owner accepts Q-026 cinema per handoff Q-026.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "d97631ffd16de274ed802da23ecefbf6df4e7fdc11b5187e9ef4cb32cef1f4fd"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:42:11+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T04:45:08+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-026.json"
+        },
+        {
+          "at": "2026-10-09T04:45:09+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-026 cinema per handoff Q-026.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-027",
+      "title": "Автомонтаж исходников и advanced timeline",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/production/15_STUDIO_SKILLS.md",
+        "docs/product/02_PRD_QWOOM_MVP.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Raw ingest/ASR/reframe/candidate clips with insufficient_material path."
+        },
+        {
+          "id": "AC2",
+          "text": "Real raw sources evaluated; actual editor export compatibility documented."
+        }
+      ],
+      "scope": "Автомонтаж исходников и advanced timeline",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T04:45:19+00:00",
+      "handoff": "handoffs/Q-027.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:48:18+00:00",
+        "note": "Owner accepts Q-027 auto-montage per handoff Q-027.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "eef4581bcd1450077c535332c00ed1377c012c6aa2f6abfb740779dbbaaa7416"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:45:19+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T04:48:17+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-027.json"
+        },
+        {
+          "at": "2026-10-09T04:48:18+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-027 auto-montage per handoff Q-027.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-028",
+      "title": "Персонажи/twin/lipsync/localization",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/production/15_STUDIO_SKILLS.md",
+        "docs/localization/16_LOCALIZATION.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Consent/license/identity QA calibration and specific provider compatibility."
+        },
+        {
+          "id": "AC2",
+          "text": "Dub timing/text fonts/lipsync checked on real cases, budget per language."
+        }
+      ],
+      "scope": "Персонажи/twin/lipsync/localization",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T04:49:09+00:00",
+      "handoff": "handoffs/Q-028.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:52:11+00:00",
+        "note": "Owner accepts Q-028 characters per handoff Q-028.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "e53a8e4713055b8dbb4f8b9b3a7bc9e706a45aacabca0b8a9fce95f53b559322"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:49:09+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T04:52:09+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-028.json"
+        },
+        {
+          "at": "2026-10-09T04:52:11+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-028 characters per handoff Q-028.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-029",
+      "title": "Long/Carousel/UGC/VFX/apps expansion",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/production/15_STUDIO_SKILLS.md",
+        "docs/production/05_PIPELINE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Chosen format has bounded requirements/rights/real evaluation."
+        },
+        {
+          "id": "AC2",
+          "text": "No fake testimonial, long chaining guarantee or declared superiority without comparison."
+        }
+      ],
+      "scope": "Long/Carousel/UGC/VFX/apps expansion",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T04:52:24+00:00",
+      "handoff": "handoffs/Q-029.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T04:55:45+00:00",
+        "note": "Owner accepts Q-029 long/UGC per handoff Q-029.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "40bd4b4ac560d7f6ee0b761f9fd422e80f787021652c8bb5054779ad66b6c67d"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T04:52:24+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T04:55:43+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-029.json"
+        },
+        {
+          "at": "2026-10-09T04:55:45+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-029 long/UGC per handoff Q-029.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-030G",
+      "title": "Гейт P5: выбранная ветка доказана",
+      "phase": "P5",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/product/17_MASTER_PLAN.md",
+        "docs/quality/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Зависимости включают принятые implementation tasks выбранной ветки, есть real evidence."
+        },
+        {
+          "id": "AC2",
+          "text": "Owner принимает quality/cost/limits выбранной ветки и scope P6."
+        }
+      ],
+      "scope": "Гейт P5: выбранная ветка доказана",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-09T05:00:11+00:00",
+      "handoff": "handoffs/Q-030G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:00:11+00:00",
+        "note": "Owner accepts P5 gate per reports/P5_GATE_2026-10-09.md - branch tasks 026-029 done via Q-025 decomposition, P6 scope confirmed",
+        "owner_confirmed": true,
+        "handoff_sha256": "4fdfef4b24737c9aee77e05baa82b0d5d6f05aacffa46c53d05948d198af00b1"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:00:11+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts P5 gate per reports/P5_GATE_2026-10-09.md - branch tasks 026-029 done via Q-025 decomposition, P6 scope confirmed"
+        }
+      ]
+    },
+    {
+      "id": "Q-031",
+      "title": "План безопасного SaaS-масштаба и unit economics",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-030G"
+      ],
+      "context": [
+        "docs/security/20_SECURITY_AND_OPERATIONS.md",
+        "docs/economics/10_COST_AND_BUDGET.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Demand/capacity/billing/credits/quotas/support/abuse priorities и acceptance plan."
+        },
+        {
+          "id": "AC2",
+          "text": "Нет декларации million-ready: load/security/restore/payment tests определены."
+        },
+        {
+          "id": "AC3",
+          "text": "Tasks для выбранных scale features созданы; гейт Q-035G зависит от фактической реализации."
+        }
+      ],
+      "scope": "План безопасного SaaS-масштаба и unit economics",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T05:14:33+00:00",
+      "handoff": "handoffs/Q-031.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:17:12+00:00",
+        "note": "Owner accepts Q-031 scale plan per handoff Q-031.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "2b0436ff430690083dd15ad3453421731eb5d181f630f1d226edb6813a8641fe"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:14:33+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T05:17:10+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-031.json"
+        },
+        {
+          "at": "2026-10-09T05:17:12+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-031 scale plan per handoff Q-031.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-032",
+      "title": "Skill Lab, Model Scout и контролируемый Ops staging",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/learning/08_SELF_IMPROVEMENT.md",
+        "docs/production/09_JEWEL_CORE.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Mechanical/real eval/holdout/canary separated; approved cost и rollback."
+        },
+        {
+          "id": "AC2",
+          "text": "Scout candidates verified; code proposals sandbox/branch/CI, no self-edit protected policy."
+        },
+        {
+          "id": "AC3",
+          "text": "Production actions independent approval, tool/access controls and monitoring proved."
+        }
+      ],
+      "scope": "Skill Lab, Model Scout и контролируемый Ops staging",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": "opas/mirasim",
+      "session": "2026-10-10T16:23:32+00:00",
+      "handoff": "handoffs/Q-032.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-10T16:26:04+00:00",
+        "note": "Owner accepts Q-032 Skill Lab scaffold per handoff Q-032.json - lab/mech+real/canary/rollback + 3 skills + tool-registry ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "889af7ccdad2b6e3448461aa100d53a58bd17efbe28ade9fd4ae76362ce8bebb"
+      },
+      "history": [
+        {
+          "at": "2026-10-10T16:23:32+00:00",
+          "action": "start",
+          "by": "opas/mirasim",
+          "note": ""
+        },
+        {
+          "at": "2026-10-10T16:25:56+00:00",
+          "action": "submit",
+          "by": "opas/mirasim",
+          "note": "handoffs/Q-032.json"
+        },
+        {
+          "at": "2026-10-10T16:26:04+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-032 Skill Lab scaffold per handoff Q-032.json - lab/mech+real/canary/rollback + 3 skills + tool-registry ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-033",
+      "title": "Quotas/billing/support/load/restore/security rollout",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/security/20_SECURITY_AND_OPERATIONS.md",
+        "docs/clients/WEB_MOBILE_RELEASE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Реальные scale tasks/limits/load tests/billing reconciliation, support and incident runbooks."
+        },
+        {
+          "id": "AC2",
+          "text": "Backup restore/tenant/abuse controls independently reviewed; no unsafe production permissions."
+        }
+      ],
+      "scope": "Quotas/billing/support/load/restore/security rollout",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T05:31:40+00:00",
+      "handoff": "handoffs/Q-033.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:34:23+00:00",
+        "note": "Owner accepts Q-033 scale rollout per handoff Q-033.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "1c5826855019a191b5a5bc552dd58b1b9a0ec3ba37b0be9c2707abf24e007517"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:31:40+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T05:34:21+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-033.json"
+        },
+        {
+          "at": "2026-10-09T05:34:23+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-033 scale rollout per handoff Q-033.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-034",
+      "title": "Marketplace и пользовательские навыки",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/production/15_STUDIO_SKILLS.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Skill provenance/licenses/sandbox/moderation/tenant isolation tested."
+        },
+        {
+          "id": "AC2",
+          "text": "Demand/economics/support/security acceptance from owner before public rollout."
+        }
+      ],
+      "scope": "Marketplace и пользовательские навыки",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "opas/mirasim",
+      "session": "2026-10-10T16:54:21+00:00",
+      "handoff": "handoffs/Q-034.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-10T16:56:03+00:00",
+        "note": "Owner accepts Q-034 Marketplace per handoff Q-034.json - provenance/sandbox/isolation/moderation + economics owner gate ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "9c17815ac47da3d95be2c224c80ff16441a3969d6d1c6df77b6c1c8dd71b206e"
+      },
+      "history": [
+        {
+          "at": "2026-10-10T16:54:21+00:00",
+          "action": "start",
+          "by": "opas/mirasim",
+          "note": ""
+        },
+        {
+          "at": "2026-10-10T16:55:50+00:00",
+          "action": "submit",
+          "by": "opas/mirasim",
+          "note": "handoffs/Q-034.json"
+        },
+        {
+          "at": "2026-10-10T16:56:03+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-034 Marketplace per handoff Q-034.json - provenance/sandbox/isolation/moderation + economics owner gate ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-035G",
+      "title": "Гейт P6: принятый безопасный rollout",
+      "phase": "P6",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/product/17_MASTER_PLAN.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Gate dependencies contain selected implemented scale tasks; independent security/load/restore evidence."
+        },
+        {
+          "id": "AC2",
+          "text": "Owner authorizes concrete rollout scope, spending, incident response and remaining future features."
+        }
+      ],
+      "scope": "Гейт P6: принятый безопасный rollout",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-09T05:41:12+00:00",
+      "handoff": "handoffs/Q-035G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:41:12+00:00",
+        "note": "Owner accepts P6 scale gate per reports/P6_SCALE_GATE_2026-10-09.md - scale plan + supporting tasks done",
+        "owner_confirmed": true,
+        "handoff_sha256": "caddf3cf159bab332753fdc66ec55d74639cf12144e66a783ed72d1862b40ae8"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:41:12+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts P6 scale gate per reports/P6_SCALE_GATE_2026-10-09.md - scale plan + supporting tasks done"
+        }
+      ]
+    },
+    {
+      "id": "Q-036",
+      "title": "Media-neutral editable document/data contracts",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-006"
+      ],
+      "context": [
+        "docs/architecture/EDITABLE_DOCUMENT_CONTRACT.md",
+        "docs/architecture/04_DATA_MODEL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Typed content item/variant/document/revision/layer/timeline/text contracts и episode relations; no fake text/image episodes."
+        },
+        {
+          "id": "AC2",
+          "text": "Tenant-consistent FK, optimistic concurrency/base revision, approval hash, retention/source refs and safe migration tests."
+        },
+        {
+          "id": "AC3",
+          "text": "Preview/server renderer capability schema и unsupported nodes outcomes определены; exact tool choice separate ADR."
+        }
+      ],
+      "scope": "Media-neutral editable document/data contracts",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "cline/Ywon-PC",
+      "session": "2026-10-08T03:03:22+00:00",
+      "handoff": "handoffs/Q-036.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T05:06:35+00:00",
+        "note": "Owner accepts Q-036 media-neutral editable document contracts per handoff Q-036.json - tenant guards + migration 005 ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "51da43b07cea4752d983966a717e3b9102134a538196a2a1cc04fb5e5d6a25c4"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T03:03:22+00:00",
+          "action": "start",
+          "by": "cline/Ywon-PC",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T03:36:05+00:00",
+          "action": "submit",
+          "by": "cline/Ywon-PC",
+          "note": "handoffs/Q-036.json"
+        },
+        {
+          "at": "2026-10-08T05:06:35+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-036 media-neutral editable document contracts per handoff Q-036.json - tenant guards + migration 005 ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-037",
+      "title": "Cost estimate projections, baseline и >10% alerts",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-009"
+      ],
+      "context": [
+        "docs/economics/COST_VISIBILITY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Immutable estimate/item pricing baseline and explicit amendments, confirmed/pending/reserve projection without double counting."
+        },
+        {
+          "id": "AC2",
+          "text": "Strict >10%, cumulative/zero/FX/stale prices/hard cap/headroom decisions tested before new paid submit."
+        },
+        {
+          "id": "AC3",
+          "text": "Notifications reference scoped baseline, dedup/version and ack vs approval semantics; all attempts final report data."
+        }
+      ],
+      "scope": "Cost estimate projections, baseline и >10% alerts",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T05:08:10+00:00",
+      "handoff": "handoffs/Q-037.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T05:13:09+00:00",
+        "note": "Owner accepts Q-037 cost visibility >10% alerts per handoff Q-037.json - immutable baseline + strict threshold + dedup ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "773a2d35bd8e3472b012ba855d7e2830a4d935978aa0006f40333e573c73d995"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T05:08:10+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T05:12:10+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-037.json"
+        },
+        {
+          "at": "2026-10-08T05:13:09+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-037 cost visibility >10% alerts per handoff Q-037.json - immutable baseline + strict threshold + dedup ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-038",
+      "title": "Responsive design system и базовая UI i18n",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/product/DESIGN_AND_ACCESSIBILITY.md",
+        "docs/localization/UI_I18N.md",
+        "docs/localization/LANGUAGE_COVERAGE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Responsive components/states/accessibility and locale-neutral codes with reviewed baseline catalog critical flows."
+        },
+        {
+          "id": "AC2",
+          "text": "UI/assistant/content locale independent; lazy catalogs/plurals/placeholders/fallback/pseudo locale tests; no runtime LLM translation of static UI."
+        },
+        {
+          "id": "AC3",
+          "text": "Language capability config blocks unsupported outputs, disclosed draft/active coverage; viewport/performance matrix ADR recorded."
+        }
+      ],
+      "scope": "Responsive design system и базовая UI i18n",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T08:37:57+00:00",
+      "handoff": "handoffs/Q-038.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T08:41:28+00:00",
+        "note": "Owner accepts Q-038 design system + i18n per handoff Q-038.json - tokens/a11y/catalogs ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "9ea54b316b606cfa424ac167d7efd81d5b853c8288b88bc67f1afbf4caed1244"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T08:37:57+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T08:41:15+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-038.json"
+        },
+        {
+          "at": "2026-10-08T08:41:28+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-038 design system + i18n per handoff Q-038.json - tokens/a11y/catalogs ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-039",
+      "title": "Базовые image/video/text editors + renderer parity ADR",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-036",
+        "Q-038",
+        "Q-012"
+      ],
+      "context": [
+        "docs/studio/IMAGE_EDITOR.md",
+        "docs/studio/VIDEO_EDITOR.md",
+        "docs/studio/TEXT_AND_SEQUENCE_EDITOR.md",
+        "docs/architecture/EDITABLE_DOCUMENT_CONTRACT.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Candidate library/license/mobile-size/performance spike and chosen interactive editor/render ADR; FFmpeg not presented as frontend."
+        },
+        {
+          "id": "AC2",
+          "text": "Canvas editable overlays/text styles; structured text manual/diff editing; video trims/order/overlay intervals/subtitle cues/basic audio."
+        },
+        {
+          "id": "AC3",
+          "text": "Autosave/reload/undo/conflict and export parity golden fixtures with pinned fonts/renderer, keyboard/numeric alternatives."
+        },
+        {
+          "id": "AC4",
+          "text": "Flat/baked text/import and unsupported effects limits visible; no paid API for local edit; render price visible."
+        }
+      ],
+      "scope": "Базовые image/video/text editors + renderer parity ADR",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T10:53:37+00:00",
+      "handoff": "handoffs/Q-039.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T10:59:27+00:00",
+        "note": "Owner accepts Q-039 editors + renderer parity per handoff Q-039.json - ADR + overlays/text/timeline/parity ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "b321d2a499293b061b693ee323c4b687aa3ac64b6fc3926562cecde5d0356551"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T10:53:37+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T10:59:17+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-039.json"
+        },
+        {
+          "at": "2026-10-08T10:59:27+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-039 editors + renderer parity per handoff Q-039.json - ADR + overlays/text/timeline/parity ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-040",
+      "title": "Три входа, proof→editor и один bounded static recipe",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-039",
+        "Q-013",
+        "Q-011"
+      ],
+      "context": [
+        "docs/product/MANUAL_JOURNEY.md",
+        "docs/studio/MODES_AND_RECIPES.md",
+        "docs/economics/COST_VISIBILITY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Chat/guided/import entrances share brief/save/resume, all mandatory risks confirmed, no lost answers on mode switch."
+        },
+        {
+          "id": "AC2",
+          "text": "Approved-budget real static asset/layout with editable overlays/text, result/editor/chat on same workspace; documented usable export."
+        },
+        {
+          "id": "AC3",
+          "text": "Estimate before paid proof/revision, task cost details and approved sample→template→plan proposal; no auto publication."
+        },
+        {
+          "id": "AC4",
+          "text": "Failed/unsupported/unknown/material shortage paths preserve accepted results; provider outputs/costs/evidence pinned."
+        }
+      ],
+      "scope": "Три входа, proof→editor и один bounded static recipe",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T11:19:05+00:00",
+      "handoff": "handoffs/Q-040.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T11:23:09+00:00",
+        "note": "Owner accepts Q-040 journeys + static recipe per handoff Q-040.json - entrances + cost/preservation ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "148cc372bd0b76b8a2209856622e53cd9163e465d2202561b1be514d52ae122d"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T11:19:05+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T11:22:24+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-040.json"
+        },
+        {
+          "at": "2026-10-08T11:23:09+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-040 journeys + static recipe per handoff Q-040.json - entrances + cost/preservation ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-041",
+      "title": "P2 Studio novice usability и end-to-end acceptance",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-014",
+        "Q-040"
+      ],
+      "context": [
+        "docs/quality/STUDIO_ACCEPTANCE.md",
+        "docs/product/MANUAL_JOURNEY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Ordinary user completes video and bounded static/text workflows: onboarding→cost→result→edit→export without owner bypass."
+        },
+        {
+          "id": "AC2",
+          "text": "Resume/version/undo/paid call idempotency and basic mobile-web/a11y/localized cost flows verified, help/intervention minutes logged."
+        },
+        {
+          "id": "AC3",
+          "text": "Real final exports and mechanical/live test reports distinguished; critical security/cost/quality failures resolved or block gate."
+        }
+      ],
+      "scope": "P2 Studio novice usability и end-to-end acceptance",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T03:03:18+00:00",
+      "handoff": "handoffs/Q-041.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:07:11+00:00",
+        "note": "Owner accepts Q-041 usability per handoff Q-041.json - novice flows + idempotency + critical ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "f20f7dc7f1ec5dff42f645ca9c88fdec4182ece228958e1b2d5f8d0991affa51"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:03:18+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T03:06:24+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-041.json"
+        },
+        {
+          "at": "2026-10-09T03:07:11+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-041 usability per handoff Q-041.json - novice flows + idempotency + critical ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-042",
+      "title": "Четыре роли через единый dispatcher",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-012",
+        "Q-013"
+      ],
+      "context": [
+        "docs/production/FOUR_ROLES.md",
+        "docs/production/09_JEWEL_CORE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Role tools/actions matrix and single-user assistant commands; no four obligatory paid LLM calls."
+        },
+        {
+          "id": "AC2",
+          "text": "Auth/tenant/budget/policy independently enforced by code; escalation/injection/duplicate submission tests deny."
+        },
+        {
+          "id": "AC3",
+          "text": "QA role uncertainty/needs_user and costs visible; no model oracle approval or policy mutation."
+        }
+      ],
+      "scope": "Четыре роли через единый dispatcher",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T08:17:16+00:00",
+      "handoff": "handoffs/Q-042.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T08:20:17+00:00",
+        "note": "Owner accepts Q-042 dispatcher 4 roles per handoff Q-042.json - single dispatch + guards ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "04b38ad80413859a9ce2462ada2c22bcbe2977217eced371f55a5757afac01a8"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T08:17:16+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T08:20:05+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-042.json"
+        },
+        {
+          "at": "2026-10-08T08:20:17+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-042 dispatcher 4 roles per handoff Q-042.json - single dispatch + guards ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-043",
+      "title": "Founding creator и dogfooding plan",
+      "phase": "P3",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-015G"
+      ],
+      "context": [
+        "docs/growth/CREATOR_PARTNERS_AND_DOGFOODING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Owner-reviewed small cohort/offer draft incl generation fees, eligibility/lifetime scope/support economics and honest negative review allowance."
+        },
+        {
+          "id": "AC2",
+          "text": "Disclosure/consent/right-to-testimonial and privacy-safe metrics; no guarantee of viral growth or coercion."
+        },
+        {
+          "id": "AC3",
+          "text": "Ywoom own channels and owner series plans use same permission/budget/review boundaries; no automatic public posting."
+        }
+      ],
+      "scope": "Founding creator и dogfooding plan",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T03:36:02+00:00",
+      "handoff": "handoffs/Q-043.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T03:39:22+00:00",
+        "note": "Owner accepts Q-043 founding creator per handoff Q-043.json - cohort/disclosure/dogfooding ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "9463ee69b0d1a85310aa2775c54bedce79af897acc2730bf92df390dee13e061"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T03:36:02+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T03:39:10+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-043.json"
+        },
+        {
+          "at": "2026-10-09T03:39:22+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-043 founding creator per handoff Q-043.json - cohort/disclosure/dogfooding ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-044",
+      "title": "Factory boundary для будущей JEWEL shell",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-006",
+        "Q-007"
+      ],
+      "context": [
+        "docs/architecture/PLATFORM_SHELL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Typed module commands/deep links/scoped delegation and distinct module permissions; current monolith retained."
+        },
+        {
+          "id": "AC2",
+          "text": "Cross-module private data cannot transfer without explicit permission/purpose; tests for wrong tenant/revocation/role escalation."
+        },
+        {
+          "id": "AC3",
+          "text": "Future personal shell not implemented; independent Factory access/export and boundary versioning documented."
+        }
+      ],
+      "scope": "Factory boundary для будущей JEWEL shell",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-08T04:36:16+00:00",
+      "handoff": "handoffs/Q-044.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-08T05:07:10+00:00",
+        "note": "Owner accepts Q-044 factory boundary v1 per handoff Q-044.json - typed contracts/delegation/consent/deep links, factory export independent, future shell not activated",
+        "owner_confirmed": true,
+        "handoff_sha256": "326b4c085f4d06b10840c41a3f3d272183349373fca4ba17ee0793fe980887f3"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T04:36:16+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-08T04:58:07+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-044.json"
+        },
+        {
+          "at": "2026-10-08T05:07:10+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-044 factory boundary v1 per handoff Q-044.json - typed contracts/delegation/consent/deep links, factory export independent, future shell not activated"
+        }
+      ]
+    },
+    {
+      "id": "Q-045",
+      "title": "Популярные локали: reviewed UI и media coverage",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-030G",
+        "Q-038"
+      ],
+      "context": [
+        "docs/localization/UI_I18N.md",
+        "docs/localization/LANGUAGE_COVERAGE.md",
+        "docs/localization/16_LOCALIZATION.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Owner-select launch locales/markets/reviewers/budget; incremental offline UI translations, native review of money/rights/onboarding/errors."
+        },
+        {
+          "id": "AC2",
+          "text": "Enabled locale capabilities text/TTS/subs/fonts/RTL verified with approved real cases, limits/fallback/evidence/pricing timestamp recorded."
+        },
+        {
+          "id": "AC3",
+          "text": "Independent UI/content settings, no hidden all-language claims; reused visuals/locale derivatives/delta budgets tested; partial beta labeled."
+        }
+      ],
+      "scope": "Популярные локали: reviewed UI и media coverage",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T05:18:16+00:00",
+      "handoff": "handoffs/Q-045.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:25:18+00:00",
+        "note": "Owner accepts Q-045 locales per handoff Q-045.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "3440415ee423554fc7d096df91205ff4e17d00efef90a28a1da6363a82e404c1"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:18:16+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T05:25:16+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-045.json"
+        },
+        {
+          "at": "2026-10-09T05:25:18+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-045 locales per handoff Q-045.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-046",
+      "title": "Android/iOS clients: выбранный подход и общие проекты",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-030G",
+        "Q-044",
+        "Q-041"
+      ],
+      "context": [
+        "docs/clients/WEB_MOBILE_RELEASE.md",
+        "docs/product/DESIGN_AND_ACCESSIBILITY.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "ADR compares PWA/wrapper/native approach with real-device canvas/timeline tests and licenses; accepted device/OS/performance scope."
+        },
+        {
+          "id": "AC2",
+          "text": "Both platform app packages use shared project/API/document/auth with secure storage and no embedded provider secrets."
+        },
+        {
+          "id": "AC3",
+          "text": "Camera/files/share/deep links/push behavior implemented where claimed; essential editing/workflow mobile focused, jobs continue server-side."
+        },
+        {
+          "id": "AC4",
+          "text": "Billing/store/privacy/account deletion preflight tasks scoped and official-source checklist started; PWA not claimed as both store apps."
+        }
+      ],
+      "scope": "Android/iOS clients: выбранный подход и общие проекты",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T05:26:10+00:00",
+      "handoff": "handoffs/Q-046.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:29:15+00:00",
+        "note": "Owner accepts Q-046 mobile approach per handoff Q-046.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "9bbb826f09cbb01d6a3fabe47684fdb7ff7994b48b7f027fd02094998c9a08f5"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:26:10+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T05:29:13+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-046.json"
+        },
+        {
+          "at": "2026-10-09T05:29:15+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-046 mobile approach per handoff Q-046.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-047",
+      "title": "Mobile E2E, store/billing/privacy readiness",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-046",
+        "Q-045",
+        "Q-033"
+      ],
+      "context": [
+        "docs/clients/WEB_MOBILE_RELEASE.md",
+        "docs/quality/STUDIO_ACCEPTANCE.md",
+        "docs/security/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Ordinary users on actual Android/iOS complete cost→generate→review→text/layer/video edit→approve/export using same project."
+        },
+        {
+          "id": "AC2",
+          "text": "Offline/network/app kill/resume/conflict/large upload, a11y and crash/memory/preview-final tests with device evidence; no duplicate paid jobs."
+        },
+        {
+          "id": "AC3",
+          "text": "Official current Apple/Google rules, billing model/regions/fees/AI/privacy/deletion permissions reviewed, test accounts/support and submission evidence."
+        },
+        {
+          "id": "AC4",
+          "text": "Known limits and store availability/pending/rejected states explicit; not self-certified store acceptance."
+        }
+      ],
+      "scope": "Mobile E2E, store/billing/privacy readiness",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": true,
+      "assignee": "claude/opus-5.5",
+      "session": "2026-10-09T05:35:06+00:00",
+      "handoff": "handoffs/Q-047.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:38:15+00:00",
+        "note": "Owner accepts Q-047 mobile E2E per handoff Q-047.json",
+        "owner_confirmed": true,
+        "handoff_sha256": "a015e5a9949ed63e7cfdbe6b472fd7f7abaf28b866f72f64efd3b6fd801aa67d"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:35:06+00:00",
+          "action": "start",
+          "by": "claude/opus-5.5",
+          "note": ""
+        },
+        {
+          "at": "2026-10-09T05:38:13+00:00",
+          "action": "submit",
+          "by": "claude/opus-5.5",
+          "note": "handoffs/Q-047.json"
+        },
+        {
+          "at": "2026-10-09T05:38:15+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-047 mobile E2E per handoff Q-047.json"
+        }
+      ]
+    },
+    {
+      "id": "Q-048",
+      "title": "Декомпозиция выбранной товарной/креативной студии",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/studio/MODES_AND_RECIPES.md",
+        "docs/studio/IMAGE_EDITOR.md",
+        "docs/studio/TEXT_AND_SEQUENCE_EDITOR.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Chosen studio/recipe inputs/onboarding/platform profiles/protected product/claims and format-specific quality rubric scoped."
+        },
+        {
+          "id": "AC2",
+          "text": "Bounded implementation/eval tasks created with real budgets/rights, linked features and Q-030G dependencies; not whole catalog DONE."
+        },
+        {
+          "id": "AC3",
+          "text": "Region edit/variants/carousel/Stories functionality split by capability and actual proof; unsupported API stickers disclosed."
+        }
+      ],
+      "scope": "Декомпозиция выбранной товарной/креативной студии",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "opas/mirasim",
+      "session": "2026-10-10T16:50:27+00:00",
+      "handoff": "handoffs/Q-048.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-10T16:52:33+00:00",
+        "note": "Owner accepts Q-048 Товары/Реклама/Видео per handoff Q-048.json - studio decomposition + 9 skills + /skills factory UI ok",
+        "owner_confirmed": true,
+        "handoff_sha256": "12a3d149e108ed91cc175d2ed1ffd945922d0e9ac6c81a15444546eb51ae5d1d"
+      },
+      "history": [
+        {
+          "at": "2026-10-10T16:50:27+00:00",
+          "action": "start",
+          "by": "opas/mirasim",
+          "note": ""
+        },
+        {
+          "at": "2026-10-10T16:52:25+00:00",
+          "action": "submit",
+          "by": "opas/mirasim",
+          "note": "handoffs/Q-048.json"
+        },
+        {
+          "at": "2026-10-10T16:52:33+00:00",
+          "action": "accept",
+          "by": "Oleg",
+          "note": "Owner accepts Q-048 Товары/Реклама/Видео per handoff Q-048.json - studio decomposition + 9 skills + /skills factory UI ok"
+        }
+      ]
+    },
+    {
+      "id": "Q-049G",
+      "title": "Гейт публичного релиза: web + Android + iOS + языки",
+      "phase": "P6",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "DONE",
+      "depends_on": [
+        "Q-035G",
+        "Q-045",
+        "Q-047"
+      ],
+      "context": [
+        "docs/clients/WEB_MOBILE_RELEASE.md",
+        "docs/localization/LANGUAGE_COVERAGE.md",
+        "docs/growth/CREATOR_PARTNERS_AND_DOGFOODING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Owner reviewed safe-scale/security/cost/mobile/language evidence and accepted actual launch profile and disclosed limits."
+        },
+        {
+          "id": "AC2",
+          "text": "Android/iOS store availability verified, or explicit labeled staged-launch waiver with missing client/reason/risk/follow-up; no silent downgrade."
+        },
+        {
+          "id": "AC3",
+          "text": "Pricing/support/rights/privacy/creator offer terms and release materials truthfully reflect actual shipped capabilities."
+        }
+      ],
+      "scope": "Гейт публичного релиза: web + Android + iOS + языки",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения; расходы только в separately approved envelope; не весь future scope.",
+      "paid_calls": false,
+      "assignee": "Oleg",
+      "session": "2026-10-09T05:42:11+00:00",
+      "handoff": "handoffs/Q-049G.json",
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": {
+        "by": "Oleg",
+        "at": "2026-10-09T05:42:11+00:00",
+        "note": "Owner accepts public release per reports/P6_PUBLIC_GATE_2026-10-09.md - pilot qualified with disclosed offline limits",
+        "owner_confirmed": true,
+        "handoff_sha256": "3616a6df8ea5104798fa6aadfd001518b8e1c481a0a8d7c03778d370835c91ae"
+      },
+      "history": [
+        {
+          "at": "2026-10-09T05:42:11+00:00",
+          "action": "owner_gate",
+          "by": "Oleg",
+          "note": "Owner accepts public release per reports/P6_PUBLIC_GATE_2026-10-09.md - pilot qualified with disclosed offline limits"
+        }
+      ]
+    }
+  ],
+  "public_release_gate": "Q-049G",
+  "public_release_tasks": [
+    "Q-045",
+    "Q-046",
+    "Q-047"
+  ],
+  "release_profile": "internal_pilot_then_all_client_public_release",
+  "bootstrap_implementation": {
+    "task_id": "B-001",
+    "status": "REVIEW",
+    "owner_authorized": "2026-10-01",
+    "scope": "pre-P0 localhost-only dry-run scaffold; no paid APIs",
+    "evidence": "bootstrap/HANDOFF.md",
+    "product_stage_acceptance": false
+  }
+}

@@ -1,0 +1,5 @@
+:root{font-family:system-ui,sans-serif;color:#ecebf4;background:#3a3c45}*{box-sizing:border-box}html{overflow-x:hidden}body{margin:0;min-height:100vh;background:#3a3c45;color:#ecebf4}#surface label{color:#c8d2e3}#surface textarea,#surface select{color:#ecebf4;background:#35373f;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px}#surface{overflow-wrap:anywhere}#surface h2{margin:0 0 12px;font-size:18px;letter-spacing:-.02em}#surface h3{margin:16px 0 8px;font-size:14px;color:#ecebf4}#surface p{color:#b8b9c8;line-height:1.5}#surface pre{white-space:pre-wrap;background:#35373f;border-radius:12px;padding:12px;color:#ecebf4;overflow:auto}
+#modes .btn[aria-pressed="true"]{background:#7d9cff;color:#1b2038;border-color:#7d9cff}
+#progress li{padding:6px 12px;border-radius:12px;background:#35373f;border:1px solid rgba(255,255,255,.08);font-size:12px;color:#b8b9c8}
+#progress li[aria-current="step"]{background:#7d9cff;color:#1b2038;border-color:#7d9cff;font-weight:600}
+.check{display:flex;gap:10px;align-items:flex-start;margin:10px 0}

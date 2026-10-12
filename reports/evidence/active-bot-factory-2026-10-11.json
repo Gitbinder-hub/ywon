@@ -1,0 +1,46 @@
+{
+  "skillId": "bot-factory",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 46,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "19fc116a5750e6977d745a73e02b356ba2c2981ec99798cf21466f1a0dcaf4cd"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "3f64eb17b42b067043021f9460ad735d5ed00419fd025ef1f69830899ab1ccc8"
+  },
+  "canary": {
+    "skillId": "bot-factory",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:27.891Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "4b9f590dea91663f…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; token_in_artifact forbidden",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:27.897Z"
+}

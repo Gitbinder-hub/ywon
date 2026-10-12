@@ -1,0 +1,14 @@
+{
+  "task_id": "B-055",
+  "status": "REVIEW",
+  "base_commit": "7522d78d1e2bc9b24a6a083cd13bf02c799904d5",
+  "owner_authorized_at": "2026-10-05",
+  "authorization": "User explicitly requested continuing; isolated no-paid local audio block announced",
+  "scope": "Local browser audio capture/playback + loopback host/UI around existing VoiceSession, no upload/ASR/LLM",
+  "out_of_scope": "Real Windows/native release, ASR/TTS/provider/classifier, paid calls/keys, account auth/device pairing, file/OS actions, task status/Q acceptance, production policy/budget, deploy/main merge",
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "paid_calls": false,
+  "handoff": "bootstrap/B055_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-05-companion-audio/verification.json"
+}

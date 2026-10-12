@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-046",
+  "status": "REVIEW",
+  "tests": {
+    "new": {
+      "passed": 2,
+      "failed": 0
+    },
+    "availableSuite": {
+      "passed": 185,
+      "failed": 0,
+      "skipped": 0
+    },
+    "javascriptSyntax": "PASS",
+    "pythonWorkersCompile": 4,
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    }
+  },
+  "visualQa": {
+    "desktop": {
+      "width": 1440,
+      "result": "PASS",
+      "overlap": false,
+      "clipping": false,
+      "horizontalOverflow": false
+    },
+    "mobile": {
+      "width": 390,
+      "result": "PASS",
+      "overlap": false,
+      "clipping": false,
+      "horizontalOverflow": false
+    },
+    "screenshotsCommitted": false
+  },
+  "verified": [
+    "server derives reference from B-043 receipt",
+    "project revision increments",
+    "exact command replay",
+    "changed reuse/replacement/deletion denied",
+    "plan edits preserve reference",
+    "reference excludes paths and media",
+    "fixed denial flags retained",
+    "Studio retries with same pending command ID"
+  ],
+  "notRun": [
+    "owner attachment smoke against google-p0-002",
+    "complete base API/static/browser suite",
+    "pinned toolchain wrapper",
+    "CI",
+    "production transaction/auth/object storage"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "mediaCopied": false,
+    "mediaServed": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Local JSON project storage is single-user preview only.",
+    "Receipt binding is not publication, rights or invoice evidence.",
+    "Database/project owner tampering is not externally anchored."
+  ]
+}

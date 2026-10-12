@@ -1,0 +1,76 @@
+﻿# docs/production/15_STUDIO_SKILLS.md â€” typed recipe, exact_3d not claimed from 2D
+id: ffmpeg-technical
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: 2d_approximation
+input_schema:
+  type: object
+  required: [source_asset_id, preset_id]
+  properties:
+    source_asset_id: { type: string, minLength: 1 }
+    preset_id: { type: string, enum: [pan-2d, zoom-2d, push_in-2d, shake-2d] }
+    durationSec: { type: integer, minimum: 1, maximum: 10 }
+    protected_regions: { type: array, items: { type: string } }
+output_schema:
+  type: object
+  required: [artifact_id, preview_url, manifest_hash]
+  properties:
+    artifact_id: { type: string }
+    preview_url: { type: string }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+required_capabilities: [ffmpeg-transform]
+optional_capabilities: []
+budget:
+  limitMinor: 5000
+  worstCaseMinor: 5000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 800
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_input, apply_transform, qa_duration_resolution, report]
+approval: [qa]
+supported_outcomes: [transform_applied, preview_ready]
+degraded_outcomes: [capped_duration]
+unsupported_outcomes: [orbit_not_supported_by_2d_preset, protected_region_violation]
+forbidden_this_iteration: [orbit_without_geometry, dolly_zoom_without_geometry]
+curiosity_reserve: 5
+presets:
+  - id: pan-2d
+    version: "1"
+    kind: pan
+    fidelity: 2d_approximation
+    requires: [ffmpeg-transform]
+    maxDurationSec: 10
+    description: "2D pan via compositor â€” no unseen geometry, not orbit"
+    limitations: [no unseen geometry, not orbit, flat]
+  - id: zoom-2d
+    version: "1"
+    kind: zoom
+    fidelity: 2d_approximation
+    requires: [ffmpeg-transform]
+    maxDurationSec: 10
+    description: "2D zoom via compositor â€” no parallax, not dolly"
+    limitations: [no parallax, not dolly, flat]
+  - id: push_in-2d
+    version: "1"
+    kind: push_in
+    fidelity: 2d_approximation
+    requires: [ffmpeg-transform]
+    maxDurationSec: 8
+    description: "2D push-in via scale â€” flat, no geometry, not orbit"
+    limitations: [flat, no geometry, not orbit]
+  - id: shake-2d
+    version: "1"
+    kind: shake
+    fidelity: 2d_approximation
+    requires: [ffmpeg-transform]
+    maxDurationSec: 6
+    description: "2D shake via translate â€” synthetic, not camera shake rig"
+    limitations: [synthetic, not camera shake rig, not orbit]

@@ -1,0 +1,16 @@
+  private _createRevision(input:CreateRevisionInput):Result<DocumentRevision>{
+    const doc=this.docs.get(this.k(input.workspaceId,input.documentId)); if(!doc) return {ok:false,code:'document_not_found'};
+    if(input.baseRevision!==null){ if(!Number.isInteger(input.baseRevision)||input.baseRevision<1) return {ok:false,code:'invalid_baseRevision'}; if((doc.currentRevisionRef??0)!==input.baseRevision) return {ok:false,code:'conflict_base_revision'}; } else { if(doc.currentRevisionRef!==null) return {ok:false,code:'conflict_base_revision'}; }
+    if(sizeBytes(input.newJson)>MAX_JSON_BYTES) return {ok:false,code:'json_too_large'};
+    const g=checkDocumentGrammar(doc.kind, input.newJson as unknown as Record<string,unknown>); if(!g.ok) return {ok:false,code:(g as unknown as {code:string}).code,reason:(g as unknown as {reason:string}).reason};
+    const caps=getCapabilities(); const b=checkBounds(input.newJson as unknown as AnyDocumentJson, caps); if(!b.ok) return {ok:false,code:(b as unknown as {code:string}).code};
+    if(!input.actor) return {ok:false,code:'missing_actor'};
+    const hash=hexSha(JSON.stringify(input.newJson)); if(!HEX64.test(hash)) return {ok:false,code:'hash_internal'};
+    const nextRev=(doc.currentRevisionRef??0)+1;
+    const rev:DocumentRevision={ documentId:input.documentId, workspaceId:input.workspaceId, revision:nextRev, parentRevision:doc.currentRevisionRef, immutableJson:input.newJson as AnyDocumentJson, hash, rendererVersion:input.rendererVersion??caps.version, fontRefs:input.fontRefs??[], sourceAssetRefs:input.sourceAssetRefs??[], createdBy:input.actor, changeReason:input.changeReason, createdAt:nowIso() };
+    const arr=this.revisions.get(input.documentId)??[]; arr.push(rev); this.revisions.set(input.documentId,arr);
+    doc.currentRevisionRef=nextRev; doc.updatedAt=nowIso(); this.docs.set(this.k(input.workspaceId,input.documentId),{...doc});
+    const item=this.items.get(this.k(input.workspaceId,doc.itemId)); if(item){ item.currentRevisionRef=nextRev; item.updatedAt=nowIso(); this.items.set(this.k(item.workspaceId,item.id),{...item}); }
+    for(const v of this.variants.values()){ if(v.itemId===doc.itemId && v.workspaceId===input.workspaceId && v.acceptedRevisionRef!==null && v.acceptedRevisionRef!==nextRev){ v.acceptedRevisionRef=null; v.acceptedHash=null; v.acceptedExportProfile=null; this.variants.set(this.k(v.workspaceId,v.id),{...v}); this.audit.push('approval.invalidated variant='+this.k(v.workspaceId,v.id)+' newRev='+nextRev); } }
+    this.audit.push('revision.create '+input.workspaceId+':'+input.documentId+':'+nextRev+' hash='+hash.slice(0,8)); return {ok:true,value:{...rev,immutableJson:rev.immutableJson as AnyDocumentJson}};
+  }

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-02",
+  "remote_base": "020ed0e709dabd49d8037c9d8166fc35d995a2fa",
+  "local_tested_work_commit": "5d43bca72c64fd699968d3cfe6f8ade8ade733fd",
+  "scope": "bounded B-001 client reliability only",
+  "red_baseline": { "tests": 11, "pass": 2, "fail": 9, "exit_code": 1 },
+  "green_client_tests": { "tests": 11, "pass": 11, "fail": 0, "exit_code": 0 },
+  "full_make_check": { "exit_code": 0, "typecheck": "pass", "js_syntax": "pass", "node_pass": 30, "media_pass": 3, "spec_pass": 44, "transfer_pass": 10, "skips": 0 },
+  "actual_cli_http_smoke": "pass: updated HTML/JS/RU/EN catalogs and health; process terminated",
+  "browser_evidence": "node:vm minimal DOM/fetch fixtures; real-browser/visual/a11y/e2e not_run",
+  "github_ci": "unknown; previous check-run read HTTP403",
+  "paid_api_calls": 0,
+  "deployment": false,
+  "owner_gate_acceptance": false,
+  "raw_latest_logs": "retained in agent computer; no fabricated remote CI/raw-output claim",
+  "costs": { "known_usd": null, "notes": "No paid provider/deploy; assistant/compute costs unknown" }
+}

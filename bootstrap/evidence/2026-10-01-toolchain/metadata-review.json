@@ -1,0 +1,67 @@
+{
+  "scope": "Metadata/license/cache review only, NOT a security or signature audit",
+  "installation": "npm install / npm ci --offline --ignore-scripts --no-audit --no-fund",
+  "packages": [
+    {
+      "name": "@types/node",
+      "version": "18.19.130",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/node"
+      },
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-18.19.130.tgz",
+      "integrity": "sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==",
+      "scripts": {},
+      "license_file_present": true
+    },
+    {
+      "name": "undici-types",
+      "version": "5.26.5",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs/undici.git"
+      },
+      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-5.26.5.tgz",
+      "integrity": "sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==",
+      "scripts": {},
+      "license_file_present": false
+    },
+    {
+      "name": "typescript",
+      "version": "7.0.2",
+      "license": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/microsoft/TypeScript.git"
+      },
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz",
+      "integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+      "scripts": {},
+      "license_file_present": true
+    },
+    {
+      "name": "@typescript/typescript-linux-x64",
+      "version": "7.0.2",
+      "license": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/microsoft/TypeScript.git"
+      },
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-x64/-/typescript-linux-x64-7.0.2.tgz",
+      "integrity": "sha512-EYdf2cNg7rgCWJnxCdJ+F3V39O8ihb37eHAu1LK8oAFizgTQbPOK7zHHXbPt8rX24COqODXeI3sIf0fCXG7H/A==",
+      "scripts": {},
+      "license_file_present": true
+    }
+  ],
+  "all_lock_entries_registry_urls_and_sri": true,
+  "all_lock_entries_no_install_scripts": true,
+  "installed_entries_match_preinstalled_lock_metadata": true,
+  "vulnerability_audit": "not_run",
+  "registry_signatures": "not_run",
+  "new_network_access": false,
+  "supported_platform_evidence": "Linux x64 only; other platform optional dependencies not executed",
+  "lockfile_sha256": "57abfd27f31832ff84e836cfda3d6110fe96702f228bda8a748a1d42c7785416"
+}

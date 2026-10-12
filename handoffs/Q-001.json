@@ -1,0 +1,65 @@
+{
+  "task_id": "Q-001",
+  "agent": "Oleg",
+  "session": "2026-10-06T06:42:43+00:00",
+  "branch": "owner decision",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "pay-as-you-go unlimited, per-run cap .25-1.00 media / -5 Architect, 20% repair with explicit approve, WebView2 yes",
+  "changed_files": [
+    "reports/P0_APPROVAL.md"
+  ],
+  "evidence": [
+    {
+      "command": "owner manual review",
+      "exit_code": null,
+      "result": "pass",
+      "artifact": "reports/P0_APPROVAL.md",
+      "notes": "pay-as-you-go unlimited, per-run cap .25-1.00 media / -5 Architect, 20% repair with explicit approve, WebView2 yes"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "reports/P0_APPROVAL.md"
+      ],
+      "reason": "Owner confirms this AC"
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "reports/P0_APPROVAL.md"
+      ],
+      "reason": "Owner confirms this AC"
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "reports/P0_APPROVAL.md"
+      ],
+      "reason": "Owner confirms this AC"
+    },
+    {
+      "id": "AC4",
+      "result": "pass",
+      "evidence": [
+        "reports/P0_APPROVAL.md"
+      ],
+      "reason": "Owner confirms this AC"
+    }
+  ],
+  "not_done": [],
+  "risks": [],
+  "blockers": [],
+  "next_steps": [],
+  "recommended_next_tasks": [],
+  "required_owner_checks": [],
+  "costs": {
+    "known_usd": null,
+    "notes": "See approved report; no paid calls by this tool"
+  }
+}

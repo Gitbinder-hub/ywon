@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-049",
+  "status": "REVIEW",
+  "tests": {
+    "focusedStudioDom": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "javascriptSyntax": "PASS",
+    "priorBroaderSuite": "185 PASS historical; NOT_RERUN"
+  },
+  "visualQa": {
+    "desktop": {
+      "width": 1440,
+      "result": "PASS",
+      "overlap": false,
+      "clipping": false,
+      "horizontalOverflow": false
+    },
+    "mobile": {
+      "width": 390,
+      "result": "PASS",
+      "overlap": false,
+      "clipping": false,
+      "horizontalOverflow": false
+    },
+    "consoleErrors": 0,
+    "screenshotsCommitted": false
+  },
+  "verified": [
+    "links hidden and href removed before immutable reference",
+    "relative same-origin evidence paths use encoded project ID",
+    "open and download links appear after attachment",
+    "44px targets and responsive wrapping",
+    "no media/player/generation/execution/publication action added"
+  ],
+  "notRun": [
+    "owner evidence-link smoke",
+    "broader complete-checkout suite",
+    "full interactive browser/a11y audit",
+    "CI"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "mediaServed": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "UI links surface local evidence only.",
+    "Evidence is not invoice, rights, quality or publication approval.",
+    "Visual QA is not WCAG certification."
+  ]
+}

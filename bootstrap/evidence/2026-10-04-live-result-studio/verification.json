@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-045",
+  "status": "REVIEW",
+  "tests": {
+    "newDom": {
+      "passed": 2,
+      "failed": 0
+    },
+    "nonBaseApiSuite": {
+      "passed": 183,
+      "failed": 0,
+      "skipped": 0
+    },
+    "javascriptSyntax": "PASS",
+    "pythonWorkersCompile": 4,
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    }
+  },
+  "visualQa": {
+    "desktop": {
+      "width": 1440,
+      "result": "PASS",
+      "overlap": false,
+      "clipping": false,
+      "horizontalOverflow": false
+    },
+    "mobile": {
+      "width": 390,
+      "result": "PASS after one-column receipt-row fix",
+      "overlap": false,
+      "clipping": false,
+      "horizontalOverflow": false
+    },
+    "screenshotsCommitted": false
+  },
+  "verified": [
+    "validated run ID and query deep-link",
+    "B-044 denial contract required before display",
+    "text-only metadata rendering",
+    "verified/unpublished labeling",
+    "no media/player/download/generation/import/publication control in panel",
+    "responsive semantic card"
+  ],
+  "notRun": [
+    "owner Studio smoke against google-p0-002",
+    "full browser interaction/a11y audit",
+    "full base API/static suite in complete checkout",
+    "pinned toolchain wrapper",
+    "CI"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "mediaServed": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Metadata display is not content, rights or publication acceptance.",
+    "Visual QA is not WCAG certification.",
+    "Local Studio remains single-user and non-production."
+  ]
+}

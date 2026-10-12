@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "p0-t2-photosyn-003",
+  "topic": "Как работает фотосинтез у растений — за 30 секунд",
+  "fixture": "bootstrap/fixtures/P0-T2-photosynthesis-003.json",
+  "briefHash": "f9a7fa6224195e0ec3790311c52e8ee9a33d66c20d082d7854ee4fcc8cb95c47",
+  "inputHash": "8d96efcd7302a9d22c41106b3796cd699968600c267d64ea3c2937233cf5e3fd",
+  "requestHash": "8d96efcd7302a9d22c41106b3796cd699968600c267d64ea3c2937233cf5e3fd",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Как работает фотосинтез",
+      "narration": "Растения — это настоящие зеленые фабрики. Они ловят солнечный свет своими листьями с помощью хлорофилла. Из воздуха растение берет углекислый газ, а из почвы — воду. Внутри листа происходит магия: энергия солнца превращает воду и газ в питательный сахар для роста и выделяет чистый кислород, которым мы дышим каждый день.",
+      "scenes": [
+        {
+          "caption": "Зеленый лист ловит солнечный свет",
+          "imagePrompt": "Close up of a vibrant green plant leaf glowing with warm sunlight, macro photography, 4k"
+        },
+        {
+          "caption": "Поглощение воды и углекислого газа",
+          "imagePrompt": "Abstract scientific illustration of a plant leaf absorbing water droplets and carbon dioxide molecules from the air, colorful and educational"
+        },
+        {
+          "caption": "Выделение кислорода и создание сахара",
+          "imagePrompt": "A lush green forest with sunbeams breaking through the trees, symbolizing fresh oxygen and nature, cinematic lighting"
+        }
+      ]
+    },
+    "images": [
+      "Close up of a vibrant green plant leaf glowing with warm sunlight, macro photography, 4k",
+      "Abstract scientific illustration of a plant leaf absorbing water droplets and carbon dioxide molecules from the air, colorful and educational",
+      "A lush green forest with sunbeams breaking through the trees, symbolizing fresh oxygen and nature, cinematic lighting"
+    ],
+    "tts": "Растения — это настоящие зеленые фабрики. Они ловят солнечный свет своими листьями с помощью хлорофилла. Из воздуха растение берет углекислый газ, а из почвы — воду. Внутри листа происходит магия: энергия солнца превращает воду и газ в питательный сахар для роста и выделяет чистый кислород, которым мы дышим каждый день."
+  },
+  "assetHashes": {
+    "textSha256": "00cae5520da53be3d4d0568ff376576c0238d6ebfe9fb3b3489cfd0b5f036619",
+    "imageSha256": [
+      "8c2504eaef271718e4d4888cc0452b613b8c4fea78e65753a337ab3074310cb6",
+      "8725f8ef6862a78c997d01e1ba31c8858324ccffd1b042ac943d63bfb4b0cc45",
+      "c1ddc92b312f8530eee1c9dff98b65e0bb4f357e8a4769fe6145aa77dd8ac2a0"
+    ],
+    "ttsSha256": "618660ade0598b919990983592c14f22355d60f0925e684ab55c89243365412b",
+    "wavBytes": 1158114,
+    "mp4Sha256": "8b9a7e7903249edd3dfa33b5d6b284704ec200b63f6c20b2cc462e0d8f77734f",
+    "mp4Bytes": 1138149
+  },
+  "mp4": {
+    "path": "outputs/p0-t2-photosyn-003/result.mp4",
+    "sha256": "8b9a7e7903249edd3dfa33b5d6b284704ec200b63f6c20b2cc462e0d8f77734f",
+    "bytes": 1138149,
+    "durationSec": 25.958333,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "p0-t2-photosyn-003",
+    "topic": "Как работает фотосинтез у растений — за 30 секунд",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "reject",
+    "minutes": 6,
+    "reason": "duration_outside_30+-2",
+    "criticalFailure": [
+      "duration_outside_30+-2"
+    ],
+    "dimensions": {
+      "technical": "fail duration 25.96s outside 30±2",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": false,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

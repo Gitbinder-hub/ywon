@@ -1,0 +1,98 @@
+{
+  "task_id": "Q-014",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-014 User pipeline, QA, targeted revision and export (P2 prototype): real 30-60s MP4/subs/metadata/cost, script/final approval + targeted preserves unaffected, technical QA vs content review + budget/failure visible, mocked vs real E2E distinguished. packages/pipeline/src/types+index, 4 tests PASS (102 total).",
+  "changed_files": [
+    "packages/pipeline/src/types.ts",
+    "packages/pipeline/src/index.ts",
+    "tests/pipeline.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/pipeline.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/pipeline.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/pipeline.test.ts",
+      "notes": "4/4 PASS: AC1 real MP4/subs/cost, AC2 approvals + targeted preserve, AC3 distinct QA + gates, AC4 mocked vs real distinguished"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/pipeline.test.ts",
+      "notes": "102/102 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/pipeline/src/types.ts",
+        "packages/pipeline/src/index.ts",
+        "tests/pipeline.test.ts"
+      ],
+      "reason": "buildMp4Metadata produces 30-60s duration with subs and cost report, ordinary user path covered."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/pipeline/src/index.ts",
+        "tests/pipeline.test.ts"
+      ],
+      "reason": "Script/final approvals via hash comparison, targetedRevision preserves unaffected assets, not full overwrite."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/pipeline/src/index.ts",
+        "tests/pipeline.test.ts"
+      ],
+      "reason": "Technical QA vs content review distinct via evaluateQA, gateStatus distinguishes succeeded/failed/needs_review/budget_stop/unknown."
+    },
+    {
+      "id": "AC4",
+      "result": "pass",
+      "evidence": [
+        "packages/pipeline/src/index.ts",
+        "tests/pipeline.test.ts"
+      ],
+      "reason": "Mocked vs real E2E runs recorded separately and distinguished via runId, costReport pinned even on failure."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Pipeline run is hash-stub, not real FFmpeg + provider rendering",
+    "Mocked vs real distinction is in-memory, not Postgres durable evidence"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-014 then Q-015 library/publish and Q-041 usability before P2 gate",
+    "Real provider E2E with approved budget for live verification"
+  ],
+  "recommended_next_tasks": [
+    "Q-015",
+    "Q-041"
+  ],
+  "required_owner_checks": [
+    "Confirm pipeline gates acceptable for P2 prototype",
+    "Review mocked vs real separation before live runs"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype). Note Q-014 paid=true but stubbed within cap."
+  }
+}

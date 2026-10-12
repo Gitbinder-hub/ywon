@@ -1,0 +1,9 @@
+# B-007 — registry-resolved offline planning / REVIEW
+
+Second owner-requested bounded block. `planWithRegistry` accepts exact capability pins, rejects caller-injected capability arrays, reads stored records and admits only approved, unrevoked records whose evidence is valid at the declared planning instant. The plan reports the exact record versions/evidence IDs and a registry snapshot hash. `runRegisteredStoreCommand` is the new registry-backed create/revise path and persists that report in the B-005 store. All outputs remain `executionAllowed=false` and `budgetReserved=false`.
+
+The old `planProduction`/`runStoreCommand` fixture path is retained for B-004/B-005 compatibility and tests; it is not the authoritative new path. No live generation, provider invocation, budget reservation, publish, deploy or main merge was added. Q-001 and sequence decisions remain open, and tasks/project.json was not changed.
+
+Actual scoped verification: 15 registry/integration tests plus prior 65 = 80 PASS; strict TypeScript 7.0.2 and Python compile PASS. Expired, revoked, candidate, verified-but-unapproved, missing-pin, version-pin, independent-approver, fixture-only and caller-injection cases are covered. The test workspace was reconstructed from exact remote blobs because private HTTPS clone could not authenticate. `project.py validate/status/next`, `make spec-check`, `make check`, CI, browser, live media and production identity were NOT_RUN.
+
+Next bounded continuation: harden the registry storage itself with full event-chain/projection verification, strict capability-field validation before persistence, initialization-race tests and an authenticated-authority interface design. Do not call it authoritative production evidence until real identity, tenant permissions and independent evidence policy exist.

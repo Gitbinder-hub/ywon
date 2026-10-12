@@ -1,0 +1,92 @@
+{
+  "task_id": "Q-002",
+  "agent": "cline/act (Claude Opus 5.5 via Cline) -- owner-delegated accept",
+  "session": "2026-10-06T15:35:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-002 accepted 2026-10-06 per owner delegation in chat (vtoroi progon ne nuzhen, dlitelnost ot 5s, PATH patch ok, podtverdi za menya): 9 official sources 2026-10-06 + live Google spike google-p0-002 24.04s h264 1280x720 aac 830KB v limite 0.1103/0.25, provereno ffprobe, duration relaxed to >=5s.",
+  "changed_files": [
+    "reports/Q002_PROVIDER_RESEARCH_2026-10-06.md",
+    "handoffs/Q-002.json",
+    "outputs/google-p0-002/manifest.json",
+    "outputs/google-p0-002/result.mp4"
+  ],
+  "evidence": [
+    {
+      "command": "fetch_web_content 9 official sources 2026-10-06",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/Q002_PROVIDER_RESEARCH_2026-10-06.md",
+      "notes": "ai.google.dev pricing/models/image-generation/speech-generation/available-regions; fal.ai flux/schnell + pricing; docs.anthropic.com pricing; platform.openai.com gpt-4o-mini-tts -- fetched live, no keys"
+    },
+    {
+      "command": "python -X utf8 scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/Q002_PROVIDER_RESEARCH_2026-10-06.md",
+      "notes": "PASS spec/task/handoff/archive. Product/media NOT tested."
+    },
+    {
+      "command": "node --env-file=.env run_live.mjs runGoogleLiveSpike google-p0-002",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "outputs/google-p0-002/manifest.json",
+      "notes": "Live spike completed: manifest completed, 5 calls (1 text +3 image +1 tts), plan 110300 micros USD 0.1103 < cap 250000, mp4 830811 sha eefc0af9..."
+    },
+    {
+      "command": "ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of json outputs/google-p0-002/result.mp4 + narration.wav",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "outputs/google-p0-002/result.mp4",
+      "notes": "h264 1280x720 + aac, format 24.041667s size 830811, audio/narration 22s -- within owner-relaxed >=5s (strict 30+/-2 waived per chat 2026-10-06)"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "reports/Q002_PROVIDER_RESEARCH_2026-10-06.md"
+      ],
+      "reason": "Each candidate: exact ID, official URL+checked_at 2026-10-06, price/unit, region/access, commercial label with explicit gaps."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "reports/Q002_PROVIDER_RESEARCH_2026-10-06.md"
+      ],
+      "reason": "Duration/rounding/audio/ref/control/idempotency/cancel/retention documented or UNKNOWN for schema/account guarantees."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "reports/Q002_PROVIDER_RESEARCH_2026-10-06.md",
+        "outputs/google-p0-002/manifest.json",
+        "outputs/google-p0-002/result.mp4"
+      ],
+      "reason": "Primary Google (gemini-3.5-flash-lite / 3.1-flash-lite-image / 3.8-flash-lite-tts) TTS Kore + fal/OpenAI reserve at 0.1103 within 0.25 +20% R=0.022; owner confirmed route/cost/limitations and relaxed duration to >=5s in chat 2026-10-06, second paid run not needed. Live spike actually executed and verified."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Estimate != provider invoice/taxes; pricing can change",
+    "Russia not in Google regions excerpt -- account block possible",
+    "24s artifact shorter than 30s but accepted per >=5s relax; strict +/-2s waived"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-003 prepare without spend (no second live run per owner)",
+    "When PATH refreshed, ffprobe available as ffprobe without full path"
+  ],
+  "recommended_next_tasks": [
+    "Q-003"
+  ],
+  "required_owner_checks": [],
+  "costs": {
+    "known_usd": 0.1103,
+    "notes": "One live spike google-p0-002 110300 micros USD 0.1103 within approved cap 0.25 + 0.022 reserve (C=0.132). No second run per owner."
+  }
+}

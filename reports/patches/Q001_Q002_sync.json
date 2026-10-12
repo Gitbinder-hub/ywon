@@ -1,0 +1,31 @@
+{
+  "scope": "Exact owner-confirmed Q001 DONE and Q002 REVIEW, no acceptance of Q002/phase/paid execution",
+  "published_evidence_commit": "f718ca7a75f1949a7487e0e05372dd9171140b5c",
+  "patch_sha256": "625ef7523b23ce088f89ec3628d40f8576fca7f6b619d544c3e2f9fb7860d7f3",
+  "targets": {
+    "tasks/project.json": {
+      "before": "7f9b6c281b3276db1655c11a8a6ec7af63a51943",
+      "after": "29a90d26e9579021a18485ca542637671ae2efc5"
+    },
+    "tasks/BACKLOG.md": {
+      "before": "c4fa920ea7a6ad3b2edf54f6a807f9257cd675e8",
+      "after": "8ceda5d6d0005055db00846f7b8cd372bb8d8d01"
+    },
+    "docs/STATE.md": {
+      "before": "4d8104697dda5b471d2c2a97c55ebb544be735f2",
+      "after": "b71f6c93122b7d171e10552ee42c596909069638"
+    },
+    "docs/FEATURE_STATUS.md": {
+      "before": "6fc36e0cba53d1c7efaf5b876151b6ec0e67748c",
+      "after": "58a00787481c130d9aba11aaed56c59af9853ce3"
+    }
+  },
+  "evidence_blobs": {
+    "reports/P0_APPROVAL.md": "be33a58debc77bce82592bb1f569f6cb0f6a41de",
+    "handoffs/Q-001.json": "3d1504199f5aca32595e926226042f73c751e47d",
+    "reports/Q002_PROVIDER_RESEARCH_2026-10-03.md": "8c06c486c7896b0892b5af6d1100eb6b36444b45",
+    "handoffs/Q-002.json": "6966b60ab419ac0f1b054b69bbd9ba934e2f68a3",
+    "tests_spec/test_project.py": "356f9b6a470d1f6a66b504c57c983e0afd307857",
+    "tests_spec/test_v04.py": "6d95b87b4a45b7012d7361285aaff50f3bf40742"
+  }
+}

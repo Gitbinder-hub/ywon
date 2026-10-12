@@ -1,0 +1,45 @@
+/* Ywoom Skills — factory cards, круче IDE: конвейер, а не список */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;margin-top:14px}
+.skills-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 6px}
+.skills-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 10px;border-radius:999px;border:1px solid var(--line2);background:var(--card);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer}
+.chip.active{background:var(--card2);color:var(--text);border-color:#2a3a5a}
+.skill-card{position:relative;border:1px solid var(--line2);background:linear-gradient(180deg,var(--card) 0%,#161d2e 100%);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.skill-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent),#3a6b5e);opacity:0.9}
+.skill-card[data-fidelity="2d_approximation"]::before{background:linear-gradient(180deg,#8ab4ff,#3a4a6b)}
+.skill-card[data-fidelity="supported_control"]::before{background:linear-gradient(180deg,#f0c56a,#6b5a2a)}
+.skill-card[data-fidelity="prompt_guidance"]::before{background:linear-gradient(180deg,#8ed8be,#3a6b5e)}
+.skill-card[data-fidelity="exact_3d"]::before{background:linear-gradient(180deg,#ff8a8a,#6b2a2a)}
+.skill-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.skill-id{font-weight:800;letter-spacing:-0.3px;font-size:15px}
+.skill-ver{font-size:11px;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:3px 8px;background:rgba(255,255,255,0.04)}
+.skill-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge-sm{font-size:10px;font-weight:700;padding:4px 8px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,0.03);color:var(--muted)}
+.badge-sm.fidelity{color:var(--text);border-color:#2a3a5a;background:#1a2540}
+.badge-sm.status-draft{color:#8ab4ff;border-color:#2a3a5a;background:#1a2336}
+.badge-sm.status-canary{color:#f0c56a;border-color:#4a3a1a;background:#2a2215}
+.badge-sm.status-active{color:#8ed8be;border-color:#2e4a3f;background:#14261f}
+.skill-desc{color:var(--muted);font-size:13px;line-height:1.5;min-height:38px}
+.skill-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--muted)}
+.skill-meta span{border:1px solid var(--line2);border-radius:999px;padding:4px 8px;background:rgba(255,255,255,0.02)}
+.skill-flow{display:flex;align-items:center;gap:6px;margin:2px 0}
+.skill-flow i{height:2px;flex:1;border-radius:999px;background:var(--line2)}
+.skill-flow i.on{background:var(--accent)}
+.skill-flow b{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:0.4px}
+.skill-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.skill-actions .btn{padding:7px 10px;font-size:12px}
+.drawer{position:fixed;inset:0;z-index:70;display:flex;justify-content:flex-end}
+.drawer[hidden]{display:none !important}
+.drawer-backdrop{position:absolute;inset:0;background:rgba(3,7,15,0.6);backdrop-filter:blur(4px)}
+.drawer-panel{position:relative;width:min(760px,96vw);height:100%;background:var(--card);border-left:1px solid var(--line2);display:flex;flex-direction:column;overflow:hidden}
+.drawer-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px;border-bottom:1px solid var(--line)}
+.drawer-title{font-weight:800;font-size:16px}
+.drawer-tabs{display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.tab{padding:7px 12px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--muted);font-weight:700;font-size:12px;cursor:pointer}
+.tab.active{background:var(--card2);color:var(--text);border-color:#2a3a5a}
+.drawer-body{flex:1;overflow:auto;padding:16px}
+.prose{color:var(--text);line-height:1.6;font-size:13px}
+.prose pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0e1422;padding:12px;border-radius:10px;border:1px solid var(--line2);font-size:12px}
+.prose h3{margin:12px 0 8px;font-size:14px}
+#drawer-yaml{width:100%;min-height:360px;background:#0e1422;color:#cfe8ff;border:1px solid var(--line2);border-radius:10px;padding:12px;font-family:ui-monospace,monospace;font-size:12px;line-height:1.5;white-space:pre;overflow:auto}
+@media(max-width:900px){.skills-grid{grid-template-columns:1fr}.drawer-panel{width:100vw}}

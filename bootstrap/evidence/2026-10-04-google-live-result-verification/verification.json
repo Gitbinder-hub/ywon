@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-042",
+  "status": "REVIEW",
+  "tests": {
+    "node": {
+      "passed": 171,
+      "failed": 0,
+      "skipped": 0
+    },
+    "new": 4,
+    "pythonWorkersCompile": 3,
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    }
+  },
+  "verified": [
+    "completed manifest and pinned model route",
+    "exact paid-call evidence count",
+    "script/image/audio/MP4 hashes",
+    "path confinement and symlink rejection",
+    "H.264/AAC, dimensions, bytes and bounded duration",
+    "keyless CLI receipt remains non-production"
+  ],
+  "notRun": [
+    "repository check_toolchain wrapper",
+    "full npm run check",
+    "CI",
+    "browser",
+    "verification against owner local google-p0-002 directory"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "secretsUsed": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Local artifact verification is not provider invoice evidence.",
+    "Human quality/rights review remains required.",
+    "No production auth, durable object store, queue or ledger integration."
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "p0-t2-photosyn-001",
+  "topic": "Как работает фотосинтез у растений — за 30 секунд",
+  "fixture": "bootstrap/fixtures/P0-T2-photosynthesis.json",
+  "briefHash": "f9a7fa6224195e0ec3790311c52e8ee9a33d66c20d082d7854ee4fcc8cb95c47",
+  "inputHash": "8435b9c215b6b895058c4692934d991dc9ccdee478872389ed650c4252b0865d",
+  "requestHash": "8435b9c215b6b895058c4692934d991dc9ccdee478872389ed650c4252b0865d",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Как работает фотосинтез",
+      "narration": "Растения — настоящие волшебники природы. С помощью зелёного пигмента хлорофилла они улавливают солнечный свет. Этот свет запускает удивительную реакцию: листья поглощают углекислый газ из воздуха и воду из почвы. В результате они создают питательную глюкозу для своего роста и выделяют в атмосферу чистый кислород, которым мы дышим каждый день.",
+      "scenes": [
+        {
+          "caption": "Зеленый лист ловит солнечный свет",
+          "imagePrompt": "A vibrant green leaf absorbing bright golden sunbeams in a forest, macro photography, cinematic lighting"
+        },
+        {
+          "caption": "Поглощение воды и углекислого газа",
+          "imagePrompt": "Abstract scientific illustration of a plant leaf absorbing water droplets and carbon dioxide molecules, 3d render"
+        },
+        {
+          "caption": "Выделение кислорода в атмосферу",
+          "imagePrompt": "A lush green plant releasing glowing oxygen bubbles into the air, fresh and clean nature concept, bright day"
+        }
+      ]
+    },
+    "images": [
+      "A vibrant green leaf absorbing bright golden sunbeams in a forest, macro photography, cinematic lighting",
+      "Abstract scientific illustration of a plant leaf absorbing water droplets and carbon dioxide molecules, 3d render",
+      "A lush green plant releasing glowing oxygen bubbles into the air, fresh and clean nature concept, bright day"
+    ],
+    "tts": "Растения — настоящие волшебники природы. С помощью зелёного пигмента хлорофилла они улавливают солнечный свет. Этот свет запускает удивительную реакцию: листья поглощают углекислый газ из воздуха и воду из почвы. В результате они создают питательную глюкозу для своего роста и выделяют в атмосферу чистый кислород, которым мы дышим каждый день."
+  },
+  "assetHashes": {
+    "textSha256": "b102eda48a59928de91af7da43b8b6d5144f7ab6de52f319d93d2d91c4b64d65",
+    "imageSha256": [
+      "bfe92e30c4fc57a37769e5f71e3069753a2c6cbfa4144cee22b9a506d1fd7aaf",
+      "99c0ce8deb108989da30ab119398fba17e26af04173e86617094877d50283ce6",
+      "41e0f8d54a225b91cb6ca995e17131972aa64b8f00cab45e1f61a2c232ea8897"
+    ],
+    "ttsSha256": "ff96c09931d336a8f94e7fba99a5ca1f6e858dc9d1811d5fbd004c55ec0ccd8b",
+    "wavBytes": 1163874,
+    "mp4Sha256": "9f533d2a424aa8751542074c4558487e9dd977756be8ac914437c1e55d94d90c",
+    "mp4Bytes": 969207
+  },
+  "mp4": {
+    "path": "outputs/p0-t2-photosyn-001/result.mp4",
+    "sha256": "9f533d2a424aa8751542074c4558487e9dd977756be8ac914437c1e55d94d90c",
+    "bytes": 969207,
+    "durationSec": 26.541667,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "p0-t2-photosyn-001",
+    "topic": "Как работает фотосинтез у растений — за 30 секунд",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "reject",
+    "minutes": 6,
+    "reason": "duration_outside_30+-2",
+    "criticalFailure": [
+      "duration_outside_30+-2"
+    ],
+    "dimensions": {
+      "technical": "fail duration 26.54s outside 30±2",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": false,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

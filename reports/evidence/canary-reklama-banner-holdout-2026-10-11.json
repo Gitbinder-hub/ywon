@@ -1,0 +1,44 @@
+{
+  "skillId": "reklama-banner",
+  "version": "1.0.0",
+  "labStage": "canary",
+  "scope": "small",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 43,
+    "honest": true,
+    "seedExclusion": "golden ∩ holdout = ∅"
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "casesTotal": 4,
+    "reportHash": "b46568ee997041566bbfd09078c6296a49062d63602c36e2deb19fdc8adf3114"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "approvedMinor": 8000,
+    "reportHash": "85641facc95d895992280360506e432ea4cfd4d3c9c7cb2c18e1a5af07c468e4"
+  },
+  "canary": {
+    "skillId": "reklama-banner",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:29.616Z",
+    "active": true
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false,
+    "note": "rollback does not refund billed calls; previousStage preserved"
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; new version does not mutate accepted manifest",
+  "at": "2026-10-10T17:17:29.617Z"
+}

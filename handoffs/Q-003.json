@@ -1,0 +1,81 @@
+{
+  "task_id": "Q-003",
+  "agent": "cline/act (Claude Opus 5.5 via Cline)",
+  "session": "2026-10-06T08:42:55+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-003: зафиксированы задания/источники/права/format и reference set (3 темы T1-T3), quality rubric + 8 critical failures, cost/human-time envelope (B=$0.1103 R20% C=$0.132 per run, Q-005 9 runs ~$1.2-3 + Director) и схема run report (все попытки/rejected/small-sample) — без платных вызовов, готово к owner review перед Q-004/Q-005.",
+  "changed_files": [
+    "reports/Q003_EVAL_PLAN_2026-10-06.md",
+    "handoffs/Q-003.json"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/Q003_EVAL_PLAN_2026-10-06.md",
+      "notes": "PASS spec/task/handoff/archive. Product/media NOT tested."
+    },
+    {
+      "command": "manual review of Q-003 plan",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/Q003_EVAL_PLAN_2026-10-06.md",
+      "notes": "AC1: ru 30-60s 16:9 1280x720 h264/aac synthetic voice, sources owned/permitted, 3 темы T1 небо/T2 фотосинтез/T3 переработка (3x3=9 runs) frozen before test. AC2: rubric usable/minor/major/reject + 8 critical failures; cost per-run $0.25-1.00 / Architect $2-5, B110300 R20% C132360, Q-005 ~$1.19 best / $2-3 with rejects, human 45-72 мин, stop-before-third + >10% gate, go/rework/pivot at Q-005G. AC3: per-run JSON + aggregate report schema with attempts/rejected/small-sample limits."
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "reports/Q003_EVAL_PLAN_2026-10-06.md"
+      ],
+      "reason": "Задания/источники/права, target language/format и reference set зафиксированы до теста: ru narrated explainer 30-60s 16:9, синтетический голос, 3 темы T1/T2/T3 x3 запуска=9 результатов (B036=T1), источники/права owned/permitted."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "reports/Q003_EVAL_PLAN_2026-10-06.md",
+        "reports/P0_APPROVAL.md"
+      ],
+      "reason": "Quality rubric (usable/minor/major/reject) + 8 critical failures, cost envelope per Q-001 caps (B 0.1103 R20% C0.132, Q-005 $1.2-3) + human-time 45-72мин и число запусков 9 (3x3) зафиксированы в плане; соответствуют pay-as-you-go approved 2026-10-06. Финальный owner sign-off checklist в разделе 2.6 перед платными Q-004/Q-005 (требует explicit да, не авто)."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "reports/Q003_EVAL_PLAN_2026-10-06.md"
+      ],
+      "reason": "Схема run report: per-run fields (prompts/hashes/cost/attempts/rejected/humanReview) + aggregate 9-row table с acceptance_rate/cost distribution/human minutes/recurring defects и explicit small-sample warning; учитывает все попытки и rejected outputs."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Оценка != invoice/налоги/FX — цены могут измениться до Q-005",
+    "n=9 small sample — screening, не статистика; go не доказывает рыночный успех",
+    "24.04s smoke google-p0-002 вне strict 30±2s — для Q-004/Q-005 strict; too-short = technical fail"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner review reports/Q003_EVAL_PLAN_2026-10-06.md раздел 2.6 — подтвердить темы/rubric/cost/human-time (чат да или подпись)",
+    "После DONE: Q-004 уже покрыт google-p0-002 (новый прогон только по да); затем Q-005 9 runs по схеме раздела 3 с отдельной сметой freeze baseline",
+    "Результаты Q-005 → Q-005G go/rework/pivot"
+  ],
+  "recommended_next_tasks": [
+    "Q-004",
+    "Q-005"
+  ],
+  "required_owner_checks": [
+    "Подтвердить 3 темы T1-T3 и reference set frozen",
+    "Принять rubric и 8 critical failures",
+    "Принять cost envelope B/R/C и Q-005 ориентир и human-time 45-72мин / stop-before-third / >10% gate перед платными запусками"
+  ],
+  "costs": {
+    "known_usd": null,
+    "notes": "No paid calls in Q-003. Baseline for next runs: B 110300 micros $0.1103 R $0.022 C $0.132 within $0.25 cap; Q-005 9x ~$0.99-$1.19 best, $2-3 with rejects + Director $2-5 — requires separate freeze before spend."
+  }
+}

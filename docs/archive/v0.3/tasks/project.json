@@ -1,0 +1,1448 @@
+{
+  "schema_version": 1,
+  "spec_version": "0.3.0",
+  "updated_at": "2026-10-01T04:19:08Z",
+  "product_implementation": "not_started",
+  "current_phase": "P0",
+  "task_history_policy": "DONE requires owner acceptance; REVIEW does not unblock dependencies",
+  "phase_order": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6"
+  ],
+  "phase_gates": {
+    "P0": "Q-005G",
+    "P1": "Q-010G",
+    "P2": "Q-015G",
+    "P3": "Q-017G",
+    "P4": "Q-020G",
+    "P5": "Q-030G",
+    "P6": "Q-035G"
+  },
+  "selected_expansion_tasks": [],
+  "selected_scale_tasks": [],
+  "tasks": [
+    {
+      "id": "Q-001",
+      "title": "Владелец принимает v0.3 и рамки P0",
+      "phase": "P0",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [],
+      "context": [
+        "docs/14_OPEN_DECISIONS.md",
+        "docs/17_MASTER_PLAN.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец принял narrowed first format и P0→P6; future scope сохранён."
+        },
+        {
+          "id": "AC2",
+          "text": "Записаны утверждённые live-eval/development cap, валюта, период, stop rule и разрешение paid calls либо явно zero spend."
+        },
+        {
+          "id": "AC3",
+          "text": "Записаны поддерживаемые pilot language/voice/material rights и manual review."
+        },
+        {
+          "id": "AC4",
+          "text": "Отчёт approval без секретов содержит owner/date/choices; unresolved choices явно перечислены."
+        }
+      ],
+      "scope": "Владелец принимает v0.3 и рамки P0",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-002",
+      "title": "Проверить реальные API, цены, права и совместимость",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-001"
+      ],
+      "context": [
+        "docs/06_MODEL_ROUTER.md",
+        "docs/13_POLICIES_RISKS.md",
+        "docs/research/HIGGSFIELD_EXPRESS_RESEARCH.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Для каждого кандидата official source/checked_at/model ID/region/access/commercial rights записаны."
+        },
+        {
+          "id": "AC2",
+          "text": "Duration/rounding/audio/ref/control/idempotency/cancel/retention ограничения подтверждены или unknown."
+        },
+        {
+          "id": "AC3",
+          "text": "Выбран минимальный image/TTS/video path и резерв, с владельцем согласованы стоимость и ограничения."
+        }
+      ],
+      "scope": "Проверить реальные API, цены, права и совместимость",
+      "out_of_scope": "Установка непроверенных навыков, широкий Router/Studio, paid benchmarks до Q-003.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-003",
+      "title": "Согласовать задания, quality rubric и план реальных evals",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-002"
+      ],
+      "context": [
+        "docs/19_VALIDATION_PROTOCOL.md",
+        "docs/10_COST_AND_BUDGET.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Задания/источники/права, target language/format и reference set зафиксированы до теста."
+        },
+        {
+          "id": "AC2",
+          "text": "Владелец принял quality/critical failure/cost/human-time envelope и число запусков в бюджете."
+        },
+        {
+          "id": "AC3",
+          "text": "Схема run report учитывает все попытки, rejected outputs и small-sample limits."
+        }
+      ],
+      "scope": "Согласовать задания, quality rubric и план реальных evals",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-004",
+      "title": "Реальный CLI spike: narrated explainer → MP4",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-003"
+      ],
+      "context": [
+        "docs/05_PIPELINE.md",
+        "docs/06_MODEL_ROUTER.md",
+        "docs/10_COST_AND_BUDGET.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Один полный реальный MP4 из утверждённых image/TTS/optional video входов, не mock."
+        },
+        {
+          "id": "AC2",
+          "text": "Manifest/inputs/prompts/models/assets hashes/costs/all attempts/report сохранены без секретов."
+        },
+        {
+          "id": "AC3",
+          "text": "Технический QA и человеческая оценка выполнены; unknown job не оплачивается повторно вслепую."
+        },
+        {
+          "id": "AC4",
+          "text": "Скрипт запуска/окружение/лимит/cancel и ограничения воспроизводимы для следующего агента."
+        }
+      ],
+      "scope": "Реальный CLI spike: narrated explainer → MP4",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-005",
+      "title": "Повторные реальные запуски и отчёт пригодности/экономики",
+      "phase": "P0",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-004"
+      ],
+      "context": [
+        "docs/19_VALIDATION_PROTOCOL.md",
+        "docs/12_QUALITY_AND_TESTING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Выполнен согласованный набор запусков, все успехи/неудачи и расходы учтены."
+        },
+        {
+          "id": "AC2",
+          "text": "Human rubric, cost distribution, intervention minutes и recurring defects опубликованы."
+        },
+        {
+          "id": "AC3",
+          "text": "Вывод go/rework/pivot не скрывает small sample/quality gaps и предлагает следующий scope."
+        }
+      ],
+      "scope": "Повторные реальные запуски и отчёт пригодности/экономики",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-005G",
+      "title": "Гейт P0: стоит ли строить пользовательский продукт",
+      "phase": "P0",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-005"
+      ],
+      "context": [
+        "docs/19_VALIDATION_PROTOCOL.md",
+        "docs/11_ROADMAP.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец просмотрел реальное медиа/затраты/отчёт и принял go для ограниченного формата."
+        },
+        {
+          "id": "AC2",
+          "text": "Residual risks и required fixes внесены в задачи; бюджет/рамки P1 подтверждены."
+        }
+      ],
+      "scope": "Гейт P0: стоит ли строить пользовательский продукт",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-006",
+      "title": "Scaffold, контракты и согласованная схема",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-005G"
+      ],
+      "context": [
+        "docs/03_ARCHITECTURE.md",
+        "docs/04_DATA_MODEL.md",
+        "docs/adr/0001-modular-monolith-contracts-first.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "ADR выбирает поддерживаемые web/API/auth/queue tools; minimal monorepo и reproducible local run."
+        },
+        {
+          "id": "AC2",
+          "text": "Contracts включают primary channel/language/Bible versions/consents/operations/reservations."
+        },
+        {
+          "id": "AC3",
+          "text": "Schema/migrations покрывают tenant consistency, constraints и migration safety."
+        },
+        {
+          "id": "AC4",
+          "text": "make check приложения и mock-only CI явно отдельно от spec-check."
+        }
+      ],
+      "scope": "Scaffold, контракты и согласованная схема",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-007",
+      "title": "Auth, роли и tenant-isolation end-to-end",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-006"
+      ],
+      "context": [
+        "docs/20_SECURITY_AND_OPERATIONS.md",
+        "docs/04_DATA_MODEL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Email/session roles и API enforcement работают; secrets не в git/log."
+        },
+        {
+          "id": "AC2",
+          "text": "Тесты users/workspaces/API/worker/storage запрещают cross-tenant доступ."
+        },
+        {
+          "id": "AC3",
+          "text": "Media/URL ingest limits и SSRF/sandbox plan проверены или явно ограничены."
+        }
+      ],
+      "scope": "Auth, роли и tenant-isolation end-to-end",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-008",
+      "title": "Durable workflow, journal и recovery",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-006"
+      ],
+      "context": [
+        "docs/03_ARCHITECTURE.md",
+        "docs/05_PIPELINE.md",
+        "docs/09_JEWEL_CORE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Persisted steps/leases/operation IDs/outbox/retry/dead-letter и cancellation semantics."
+        },
+        {
+          "id": "AC2",
+          "text": "Crash-after-submit/unknown outcome/duplicate callbacks не вызывают blind resubmit."
+        },
+        {
+          "id": "AC3",
+          "text": "Journal append-only; reversible/compensating actions явно различимы."
+        }
+      ],
+      "scope": "Durable workflow, journal и recovery",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-009",
+      "title": "Budget reserve, ledger и invoice reconciliation",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-006",
+        "Q-008"
+      ],
+      "context": [
+        "docs/10_COST_AND_BUDGET.md",
+        "docs/04_DATA_MODEL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Atomic scope reservations не позволяют parallel overspend в integration test."
+        },
+        {
+          "id": "AC2",
+          "text": "Оценка/факт/pricing versions/attempts/corrections и zero-kept waste учтены."
+        },
+        {
+          "id": "AC3",
+          "text": "Unknown/cancelled jobs проходят reconcile; kill switch вне агента; security review приложен."
+        }
+      ],
+      "scope": "Budget reserve, ledger и invoice reconciliation",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-010",
+      "title": "Storage, provenance и повторный монтаж",
+      "phase": "P1",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-006",
+        "Q-007"
+      ],
+      "context": [
+        "docs/03_ARCHITECTURE.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Pinned exact assets/manifest/renderer/fonts refs и проверяемая копия по hash."
+        },
+        {
+          "id": "AC2",
+          "text": "Retain/delete/restore и consent/rights links не теряют последнюю копию молча."
+        },
+        {
+          "id": "AC3",
+          "text": "Тест повторного монтажа/отсутствующего asset явно показывает available/unavailable."
+        }
+      ],
+      "scope": "Storage, provenance и повторный монтаж",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-010G",
+      "title": "Гейт P1: надёжность и безопасность основания",
+      "phase": "P1",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-007",
+        "Q-008",
+        "Q-009",
+        "Q-010"
+      ],
+      "context": [
+        "docs/12_QUALITY_AND_TESTING.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Owner/reviewer просмотрел failure/recovery/tenancy/budget evidence, critical gaps устранены."
+        },
+        {
+          "id": "AC2",
+          "text": "Приняты границы P2 и real API budget, защищённые paths/репозиторные ограничения настроены."
+        }
+      ],
+      "scope": "Гейт P1: надёжность и безопасность основания",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-011",
+      "title": "Короткий онбординг, Genome и канон серии",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/07_CREATOR_GENOME.md",
+        "docs/04_DATA_MODEL.md",
+        "docs/16_LOCALIZATION.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Обязательные язык/подача/бюджет/согласия/review подтверждаются пользователем без owner bypass."
+        },
+        {
+          "id": "AC2",
+          "text": "Progressive interview/save/resume, facts tiers и versioned Bible resolution работают."
+        },
+        {
+          "id": "AC3",
+          "text": "Series B не видит канон A; primary-channel language однозначен в tests."
+        }
+      ],
+      "scope": "Короткий онбординг, Genome и канон серии",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-012",
+      "title": "Director Chat, карточки и typed approvals",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/06_MODEL_ROUTER.md",
+        "docs/02_PRD_Ywoom_MVP.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Commands validated by schema/role/version; карточки script/estimate/revise/stop."
+        },
+        {
+          "id": "AC2",
+          "text": "Никаких direct provider side effects или policy/budget обходов из LLM."
+        },
+        {
+          "id": "AC3",
+          "text": "Stale artifact approvals инвалидируются; malformed output/injection cases покрыты."
+        }
+      ],
+      "scope": "Director Chat, карточки и typed approvals",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-013",
+      "title": "First Skill Runtime и минимальный Router",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-010G"
+      ],
+      "context": [
+        "docs/15_STUDIO_SKILLS.md",
+        "docs/06_MODEL_ROUTER.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Typed recipe с budget/retries/reports/capability fidelity; version pinned."
+        },
+        {
+          "id": "AC2",
+          "text": "Доказанный P0 provider path включён, recorded fixtures и live eval разделены."
+        },
+        {
+          "id": "AC3",
+          "text": "Несколько честных 2D motion presets; unsupported movement не выдаётся за exact orbit."
+        }
+      ],
+      "scope": "First Skill Runtime и минимальный Router",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-014",
+      "title": "Пользовательский pipeline, QA, точечные правки и export",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-011",
+        "Q-012",
+        "Q-013"
+      ],
+      "context": [
+        "docs/05_PIPELINE.md",
+        "docs/12_QUALITY_AND_TESTING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Обычный пользователь получает real 30–60 с MP4/subs/metadata/cost report."
+        },
+        {
+          "id": "AC2",
+          "text": "Script/final human approval; targeted revision preserves accepted unaffected assets."
+        },
+        {
+          "id": "AC3",
+          "text": "Technical QA и content review различены, failure/unknown/budget stop видимы."
+        },
+        {
+          "id": "AC4",
+          "text": "Детерминированный mocked E2E и approved real E2E evidence сохранены."
+        }
+      ],
+      "scope": "Пользовательский pipeline, QA, точечные правки и export",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-015",
+      "title": "Медиатека, manual publishing и optional YouTube API",
+      "phase": "P2",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-014"
+      ],
+      "context": [
+        "docs/13_POLICIES_RISKS.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Медиатека с правами/provenance/availability и полный manual publish package."
+        },
+        {
+          "id": "AC2",
+          "text": "YouTube audit/quota/OAuth/disclosure состояние проверено официально; API optional."
+        },
+        {
+          "id": "AC3",
+          "text": "Если API включён: duplicate/upload-reconcile/approval-version tests; если нет — явный documented limitation."
+        }
+      ],
+      "scope": "Медиатека, manual publishing и optional YouTube API",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-015G",
+      "title": "Гейт P2: первый usable продукт",
+      "phase": "P2",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-014",
+        "Q-015"
+      ],
+      "context": [
+        "docs/02_PRD_Ywoom_MVP.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец как обычный пользователь прошёл цикл и просмотрел финал/цены."
+        },
+        {
+          "id": "AC2",
+          "text": "Scope/known gaps/неподдерживаемые функции видны, P3 budget и protocol приняты."
+        }
+      ],
+      "scope": "Гейт P2: первый usable продукт",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-016",
+      "title": "Серия реальных эпизодов: повторяемость и нагрузка человека",
+      "phase": "P3",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-015G"
+      ],
+      "context": [
+        "docs/19_VALIDATION_PROTOCOL.md",
+        "docs/10_COST_AND_BUDGET.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Согласованное число разных real episodes без cherry-picking, QA/acceptance/cost/human minutes."
+        },
+        {
+          "id": "AC2",
+          "text": "Failures root causes/repair cost и evidence pinned; threshold decisions с uncertainty."
+        },
+        {
+          "id": "AC3",
+          "text": "Критические бюджетные/privacy/publish инциденты отдельно и устранены до expansion."
+        }
+      ],
+      "scope": "Серия реальных эпизодов: повторяемость и нагрузка человека",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-017",
+      "title": "5 внешних пользователей и проверка UX",
+      "phase": "P3",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-016"
+      ],
+      "context": [
+        "docs/07_CREATOR_GENOME.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "5 ordinary external users проходят pilot; помощь/провалы записаны, не спрятаны."
+        },
+        {
+          "id": "AC2",
+          "text": "Observed time-to-usable-export/drop-offs/review burden/feedback и issues зарегистрированы."
+        },
+        {
+          "id": "AC3",
+          "text": "Недоступные языки/форматы/стоимость явно сообщены пользователю."
+        }
+      ],
+      "scope": "5 внешних пользователей и проверка UX",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-017G",
+      "title": "Гейт P3: доказанный формат и приоритет расширения",
+      "phase": "P3",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-017"
+      ],
+      "context": [
+        "docs/17_MASTER_PLAN.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец принимает observed quality/economics/UX или назначает rework, не декларативный успех."
+        },
+        {
+          "id": "AC2",
+          "text": "Выбран next investment и scope P4; full feature map остаётся актуальной."
+        }
+      ],
+      "scope": "Гейт P3: доказанный формат и приоритет расширения",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-018",
+      "title": "Analytics import, cohorts и корректность данных",
+      "phase": "P4",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-017G"
+      ],
+      "context": [
+        "docs/08_SELF_IMPROVEMENT.md",
+        "docs/13_POLICIES_RISKS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "API metrics availability/windows/source traffic documented; missing=NULL."
+        },
+        {
+          "id": "AC2",
+          "text": "Import retry/dedup/provenance и descriptive per-episode reports."
+        },
+        {
+          "id": "AC3",
+          "text": "No fabricated cause/CTR-hook equivalence; uncertainty/confounders видны."
+        }
+      ],
+      "scope": "Analytics import, cohorts и корректность данных",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-019",
+      "title": "Golden Library и безопасное reuse",
+      "phase": "P4",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-018"
+      ],
+      "context": [
+        "docs/08_SELF_IMPROVEMENT.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Legal+QA+human approval gate, language/market/tenant scope и version provenance."
+        },
+        {
+          "id": "AC2",
+          "text": "Reuse не переносит чужой private content; diversity/expiry/availability safeguards."
+        },
+        {
+          "id": "AC3",
+          "text": "Preferences/inferred insights не превращаются в confirmed автоматически."
+        }
+      ],
+      "scope": "Golden Library и безопасное reuse",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-020",
+      "title": "Эксперименты и предложения улучшения",
+      "phase": "P4",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-018",
+        "Q-019"
+      ],
+      "context": [
+        "docs/08_SELF_IMPROVEMENT.md",
+        "docs/12_QUALITY_AND_TESTING.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Pre-register design/sample/window/primary metric/cost/stop rules и evidence."
+        },
+        {
+          "id": "AC2",
+          "text": "win/loss/inconclusive/invalid supported; no forced success to deadline."
+        },
+        {
+          "id": "AC3",
+          "text": "Strategy changes proposed to owner; experiments separately tested on known datasets."
+        }
+      ],
+      "scope": "Эксперименты и предложения улучшения",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-020G",
+      "title": "Гейт P4 и выбор Studio-ветки",
+      "phase": "P4",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-020"
+      ],
+      "context": [
+        "docs/17_MASTER_PLAN.md",
+        "docs/15_STUDIO_SKILLS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Владелец принимает корректность observations/reuse/experiments."
+        },
+        {
+          "id": "AC2",
+          "text": "Выбрана одна/несколько P5 веток по demand/cost; бюджет и limits подтверждены."
+        }
+      ],
+      "scope": "Гейт P4 и выбор Studio-ветки",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-025",
+      "title": "Декомпозиция выбранной P5 ветки и real benchmark",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-020G"
+      ],
+      "context": [
+        "docs/17_MASTER_PLAN.md",
+        "docs/15_STUDIO_SKILLS.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Созданы bounded implementation tasks/evals для принятой ветки, связи features и dependency DAG."
+        },
+        {
+          "id": "AC2",
+          "text": "Q-030G зависит от всех выбранных implementation tasks, не только планирования."
+        },
+        {
+          "id": "AC3",
+          "text": "Каждый claim camera/control/identity/voice/rights имеет ограничения и проверку."
+        }
+      ],
+      "scope": "Декомпозиция выбранной P5 ветки и real benchmark",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-026",
+      "title": "Cinema/camera/Blender/multishot expansion",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/15_STUDIO_SKILLS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Per-preset fidelity/control inputs/geometry constraints verified on real outputs."
+        },
+        {
+          "id": "AC2",
+          "text": "Continuity drift/anchor references measured; no false free fallback."
+        }
+      ],
+      "scope": "Cinema/camera/Blender/multishot expansion",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-027",
+      "title": "Автомонтаж исходников и advanced timeline",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/15_STUDIO_SKILLS.md",
+        "docs/02_PRD_Ywoom_MVP.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Raw ingest/ASR/reframe/candidate clips with insufficient_material path."
+        },
+        {
+          "id": "AC2",
+          "text": "Real raw sources evaluated; actual editor export compatibility documented."
+        }
+      ],
+      "scope": "Автомонтаж исходников и advanced timeline",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-028",
+      "title": "Персонажи/twin/lipsync/localization",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/15_STUDIO_SKILLS.md",
+        "docs/16_LOCALIZATION.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Consent/license/identity QA calibration and specific provider compatibility."
+        },
+        {
+          "id": "AC2",
+          "text": "Dub timing/text fonts/lipsync checked on real cases, budget per language."
+        }
+      ],
+      "scope": "Персонажи/twin/lipsync/localization",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-029",
+      "title": "Long/Carousel/UGC/VFX/apps expansion",
+      "phase": "P5",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/15_STUDIO_SKILLS.md",
+        "docs/05_PIPELINE.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Chosen format has bounded requirements/rights/real evaluation."
+        },
+        {
+          "id": "AC2",
+          "text": "No fake testimonial, long chaining guarantee or declared superiority without comparison."
+        }
+      ],
+      "scope": "Long/Carousel/UGC/VFX/apps expansion",
+      "out_of_scope": "Другие P5 ветки; активировать только по Q-025 decomposition/owner-approved scope.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-030G",
+      "title": "Гейт P5: выбранная ветка доказана",
+      "phase": "P5",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-025"
+      ],
+      "context": [
+        "docs/17_MASTER_PLAN.md",
+        "docs/19_VALIDATION_PROTOCOL.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Зависимости включают принятые implementation tasks выбранной ветки, есть real evidence."
+        },
+        {
+          "id": "AC2",
+          "text": "Owner принимает quality/cost/limits выбранной ветки и scope P6."
+        }
+      ],
+      "scope": "Гейт P5: выбранная ветка доказана",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-031",
+      "title": "План безопасного SaaS-масштаба и unit economics",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-030G"
+      ],
+      "context": [
+        "docs/20_SECURITY_AND_OPERATIONS.md",
+        "docs/10_COST_AND_BUDGET.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Demand/capacity/billing/credits/quotas/support/abuse priorities и acceptance plan."
+        },
+        {
+          "id": "AC2",
+          "text": "Нет декларации million-ready: load/security/restore/payment tests определены."
+        },
+        {
+          "id": "AC3",
+          "text": "Tasks для выбранных scale features созданы; гейт Q-035G зависит от фактической реализации."
+        }
+      ],
+      "scope": "План безопасного SaaS-масштаба и unit economics",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-032",
+      "title": "Skill Lab, Model Scout и контролируемый Ops staging",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/08_SELF_IMPROVEMENT.md",
+        "docs/09_JEWEL_CORE.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Mechanical/real eval/holdout/canary separated; approved cost и rollback."
+        },
+        {
+          "id": "AC2",
+          "text": "Scout candidates verified; code proposals sandbox/branch/CI, no self-edit protected policy."
+        },
+        {
+          "id": "AC3",
+          "text": "Production actions independent approval, tool/access controls and monitoring proved."
+        }
+      ],
+      "scope": "Skill Lab, Model Scout и контролируемый Ops staging",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": true,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-033",
+      "title": "Quotas/billing/support/load/restore/security rollout",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Реальные scale tasks/limits/load tests/billing reconciliation, support and incident runbooks."
+        },
+        {
+          "id": "AC2",
+          "text": "Backup restore/tenant/abuse controls independently reviewed; no unsafe production permissions."
+        }
+      ],
+      "scope": "Quotas/billing/support/load/restore/security rollout",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-034",
+      "title": "Marketplace и пользовательские навыки",
+      "phase": "P6",
+      "kind": "implementation",
+      "enabled": false,
+      "status": "TODO",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/15_STUDIO_SKILLS.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Skill provenance/licenses/sandbox/moderation/tenant isolation tested."
+        },
+        {
+          "id": "AC2",
+          "text": "Demand/economics/support/security acceptance from owner before public rollout."
+        }
+      ],
+      "scope": "Marketplace и пользовательские навыки",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    },
+    {
+      "id": "Q-035G",
+      "title": "Гейт P6: принятый безопасный rollout",
+      "phase": "P6",
+      "kind": "owner_gate",
+      "enabled": true,
+      "status": "TODO",
+      "depends_on": [
+        "Q-031"
+      ],
+      "context": [
+        "docs/17_MASTER_PLAN.md",
+        "docs/20_SECURITY_AND_OPERATIONS.md"
+      ],
+      "ac": [
+        {
+          "id": "AC1",
+          "text": "Gate dependencies contain selected implemented scale tasks; independent security/load/restore evidence."
+        },
+        {
+          "id": "AC2",
+          "text": "Owner authorizes concrete rollout scope, spending, incident response and remaining future features."
+        }
+      ],
+      "scope": "Гейт P6: принятый безопасный rollout",
+      "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+      "paid_calls": false,
+      "assignee": null,
+      "session": null,
+      "handoff": null,
+      "checkpoint": null,
+      "block_reason": null,
+      "review_note": null,
+      "acceptance": null,
+      "history": []
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "skillId": "video-shorts",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 44,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "e047494703347a8539fe224a73d3ee82ea82bc616b69d3a6ef0bc72dc0eda71c"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "6aaf2bbce2945d255b99fe4132caf5b83d233104e13c6729e868b8d0ab0e3839"
+  },
+  "canary": {
+    "skillId": "video-shorts",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:28.746Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "378ac8228ede3207…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; rollback does not refund",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:28.752Z"
+}

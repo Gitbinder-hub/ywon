@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ywoom â€” ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/shell.css"><script src="/shell.js" defer></script><script src="/billing.js" defer></script></head>
+<body><div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">Ywoom<span>FACTORY</span></div>
+  <div class="hint">Ð’Ñ‹Ð±ÐµÑ€Ð¸ Ñ‚Ð°Ñ€Ð¸Ñ„ â€” Ð±ÐµÐ· ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ð¹ Ð² Ð¿Ñ€Ð¾Ñ‚Ð¾Ñ‚Ð¸Ð¿Ðµ.</div>
+  <nav class="side-nav">
+    <a href="/"><span class="ico">â—‰</span> Ð—Ð°Ð²Ð¾Ð´</a>
+    <a href="/studio"><span class="ico">ðŸŽ¬</span> Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</a>
+    <a href="/journey"><span class="ico">ðŸ§­</span> ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚</a>
+    <a href="/billing" class="active"><span class="ico">ðŸ’³</span> ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</a>
+  </nav>
+  <div class="side-sep"></div>
+  <nav class="side-nav"><a href="/studio"><span class="ico">ðŸ“</span> ÐŸÑ€Ð¾ÐµÐºÑ‚Ñ‹</a><a href="/settings"><span class="ico">âš™ï¸</span> ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</a></nav>
+  <div class="sidebar-footer"><span class="dot"></span>Ywoom 0.15 Â· <span style="color:#8ea0bf">ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</span></div>
+</aside>
+<div class="app-content">
+  <div class="app-top"><div class="crumb"><a href="/" style="color:var(--muted)">Ð—Ð°Ð²Ð¾Ð´</a> Â· <strong>ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</strong></div></div>
+  <main class="page page-narrow">
+    <h1 class="h1">ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</h1>
+    <p class="sub">Ð›Ð¾ÐºÐ°Ð»ÑŒÐ½Ð¾: Ð²Ñ‹Ð±Ð¾Ñ€ Ñ‚Ð°Ñ€Ð¸Ñ„Ð° Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ð½Ð° ÑÐµÑ€Ð²ÐµÑ€Ðµ Ð² Ð¿Ð°Ð¼ÑÑ‚Ð¸. ÐŸÐµÑ€ÐµÐ·Ð°Ð¿ÑƒÑÐº ÑÐ±Ñ€Ð¾ÑÐ¸Ñ‚ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ¸ â€” ÑÑ‚Ð¾ Ð¿Ñ€Ð¾Ñ‚Ð¾Ñ‚Ð¸Ð¿ Ð±ÐµÐ· Stripe.</p>
+    <section class="card2" style="margin-top:14px">
+      <h2 class="h2">Ð’Ñ…Ð¾Ð´</h2>
+      <div class="grid2" style="align-items:end"><label> Email <input id="email" type="email" placeholder="you@example.com" maxlength="120"></label><div style="display:flex;gap:8px"><button id="login" class="btn btn-primary">Ð’Ð¾Ð¹Ñ‚Ð¸</button><button id="me" class="btn">Ð¡ÐµÑÑÐ¸Ñ</button></div></div>
+      <p id="auth-status" role="status" style="margin-top:10px;color:var(--muted)"></p>
+    </section>
+    <section style="margin-top:16px">
+      <h2 class="h2">Ð¢Ð°Ñ€Ð¸Ñ„Ñ‹</h2>
+      <div id="plans-list" class="grid3"></div>
+      <p id="sub-status" role="status" style="margin-top:10px;color:var(--muted)"></p>
+    </section>
+    <section class="card2" style="margin-top:16px"><h2 class="h2">Ð§Ñ‚Ð¾ Ð´Ð°Ð»ÑŒÑˆÐµ</h2><p class="sub">Free â€” Ð´Ð¾ 3 Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð². Pro Ð¾Ñ‚ÐºÑ€Ð¾ÐµÑ‚ Ð²ÑÑ‘ Ð±ÐµÐ· Ð»Ð¸Ð¼Ð¸Ñ‚Ð¾Ð². Studio â€” ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ (ÑÐºÐ¾Ñ€Ð¾). Ð’ `0.12` Ð»Ð¸Ð¼Ð¸Ñ‚Ñ‹ Ð½Ðµ Ñ€ÐµÐ¶ÑƒÑ‚ â€” Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ¹Ð´Ð¶.</p></section>
+    <footer style="margin-top:18px;border-top:1px solid var(--line);padding-top:14px;color:#7a8599;font-size:11px"><a href="/">Ð—Ð°Ð²Ð¾Ð´</a> Â· <a href="/studio">Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</a> Â· <a href="/journey">ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚</a></footer>
+  </main>
+</div>
+</div>
+</body></html>

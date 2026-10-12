@@ -1,0 +1,1 @@
+{"extends":"../tsconfig.json","include":["../packages/architect/src/**/*.ts","../scripts/architect_preflight.ts","../scripts/architect_state.ts","../scripts/architect_authority_ops.ts","../scripts/architect_plan_approval.ts","../scripts/architect_execution_readiness.ts","../scripts/architect_reservation.ts","../scripts/architect_google_spike.ts","../tests/architect*.test.ts"]}

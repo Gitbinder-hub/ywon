@@ -1,0 +1,8 @@
+test_directory_is_rejected (test_probe.ProbeTests.test_directory_is_rejected) ... ok
+test_real_local_wav (test_probe.ProbeTests.test_real_local_wav) ... ok
+test_url_is_not_local_media (test_probe.ProbeTests.test_url_is_not_local_media) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.004s
+
+OK

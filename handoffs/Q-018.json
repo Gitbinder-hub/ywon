@@ -1,0 +1,87 @@
+{
+  "task_id": "Q-018",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-018 Analytics import (P4 prototype): availability/windows/source with missing=NULL, dedup/provenance and descriptive per-episode reports, no fabricated cause with uncertainty visible. packages/analytics-import/src/types+index, 3 tests PASS (120 total).",
+  "changed_files": [
+    "packages/analytics-import/src/types.ts",
+    "packages/analytics-import/src/index.ts",
+    "tests/analytics-import.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/analytics-import.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/analytics-import.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/analytics-import.test.ts",
+      "notes": "3/3 PASS: AC1 availability/NULL, AC2 dedup/provenance/descriptive, AC3 no fabricate + uncertainty"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts tests/external-users.test.ts tests/founding-creator.test.ts tests/analytics-import.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/analytics-import.test.ts",
+      "notes": "120/120 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/analytics-import/src/types.ts",
+        "packages/analytics-import/src/index.ts",
+        "tests/analytics-import.test.ts"
+      ],
+      "reason": "Availability/windows/source documented, missing is NULL not zero/average, provider/source tracked."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/analytics-import/src/index.ts",
+        "tests/analytics-import.test.ts"
+      ],
+      "reason": "Import dedup by episode/provider/metric/window, provenance preserved, perEpisodeReport descriptiveOnly true."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/analytics-import/src/index.ts",
+        "tests/analytics-import.test.ts"
+      ],
+      "reason": "fabricatedCause always false, uncertainty strings visible, no causal claims."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Store is in-memory, not real API import with retry/backoff",
+    "Windows are stubs, not real provider cohort windows"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-018 then Q-019 Golden Library"
+  ],
+  "recommended_next_tasks": [
+    "Q-019"
+  ],
+  "required_owner_checks": [
+    "Confirm missing=NULL handling acceptable vs provider specifics",
+    "Review descriptive-only reporting before causal use"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

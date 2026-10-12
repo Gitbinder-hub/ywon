@@ -1,0 +1,5 @@
+# Visual QA — B-055
+Actually inspected final desktop-idle/active/muted1440px, mobile390px and simulated permission-error screenshots one at a time. All pass: no overlaps/overflow/clipped text; spacing/readable status, accessible large control targets, long RU labels wrap naturally. No generated image needed: typographic Q is a code-native brand mark, not a visual storytelling substitute. Static bundled capture-helper frame inspected separately; page's ordinary vertical flow extends below900px, not clipped content.
+Measured color pairs in contrast.json: enabled normal text>=4.5, meaningful control border>=3; disabled controls exempt. No full WCAG/screen-reader/dark-interaction certification. PNG hashes in verification.json identify local rendered evidence; PNG binary not pushed through text MCP. No webcam/user audio/image data.
+
+Extracted standalone bundle additionally rendered and inspected dark idle1440px: pass, no overflow/overlap, readable status/controls. Dark active/error interactive matrix remains NOT_RUN.

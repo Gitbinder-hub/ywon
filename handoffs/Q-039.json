@@ -1,0 +1,100 @@
+{
+  "task_id": "Q-039",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-039 Basic editors + renderer parity ADR (P2 prototype): ADR 0008 editor choice (own canvas/timeline via editable-document, FFmpeg not frontend), canvas overlays/text styles, structured text diff, video trims/order/subs, autosave/reload/undo/conflict with pinned fonts/renderer parity hash, keyboard alt, baked-text and unsupported effects explicit, local edit zero paid. packages/editors + ADR 0008, 4 tests PASS (91 total).",
+  "changed_files": [
+    "docs/adr/0008-editor-choice.md",
+    "packages/editors/src/types.ts",
+    "packages/editors/src/index.ts",
+    "tests/editors.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/editors.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/editors.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/editors.test.ts",
+      "notes": "4/4 PASS: AC1 ADR + FFmpeg not frontend, AC2 canvas/text/timeline edits, AC3 autosave/reload/undo/conflict parity + keyboard, AC4 baked/unsupported visible local edit not paid"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/editors.test.ts",
+      "notes": "91/91 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "docs/adr/0008-editor-choice.md",
+        "tests/editors.test.ts"
+      ],
+      "reason": "Candidate library spike checked, chosen interactive editor ADR 0008 recorded with license/size/mobile/performance constraints; FFmpeg explicitly not presented as frontend."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/editors/src/types.ts",
+        "packages/editors/src/index.ts",
+        "tests/editors.test.ts"
+      ],
+      "reason": "Canvas overlays with text styles and transforms, structured text manual/diff editing, video trims/order/overlay intervals/subtitle cues/basic audio — all exercised with locked/validation cases."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/editors/src/index.ts",
+        "tests/editors.test.ts"
+      ],
+      "reason": "Autosave/reload/undo/conflict detection via version check, export parity golden hash with pinned fonts/renderer (deterministic), keyboard/numeric alternatives available."
+    },
+    {
+      "id": "AC4",
+      "result": "pass",
+      "evidence": [
+        "packages/editors/src/index.ts",
+        "tests/editors.test.ts"
+      ],
+      "reason": "Flat/baked text limits visible (baked_raster_not_editable), unsupported effects (tracking-follow/generative edit/native orbits) explicitly limited, local edit never paid, render price visible via exportParity."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Editor parity is hash of JSON not pixel render — golden PNG/MP4 fixtures pending real renderer",
+    "ADR 0008 prototype choice not yet wired to actual browser canvas library",
+    "Video advanced features (keyframes/LUT/tracking) remain P5"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-039 then Q-040 journey and Q-014 pipeline",
+    "Q-041 usability and Q-014 E2E after journey"
+  ],
+  "recommended_next_tasks": [
+    "Q-040",
+    "Q-014"
+  ],
+  "required_owner_checks": [
+    "Confirm P2 bounded editor scope acceptable vs full timeline studio",
+    "Review baked-text and unsupported effects disclosure before pilot"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

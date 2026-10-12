@@ -1,0 +1,21 @@
+# Video shorts pack: 30-60s assembly from source material
+id: video-shorts-pack
+version: "1.0.0"
+status: draft
+kind: video
+recipes: [video-shorts, ffmpeg-technical]
+steps:
+  - id: validate_hook
+    inputs: [hook, voice, durationSec]
+  - id: check_source
+    gate: SourceSufficiency
+  - id: shorts
+    skill: video-shorts
+  - id: motion
+    skill: ffmpeg-technical
+    preset: pan-2d
+  - id: qa
+    checks: [duration_ok, hook_present, source_sufficient]
+  - id: export
+    outputs: [mp4, subs, manifest, cost_report]
+provenance: { family: Видео, base: video-shorts }

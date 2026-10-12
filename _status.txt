@@ -1,0 +1,7 @@
+﻿python : ERROR: 'charmap' codec can't encode characters in position 264-266: character maps to <undefined>
+At line:2 char:1
++ python -I scripts/project.py status 2>&1 | Out-File -Encoding utf8 _s ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: 'charmap... to <undefined>:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

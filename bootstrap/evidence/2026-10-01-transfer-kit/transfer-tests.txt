@@ -1,0 +1,15 @@
+test_apply_preserves_history_extra_files_and_backup (test_full_tree.TransferTests.test_apply_preserves_history_extra_files_and_backup) ... ok
+test_changed_head_refused (test_full_tree.TransferTests.test_changed_head_refused) ... ok
+test_corrupt_archive_refused (test_full_tree.TransferTests.test_corrupt_archive_refused) ... ok
+test_default_preflight_does_not_write (test_full_tree.TransferTests.test_default_preflight_does_not_write) ... ok
+test_dirty_tree_refused_before_backup_or_writes (test_full_tree.TransferTests.test_dirty_tree_refused_before_backup_or_writes) ... ok
+test_duplicate_zip_entry_refused (test_full_tree.TransferTests.test_duplicate_zip_entry_refused) ... ok
+test_ignored_symlink_destination_refused (test_full_tree.TransferTests.test_ignored_symlink_destination_refused) ... ok
+test_main_branch_refused (test_full_tree.TransferTests.test_main_branch_refused) ... ok
+test_runtime_blob_change_refused (test_full_tree.TransferTests.test_runtime_blob_change_refused) ... ok
+test_unsafe_path_refused_before_writes (test_full_tree.TransferTests.test_unsafe_path_refused_before_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.144s
+
+OK

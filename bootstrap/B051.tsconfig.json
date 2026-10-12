@@ -1,0 +1,25 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../packages/companion-protocol/src/**/*.ts",
+    "../packages/companion/src/**/*.ts",
+    "../scripts/companion_local.ts",
+    "../tests/companion*.test.ts",
+    "../packages/architect/src/google-live.ts",
+    "../packages/architect/src/live-result.ts",
+    "../packages/architect/src/live-result-store.ts",
+    "../scripts/architect_google_spike.ts",
+    "../scripts/architect_live_result.ts",
+    "../scripts/architect_live_result_store.ts",
+    "../tests/architect-google-live.test.ts",
+    "../tests/architect-live-result.test.ts",
+    "../tests/architect-live-result-store.test.ts",
+    "../scripts/companion_demo.ts",
+    "../apps/api/src/live-results.ts",
+    "../apps/api/src/local-request.ts",
+    "../tests/live-results-api.test.ts",
+    "../scripts/companion_voice_demo.ts",
+    "../scripts/companion_audio.ts",
+    "../packages/architect/src/companion-intent.ts"
+  ]
+}

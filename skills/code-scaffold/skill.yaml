@@ -1,0 +1,45 @@
+﻿# Code scaffold â€” Ð±Ð¾Ñ‚/ÑÐºÑ€Ð¸Ð¿Ñ‚/Ð°Ð¿ÐºÐ°/Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¿Ð¾ Ð±Ñ€Ð¸Ñ„Ñƒ (Ð½Ðµ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÐºÐ¾Ð½Ñ‚ÐµÐ½Ñ‚)
+id: code-scaffold
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: prompt_guidance
+input_schema:
+  type: object
+  required: [goal, language]
+  properties:
+    goal: { type: string, minLength: 1, maxLength: 4000, description: Ñ‡Ñ‚Ð¾ Ð´ÐµÐ»Ð°ÐµÑ‚ Ð±Ð¾Ñ‚/Ð°Ð¿ÐºÐ°/ÑÐºÑ€Ð¸Ð¿Ñ‚ }
+    language: { type: string, enum: [typescript, python, javascript], default: typescript }
+    platform: { type: string, enum: [telegram_bot, discord_bot, web_app, cli, automation], default: automation }
+    constraints: { type: string, maxLength: 2000 }
+output_schema:
+  type: object
+  required: [artifact_id, preview_url, manifest_hash, report]
+  properties:
+    artifact_id: { type: string }
+    preview_url: { type: string }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+    report: { type: object, properties: { files: { type: array, items: { type: string } }, costMinor: { type: integer }, qa: { type: object } } }
+required_capabilities: [text-gen]
+optional_capabilities: [code-gen, file-write]
+budget:
+  limitMinor: 4000
+  worstCaseMinor: 4000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 800
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_brief, select_stack, generate_files, qa_syntax, report]
+approval: [qa_syntax]
+supported_outcomes: [scaffold_ready, preview_ready]
+degraded_outcomes: [stub_without_live_credentials]
+unsupported_outcomes: [unknown_platform]
+forbidden_this_iteration: [embedded_secrets, arbitrary_shell_in_payload]
+curiosity_reserve: 7
+presets: []

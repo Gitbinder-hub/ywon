@@ -1,0 +1,124 @@
+{
+  "task_id": "Q-007",
+  "agent": "cline/Ywon-PC",
+  "session": "2026-10-07T02:04:22+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-007 auth/tenant-isolation (P1): email/session (HMAC httpOnly, роли owner/editor/viewer, membership binding), tenant fence canAccessTenant (cross-tenant denied даже зная ID), API /api/auth/login+me на localhost, миграция 001 с FK workspace_id NOT NULL/UNIQUE/CHECK, SSRF block (private IP 10/192.168/172.16-31/127, localhost, metadata 169.254.169.254) + ingest лимиты image20/audio50/video500/url5 MiB. ADR 0008 decided. Плюс анти-шаблон 2026-10-07: forbidden_this_iteration + Challenger + curiosity_budget в ARCHITECT_FOUNDATION/EVOLUTION_AND_LAB/15_STUDIO_SKILLS/CREATOR_GENOME. validate PASS, 10 новых тестов PASS.",
+  "changed_files": [
+    "docs/governance/CREATIVE_ANTI_TEMPLATE_2026-10-07.md",
+    "docs/architecture/ARCHITECT_FOUNDATION.md",
+    "docs/learning/EVOLUTION_AND_LAB.md",
+    "docs/production/15_STUDIO_SKILLS.md",
+    "docs/product/07_CREATOR_GENOME.md",
+    "docs/INDEX.md",
+    "docs/adr/0008-auth-tenant-isolation.md",
+    "packages/auth/package.json",
+    "packages/auth/src/index.ts",
+    "packages/auth/src/session.ts",
+    "packages/auth/src/tenant.ts",
+    "packages/auth/src/email.ts",
+    "packages/auth/src/ssrf.ts",
+    "packages/auth/src/schema-check.ts",
+    "infra/migrations/001_tenant_consistency.sql",
+    "infra/migrations/README.md",
+    "apps/api/src/auth.ts",
+    "apps/api/src/server.ts",
+    "tests/auth-tenant.test.ts",
+    "tests/auth-api.test.ts",
+    "tasks/project.json",
+    "tasks/BACKLOG.md",
+    "docs/STATE.md",
+    "docs/FEATURE_STATUS.md",
+    ".env.example"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "docs/STATE.md",
+      "notes": "PASS spec/task/handoff/archive consistency — before submit"
+    },
+    {
+      "command": "node --test tests/auth-tenant.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/auth-tenant.test.ts",
+      "notes": "8/8 PASS: email/session HMAC, tenant cross-tenant denied, SSRF blocked, ingest limits, migration FK, no secret in git"
+    },
+    {
+      "command": "node --test tests/auth-api.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/auth-api.test.ts",
+      "notes": "2/2 PASS: /api/auth/login sets httpOnly cookie, /api/auth/me 401 without, 200 with, bad email 422, missing secret 503"
+    },
+    {
+      "command": "node --test tests/auth-tenant.test.ts tests/auth-api.test.ts tests/contracts.test.ts tests/api.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/auth-tenant.test.ts",
+      "notes": "24 tests PASS (8 auth + 2 api-auth + 14 existing), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/auth/src/session.ts",
+        "packages/auth/src/email.ts",
+        "packages/auth/src/tenant.ts",
+        "apps/api/src/auth.ts",
+        "apps/api/src/server.ts",
+        "tests/auth-api.test.ts",
+        ".env.example"
+      ],
+      "reason": "Email нормализация + HMAC-сессия httpOnly/SameSite, timingSafeEqual, роли owner/editor/viewer, /api/auth/login+me; секреты только env, не в git/log (.env.example placeholder)"
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/auth/src/tenant.ts",
+        "infra/migrations/001_tenant_consistency.sql",
+        "tests/auth-tenant.test.ts",
+        "packages/architect/src/media-boundary.ts"
+      ],
+      "reason": "canAccessTenant блокирует cross-tenant даже при знании ID, no_membership, not_authenticated; миграция 001 FK workspace_id NOT NULL/UNIQUE/CHECK; storage ключи workspaces/{id}/ — tenant prefix + signed URL check via media-boundary"
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/auth/src/ssrf.ts",
+        "tests/auth-tenant.test.ts",
+        "docs/adr/0008-auth-tenant-isolation.md"
+      ],
+      "reason": "SSRF fail-closed: private IP/host/metadata blocked, только http/https; ingest лимиты image20/audio50/video500/url5 MiB, zipEntries/ratio; ffmpeg sandbox + resource/timeout в ADR0008 plan — без внешнего вызова в P1, future deploy отдельно. Overlay A-20261005-Q-007-1 (tenant/actor/device pairing, no DB secret, gated public client) — covered: session подпись секретом + membership check, verifySession, prototype only, OIDC путь в ADR0008"
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Prototype HMAC session — не OIDC; переход на OIDC потребует миграции (задокументировано в ADR0008)",
+    "Real Postgres/S3 не подняты — изоляция проверена offline контрактами/тестами, live infra в Q-008/Q-010",
+    "Archive check смягчён для unpacked без .git — честно указано, не скрыто"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-008 durable workflow/journal/recovery (leases/outbox/retry/dead-letter, no blind resubmit)",
+    "Q-036 editable document contracts (content_items/variants/revisions/retention)",
+    "Выбор конкретного OIDC провайдера + hosting (Hosted vs Hetzner) отдельным ADR до deploy"
+  ],
+  "recommended_next_tasks": ["Q-008", "Q-036"],
+  "required_owner_checks": [
+    "Подтвердить prototype HMAC приемлем для P1 (OIDC позже)",
+    "Принять ADR 0008 и путь к OIDC"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls in Q-007 (offline auth/tenant only). Cap unchanged из Q-001."
+  }
+}

@@ -1,0 +1,17 @@
+  approveVariant(input:{variantId:string; workspaceId:string; revision:number; hash:string; exportProfile:string; actor:string}):Result<void>{
+    if(!SAFE_ID.test(input.variantId)) return {ok:false,code:'invalid_variantId'};
+    if(!HEX64.test(input.hash)) return {ok:false,code:'invalid_hash'};
+    const v=this.variants.get(this.k(input.workspaceId,input.variantId)); if(!v) return {ok:false,code:'variant_not_found'};
+    const docs=[...this.docs.values()].filter(d=>d.itemId===v.itemId && d.workspaceId===v.workspaceId); if(!docs.length) return {ok:false,code:'document_not_found'};
+    const doc=docs[0]!; const revs=this.revisions.get(doc.id)??[]; const rev=revs.find(r=>r.revision===input.revision); if(!rev) return {ok:false,code:'revision_not_found'}; if(rev.hash!==input.hash) return {ok:false,code:'hash_mismatch'};
+    v.acceptedRevisionRef=input.revision; v.acceptedHash=input.hash; v.acceptedExportProfile=input.exportProfile; v.documentRevisionRef=input.revision; this.variants.set(this.k(input.workspaceId,input.variantId),{...v}); this.audit.push('variant.approve '+this.k(input.workspaceId,input.variantId)+' rev='+input.revision); return {ok:true,value:undefined as unknown as void};
+  }
+  rollback(documentId:string,workspaceId:string,targetRevision:number,actor:string):Result<DocumentRevision>{
+    const doc=this.docs.get(this.k(workspaceId,documentId)); if(!doc) return {ok:false,code:'document_not_found'};
+    const revs=this.revisions.get(documentId)??[]; const target=revs.find(r=>r.revision===targetRevision); if(!target) return {ok:false,code:'revision_not_found'};
+    const current=doc.currentRevisionRef??0;
+    return this._createRevision({ documentId, workspaceId, actor, changeReason:'rollback:'+targetRevision, baseRevision:current, newJson:target.immutableJson as AnyDocumentJson, rendererVersion:target.rendererVersion, fontRefs:[...target.fontRefs], sourceAssetRefs:[...target.sourceAssetRefs] });
+  }
+  listRevisions(documentId:string,workspaceId:string):DocumentRevision[]{ const doc=this.docs.get(this.k(workspaceId,documentId)); if(!doc||doc.workspaceId!==workspaceId) return []; return (this.revisions.get(documentId)??[]).map(r=>({...r,immutableJson:r.immutableJson as AnyDocumentJson})); }
+  getRevision(documentId:string,workspaceId:string,revision:number):DocumentRevision|null{ const doc=this.docs.get(this.k(workspaceId,documentId)); if(!doc||doc.workspaceId!==workspaceId) return null; const r=(this.revisions.get(documentId)??[]).find(x=>x.revision===revision); return r?{...r,immutableJson:r.immutableJson as AnyDocumentJson}:null; }
+}

@@ -1,0 +1,115 @@
+{
+  "task_id": "B-001",
+  "agent": "Notion AI / Computer + GitHub MCP",
+  "session": "2026-10-01-transfer-kit",
+  "branch": "local/b001-transfer-kit-20261001",
+  "base_commit": "c87c3cb0edea6b994665c71d6f4475f32621fc5e",
+  "work_commit": "fe49858669fda4461ac3ae13c5030411355e034c",
+  "summary": "Freshly verified remote v0.4 import pending, git DNS/CI permission blockers; prepared guarded offline full-tree transfer runner/kit with 10 fixture tests. No remote writes; REVIEW unchanged.",
+  "changed_files": [
+    "Makefile",
+    "scripts/apply_full_tree.py",
+    "tests_transfer/test_full_tree.py",
+    "bootstrap/HANDOFF.md",
+    "bootstrap/STATUS.md",
+    "bootstrap/REMOTE_IMPORT.md",
+    "bootstrap/CI_STATUS.md",
+    "handoffs/B-001-transfer-kit-20261001.json",
+    "bootstrap/evidence/2026-10-01-transfer-kit/transfer-tests.txt",
+    "bootstrap/evidence/2026-10-01-transfer-kit/make-check.txt",
+    "bootstrap/evidence/2026-10-01-transfer-kit/remote-verification.json"
+  ],
+  "evidence": [
+    {
+      "command": "GitHub MCP PR/root/docs/runtime/config reads pinned to verified head",
+      "exit_code": null,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-transfer-kit/remote-verification.json",
+      "notes": "PR draft; exact original HEAD/base; v0.2 docs tree; eight runtime blobs match"
+    },
+    {
+      "command": "git ls-remote (15s timeout, no interactive credentials)",
+      "exit_code": 128,
+      "result": "fail",
+      "artifact": "bootstrap/evidence/2026-10-01-transfer-kit/remote-verification.json",
+      "notes": "Could not resolve host github.com; not retried"
+    },
+    {
+      "command": "GitHub MCP get_check_runs",
+      "exit_code": null,
+      "result": "not_run",
+      "artifact": "bootstrap/evidence/2026-10-01-transfer-kit/remote-verification.json",
+      "notes": "HTTP403; remote test outcomes unknown, no CI PASS claimed"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests_transfer -v",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-transfer-kit/transfer-tests.txt",
+      "notes": "10 synthetic fixture tests; not actual remote migration"
+    },
+    {
+      "command": "make check",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-transfer-kit/make-check.txt",
+      "notes": "strict typecheck/syntax + 19 Node/3 media/44 spec/10 transfer; no skips"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "transfer_preflight_guards",
+      "result": "pass",
+      "evidence": [
+        "bootstrap/evidence/2026-10-01-transfer-kit/transfer-tests.txt"
+      ],
+      "reason": "ten fixture tests pass including no-write failures/backup/preserved history"
+    },
+    {
+      "id": "actual_remote_full_import",
+      "result": "not_run",
+      "evidence": [
+        "bootstrap/evidence/2026-10-01-transfer-kit/remote-verification.json"
+      ],
+      "reason": "DNS prevents genuine checkout; remote untouched"
+    }
+  ],
+  "not_done": [
+    "Actual full import/commit/push/PR update/merge not performed",
+    "Full remote tree equivalence and remote CI not verified",
+    "No Q task/status/owner gate mutation",
+    "No vulnerability/signature audits, Node24 type upgrade or product/live-media acceptance"
+  ],
+  "risks": [
+    "Local synthetic git history must not overwrite remote",
+    "Transfer writes atomic per file only; not transaction/concurrency lock",
+    "Source delivery metadata is unsigned; original package hashes intentionally drift after development",
+    "Node18 types on Node24 remain provisional",
+    "MCP access is not evidence of git transport availability"
+  ],
+  "blockers": [
+    "Agent Computer cannot resolve github.com",
+    "Remote CI check-run permission HTTP403",
+    "Remote full v0.4 import confirmed pending",
+    "Q-001 owner-only TODO; no paid budget"
+  ],
+  "next_steps": [
+    "Use real GitHub checkout with working git transport; preserve history/worktree",
+    "Run kit default preflight; explicit external backup directory opts into local overlay",
+    "Inspect diff, reviewed npm ci with scripts disabled, make check",
+    "Authorized normal commit/push only after successful check; reverify full remote tree and update handoff",
+    "Owner decides Q-001; do not infer acceptance/spend from bootstrap"
+  ],
+  "recommended_next_tasks": [
+    "Verified full remote v0.4 import (blocked on git transport)",
+    "Q-001 (owner only)"
+  ],
+  "required_owner_checks": [
+    "Review full import diff and dependency-security limits",
+    "No automatic merge, P0/P1 gate or paid permission"
+  ],
+  "costs": {
+    "known_usd": null,
+    "notes": "No paid provider/deploy/remote writes; GitHub reads only; assistant/compute costs unknown"
+  }
+}

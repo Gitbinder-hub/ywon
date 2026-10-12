@@ -1,0 +1,21 @@
+Продолжай разработку Ywoom / Qevunara, не начинай проект заново и не ограничивайся рекомендациями.
+Репозиторий: https://github.com/Ywoom-space/Ywoom
+Рабочая ветка: bootstrap/spec-v04-foundation
+Ветка: https://github.com/Ywoom-space/Ywoom/tree/bootstrap/spec-v04-foundation
+Проверь её актуальный HEAD; не используй старый commit как текущий и не перезаписывай чужие изменения.
+
+Прочитай AGENTS.md/CLAUDE.md, docs/governance/ARCHITECT_AMENDMENT_2026-10-03.md, docs/INDEX.md, tasks/project.json, tasks/features.json, tasks/architect_acceptance_overlay.json, bootstrap/STATUS.md, bootstrap/B004_HANDOFF.md, bootstrap/B005_HANDOFF.md и bootstrap/B005_STORE_DESIGN.md. Реестр tasks/project.json — единственный источник статусов Q; overlay добавляет обязательные AC. REVIEW не DONE. Не самопринимай gates.
+
+Цель: модель-независимый верховный Архитектор над Стратегом, Продюсером, Редактором качества и Хранителем; Ywoom Factory первый модуль. Ядро теперь Qevunara/Кевунара, JEWEL historical alias. Сложные будущие функции сохраняются в лаборатории, не удаляются. Собственный scene compiler и управление 2D/Blender/native controls вместо одних промптов; контроль стадии не гарантирует точность финального generative video.
+
+B-004: packages/architect/src/index.ts, офлайн проверка сцен/capabilities, DAG, смета+резерв, предложения ремонта и CLI. B-005: packages/architect/src/store.ts, workers/architect/store.py, scripts/architect_state.ts; локальное SQLite сохранение units/plan/recovery, versions, atomic events/receipts, replay, hash-chain checks, cumulative counters and financial uncertainty. Оба REVIEW; не production orchestration/auth/ledger/queue. All executionAllowed/budgetReserved=false. Capabilities/prices fixture-only. SQLite только локальный прототип; P1 Postgres план не изменён.
+
+Последняя локальная scoped проверка: 25 B-005 + 40 B-004 = 65 PASS без пропусков; strict TS7.0.2/Python compile и actual CLI PASS. Полный checkout, make check/spec-check/project.py, CI/browser/live generation не проверены этим проходом. Не выдавай scoped PASS за полный regression. Доказательства bootstrap/evidence/2026-10-03-state/.
+
+На полном checkout сначала python3 scripts/project.py validate, status, next; make spec-check; make check; установленным compiler tsc -p bootstrap/B005.tsconfig.json; node --test tests/architect.test.ts tests/architect-state.test.ts. Без download/install, если интернет выключен. Зафиксируй реальные результаты.
+
+Следующий выбранный блок: evidence-backed capability registry для офлайн Архитектора — происхождение/TTL доказательств, lifecycle candidate/verified/approved/revoked, pinned versions, подключение planner к сохранённому registry. Не доверять caller-флагу verified_fixture как production proof. Отдельно определить approval principal; не делать скрытую paid activation. Если этапные ограничения требуют нового bounded offline scope, зафиксируй его отдельно и не обходи Q-dependencies.
+
+Бюджет: предложенный денежный reserve20% с явным user acceptance на один готовый результат, все shots/attempts/diagnostics/repairs cumulative; project/month caps сохраняются. Unknown costs !=0, known initial repricing не расходует repair reserve. После двух неудач пауза перед третьей; новое ограниченное продолжение только с конкретным repair plan. Auto repair и manual edit/re-estimate; никакого blind reroll. Unknown paid outcome — reconcile, не resubmit; отмена не refund. B-005 неизвестный исход нельзя сбросить revise/stop. Реальные деньги пока не разрешены.
+
+Не запускать платные APIs, deploy, publication, main merge и не менять protected policy/budget/auth или weakening tests без явного scoped разрешения. Q-001/sequence gate остаётся открытым; не принимать его автоматически. Работай в рабочей ветке, пиши код+тесты, фиксируй scope/evidence/risks/handoff/status, проверяй опубликованные файлы. В конце отчёт: реализовано/проверено/не проверено/остаток и точка передачи.

@@ -1,0 +1,47 @@
+﻿# docs/studio/MODES_AND_RECIPES.md â€” Ð ÐµÐºÐ»Ð°Ð¼Ð°: Ð±Ð°Ð½Ð½ÐµÑ€Ñ‹ + offers/CTA, Ð½Ð°Ð±Ð¾Ñ€ Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¹
+id: reklama-banner
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: supported_control
+input_schema:
+  type: object
+  required: [offer, audience, landing_url]
+  properties:
+    offer: { type: string, minLength: 1, maxLength: 2000 }
+    audience: { type: string, minLength: 1, maxLength: 2000 }
+    landing_url: { type: string, format: uri }
+    proofs: { type: array, items: { type: string } }
+    cta: { type: string, maxLength: 40 }
+    platform: { type: string, enum: [generic, yandex_direct, vk_ads, telegram], default: generic }
+    variants: { type: integer, minimum: 1, maximum: 6, default: 1 }
+output_schema:
+  type: object
+  required: [artifacts, manifest_hash, qa]
+  properties:
+    artifacts: { type: array, items: { type: object, required: [artifact_id, preview_url], properties: { artifact_id: { type: string }, preview_url: { type: string }, variant_index: { type: integer } } } }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+    qa: { type: object, properties: { variants_lineage: { type: boolean }, claims_checked: { type: boolean } } }
+required_capabilities: [image-gen]
+optional_capabilities: [text-gen, background-gen]
+budget:
+  limitMinor: 8000
+  worstCaseMinor: 8000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 900
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_offer_proofs, check_platform_limits, generate_variants, lineage_qa, report]
+approval: [lineage_qa]
+supported_outcomes: [variants_ready, lineage_tracked]
+degraded_outcomes: [single_variant_when_multi_requested]
+unsupported_outcomes: [missing_proofs_for_claim, ad_policy_violation]
+forbidden_this_iteration: [synthetic_testimonial, hidden_ad_disclosure]
+curiosity_reserve: 7
+presets: []

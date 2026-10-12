@@ -1,0 +1,37 @@
+{
+  "task_id": "Q-XXX",
+  "agent": "name/model/IDE",
+  "session": "unique session label",
+  "branch": "actual branch or not_available",
+  "base_commit": "actual hash or not_available",
+  "work_commit": "actual hash or pending",
+  "summary": "What actually changed",
+  "changed_files": [],
+  "evidence": [
+    {
+      "command": "actual command or manual review",
+      "exit_code": null,
+      "result": "not_run",
+      "artifact": "reports/path.md",
+      "notes": "actual output summary"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "not_run",
+      "evidence": [],
+      "reason": "replace with actual evidence"
+    }
+  ],
+  "not_done": [],
+  "risks": [],
+  "blockers": [],
+  "next_steps": [],
+  "recommended_next_tasks": [],
+  "required_owner_checks": [],
+  "costs": {
+    "known_usd": null,
+    "notes": "unknown is not zero"
+  }
+}

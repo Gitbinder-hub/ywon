@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "base_commit": "ba34269e42b402d50cefb664b4c8af64ef3981b3",
+  "scope": "B-051/B-052 fresh scoped partial-genuine-source checks",
+  "platform": "Linux sandbox (not desktop/client certification)",
+  "tools": {
+    "node": "24.14.1",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130",
+    "python": "3.13.14"
+  },
+  "tests": {
+    "total": 64,
+    "pass": 64,
+    "fail": 0,
+    "skipped": 0,
+    "files": [
+      "tests/companion.test.ts",
+      "tests/architect-google-live.test.ts",
+      "tests/architect-live-result.test.ts",
+      "tests/architect-live-result-store.test.ts",
+      "tests/live-results-api.test.ts"
+    ],
+    "companion": 39,
+    "media_verifier": 11
+  },
+  "strict_typecheck": {
+    "result": "pass",
+    "configuration": "bootstrap/B051.tsconfig.json",
+    "local_override": "Only typeRoots to installed @types; original strict compiler options retained"
+  },
+  "actual_checks": [
+    "Real local SQLite state and restart",
+    "Real child process SIGKILL and read-only resume",
+    "Two-owner fencing and concurrent CLI permit admission",
+    "Path/symlink/hardlink/BOM/foreign-DB/tamper tests",
+    "Real FFmpeg/ffprobe with mocked provider outputs",
+    "Real keyless CLIs and synthetic-material demo",
+    "Real localhost read-only HTTP metadata route"
+  ],
+  "not_run": [
+    "complete checkout project.py validate/status/next",
+    "make spec-check/make check/full repository regression/CI",
+    "real Windows10/11/macOS/Linux desktop integration",
+    "cloud pairing/auth/Postgres/queue/private storage",
+    "installer/update signing",
+    "paid provider/model quality/invoice",
+    "semantic narration/ASR/rights quality"
+  ],
+  "external_paid_calls": 0,
+  "external_network_calls": 0,
+  "local_http_test": true,
+  "limitations": [
+    "Local trusted owner binding is not production auth or OS sandbox.",
+    "Native node:sqlite experimental.",
+    "Legacy manifests lack pinned-request evidence; no silent migration or paid retry.",
+    "Old technical receipts remain readable but do not inherit current verification."
+  ],
+  "tested_source_sha256": {
+    "packages/companion-protocol/src/index.ts": "ff420ff90d6439e5990291db9f0edfda22010eb4b6f2fc08ba9ed720a30628b0",
+    "packages/companion/src/files.ts": "50575dce620ac7ec2a12f083b3243b853bbebab819c8245f8847804f4191e021",
+    "packages/companion/src/runner.ts": "ac3c9a8b5831224ddf4130925ae4fcdda6fba646abb7fec8bfba356e457bf0b3",
+    "scripts/companion_local.ts": "58dade095d1fd9d28a2aab1d0a5c72f76fd3d674b3601b3a15230dcb0f942d34",
+    "scripts/companion_demo.ts": "fae5470c42a4122cf2e5c46d6543e1cab5ae43b59a39c013aa082ca6f7e115f7",
+    "tests/companion.test.ts": "1449229ecb838428120d9771e4a1c52d87634cea2023044849241fc1de6fd6c8",
+    "packages/architect/src/google-live.ts": "569434c531cf96361e0f04821f10bdb60b6b144715bc6e1896c6b33b0922b5bc",
+    "packages/architect/src/live-result.ts": "e1719ec30b66756f9e71a149a8d3af3d1928c48c14072969f8e7702d8a4a44f3",
+    "tests/architect-live-result.test.ts": "286f83e19314e6118784665f998b7479e797da82e4c726899016b3e4134a99bc",
+    "tests/architect-live-result-store.test.ts": "c1ff4506157e6b1b051d9e2fb2a79cd4b1591b0b4f0ff1a4018d786d08f9a865",
+    "tests/live-results-api.test.ts": "3151a709614a09e52a2649b2f45cfcb5099893be0e4936576d7934cef7ffb9e2"
+  },
+  "package_verification": {
+    "zip_crc": "pass",
+    "manifest_hashes": "pass",
+    "extracted_demo": "pass",
+    "host": "Linux",
+    "windows_launcher": "not_run",
+    "public_signed_installer": false
+  }
+}

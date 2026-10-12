@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "base_commit": "978c39d9ec00dba0237a5702d01dda8fb1b174a7",
+  "scope": "B-056 genuine partial source",
+  "node_tests": {
+    "total": 151,
+    "passed": 151,
+    "failed": 0,
+    "skipped": 0
+  },
+  "strict_typecheck": {
+    "result": "pass",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130",
+    "node": "24.14.1",
+    "configuration": "bootstrap/B051.tsconfig.json; local installed typeRoots only"
+  },
+  "actual_engine": {
+    "platform": "Linux Python3.13.14 + Node24",
+    "input": "public Wikimedia Russian word; no user audio, not redistributed",
+    "actualEngine": "vosk0.3.45 + small-ru0.22",
+    "cases": [
+      {
+        "name": "actual pinned installed Vosk/manifest preflight",
+        "status": "pass"
+      },
+      {
+        "name": "actual public Russian pronunciation decoded offline",
+        "status": "pass"
+      },
+      {
+        "name": "actual process cancellation + reclaimed single-worker lane",
+        "status": "pass"
+      },
+      {
+        "name": "actual worker denies changed manifest binding",
+        "status": "pass"
+      },
+      {
+        "name": "actual authenticated-local HTTP PCM to Python to transient draft, no automatic proposal",
+        "status": "pass"
+      },
+      {
+        "name": "actual shared-core proposal after explicit reviewed edit (not claimed ASR recognition of full command)",
+        "status": "pass"
+      }
+    ],
+    "transcriptWord": "привет",
+    "executionAllowed": false,
+    "cloudProviderCalls": 0,
+    "windowsNotRun": true,
+    "generalVoiceQualityNotMeasured": true
+  },
+  "browser_tests": {
+    "platform": "Linux Chromium/Python3.13",
+    "actualEngine": true,
+    "input": "synthetic browser device playing repeated public Russian word",
+    "actualWorklet": true,
+    "windowsNotRun": true,
+    "coreCommandWasOwnerEdited": true,
+    "generalSpeechQualityNotMeasured": true,
+    "cases": [
+      {
+        "name": "configured engine does not enable recording or local transfer by default",
+        "status": "pass"
+      },
+      {
+        "name": "separate local PCM/process consent required after microphone consent",
+        "status": "pass"
+      },
+      {
+        "name": "actual AudioWorklet16k PCM to actual Vosk to review-only Russian draft",
+        "status": "pass"
+      },
+      {
+        "name": "missing file context preserves editable draft without rerecording",
+        "status": "pass"
+      },
+      {
+        "name": "explicit owner-edited review creates shared-core read-only proposal, not task execution",
+        "status": "pass"
+      },
+      {
+        "name": "ASR opt-out aborts/discards result while permitted microphone meter remains available",
+        "status": "pass"
+      },
+      {
+        "name": "mute stops recording/microphone and clears private draft/UI",
+        "status": "pass"
+      },
+      {
+        "name": "focused Escape stops microphone and closes capture",
+        "status": "pass"
+      },
+      {
+        "name": "390px recognition/review UI no horizontal overflow, controls>=44px",
+        "status": "pass"
+      },
+      {
+        "name": "bounded binary PCM only to exact local origin; no external page requests/errors",
+        "status": "pass"
+      }
+    ],
+    "pcmRequestSizes": [
+      129938,
+      33250
+    ],
+    "externalPageRequests": 0,
+    "pageErrors": [],
+    "screenshots": [
+      "asr-draft-desktop.png",
+      "asr-proposal-desktop.png",
+      "asr-mobile.png"
+    ]
+  },
+  "retained_browser_tests": {
+    "platform": "Linux headless Chromium",
+    "input": "browser fake audio device backed by synthetic WAV",
+    "actualWebAudio": true,
+    "realUserMicrophone": false,
+    "windowsNotRun": true,
+    "cases": [
+      {
+        "name": "initial microphone off; consent required",
+        "status": "pass"
+      },
+      {
+        "name": "real Chromium getUserMedia/WebAudio with synthetic input, meter positive",
+        "status": "pass"
+      },
+      {
+        "name": "WebAudio test-tone output interrupted while microphone remains active",
+        "status": "pass"
+      },
+      {
+        "name": "mute physically ends actual Chromium media tracks",
+        "status": "pass"
+      },
+      {
+        "name": "withdraw consent stops actual capture",
+        "status": "pass"
+      },
+      {
+        "name": "blur event cleanup stops actual capture",
+        "status": "pass"
+      },
+      {
+        "name": "desktop layout no horizontal overflow",
+        "status": "pass"
+      },
+      {
+        "name": "390px layout no horizontal overflow; controls >=44px",
+        "status": "pass"
+      },
+      {
+        "name": "new controller view revokes old view and stops its media tracks",
+        "status": "pass"
+      },
+      {
+        "name": "late microphone permission/stream resolution after mute cannot resurrect capture",
+        "status": "pass"
+      },
+      {
+        "name": "late old stream cannot stop a newer explicitly activated capture",
+        "status": "pass"
+      },
+      {
+        "name": "simulated permission denial cleans controller and displays error",
+        "status": "pass"
+      },
+      {
+        "name": "45-second idle actually closes browser media tracks despite status polling",
+        "status": "pass"
+      },
+      {
+        "name": "local process loss stops actual browser audio",
+        "status": "pass"
+      },
+      {
+        "name": "no external page requests/raw audio payloads or page errors",
+        "status": "pass"
+      }
+    ],
+    "externalPageRequests": 0,
+    "pageErrors": [],
+    "postPayloadKeys": [
+      "command",
+      "sequence"
+    ],
+    "screenshots": [
+      "desktop-idle.png",
+      "desktop-active.png",
+      "desktop-muted.png",
+      "mobile-idle.png",
+      "permission-error.png"
+    ]
+  },
+  "dependency_setup": {
+    "clean_linux_hash_locked_source_build": "pass",
+    "runtime_packages": 12,
+    "windows_conditional": "colorama0.4.6 for tqdm; metadata only, Windows NOT_RUN",
+    "build_tools": 3,
+    "automatic_download": false,
+    "publisher_signature": false,
+    "platform_metadata_closure": {
+      "Windows": {
+        "metadataDependencyClosure": "pass",
+        "runtimeInstall": "NOT_RUN"
+      },
+      "Linux": {
+        "metadataDependencyClosure": "pass",
+        "runtimeInstall": "pass on Linux only"
+      },
+      "Darwin": {
+        "metadataDependencyClosure": "pass",
+        "runtimeInstall": "NOT_RUN"
+      }
+    }
+  },
+  "visual_qa": {
+    "result": "pass for separately inspected frames",
+    "screenshot_sha256": {
+      "asr-draft-desktop.png": "d4e8ff0b8602fe8ce022cd78fd56470994ffa9eac8907e07fbbc6d3792af53dc",
+      "asr-proposal-desktop.png": "d695602d6e9b1f91feaa196458e8eeb1bc784613fc042c356ddadd8888149dc4",
+      "asr-mobile.png": "95135dd6c545c4f47922ad2972ccce5e073d7e24bb3c2357889dda2cb4ed5e66"
+    },
+    "retained_screenshot_sha256": {
+      "desktop-idle.png": "3e3dd350d07834ef987e8531cc1d29700cc6ec80c26c5fdc2740004e35cd383c",
+      "desktop-active.png": "8f9f97bcde5532219f468fb050cded6cfc7d2d155c3a303f04994611b91705fc",
+      "desktop-muted.png": "31b8a2f4b750d2ef29ad26c4b836369a37994a9b05e10e8867010c98a522e184",
+      "mobile-idle.png": "2f2b588670fbb22e93a3c7998ee75fe91e2a704d1c452576ea622f089c510c82",
+      "permission-error.png": "36449dfcbbce3699416af8f470f0827abf1efa1793a29d5120eb74b09920204b"
+    },
+    "static_helper_sha256": "281ca2ff49b37a43180f20edff4b6e5322219084240f9771d4691eeeb986a8e4",
+    "full_wcag": false,
+    "dark_interactive_not_run": true
+  },
+  "paid_calls": 0,
+  "cloud_provider_calls": 0,
+  "executionAllowed": false,
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "tested_source_sha256": {
+    "tests/companion-audio-host.test.ts": "82e91ba02cf672d5c675ba4b505b51fffc35e304f8959ce5f2b12aa46fbd7aa5",
+    "tests/companion-speech.test.ts": "7403c594dd0797393443b3bb2730f42deda658dee8d4edc50f3678258ab29695",
+    "tests/companion-pcm.test.mjs": "cf75ae46f80344232ba53b20cf51cf669b14fc0daa27af88ef3f74ea39087ae9",
+    "tests/companion-asr-host.test.ts": "881023fc9faeffac4e892c03ee21d7e11986705820add022aedb191006d33aea",
+    "scripts/companion_audio.ts": "dd1be5a7ae1ab9ba31523acb98af3a29ea839b55c36eed65d3c1e09685e73a9f",
+    "scripts/companion_asr_setup.py": "21f36e5526d6caa6ab01180db46bd368383a35cd4c15bf926f9e2f50fcd5cd60",
+    "apps/desktop-companion/audio.html": "8ab17b66d8d038906a86de5f0150410a9c37b5974cc1853365ca2f2c3812f4c7",
+    "apps/desktop-companion/audio.css": "c32d9fda3cc9543977b9dd02c7acd23f5418b86407df817ee093bbedd8b0a0a8",
+    "apps/desktop-companion/audio-client.mjs": "c3c64999bbde3656d3289a17fde7048eec3a434edbbe047977be2ac6abaa768d",
+    "apps/desktop-companion/pcm16-resampler.mjs": "51c7fbbea59805e17b3d4f8e261d084e44f3387c9eecbd575ccf1d2190ad9d67",
+    "apps/desktop-companion/pcm-capture.mjs": "a60ad3f80dcd8bd55be664a40017b6d0a1b3f3d804e5d95f93c65fabeba6badd",
+    "apps/desktop-companion/utterance-capture.mjs": "f75dbeb42417ebc7edf07d151a695fcf411015ebee041919ea18e18f34a8bd46",
+    "workers/companion/asr_worker.py": "60ca6a7a08decd2cf77aa6124060abff4d4ed25773769648febd98f424a9906a",
+    "workers/companion/requirements-asr.txt": "8d440571d732ab6b18617a253b5a566aa15e0b8fc3145e4a9f9e0a13378fcd58",
+    "workers/companion/requirements-asr-build.txt": "45bdbc396f783aadb2fcb2ffd682282b835b06a8e0da6f98c7efd74df5e3e12e",
+    "bootstrap/evidence/2026-10-05-companion-asr/browser-qa.mjs": "c6779f66b084c295119e67303995e1b33853253805654eff5a7acd3278410b47",
+    "bootstrap/evidence/2026-10-05-companion-asr/real-engine-qa.mjs": "e84450e2683ee6647f47cbda79fcbf12ce7d862bc8d60f58e680330bbdb7055a",
+    "packages/companion/src/voice-session.ts": "3fc874808ce070d56161fea05c3edc8d41f07b15642f466a7a1da2f62949f4ec",
+    "packages/companion/src/audio-host.ts": "30d5686db7d1640f0de76908f6c348cd548dab2cf54b53037c803f2e1e4b76f3",
+    "packages/companion/src/asr-process.ts": "c7c4fe423eaf638766485aa6995f78ec537bbc4449b0ae1e9236d72bd1f7ef11",
+    "packages/companion/src/speech-draft.ts": "2aa4771c7996efd1bc566f9c53ac363e42a3052f8235fa2a7ee6fdfd0cd54b1e",
+    "packages/architect/src/companion-intent.ts": "3249acf8d1e9813e25179e9d54aba11bc32b78e469e03237bd65663b1d61ff55"
+  },
+  "existing_core_index_sha256": "6b45d685744b1a36fefc9769bf45cffbf816a2354c89552e3c3bb4e97edea9e1",
+  "not_run": [
+    "Windows10/11 hardware/install/native ABI",
+    "human microphone/family/corpus/AEC/latency/RAM",
+    "complete checkout make/project.py/CI",
+    "general model/TTS/duplex/provider/paid budget route",
+    "OS hard isolation/native signing/public release"
+  ],
+  "package_verification": {
+    "zip_crc": "pass",
+    "manifest_sha256": "pass",
+    "extracted_node_tests": {
+      "total": 126,
+      "passed": 126,
+      "failed": 0,
+      "skipped": 0
+    },
+    "actual_extracted_worker_and_host_checks": {
+      "platform": "Linux Python3.13.14 + Node24",
+      "input": "public Wikimedia Russian word; no user audio, not redistributed",
+      "actualEngine": "vosk0.3.45 + small-ru0.22",
+      "cases": [
+        {
+          "name": "actual pinned installed Vosk/manifest preflight",
+          "status": "pass"
+        },
+        {
+          "name": "actual public Russian pronunciation decoded offline",
+          "status": "pass"
+        },
+        {
+          "name": "actual process cancellation + reclaimed single-worker lane",
+          "status": "pass"
+        },
+        {
+          "name": "actual worker denies changed manifest binding",
+          "status": "pass"
+        },
+        {
+          "name": "actual authenticated-local HTTP PCM to Python to transient draft, no automatic proposal",
+          "status": "pass"
+        },
+        {
+          "name": "actual shared-core proposal after explicit reviewed edit (not claimed ASR recognition of full command)",
+          "status": "pass"
+        }
+      ],
+      "transcriptWord": "привет",
+      "executionAllowed": false,
+      "cloudProviderCalls": 0,
+      "windowsNotRun": true,
+      "generalVoiceQualityNotMeasured": true
+    },
+    "unsigned": true,
+    "model_wheels_audio_config_bundled": false,
+    "windows_launcher": "NOT_RUN"
+  }
+}

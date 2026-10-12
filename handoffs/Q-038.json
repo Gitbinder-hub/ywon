@@ -1,0 +1,91 @@
+{
+  "task_id": "Q-038",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-038 Responsive design system and base UI i18n (P2 prototype): tokens/breakpoints, a11y components with keyboard/numeric alt, independent ui/assistant/content locales, lazy catalogs en/ru with ICU plurals/placeholders/fallback/pseudo, capability canGenerateContent blocks unsupported, no per-screen LLM. packages/design-system/src/tokens+components+i18n, 5 tests PASS (87 total).",
+  "changed_files": [
+    "packages/design-system/src/tokens.ts",
+    "packages/design-system/src/components.ts",
+    "packages/design-system/src/i18n.ts",
+    "packages/design-system/src/index.ts",
+    "tests/design-system.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/design-system.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/design-system.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/design-system.test.ts",
+      "notes": "5/5 PASS: AC1 responsive/a11y locale-neutral codes, AC2 independent locales plurals/placeholders/fallback/pseudo no LLM, AC3 capability blocks unsupported"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/design-system.test.ts",
+      "notes": "87/87 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/design-system/src/tokens.ts",
+        "packages/design-system/src/components.ts",
+        "tests/design-system.test.ts"
+      ],
+      "reason": "Responsive tokens/breakpoints (mobile/tablet/desktop/wide), components with role/keyboard/numericAlt/aria scope, a11y WCAG check, locale-neutral codes validated."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/design-system/src/i18n.ts",
+        "tests/design-system.test.ts"
+      ],
+      "reason": "UI/assistant/content locales independent; lazy catalogs en/ru with placeholder validation, ICU plurals (en one/other, ru one/few/many/other), fallback locale-region->base->source, pseudo-locale overflow test; no runtime LLM per-screen translation — prebuilt static catalogs."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/design-system/src/i18n.ts",
+        "tests/design-system.test.ts"
+      ],
+      "reason": "Language capability config LOCALE_COVERAGE blocks unsupported outputs (canGenerateContent/isUiDraft): unsupported locale denied, draft labels not pretended as active; viewport ADR is tokens/a11y not fabricated performance numbers."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Static catalogs en/ru only — fr/es not yet reviewed, beta labeling pending",
+    "Performance budgets are tokens not measured metrics — real device matrix pending Q-041"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-038 then Q-039 editors and Q-040 journey",
+    "Q-041 novice usability and Q-014 pipeline after editors"
+  ],
+  "recommended_next_tasks": [
+    "Q-039",
+    "Q-040"
+  ],
+  "required_owner_checks": [
+    "Confirm en/ru active coverage and unsupported blocking acceptable for P2",
+    "Review pseudo-locale overflow handling before full rollout"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

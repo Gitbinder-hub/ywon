@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "file_inventory",
+  "taskId": "demo-task",
+  "operationId": "demo-operation",
+  "files": [
+    {
+      "bytes": 53,
+      "characters": 53,
+      "lines": 2,
+      "path": "brief.md",
+      "sha256": "ab21a82abdd88b5d248ab554d18357faa4c150fd0190c8344ee99c8b2cfe156e"
+    },
+    {
+      "bytes": 56,
+      "characters": 56,
+      "lines": 1,
+      "path": "notes.txt",
+      "sha256": "fb5540e29d5022ba80d2bb057cfca00807c689f2c46be691cf289aad0db45d7d"
+    }
+  ],
+  "totalBytes": 109,
+  "productionReady": false,
+  "cloudExecutionAllowed": false,
+  "paidCalls": false,
+  "artifactHash": "dc65b6307fd2e8edbe66406fe27559882434b34d91ae70a89ef6c146d1c0dee7"
+}

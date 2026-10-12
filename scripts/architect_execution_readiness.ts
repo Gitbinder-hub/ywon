@@ -1,0 +1,8 @@
+/** B-027 offline attempt preparation/readiness CLI. It cannot execute or reserve budget. */
+import {constants,openSync,fstatSync,readSync,closeSync} from 'node:fs';
+import {evaluateExecutionReadiness,runAttemptPreparationCommand} from '../packages/architect/src/store.ts';
+const id=/^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$/;
+function option(a:string[],n:string):string|null{const i=a.indexOf(n);return i>=0&&i+1<a.length?a[i+1]!:null;}
+function read(path:string):unknown{const fd=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);try{if(!fstatSync(fd).isFile())throw Error('regular input required');const b=Buffer.alloc(256*1024+1);let n=0;while(n<b.length){const x=readSync(fd,b,n,b.length-n,null);if(!x)break;n+=x;}if(n>256*1024)throw Error('input too large');return JSON.parse(b.subarray(0,n).toString('utf8'));}finally{closeSync(fd);}}
+export function main(args:string[]):number{const mode=args[0],state=option(args,'--state'),registry=option(args,'--registry');if(!state||!registry||!['prepare','check'].includes(mode??''))return 2;try{let result:unknown;if(mode==='prepare'){const input=option(args,'--input');if(!input)return 2;result=runAttemptPreparationCommand(state,registry,read(input));}else{const unit=option(args,'--unit');if(!unit||!id.test(unit))return 2;result=evaluateExecutionReadiness(state,registry,unit);}process.stdout.write(JSON.stringify(result,null,2)+'\n');return typeof result==='object'&&result!==null&&'ok'in result&&(result as {ok:boolean}).ok?0:3;}catch(error){console.error(error instanceof Error?error.message:'readiness command failed');return 2;}}
+process.exitCode=main(process.argv.slice(2));

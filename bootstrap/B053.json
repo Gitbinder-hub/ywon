@@ -1,0 +1,14 @@
+{
+  "task_id": "B-053",
+  "status": "REVIEW",
+  "owner_authorized_at": "2026-10-05",
+  "authorization": "User explicitly requested continuing development and voice conversation design; bounded no-paid/no-deploy scope announced",
+  "scope": "Signed read-only staging dispatch around existing B-051 owner runner; pinned authority supplied by trusted embedding",
+  "out_of_scope": "SaaS auth/device pairing, production trust/authority store, new ledger, cloud transport, arbitrary OS actions, Q acceptance, main merge, paid calls, deploy",
+  "base_commit": "ef2206c0c4f3ed648bbad4bcea5cfbd5f165465c",
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "paid_calls": false,
+  "handoff": "bootstrap/B053_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-05-companion-voice/verification.json"
+}

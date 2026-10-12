@@ -1,0 +1,27 @@
+Продолжай разработку Ywoom / Ywon, не начинай проект заново и не ограничивайся рекомендациями.
+Репозиторий: https://github.com/Ywoom-space/Ywoom
+Рабочая ветка: bootstrap/spec-v04-foundation
+Проверь её актуальный HEAD; не используй старый commit как текущий и не перезаписывай чужие изменения.
+
+Прочитай AGENTS.md/CLAUDE.md, docs/governance/ARCHITECT_AMENDMENT_2026-10-03.md, docs/governance/COMPANION_AMENDMENT_2026-10-05.md, docs/INDEX.md, tasks/project.json, tasks/features.json, tasks/architect_acceptance_overlay.json, bootstrap/STATUS.md, handoffs/Q-005.json, handoffs/Q-005G.json, handoffs/Q-006.json, reports/P0_GATE_2026-10-06.md, reports/P0_EVAL_AGGREGATE_2026-10-06.md, reports/P0_EVAL_AGGREGATE_2026-10-06_B.md, reports/Q006_SCAFFOLD_2026-10-06.md, docs/adr/0001-modular-monolith-contracts-first.md, docs/adr/0007-working-prototype-stack.md. Реестр tasks/project.json — единственный источник статусов Q; overlay добавляет обязательные AC. REVIEW не DONE. Не самопринимай gates без --owner-confirmed.
+
+Текущее состояние (2026-10-06):
+- P0 DONE: Q-001..Q-005 DONE, Q-005G DONE (GO conditional — handoffs/Q-005G.json, reports/P0_GATE_2026-10-06.md). 9-run live Google (gemini-3.5-flash-lite / 3.1-flash-lite-image x3 / 3.8-flash-lite-tts Kore) 1/9 strict 30±2 (29.13s usable), 8/9 short 24-27.88 медиана 26.67. Cost B 110300/run, 9×992700 $0.993, new spend 882400 $0.882, R 20% 198540 не списан, cap 250000 within. РФ-риск снят владельцем (не из РФ, игнорировать).
+- P1 Q-006 DONE 2026-10-06: Scaffold, контракты и миграции. ADR 0001 accepted, ADR 0007 decided+pinned (Fastify/Next/Postgres/pg-boss/S3/Node+Python+SQLite/OIDC/OS store). Контракты tenant/versioned, infra миграция 001, make check vs spec-check разделены. Фикс длительности: apad+atrim+tpad+` -t durationSec` вместо -shortest, WinGet ffmpeg resolver C:\Users\Marina\AppData\Local\Microsoft\WinGet\Links\ffmpeg.exe. CLI architect_google_spike.ts починен (endsWith вместо file:// href для кириллицы). Тесты google-live 7/7 PASS, architect 39/40 (1 symlink Win privilege — Win-ограничение).
+- Phase P1, DONE 7 (Q-001..Q-006+Q-005G), DOING 0, READY: Q-007, Q-008, Q-036.
+
+Стек Q-006: package.json node>=24 typescript 7.0.2, pnpm-workspace.yaml, tsconfig ES2023 NodeNext strict, Makefile check=bootstrap-check+spec-check+transfer-check. packages/architect, contracts, companion-protocol; apps/api, web; workers/media, infra/migrations/001.
+
+Следующие задачи (по tasks/project.json):
+1) Q-007 Auth, роли и tenant-isolation e2e (docs/security/20..., docs/architecture/04_DATA_MODEL.md) — email/session, secrets не в git, cross-tenant тесты, SSRF/sandbox limits.
+2) Q-008 Durable workflow/journal/recovery — leases/operation IDs/outbox/retry/dead-letter/cancellation, no blind resubmit on crash/unknown.
+3) Q-036 Media-neutral editable document contracts — параллельно.
+
+Бюджет/лимиты: Q-001 pay-as-you-go unlimited, per-run cap $0.25-1.00 media / $5 Architect, 20% repair reserve с explicit approve, stop-before-3rd (2 попытки до паузы), >10% gate. No paid calls в Q-006-Q-008, live 3-run smoke 3*110300+R=$0.397 pending explicit run с GEMINI_API_KEY.
+
+На полном checkout сначала: python scripts/project.py validate; status; next; node --test tests/architect-google-live.test.ts tests/contracts.test.ts (ожидай 7/7+). FFmpeg через WinGet Links, не через PATH. Не ставить новые зависимости без ADR.
+
+Задача: бери Q-007 (python scripts/project.py start Q-007 --agent "имя/среда"), реализуй минимально, покрой тестами, сделай handoffs/Q-007.json через submit, дождись owner accept. Фиксируй scope/evidence/risks/handoff.
+Выбери Hosted vs VPS / auth provider / object-storage только через явный выбор в Q-007/Q-008, не выдумывай дефолты.
+После двух неудачных content-попыток пауза перед третьей — не делай blind resubmit.
+В конце отчёт: сделано/проверено/не проверено/риски/next.

@@ -1,0 +1,48 @@
+✔ real planner builds pinned three-node DAG; never authorizes execution (3.466151ms)
+✔ deterministic report and no mutation of caller data (0.654431ms)
+✔ canonical fingerprint ignores object key order, preserves array order (0.228561ms)
+✔ capability input order does not change cheapest selected route (0.531368ms)
+✔ equal-priced ties use stable capability ID (0.378847ms)
+✔ prompt guidance cannot silently replace required exact 3D (0.396999ms)
+✔ missing control is blocked even with matching fidelity (0.265174ms)
+✔ candidate capability cannot activate itself (0.26163ms)
+✔ unknown price stays unknown; no invented free route (0.363964ms)
+✔ billing minimum and rounding included (0.473844ms)
+✔ known initial cost increase cannot consume repair reserve (0.341105ms)
+✔ ancestor cap enforced even below unit cap (0.343732ms)
+✔ missing or unbound protected asset blocks scene (0.189432ms)
+✔ capability requiring absent asset kind blocked (0.160408ms)
+✔ changed asset hash invalidates produced-node hash (0.269775ms)
+✔ revision is pinned into report fingerprint (0.247153ms)
+✔ duplicate scene and capability IDs rejected (0.963498ms)
+✔ bounded input schema rejects unknown shell, NaN, floats and negative money (0.31642ms)
+✔ prototype key and unknown nested parameter rejected (0.294095ms)
+✔ money percentage uses half-up cents without binary float artifacts (0.105268ms)
+✔ real recovery proposal preserves unrelated assets and no execution (0.300886ms)
+✔ two failures pause BEFORE third even with enough reserve (0.112849ms)
+✔ changing unit or operation data cannot grant money or execution (0.124339ms)
+✔ unknown pending liability overrides available money (0.098733ms)
+✔ unknown paid outcome cannot be a blind retry (0.111874ms)
+✔ rights failure stops even with unknown paid liability (0.092679ms)
+✔ unchanged content retry requires new strategy (0.108424ms)
+✔ exact cap accepted for proposal; one cent above needs user (0.140361ms)
+✔ pending and unfinished initial work are not forgotten (0.12407ms)
+✔ repair plan hash changes after a manual edit (0.138829ms)
+✔ malformed recovery and empty affected scene set rejected (0.212305ms)
+✔ unknown assembly or QA cost is not a zero-cost ready plan (0.374032ms)
+✔ local processing costs included in initial envelope (0.339798ms)
+✔ actual CLI emits report for valid fixture (87.154319ms)
+✔ actual CLI blocked plan has distinct exit code (89.391477ms)
+✔ actual recovery CLI reports stop separately (96.073171ms)
+✔ CLI rejects invalid args and malformed JSON (274.536156ms)
+✔ CLI does not overwrite existing output (193.140277ms)
+✔ CLI creates new output exclusively (188.542672ms)
+✔ CLI denies symlink input and oversized input (251.410021ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1330.205055

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "unitId": "demo-episode",
+  "revision": 1,
+  "scenes": [
+    {
+      "id": "scene1",
+      "durationSec": 30,
+      "fidelity": "2d_approximation",
+      "controls": [
+        "reference_image"
+      ],
+      "assetIds": [
+        "image1"
+      ],
+      "protectedAssetIds": [
+        "image1"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "image1",
+      "kind": "image",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "fixture-2d",
+      "version": "v1",
+      "status": "verified_fixture",
+      "fidelities": [
+        "2d_approximation"
+      ],
+      "controls": [
+        "reference_image"
+      ],
+      "requiredAssetKinds": [
+        "image"
+      ],
+      "maxDurationSec": 60,
+      "price": {
+        "currency": "USD",
+        "fixedMinor": 10,
+        "perSecondMinor": 1,
+        "minimumSeconds": 1,
+        "roundingSeconds": 1
+      }
+    }
+  ],
+  "budget": {
+    "baselineMinor": 100,
+    "repairPercent": 20,
+    "projectRemainingMinor": 1000,
+    "monthRemainingMinor": 1000
+  },
+  "localCost": {
+    "assemblyMinor": 5,
+    "qaMinor": 5
+  }
+}

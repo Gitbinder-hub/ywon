@@ -1,0 +1,36 @@
+{
+  "platform": "Linux Python3.13.14 + Node24",
+  "input": "public Wikimedia Russian word; no user audio, not redistributed",
+  "actualEngine": "vosk0.3.45 + small-ru0.22",
+  "cases": [
+    {
+      "name": "actual pinned installed Vosk/manifest preflight",
+      "status": "pass"
+    },
+    {
+      "name": "actual public Russian pronunciation decoded offline",
+      "status": "pass"
+    },
+    {
+      "name": "actual process cancellation + reclaimed single-worker lane",
+      "status": "pass"
+    },
+    {
+      "name": "actual worker denies changed manifest binding",
+      "status": "pass"
+    },
+    {
+      "name": "actual authenticated-local HTTP PCM to Python to transient draft, no automatic proposal",
+      "status": "pass"
+    },
+    {
+      "name": "actual shared-core proposal after explicit reviewed edit (not claimed ASR recognition of full command)",
+      "status": "pass"
+    }
+  ],
+  "transcriptWord": "привет",
+  "executionAllowed": false,
+  "cloudProviderCalls": 0,
+  "windowsNotRun": true,
+  "generalVoiceQualityNotMeasured": true
+}

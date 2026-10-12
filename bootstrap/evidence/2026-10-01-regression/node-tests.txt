@@ -1,0 +1,24 @@
+✔ health truthfully identifies dry-run mode (30.64958ms)
+✔ valid brief passes HTTP→contract→core, without generation (13.172622ms)
+✔ invalid and malformed requests return explicit errors (13.143466ms)
+✔ oversized body and cross-origin browser request rejected (7.379417ms)
+✔ generation disabled regardless of client fields (4.853892ms)
+✔ static allowlist serves UI/catalogs, not repository files (11.559321ms)
+✔ generation route denies every exercised HTTP method (12.929696ms)
+✔ same-origin dry-run succeeds while null or lookalike origins are denied (7.343912ms)
+✔ body limit is inclusive at 16 KiB and counts UTF-8 bytes (4.826642ms)
+✔ invalid envelopes and client-supplied payment permission never enter dry-run core (7.358232ms)
+✔ valid brief has explicit language and trimmed text (0.83824ms)
+✔ missing language is rejected, never defaulted (0.914161ms)
+✔ unsupported language/kind and empty/oversized fields rejected (0.219215ms)
+✔ non-object and unknown fields rejected (0.163246ms)
+✔ dry run deterministic and cost unknown, not fabricated zero (1.078119ms)
+✔ RU/EN catalogs have the same complete key set (1.484756ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 433.269287

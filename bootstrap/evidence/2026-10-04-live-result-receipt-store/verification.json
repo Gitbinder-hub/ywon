@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-043",
+  "status": "REVIEW",
+  "tests": {
+    "node": {
+      "passed": 176,
+      "failed": 0,
+      "skipped": 0
+    },
+    "new": 5,
+    "pythonWorkersCompile": 4,
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    }
+  },
+  "verified": [
+    "B-042 verification precedes persistence",
+    "sanitized receipt excludes key, absolute path, raw manifest and media",
+    "exact command replay and changed reuse handling",
+    "duplicate run/artifact denial",
+    "append-only SQLite rows and integrity detection",
+    "keyless import/get CLI"
+  ],
+  "notRun": [
+    "owner google-p0-002 import",
+    "repository check_toolchain wrapper",
+    "full npm run check",
+    "CI",
+    "browser",
+    "production database/object store/queue"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "secretsUsed": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "SQLite store is local preview only.",
+    "Database owner tampering is not externally anchored.",
+    "Receipt is not invoice, rights, publication or production-storage evidence."
+  ]
+}

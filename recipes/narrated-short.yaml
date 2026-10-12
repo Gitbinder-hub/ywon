@@ -1,0 +1,47 @@
+# Recipe: narrated-short — one bounded narrated format over shared durable DAG
+# Not a second orchestrator. Steps map to docs/production/05_PIPELINE.md gate sequence.
+id: narrated-short
+version: "1.0.0"
+status: draft
+kind: video
+profile: "16:9"
+target_duration_sec: 30
+steps:
+  - id: brief
+    skill: null
+    contracts: [Brief]
+  - id: script
+    skill: video-prompting
+    requires_approval: true
+    fidelity: prompt_guidance
+  - id: storyboard
+    skill: b-roll-planning
+    requires_approval: true
+  - id: reference
+    skill: null
+    note: identity/style verified where applicable
+  - id: motion
+    skill: ffmpeg-technical
+    preset: pan-2d
+    fidelity: 2d_approximation
+    note: honest 2D only; exact_3d via future Selected Blender adapter
+  - id: audio
+    skill: null
+    note: TTS with consent; no-key Piper fallback is T0 degraded path
+  - id: edit
+    skill: null
+    note: use actual audio/asset lengths, not invented timecodes
+  - id: technical_qa
+    gate: TechnicalQA
+  - id: content_review
+    gate: ContentReview
+  - id: final_approval
+    gate: FinalApproval
+    binds: version_hash
+  - id: export
+    outputs: [mp4, subs, metadata, manifest, cost_report, qa_report]
+supported_outcomes: [exported]
+degraded_outcomes: [placeholder_beat, capped_duration]
+unsupported_outcomes: [orbit_not_supported_by_2d_preset, protected_region_violation]
+budget: { baselineMinor: 15000, reservePercent: 20, currency: USD }
+provenance: { borrowed_mechanism_from: OpenMontage pipeline narrated explainer, code: original }

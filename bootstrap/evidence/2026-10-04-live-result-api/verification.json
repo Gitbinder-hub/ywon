@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-044",
+  "status": "REVIEW",
+  "tests": {
+    "newScoped": {
+      "passed": 3,
+      "failed": 0
+    },
+    "nonBaseApiSuite": {
+      "passed": 178,
+      "failed": 0,
+      "skipped": 0
+    },
+    "baseApiTargetedWiring": {
+      "passed": 1,
+      "failed": 0
+    },
+    "baseApiFull": {
+      "passed": 10,
+      "failed": 1,
+      "failure": "apps/web/public missing from partial local checkout; static home body empty"
+    },
+    "pythonWorkersCompile": 4,
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    }
+  },
+  "verified": [
+    "localhost/same-origin read-only metadata route",
+    "existing receipt DB required; no creation on GET",
+    "sanitized receipt only",
+    "no media/file route",
+    "405 for writes",
+    "404 missing result, 409 integrity, 503 unavailable store",
+    "createApp wiring"
+  ],
+  "notRun": [
+    "owner endpoint smoke against google-p0-002",
+    "repository check_toolchain wrapper",
+    "full npm run check",
+    "CI",
+    "browser/UI",
+    "production auth/object storage"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "mediaServed": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Localhost-only prototype has no production authentication or tenancy.",
+    "Metadata receipt is not publication, invoice or rights evidence.",
+    "One unrelated static UI test cannot run successfully without omitted web fixtures."
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["../packages/architect/src/**/*.ts", "../scripts/architect_preflight.ts", "../tests/architect.test.ts"]
+}

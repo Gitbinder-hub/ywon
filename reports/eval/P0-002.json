@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "mode": "p0_eval_run",
+  "runId": "p0-t1-sky-002",
+  "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+  "fixture": "bootstrap/fixtures/P0-T1-sky.json",
+  "briefHash": "fe49d04a31496c773205be09571664c15fba93d3bf824de9949491a49614a10f",
+  "inputHash": "8f7145d3d64b1a6e4c961cfc75526747af3695dfb1cba00b7799e9604fd8541a",
+  "requestHash": "8f7145d3d64b1a6e4c961cfc75526747af3695dfb1cba00b7799e9604fd8541a",
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "image": "gemini-3.1-flash-lite-image",
+    "tts": "gemini-3.8-flash-lite-tts"
+  },
+  "prompts": {
+    "script": {
+      "title": "Почему небо голубое",
+      "narration": "Солнечный свет кажется нам белым, но он состоит из всех цветов радуги. Когда лучи проходят через атмосферу Земли, они сталкиваются с молекулами воздуха. Фиолетовый и синий цвета рассеиваются намного сильнее остальных из-за короткой длины волны. Наш глаз воспринимает этот рассеянный свет, и мы видим небо именно голубым.",
+      "scenes": [
+        {
+          "caption": "Солнечный свет и цвета",
+          "imagePrompt": "Sunlight passing through a prism, splitting into a rainbow spectrum, bright and clear, educational style"
+        },
+        {
+          "caption": "Рассеяние света в атмосфере",
+          "imagePrompt": "Sun rays entering Earth's atmosphere, interacting with gas molecules, scientific illustration"
+        },
+        {
+          "caption": "Голубое небо над нами",
+          "imagePrompt": "Clear blue sky with soft white clouds, view from below, peaceful nature"
+        }
+      ]
+    },
+    "images": [
+      "Sunlight passing through a prism, splitting into a rainbow spectrum, bright and clear, educational style",
+      "Sun rays entering Earth's atmosphere, interacting with gas molecules, scientific illustration",
+      "Clear blue sky with soft white clouds, view from below, peaceful nature"
+    ],
+    "tts": "Солнечный свет кажется нам белым, но он состоит из всех цветов радуги. Когда лучи проходят через атмосферу Земли, они сталкиваются с молекулами воздуха. Фиолетовый и синий цвета рассеиваются намного сильнее остальных из-за короткой длины волны. Наш глаз воспринимает этот рассеянный свет, и мы видим небо именно голубым."
+  },
+  "assetHashes": {
+    "textSha256": "2648b5a6463867d4d379cdc26bc8233363383f7bd5376fb7b4973d87491c9c3a",
+    "imageSha256": [
+      "a3353798ad3295966a9790f7d2d2a38b604f84a647c9194976b490de0cff2ba9",
+      "eff51364c432c811c9e9fb3c8a17f6382fbe7ecd2447255ca58e68c58c69db56",
+      "74ed67074480b1dfb8ac66ae75dae6ebf5921d42f660ce88081456f88a410fbf"
+    ],
+    "ttsSha256": "12c5fa3b14cc5e6f917e5c59484b7e59fe69ad9598a566cd0d3fa6a4eb147923",
+    "wavBytes": 1215714,
+    "mp4Sha256": "9e180b603512c50736302cdf153744b8ea92a08cd56edf7a8f86138dc442419f",
+    "mp4Bytes": 1025397
+  },
+  "mp4": {
+    "path": "outputs/p0-t1-sky-002/result.mp4",
+    "sha256": "9e180b603512c50736302cdf153744b8ea92a08cd56edf7a8f86138dc442419f",
+    "bytes": 1025397,
+    "durationSec": 27.875,
+    "codec": {
+      "video": "h264",
+      "audio": "aac",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inputFixture": {
+    "schemaVersion": 1,
+    "runId": "p0-t1-sky-002",
+    "topic": "Почему небо выглядит голубым — короткое объяснение без спорных утверждений",
+    "language": "ru",
+    "durationSec": 30,
+    "aspectRatio": "16:9",
+    "sceneCount": 3,
+    "voice": "Kore",
+    "maxEstimatedUsdMicros": 250000
+  },
+  "durationContract": {
+    "mode": "strict",
+    "toleranceSec": 2,
+    "fullNarrationRequired": true
+  },
+  "cost": {
+    "baselineMicros": 110300,
+    "reserveMicros": 22060,
+    "capMicros": 250000,
+    "withinCap": true,
+    "estimatedMaximumUsdMicros": 110300,
+    "actualBilledMicros": 110300,
+    "invoiceStatus": "pending_reconcile",
+    "currency": "USD",
+    "notes": "Estimate preflight, not provider invoice; taxes/FX unknown; single attempt"
+  },
+  "attempts": [
+    {
+      "n": 1,
+      "status": "completed",
+      "error": null,
+      "billedMicros": 110300,
+      "completedCalls": 5
+    }
+  ],
+  "rejectedOutputs": [],
+  "humanReview": {
+    "reviewer": "Cline screening + Oleg owner (2026-10-06)",
+    "verdict": "reject",
+    "minutes": 6,
+    "reason": "duration_outside_30+-2",
+    "criticalFailure": [
+      "duration_outside_30+-2"
+    ],
+    "dimensions": {
+      "technical": "fail duration 27.88s outside 30±2",
+      "meaning": "pass script matches brief, no hallucinated critical advice",
+      "perception": "pass intelligible ru, 3 distinct visuals no severe artifacts (screening)",
+      "rights": "pass synthetic images/TTS, no stock, disclosure before publish"
+    }
+  },
+  "accepted": false,
+  "limitations": [
+    "Estimated maximum is a bounded preflight, not a provider invoice.",
+    "No automatic provider retry. Unknown outcomes require manual reconciliation."
+  ],
+  "files": [
+    "manifest.json",
+    "narration.wav",
+    "result.mp4",
+    "scene-01.png",
+    "scene-02.png",
+    "scene-03.png",
+    "scenes.txt",
+    "script.json"
+  ]
+}

@@ -1,0 +1,44 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { EditableDocumentStore } from '../packages/editable-document/src/store.ts';
+import { getCapabilities, checkDocumentGrammar, resolveUnsupported } from '../packages/editable-document/src/renderer.ts';
+test('text/image cannot bind fake episode; video can; sequence explicit', () => {
+  const s = new EditableDocumentStore();
+  assert.equal(s.createItem({ id:'t1', workspaceId:'ws', projectId:'proj', kind:'text', contentLocale:'ru', episodeId:'ep1' }).ok, false);
+  assert.equal((s.createItem({ id:'t2', workspaceId:'ws', projectId:'proj', kind:'text', contentLocale:'ru', episodeId:'ep1' }) as any).code, 'fake_episode_forbidden');
+  assert.equal(s.createItem({ id:'t1', workspaceId:'ws', projectId:'proj', kind:'text', contentLocale:'ru' }).ok, true);
+  assert.equal(s.createItem({ id:'v1', workspaceId:'ws', projectId:'proj', kind:'video', contentLocale:'en', episodeId:'ep1' }).ok, true);
+  s.createItem({ id:'img1', workspaceId:'ws', projectId:'proj', kind:'image', contentLocale:'en' });
+  const r = s.createDocument({ id:'d-img-tl', workspaceId:'ws', itemId:'img1', kind:'timeline' });
+  assert.equal(r.ok, false);
+  if(!r.ok) assert.equal(r.code, 'kind_incompatible');
+});
+test('content locale vs ui locale: item locale explicit, no silent guess', () => {
+  const s = new EditableDocumentStore();
+  assert.equal(s.createItem({ id:'i1', workspaceId:'ws', projectId:'p1', kind:'image', contentLocale:'xx' }).ok, false);
+  assert.equal(s.createItem({ id:'i1', workspaceId:'ws', projectId:'p1', kind:'image', contentLocale:'en' }).ok, true);
+});
+test('tenant FK: variant/document must match workspace of item', () => {
+  const s = new EditableDocumentStore();
+  s.createItem({ id:'it', workspaceId:'ws-a', projectId:'p', kind:'text', contentLocale:'en' });
+  const v = s.createVariant({ id:'v1', workspaceId:'ws-b', itemId:'it', purpose:'original', locale:'en' });
+  assert.equal(v.ok, false);
+  if(!v.ok) assert.equal(v.code, 'item_not_found');
+  s.createDocument({ id:'d1', workspaceId:'ws-a', itemId:'it', kind:'text' } as any);
+  const d = s.createDocument({ id:'d1', workspaceId:'ws-b', itemId:'it', kind:'text' } as any);
+  assert.equal(d.ok, false);
+});
+test('optimistic concurrency: conflict on stale baseRevision', () => {
+  const s = new EditableDocumentStore();
+  s.createItem({ id:'seq1', workspaceId:'ws', projectId:'p', kind:'sequence', contentLocale:'en' });
+  s.createDocument({ id:'doc1', workspaceId:'ws', itemId:'seq1', kind:'sequence' });
+  const json: any = { children: [], theme:'t' };
+  const r1 = s.applyCommand({ documentId:'doc1', workspaceId:'ws', baseRevision:null, idempotencyKey:'k1', newJson:json, actor:'a', changeReason:'init' });
+  assert.equal(r1.ok, true);
+  const r2 = s.applyCommand({ documentId:'doc1', workspaceId:'ws', baseRevision:null, idempotencyKey:'k2', newJson:json, actor:'a', changeReason:'stale' });
+  assert.equal(r2.ok, false);
+  if(!r2.ok) assert.equal(r2.code, 'conflict_base_revision');
+  const r3 = s.applyCommand({ documentId:'doc1', workspaceId:'ws', baseRevision:1, idempotencyKey:'k3', newJson:json, actor:'a', changeReason:'ok' });
+  assert.equal(r3.ok, true);
+});

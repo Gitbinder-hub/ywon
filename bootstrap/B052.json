@@ -1,0 +1,14 @@
+{
+  "task_id": "B-052",
+  "status": "REVIEW",
+  "owner_authorized_at": "2026-10-05",
+  "authorization": "User explicitly requested continuing implementation in current chat; bounded no-paid/no-deploy block announced before work",
+  "scope": "Strict pinned-request media verification: lower/upper duration and source-audio preservation; compatible realistic-duration fixtures",
+  "out_of_scope": "production auth/tenant/ledger, cloud pairing, paid provider run, Windows/macOS distribution certification, public deploy, admin/GUI/browser/wallet/messaging, Q acceptance and main merge",
+  "base_commit": "ba34269e42b402d50cefb664b4c8af64ef3981b3",
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "paid_calls": false,
+  "handoff": "bootstrap/B052_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-05-companion-media/verification.json"
+}

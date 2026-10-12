@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "report": {
+    "schemaVersion": 1,
+    "mode": "offline_recovery",
+    "executionAllowed": false,
+    "budgetReserved": false,
+    "state": "needs_user",
+    "reason": "pause_before_third",
+    "repairPlanHash": "a772c00824184c2abb37fc75f0c0bee1ddf9205cb7c9b747bbd35087364e99b3",
+    "unitId": "demo-episode",
+    "revision": 1,
+    "projectedMinor": 90,
+    "effectiveCapMinor": 120,
+    "requiresApproval": true,
+    "affectedSceneIds": [
+      "scene1"
+    ],
+    "retainedAssetIds": [
+      "image1"
+    ],
+    "suggestedAction": "verify_control_and_change_supported_route",
+    "changedStrategy": true,
+    "limitations": [
+      "Proposal only; no authenticated approval or production enforcement.",
+      "Input attempt/cost/retained-asset statements are not verified against a ledger/store.",
+      "Budget caps assumed cumulative for this preview; production reservations must resolve live scope balances.",
+      "No next-output improvement guarantee."
+    ]
+  }
+}

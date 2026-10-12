@@ -1,0 +1,109 @@
+{
+  "task_id": "B-001",
+  "agent": "Notion AI / local Computer sandbox",
+  "session": "2026-10-01-toolchain-verification",
+  "branch": "local/b001-toolchain-20261001",
+  "base_commit": "9b913329b119896d06a60fa1bafa3534db1e31ad",
+  "work_commit": "c8d65e079de341d73c55a4746ea6049b0b5a71b0",
+  "summary": "Restore exact approved bootstrap dev tools from cache, add lockfile and metadata preflight/tests; full check and clean offline ci pass; REVIEW unchanged.",
+  "changed_files": [
+    "package.json",
+    "package-lock.json",
+    "scripts/check_toolchain.mjs",
+    "tests/toolchain.test.ts",
+    "scripts/README.md",
+    "bootstrap/HANDOFF.md",
+    "bootstrap/STATUS.md",
+    "bootstrap/CI_STATUS.md",
+    "bootstrap/TOOLCHAIN.json",
+    "tasks/BOOTSTRAP.md",
+    "handoffs/B-001-toolchain-20261001.json",
+    "bootstrap/evidence/2026-10-01-toolchain/offline-install.txt",
+    "bootstrap/evidence/2026-10-01-toolchain/clean-ci-check.txt",
+    "bootstrap/evidence/2026-10-01-toolchain/make-check.txt",
+    "bootstrap/evidence/2026-10-01-toolchain/metadata-review.json"
+  ],
+  "evidence": [
+    {
+      "command": "npm install --offline --ignore-scripts --no-audit --no-fund",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-toolchain/offline-install.txt",
+      "notes": "4 cached dev packages; no network or lifecycle scripts; pins unchanged"
+    },
+    {
+      "command": "make check",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-toolchain/make-check.txt",
+      "notes": "strict typecheck, JS syntax, 19 Node + 3 media + 44 spec; 0 suite skips"
+    },
+    {
+      "command": "clean /tmp copy: npm ci --offline --ignore-scripts --no-audit --no-fund; make check",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-toolchain/clean-ci-check.txt",
+      "notes": "independent local node_modules; identical lock hash; temporary copy removed"
+    },
+    {
+      "command": "local dependency license/metadata and SRI lock comparison",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-toolchain/metadata-review.json",
+      "notes": "not a vulnerability or signature audit"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "followup_pinned_toolchain",
+      "result": "pass",
+      "evidence": [
+        "bootstrap/evidence/2026-10-01-toolchain/make-check.txt"
+      ],
+      "reason": "TS2688 resolved without changing versions or strictness"
+    },
+    {
+      "id": "followup_clean_reproducibility",
+      "result": "pass",
+      "evidence": [
+        "bootstrap/evidence/2026-10-01-toolchain/clean-ci-check.txt"
+      ],
+      "reason": "clean local npm ci and full check pass on Linux x64 with populated cache"
+    }
+  ],
+  "not_done": [
+    "No GitHub inspection/import/CI/push",
+    "No Node24 matching typings or stack upgrade",
+    "No vulnerability/signature audit or other-platform validation",
+    "No new browser/e2e/a11y/security/load/product/live-media evidence",
+    "No Q task mutations; B-001 verification only"
+  ],
+  "risks": [
+    "Node18 typings/Node24 runtime mismatch provisional",
+    "No online registry availability, signature or vulnerability audit verified",
+    "Synthetic local git history not suitable for overwriting remote",
+    "Original release manifest intentionally drifts; source excludes node_modules/cache"
+  ],
+  "blockers": [
+    "Remote full v0.4 import unresolved if using GitHub",
+    "Q-001 owner gate TODO, no approved paid budget",
+    "Production/P1 dependency-security and Node24 typings review still required"
+  ],
+  "next_steps": [
+    "Before remote work finish verified v0.4 import preserving code/history",
+    "Owner resolves Q-001 scope/languages/rights/budget",
+    "Independent toolchain/security review and matching types before P1 acceptance"
+  ],
+  "recommended_next_tasks": [
+    "Q-001 (owner only)",
+    "Remote approved v0.4 import if working on GitHub"
+  ],
+  "required_owner_checks": [
+    "Review diff and reproduce npm ci + make check",
+    "Do not infer P0/P1 acceptance or spend approval"
+  ],
+  "costs": {
+    "known_usd": null,
+    "notes": "No paid provider/API/deploy/push; offline cache install only; assistant/compute costs unknown"
+  }
+}

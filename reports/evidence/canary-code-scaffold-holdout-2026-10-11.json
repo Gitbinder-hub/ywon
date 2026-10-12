@@ -1,0 +1,43 @@
+{
+  "skillId": "code-scaffold",
+  "version": "1.0.0",
+  "labStage": "canary",
+  "scope": "small",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 45,
+    "honest": true,
+    "seedExclusion": "golden ∩ holdout = ∅"
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "casesTotal": 4,
+    "reportHash": "b8c6e91d0e83b9901131bed72736b50f524549b48c829936370435e0cc0cee60"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "approvedMinor": 4000,
+    "reportHash": "deb988cf0afc50809f4f626929ff21b5a22d3f842be546b9c0b85d09b537c68f"
+  },
+  "canary": {
+    "skillId": "code-scaffold",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:29.131Z",
+    "active": true
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; new version does not mutate manifest",
+  "at": "2026-10-10T17:17:29.131Z"
+}

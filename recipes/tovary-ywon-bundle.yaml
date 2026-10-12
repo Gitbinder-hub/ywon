@@ -1,0 +1,26 @@
+# docs/studio/MODES_AND_RECIPES.md — Товары bundle: hero + gallery + infographics variants
+# Bounded expansion of tovary-hero: multiple platform profiles as one factory recipe.
+id: tovary-ywon-bundle
+version: "1.0.0"
+status: draft
+kind: image
+recipes: [tovary-hero]
+platform_profiles: ["1:1", "4:5", "16:9"]
+steps:
+  - id: validate_sku
+    inputs: [sku, claims, required_texts]
+  - id: compose_hero
+    skill: tovary-hero
+    params: { aspect: "1:1", protected_region: preserve }
+  - id: compose_4x5
+    skill: tovary-hero
+    params: { aspect: "4:5", protected_region: preserve }
+  - id: qa
+    gate: ContentReview
+    checks: [ocr_signal, visual_signal, critical_passed]
+  - id: export
+    outputs: [png, manifest, cost_report, qa_report]
+supported_outcomes: [bundle_ready]
+degraded_outcomes: [relight_changed_product_needs_review]
+unsupported_outcomes: [missing_protected_cutout, invented_claim]
+provenance: { family: Товары, base: tovary-hero, factory: Ywoom }

@@ -1,0 +1,44 @@
+{
+  "skillId": "video-shorts",
+  "version": "1.0.0",
+  "labStage": "canary",
+  "scope": "small",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 44,
+    "honest": true,
+    "seedExclusion": "golden ∩ holdout = ∅"
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "casesTotal": 4,
+    "reportHash": "ef70ab2a7daa10bf30b660651a0b5f4c8c145e9782aa9a775f3ec47c2686aa38"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "approvedMinor": 7000,
+    "reportHash": "6aaf2bbce2945d255b99fe4132caf5b83d233104e13c6729e868b8d0ab0e3839"
+  },
+  "canary": {
+    "skillId": "video-shorts",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:30.253Z",
+    "active": true
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false,
+    "note": "rollback does not refund billed calls"
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; new version does not mutate accepted manifest",
+  "at": "2026-10-10T17:17:30.254Z"
+}

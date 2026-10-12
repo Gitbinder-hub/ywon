@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-048",
+  "status": "REVIEW",
+  "tests": {
+    "focusedHttp": {
+      "passed": 1,
+      "failed": 0,
+      "assertions": [
+        "missing reference denied",
+        "current receipt rechecked",
+        "deterministic evidenceHash",
+        "no title/script/local path leakage",
+        "download disposition",
+        "POST denied",
+        "tampered reference rejected"
+      ]
+    },
+    "changedApiSyntax": "PASS",
+    "pythonReceiptWorkerCompile": "PASS",
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "scope": "partial checkout",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    },
+    "priorBroaderSuite": "185 PASS historical; NOT_RERUN"
+  },
+  "verified": [
+    "canonical project/reference evidence",
+    "receipt-current hash comparison",
+    "fixed denial flags",
+    "content/media/path exclusion",
+    "read-only JSON download"
+  ],
+  "notRun": [
+    "owner evidence export against real project",
+    "broader complete-checkout suite",
+    "browser/UI",
+    "pinned toolchain wrapper",
+    "CI"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "mediaIncluded": false,
+    "uploads": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Local evidence is not externally signed or production-authenticated.",
+    "Export is not invoice, rights, content-quality or publication approval.",
+    "Project owner tampering is detected against current receipt but not externally anchored."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "B-059",
+  "title": "Owner GUI QA supplement — dialog/success screenshots verified (extends B-058)",
+  "date": "2026-10-06",
+  "base_review": "B-058",
+  "mode": "REVIEW",
+  "version": "0.0.6",
+  "displayName": "Ywon Companion",
+  "defaults": {
+    "desktopShortcut": true,
+    "autostart": false
+  },
+  "artifacts": {
+    "installerExe": "outputs/companion-windows-installer-2026-10-05/Ywon-Companion-Setup-0.0.6.exe",
+    "installerSize": 208896,
+    "installerSha256": "813525bc8a2cee2239e1608789bfa42e4fbe33bfbd353180e95cac18384fd82d",
+    "payloadZip": "outputs/companion-windows-installer-2026-10-05/Ywon-Companion-0.0.6.zip",
+    "payloadFiles": 70,
+    "payloadZipSha256": "115fedc07b2e119f1b629d5fdc38c164fea56f8ee15a8845185cde119d55a505",
+    "uninstallSize": 7168,
+    "trayChecker": "apps/desktop-companion/Ywon-tray.ts",
+    "manifest": "outputs/companion-windows-installer-2026-10-05/manifest.json",
+    "ownerScreenshots": [
+      "Ywon Companion 0.0.6 dialog — C:\\Users\\Marina\\AppData\\Local\\Ywon\\Ywon Companion, Desktop ON checked, autostart OFF unchecked",
+      "Ywon Companion installed success — Desktop link created, autostart off, Run via Start/Ywon.lnk, SmartScreen note"
+    ]
+  },
+  "ownerVerification": {
+    "date": "2026-10-06",
+    "profile": "Marina",
+    "guiDialog": "PASS — title Ywon Companion 0.0.6, per-user path, Desktop ON, autostart OFF, Установить/Отмена",
+    "successDialog": "PASS — установлен в C:\\Users\\Marina\\AppData\\Local\\Ywon\\Ywon Companion, ярлык на рабочем столе создан, автозапуск выключен",
+    "shortcutsAndUninstall": "PASS — Owner reports всё кроме Win11 проверено: Desktop/Start lnk + Uninstall via Параметры -> clean (для B-058 уже три silent цикла PASS)",
+    "smartScreen": "expected unsigned warning — noted in dialog, not bypassed; screenshot not required for this pilot",
+    "windows11": "NOT_RUN (owner VM not available)"
+  },
+  "evidence": "reports/evidence/companion-windows-installer-2026-10-06.json (updated with ownerGuiVerified)",
+  "report": "reports/COMPANION_WINDOWS_INSTALLER_2026-10-05.md (B-059 appendix)",
+  "notRun": [
+    "Windows 11 device/matrix",
+    "real mic/ASR streaming corpus",
+    "signed MSI/MSIX/auto-update",
+    "native tray/service (needs signing)"
+  ]
+}

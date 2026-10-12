@@ -1,0 +1,1 @@
+PASS: strict TypeScript7.0.2; @types/node18.19.130; Node24.14.1; bootstrap/B051.tsconfig.json with local typeRoots-only override. Full repository typecheck NOT_RUN. Compiler exit0/no diagnostics.

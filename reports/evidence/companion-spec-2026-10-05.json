@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "scope": "local docs-only payload checks against pinned MCP source, not full checkout",
+  "base_commit": "b588e3884d0f566812009763c6133286bd337d74",
+  "checks": {
+    "json_parse": "pass",
+    "entrypoint_parity": "pass",
+    "overlay_old_ac_context_preserved": "pass",
+    "unique_ac_requirement_task_anchors": "pass",
+    "task_feature_id_links": "pass",
+    "new_requirement_and_overlay_document_links": "pass",
+    "all_eight_scenarios_and_nine_transitions_present": "pass",
+    "no_runtime_canonical_state_archive_or_manifest_edit": "pass"
+  },
+  "not_run": [
+    "project.py validate/status/next",
+    "check_architect_spec.py --full-links",
+    "make spec-check",
+    "make check",
+    "CI",
+    "Windows10/11/Linux/macOS runtime",
+    "live media/provider invoice",
+    "infrastructure deploy"
+  ],
+  "limitations": [
+    "No genuine complete checkout; existing unchanged repository links not exhaustively checked.",
+    "No code bug fixes or working Companion in this mutation.",
+    "Remote commit/blob verification follows push; current report does not claim it."
+  ],
+  "paid_calls": false,
+  "implementation_authorized_by_this_patch": false
+}

@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-05",
+  "status": "REVIEW",
+  "handoff": "reports/COMPANION_ASR_PATH_FIX_2026-10-05.md",
+  "confirmed_failure": {
+    "venv_executable_characters": 264,
+    "windows_error": 206,
+    "LongPathsEnabled": 1
+  },
+  "observed_free_disk_MiB": {
+    "C": 331,
+    "E": 63112
+  },
+  "selected_runtime": "E:/Ywon-ASR",
+  "active_package": "outputs/companion-windows-asr-2026-10-05/Ywon-Companion-Windows-0.0.4/Ywon-Companion",
+  "checks": {
+    "installer_unit_tests": {
+      "pass": 12,
+      "fail": 0
+    },
+    "active_readonly_preflight": "PASS: verifiedModelCache=true, installed=false, paidCalls=false",
+    "active_source_manifest": "PASS",
+    "cached_model_sha256": "961d5ff98a17f4aa6de69864d0aa71fa5bac682301d2b5d17a3f24c5c99a46d4",
+    "cached_model_bytes": 46236750,
+    "source_zip_crc_and_hashes": "PASS",
+    "repaired_actual_install": "NOT_RUN: automatic approval review HTTP503; action not executed",
+    "real_speech_native_vosk": "NOT_RUN"
+  },
+  "source_archive": "outputs/companion-windows-path-fix-2026-10-05/Ywon-Companion-Windows-0.0.5.zip",
+  "archive_sha256": "12c25686bf336a1bfecef5bd6264776e4c0a945794922f32914620e5fd3fe0ef",
+  "archive_bytes": 188498,
+  "archive_files": 70,
+  "old_packages_or_runtime_deleted": false,
+  "q_state_changed": false,
+  "paid_calls": 0,
+  "microphone_activated": false,
+  "private_setup_options_bundled": false
+}

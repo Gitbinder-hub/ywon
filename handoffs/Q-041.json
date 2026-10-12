@@ -1,0 +1,88 @@
+{
+  "task_id": "Q-041",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-041 Studio novice usability and E2E (P2 prototype): ordinary completes onboarding→cost→result→edit→export no bypass, resume/undo/idempotency/mobile-a11y/localized cost verified, real vs mechanical/live distinguished, critical blocks gate. packages/studio-acceptance/src/types+index, 3 tests PASS (108 total).",
+  "changed_files": [
+    "packages/studio-acceptance/src/types.ts",
+    "packages/studio-acceptance/src/index.ts",
+    "tests/studio-acceptance.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/studio-acceptance.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/studio-acceptance.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/studio-acceptance.test.ts",
+      "notes": "3/3 PASS: AC1 no bypass complete flows, AC2 resume/undo/idempotency/mobile, AC3 real vs mechanical critical blocks gate"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/studio-acceptance.test.ts",
+      "notes": "108/108 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/studio-acceptance/src/types.ts",
+        "packages/studio-acceptance/src/index.ts",
+        "tests/studio-acceptance.test.ts"
+      ],
+      "reason": "Ordinary video and static/text flows onboarding→cost→result→edit→export without owner bypass, incomplete and bypass denied."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/studio-acceptance/src/index.ts",
+        "tests/studio-acceptance.test.ts"
+      ],
+      "reason": "Resume/undo, idempotency duplicate denied, mobile/a11y localized cost verified, help minutes logged."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/studio-acceptance/src/index.ts",
+        "tests/studio-acceptance.test.ts"
+      ],
+      "reason": "Real vs mechanical/live hashes distinguished, critical failures logged and blockGateIfCritical true."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Novice run is hash-stub tracker, not real user session replay",
+    "Mobile/a11y stubbed as true — real device matrix pending"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-041 then gate Q-015G P2 usable product",
+    "Real device + manual QA for P2 gate"
+  ],
+  "recommended_next_tasks": [
+    "Q-015G"
+  ],
+  "required_owner_checks": [
+    "Confirm novice flow acceptable for P2 gate",
+    "Review critical-blocking semantics before Q-015G"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

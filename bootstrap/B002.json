@@ -1,0 +1,24 @@
+{
+  "task_id": "B-002",
+  "status": "REVIEW",
+  "owner": "Oleg",
+  "owner_authorized_at": "2026-10-02T12:59:00+07:00",
+  "authorization": "Да, делай офлайн-блок — explicit survey confirmation in this conversation",
+  "scope": "localhost-only persistent project/scenes, own images and pre-created narration, real FFmpeg MP4, preview/download, history/errors/retry/cancel, labeled diagnostic sample",
+  "out_of_scope": "AI/TTS, cloning, providers, paid APIs, production auth/tenancy/database/queues/deploy/publication, accepted P0/P1",
+  "ac": [
+    "Create/load/edit persisted projects with revision conflicts and immutable render snapshots",
+    "Rights-confirmed bounded local uploads; no remote URL fetching",
+    "Real 30–60s portrait/landscape MP4 with captions and supplied audio",
+    "Preview/download/report/history; errors/retry/cancel/restart interruption",
+    "Diagnostic sample explicitly not speech/TTS/product quality acceptance",
+    "Reproducible tests and handoff; Q dependencies/statuses preserved"
+  ],
+  "paid_calls": false,
+  "product_stage_acceptance": false,
+  "owner_acceptance": null,
+  "handoff": "bootstrap/B002_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-02-offline/verification.json",
+  "delivery": "code/tests published to bootstrap/spec-v04-foundation; source verified; draft PR #1",
+  "remote_code_commit": "4502eb2a3b836384cf732731c75478263f3711e1"
+}

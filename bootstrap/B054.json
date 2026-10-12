@@ -1,0 +1,14 @@
+{
+  "task_id": "B-054",
+  "status": "REVIEW",
+  "owner_authorized_at": "2026-10-05",
+  "authorization": "User explicitly requested continuing development and voice conversation design; bounded no-paid/no-deploy scope announced",
+  "scope": "Deterministic finite voice-session control and typed proposal-only boundary; synthetic demonstration",
+  "out_of_scope": "Physical mic/speaker, wake detector, ASR/TTS/AEC/classifier, duplex provider or real audio-quality/OS proof, Q acceptance, main merge, paid calls, deploy",
+  "base_commit": "ef2206c0c4f3ed648bbad4bcea5cfbd5f165465c",
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "paid_calls": false,
+  "handoff": "bootstrap/B054_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-05-companion-voice/verification.json"
+}

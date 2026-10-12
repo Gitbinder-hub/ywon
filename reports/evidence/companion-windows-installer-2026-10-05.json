@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-05",
+  "block": "B-057 / unsigned Windows installer",
+  "displayName": "Ywon Companion",
+  "version": "0.0.6",
+  "defaults": { "desktopShortcut": true, "autostart": false },
+  "environment": "Windows 10 build 19045 x64, Node 24.19.0, Python 3.14.8, .NET Framework csc 4.0.30319",
+  "artifacts": {
+    "installerExe": "outputs/companion-windows-installer-2026-10-05/Ywon-Companion-Setup-0.0.6.exe",
+    "installerSize": 208384,
+    "installerSha256": "09bed4ba2f1022f458a32a0cbd808c772460a183b8d8d18a1281f89a1ad66540",
+    "payloadZip": "outputs/companion-windows-installer-2026-10-05/Ywon-Companion-0.0.6.zip",
+    "payloadZipSize": 186558,
+    "payloadZipSha256": "f12fd17ca39d6b21a769e950bd67fca2177dbdeabea45215e669ce59fe3f8029",
+    "payloadFiles": 70,
+    "uninstallExe": "outputs/companion-windows-installer-2026-10-05/uninstall.exe",
+    "sourcePayload": "outputs/companion-windows-path-fix-2026-10-05/Ywon-Companion"
+  },
+  "registry": {
+    "uninstallKey": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\YwonCompanion",
+    "uninstallFields": ["DisplayName=Ywon Companion", "Publisher=Ywon", "DisplayVersion=0.0.6", "UninstallString", "QuietUninstallString"],
+    "autostartKey": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\YwonCompanion",
+    "autostartAfterSilentInstall": "absent (as expected OFF)"
+  },
+  "shortcuts": {
+    "startMenu": "Ywon\\Ywon.lnk + Uninstall Ywon Companion.lnk",
+    "desktop": "Ywon Companion.lnk (present after --silent)",
+    "target": "Ywon.cmd -> START.cmd",
+    "workingDir": "%LOCALAPPDATA%\\Ywon\\Ywon Companion"
+  },
+  "checks": [
+    "csc winexe compile uninstall.exe PASS (6656 bytes)",
+    "csc winexe compile Ywon-Companion-Setup-0.0.6.exe PASS (208384 bytes, embedded payload.zip + uninstall.exe)",
+    "certutil hash matches manifest sha256",
+    "--silent install exit 0, install dir created, 24 top-level entries",
+    "Start Menu shortcuts present, Desktop shortcut present (ON by default)",
+    "Uninstall registry key present with correct DisplayName/Publisher/Version",
+    "Autostart Run value absent (OFF by default)",
+    "uninstall --silent removes shortcuts and Uninstall key, leaves empty dir held open (deferred rmdir via temp cmd, manual delete possible)",
+    "per-user install, no admin, no PATH change, no bundled Node/Python, no network"
+  ],
+  "notRun": [
+    "GUI install dialog on clean profile / screenshot",
+    "autostart checkbox ON path",
+    "full deferred rmdir after reboot",
+    "real ASR/mic after installed payload",
+    "Windows 11 device, signed MSI/MSIX, auto-update"
+  ],
+  "transitions": "TR-05/TR-06 unsigned pilot wrapper; signed/tray/production remain future. No tasks/project.json change."
+}

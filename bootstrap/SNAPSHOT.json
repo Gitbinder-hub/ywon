@@ -1,0 +1,17 @@
+{
+  "repository": "Ywoom-space/Ywoom",
+  "branch": "bootstrap/spec-v04-foundation",
+  "head": "6fbb5d8c6de6566773a541ecb51a221e9803fb14",
+  "base": "971b26aca5d3dbb29d6d95239a9b395b83cfb978",
+  "pull_request": "https://github.com/Ywoom-space/Ywoom/pull/1",
+  "local_spec_import": "complete",
+  "remote_spec_import": "complete_verified",
+  "bootstrap_status": "REVIEW",
+  "paid_provider_calls": 0,
+  "deployment_performed": false,
+  "snapshot_kind": "verified source import commit, not a claim about later metadata commits",
+  "verified_on": "2026-10-02",
+  "verification_evidence": "bootstrap/evidence/2026-10-02-import-verification/verification.json",
+  "github_ci": "unknown: check-run read HTTP403",
+  "next_ready_task": "Q-001 (owner gate)"
+}

@@ -1,0 +1,4 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+# No new runtime dependencies. Registry install/lockfile unverified.

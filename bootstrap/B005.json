@@ -1,0 +1,42 @@
+{
+  "task_id": "B-005",
+  "status": "REVIEW",
+  "owner_authorized_at": "2026-10-03T20:34:15+07:00",
+  "authorization": "Owner requested next specification/code block; narrowed to additive offline persistence on B-004",
+  "scope": "SQLite local preview units, optimistic versions, transactional events/receipts, persistent recovery constraints, Node/Python CLI, scoped tests",
+  "out_of_scope": "authoritative live capability registry, production auth/tenant/queue/Postgres/ledger/reservations/outbox/provider jobs, paid actions, deployment/main merge and Q-stage acceptance",
+  "base_commit": "39d639460661393414f5556d5a02ac5f18c98b18",
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "paid_calls": false,
+  "new_runtime_dependencies": false,
+  "handoff": "bootstrap/B005_HANDOFF.md",
+  "design": "bootstrap/B005_STORE_DESIGN.md",
+  "evidence": "bootstrap/evidence/2026-10-03-state/verification.json",
+  "ac": [
+    {
+      "id": "AC1",
+      "text": "Persist validated plan/recovery and restore via separate process without execution."
+    },
+    {
+      "id": "AC2",
+      "text": "Atomic state/event/receipt, exact replay, idempotency conflicts, optimistic writer race."
+    },
+    {
+      "id": "AC3",
+      "text": "Freeze budget/plan revisions and cumulative counters; unknown liability cannot be silently cleared."
+    },
+    {
+      "id": "AC4",
+      "text": "Hash-linked history integrity and append-only writer contract with truthful local threat boundary."
+    },
+    {
+      "id": "AC5",
+      "text": "Strict compile, Python syntax, new tests plus B-004 rerun, actual CLI create/get."
+    },
+    {
+      "id": "AC6",
+      "text": "Recorded REVIEW/no gates, latest status, explicit next-chat handoff and missing full checks."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Ywon Companion — source pilot 0.0.3
+
+Unsigned sources, NOT signed installer or Windows certification. Node24 + supported local Chrome/Edge. Default meter/test tone needs no npm/Python/model: `node scripts/companion_audio.ts --local-audio-pilot`. Open printed127.0.0.1 URL locally; Ctrl+C stops host. run-audio.cmd default-mode launcher untested on Windows.
+Optional Russian offline ASR: bootstrap/COMPANION_ASR_PILOT.md. CPython3.10+ x64, separate venv/hash-locked dependencies + manual checked model required; none bundled/auto-installed. Two CLI opt-in flags + separate UI consent. RAM-only15s phrase → editable draft → review → shared-core proposal. No conversational model/TTS/auto tool execution/cloud/paid calls. Windows hardware test pending.
+Inventory: bootstrap/COMPANION_LOCAL_PILOT.md. Voice target: docs/architecture/COMPANION_VOICE.md. Temporary gaps/evidence: bootstrap/B056_HANDOFF.md. No secrets/provider keys needed; don't speak passwords/seeds. Inspect sources, retain OS protections, no admin. manifest.json is checksum inventory NOT signing/authority. Tests: `node --test tests/companion*.test.ts tests/companion*.test.mjs`.

@@ -1,0 +1,46 @@
+{
+  "skillId": "video-prompting",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 49,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "ec6f3ddd7ac86da26c63b1b0f6eabeb26a45551f719b024597a91b7d9620cc4c"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "ea18246fa9205b844a2f46e31a8632ce03bc8a79b55fc5b1f80af23707b1ca96"
+  },
+  "canary": {
+    "skillId": "video-prompting",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:28.656Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "110f46c8de331cd4…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; model_templates fidelity honest",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:28.659Z"
+}

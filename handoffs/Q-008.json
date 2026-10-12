@@ -1,0 +1,97 @@
+{
+  "task_id": "Q-008",
+  "agent": "cline/Ywon-PC",
+  "session": "2026-10-07T02:32:42+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-008 durable workflow/journal/recovery (P1 offline prototype): persisted steps/leases/operationIds (infra/migrations/002), leases с fencingToken/TTL, outbox идемпотентность по operationId, journal append-only с compensating (compensationOf), retry exponential + dead_letter, cancellation/pause drain, crash-after-submit unknown+fencing без blind resubmit, duplicate callback идемпотентность, recovery pinned unit/envelope. 6 новых тестов PASS, overlay AC покрыты в reason AC. Postgres/S3 остаётся offline.",
+  "changed_files": [
+    "packages/orchestrator/src/types.ts",
+    "packages/orchestrator/src/journal.ts",
+    "packages/orchestrator/src/lease.ts",
+    "packages/orchestrator/src/outbox.ts",
+    "packages/orchestrator/src/workflow.ts",
+    "packages/orchestrator/src/index.ts",
+    "infra/migrations/002_workflow_journal.sql",
+    "tests/workflow-durable.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "infra/migrations/002_workflow_journal.sql",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/workflow-durable.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/workflow-durable.test.ts",
+      "notes": "6/6 PASS: journal append-only+compensate различима, persisted leases/fencing, unknown без blind resubmit, duplicate callback ignore, retry exponential/dead_letter, cancel/pause drain, recover envelope"
+    },
+    {
+      "command": "node --test tests/auth-tenant.test.ts tests/auth-api.test.ts tests/contracts.test.ts tests/api.test.ts tests/workflow-durable.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/workflow-durable.test.ts",
+      "notes": "32/32 PASS (6 workflow + 26 existing), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/orchestrator/src/types.ts",
+        "packages/orchestrator/src/lease.ts",
+        "packages/orchestrator/src/outbox.ts",
+        "packages/orchestrator/src/workflow.ts",
+        "infra/migrations/002_workflow_journal.sql",
+        "tests/workflow-durable.test.ts"
+      ],
+      "reason": "Persisted steps/leases/operationIds в памяти + migration 002 (workflows/workflow_steps/workflow_leases/workflow_outbox/workflow_journal с PK/CHECK/UNIQUE), leases с fencingToken/TTL + holderForToken/expired, outbox enqueue идемпотентен по operationId, retry exponential + dead_letter, cancel/pause semantics"
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/orchestrator/src/outbox.ts",
+        "packages/orchestrator/src/workflow.ts",
+        "packages/orchestrator/src/lease.ts",
+        "tests/workflow-durable.test.ts"
+      ],
+      "reason": "Crash-after-submit ставит unknown и forbids blind resubmit (scheduleRetry return early при unknown), reconcile выводит из unknown, duplicate callback duplicate_ignored, lease expiry/fencing проверяется holderForToken/expired — второй holder не пройдёт. Overlay A-20261003-Q-008-1 (unknown→reconcile без blind submit, pause drains/polls) и A-20261005-Q-008-1 (fencing/replay/suspend, lease expiry не даёт blind resubmit) покрыты."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/orchestrator/src/journal.ts",
+        "packages/orchestrator/src/workflow.ts",
+        "infra/migrations/002_workflow_journal.sql",
+        "tests/workflow-durable.test.ts"
+      ],
+      "reason": "Journal append-only (только append, нет update/delete, size монотонно), compensating записи с kind=compensate:* и compensationOf -> оригинал, reversible флаг, несовместимая компенсация кидает error; migration 002 journal sequence BIGSERIAL append-only"
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Offline prototype: in-memory store, не Postgres — персистенция real DB будет в Q-009/Q-010 integration",
+    "No real external provider in Q-008 — poll/reconcile тестируется на mock, не на live API",
+    "Fencing token monotonic in-process only — в кластере нужен DB-backed counter"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-009 budget reserve/ledger/reconcile (atomic caps + pending liabilities)",
+    "Q-010 storage/provenance/повторный монтаж",
+    "Q-036 editable-doc contracts"
+  ],
+  "recommended_next_tasks": ["Q-009", "Q-036"],
+  "required_owner_checks": [
+    "Подтвердить offline prototype journal/lease/outbox приемлем для P1",
+    "Принять migration 002 форму до Postgres поднятия"
+  ],
+  "costs": { "known_usd": 0, "notes": "No paid calls in Q-008 (offline only). Cap unchanged." }
+}

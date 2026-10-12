@@ -1,0 +1,3 @@
+PASS: refusal on conflict before writes; approved ZIP import; existing code and bootstrap Makefile retained; source registry validates; full output manifest verifies.
+Imported 200 spec files; code preserved.
+Run make check, review bootstrap/HANDOFF.md and actual git diff before acceptance.

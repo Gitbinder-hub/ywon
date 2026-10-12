@@ -1,0 +1,87 @@
+{
+  "task_id": "Q-025",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-025 P5 branch decomposition (offline): bounded tasks with feature links and DAG, Q-030G depends on implemented tasks, each claim with limits and verification. packages/p5-decomposition/src/types+index, 3 tests PASS (129 total).",
+  "changed_files": [
+    "packages/p5-decomposition/src/types.ts",
+    "packages/p5-decomposition/src/index.ts",
+    "tests/p5-decomposition.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/p5-decomposition.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/p5-decomposition.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/p5-decomposition.test.ts",
+      "notes": "3/3 PASS: AC1 bounded tasks/DAG, AC2 gate deps, AC3 claim limits"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts tests/external-users.test.ts tests/founding-creator.test.ts tests/analytics-import.test.ts tests/golden-library.test.ts tests/experiments.test.ts tests/p5-decomposition.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/p5-decomposition.test.ts",
+      "notes": "129/129 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/p5-decomposition/src/types.ts",
+        "packages/p5-decomposition/src/index.ts",
+        "tests/p5-decomposition.test.ts"
+      ],
+      "reason": "Decomposed into bounded tasks with featureId, budget, rights, DAG via dependsOn."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/p5-decomposition/src/index.ts",
+        "tests/p5-decomposition.test.ts"
+      ],
+      "reason": "Gate dependsOn includes all implemented tasks, not just planning doc."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/p5-decomposition/src/index.ts",
+        "tests/p5-decomposition.test.ts"
+      ],
+      "reason": "Claim requires limits string and verified true."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Decomposition is stub, not real vendor benchmark evidence",
+    "Tasks not yet linked to actual feature implementation"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-025 then enable selected P5 tasks Q-026..Q-029 and Q-030G after implementation"
+  ],
+  "recommended_next_tasks": [
+    "Q-030G"
+  ],
+  "required_owner_checks": [
+    "Confirm P5 decomposition scope acceptable",
+    "Review budget/rights before enabling P5 tasks"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

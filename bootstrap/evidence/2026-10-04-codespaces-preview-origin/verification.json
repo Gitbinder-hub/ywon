@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "taskId": "B-047",
+  "status": "REVIEW",
+  "tests": {
+    "focusedSecurity": {
+      "passed": 2,
+      "failed": 0
+    },
+    "changedFileSyntax": "PASS",
+    "typescript": {
+      "passed": true,
+      "version": "5.9.3 fallback",
+      "scope": "local-request module and tests",
+      "pinned7_0_2Wrapper": "NOT_RUN"
+    }
+  },
+  "verified": [
+    "localhost HTTP same-origin retained",
+    "exact derived Codespaces HTTPS host admitted",
+    "foreign origin denied",
+    "HTTP downgrade denied",
+    "arbitrary and suffix-lookalike Codespaces hosts denied",
+    "shared boundary wired into Studio/offline, journey and live-result routes"
+  ],
+  "notRun": [
+    "owner forwarded URL after pull/restart",
+    "complete API/browser suite",
+    "pinned toolchain wrapper",
+    "CI"
+  ],
+  "sideEffects": {
+    "network": false,
+    "providerCalls": 0,
+    "paidCalls": false,
+    "portVisibilityChanged": false,
+    "qStatusChanged": false,
+    "deployed": false
+  },
+  "limitations": [
+    "Codespaces port must remain Private.",
+    "Exact environment-derived host support is not production authentication.",
+    "No wildcard app.github.dev trust is granted."
+  ]
+}

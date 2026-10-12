@@ -1,0 +1,76 @@
+{
+  "task_id": "B-005",
+  "base_commit": "39d639460661393414f5556d5a02ac5f18c98b18",
+  "environment": {
+    "node": "24.14.1",
+    "typescript": "7.0.2",
+    "python": "3.13.14",
+    "node_types": "18.19.130",
+    "source_scope": "reconstructed B004/B005 files, not full original checkout"
+  },
+  "checks": [
+    {
+      "command": "tsc -p bootstrap/B005.tsconfig.json --typeRoots <preinstalled>/@types",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m py_compile workers/architect/store.py",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "command": "node --test tests/architect.test.ts tests/architect-state.test.ts",
+      "result": "pass",
+      "tests": 65,
+      "new_state_tests": 25,
+      "rerun_preflight_tests": 40,
+      "failures": 0,
+      "skips": 0
+    },
+    {
+      "command": "architect_state.ts create/get with B005 command fixtures in separate Node processes",
+      "result": "pass",
+      "exit_codes": [
+        0,
+        0
+      ]
+    },
+    {
+      "scenario": "two actual concurrent Node writers at same version",
+      "result": "pass",
+      "accepted": 1,
+      "rejected_version_conflict": 1
+    },
+    {
+      "scenario": "SQLite process crash before commit",
+      "result": "pass",
+      "previous_state_retained": true
+    }
+  ],
+  "not_run": [
+    "full make check/spec-check/project.py",
+    "all original suites/CI",
+    "browser/UI/live media/production economics",
+    "initialization crash/disk-full/power loss",
+    "production auth/queue/ledger/provider idempotency",
+    "forensic DB-owner tamper resistance"
+  ],
+  "paid_provider_calls": 0,
+  "owner_acceptance": null,
+  "source_sha256": {
+    "workers/architect/store.py": "b7d0194e349d44943d657a411b146e56c81cfe4f03fee5c1b9115efa06360b81",
+    "packages/architect/src/store.ts": "3726cd1b09e721794b61f95e9107fa97b3492a7bb2285406b0ae18d816b2b835",
+    "scripts/architect_state.ts": "472b1f606a4e75f461901d91e04499252950c0ab5e3a65278e24c5cee2d9700b",
+    "tests/architect-state.test.ts": "2785a4f4794071b1e598069c939a2eb7eed3ee3680a3ae733018165d2240f529",
+    "bootstrap/B005.tsconfig.json": "b54f73660bc181a48eac3b9d6076ba14f85ad02c34ca8e8992212e7eceb4abae",
+    "bootstrap/fixtures/B005-create.json": "9ec83ce9fdd9a189d24cf6ceb927a738630f98b3991d7fd82e8b96006724ace0",
+    "bootstrap/fixtures/B005-get.json": "2dab3d2693b76afde8c6596fb6e37b05571f4779b8b8ff464e2e0f963111c1d9",
+    "bootstrap/B005_STORE_DESIGN.md": "58babf3e4ba57ac84f7e23af2ccad042dcfffcb65271bc3c2ae333cb0d7892ed",
+    "bootstrap/B005.json": "9250db756efea0b7b2ccca10bf1ecacf92c2b88870309513708017e55faf0ae9",
+    "bootstrap/B005_HANDOFF.md": "3de48f95f6bc9b7d29d482e763ffb6c4d0483900786980a714b34d98181225cb",
+    "handoffs/NEXT_CHAT_B005.txt": "6c2d78bb55bbc59d8cbbda0b9ed79800c1a06ea29fbc6ccb668b5553ec3ce0c9",
+    "packages/architect/README.md": "051436464444f9dafecf523de0bf9b9b4978315eb2bd98d53967ed4126a7fcb5",
+    "bootstrap/STATUS.md": "cfd5722044aaddc4204b64e9e69ea033a3ca18c9ed0d7991c75486f2f64af8b1"
+  }
+}

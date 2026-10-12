@@ -1,0 +1,23 @@
+# B-005 — durable local preview state, not production queue
+
+## Bounded design decision
+Owner 2026-10-03 20:34 requested next code block. Implement offline state persistence on B-004 with Python standard-library SQLite and TypeScript bridge. No installed dependencies or Node sqlite typing workaround. SQLite is ONLY a local preview prototype store; existing P1 Postgres/queue ADR stands. Do not promote this to production auth/ledger/queue/multitenancy by renaming it.
+
+## Contracts
+Commands create/revise/recover/stop/get/events; mutation has explicit commandId and expectedVersion. unitId immutable. GenerationUnit plan revision and stored state version separate. Each mutating command atomically commits projection + hash-linked append-only event + idempotency receipt under BEGIN IMMEDIATE. WAL/synchronous FULL. Identical command replay returns original receipt, different payload under same ID conflicts. A receipt is local persistence proof, NOT an external provider idempotency guarantee. Restart needs same database and original command ID, not new IDs.
+Initial plan revision=1. revise requires current revision+1/current state version; fixed budget contract cannot change through this command. Unsupported budget amendment remains denied until separately designed authenticated amendment. create does not overwrite existing unit. Pending uncertainty cannot be cleared by new plan or caller declaring zero; no reconciliation-resolution command exists yet.
+Stored states planned/blocked/needs_user/reconciling/stopped; deliberately NO approved/running/published. B-004 repair_proposed persists needs_user because execution delegation is not activated. stop terminal; financialUncertainty/attempts/cost retained. Recovery input must refer to current unit/revision/budget/scenes/assets. Failed attempts and declared confirmed costs never decrease across revisions. Cross-unit trust/identity/auth not implemented; trusted local caller can make a new unit, not authoritative anti-fraud.
+Reports always executionAllowed=false/budgetReserved=false. Provider calls/atomic financial reservations/real invoices/actual QA/durable executor leases/outbox/cancel/reconcile remain absent. Capabilities still fixture declarations; authoritative registry is next work, not included in this block.
+
+## Integrity and filesystem limits
+Events/commands SQL UPDATE/DELETE triggers plus full per-unit hash-chain/snapshot verification on reads. These catch accidental corruption/projection inconsistency under normal writer contract. They are NOT cryptographic external tamper proof: database owner can drop triggers/rebuild history/alter receipts. No signing/external anchoring or encrypted secret storage. No secrets or production tenant data in this DB.
+Trusted local DB parent folder; reject final database symlink/nonregular path and unrelated SQLite application/schema IDs. Not a hardened hostile multiuser filesystem service: parent path races, ACLs, malicious Python PATH and DB-owner tampering out of scope. Only use controlled sandbox/directory. CLI input bounded/no-follow; Python stdin max256 KiB, Node output max2 MiB, child timeout10s; unit<=200 events/store<=100 units, event pages50.
+First initialization uses exclusive sibling .init-lock. Crash during initialization may leave a stale lock/partial DB and safely block startup; no auto-deleting unknown live lock. Human checks process and backup/schema integrity before removing stale lock or replacing EMPTY prototype DB. Never do this for production data. Concurrent already-initialized writers use SQLite transactions; one expected-version winner. Manual init repair NOT automated/tested.
+On child timeout/failure result is worker_outcome_unknown_check_state: get current state/events, replay exact same command only after checking; no external generation exists. SQLite transaction crash before commit tested; initialization disk-full/crash and OS power-loss not simulated. Lost-response receipt replay tested by duplicate command, not a killed-after-commit worker.
+
+## Run (from actual branch, Node24 + Python3)
+node scripts/architect_state.ts --db /tmp/Ywoom-preview.sqlite --input bootstrap/fixtures/B005-create.json
+node scripts/architect_state.ts --db /tmp/Ywoom-preview.sqlite --input bootstrap/fixtures/B005-get.json
+node --test tests/architect.test.ts tests/architect-state.test.ts
+npx --no-install tsc -p bootstrap/B005.tsconfig.json
+Use installed pinned tools only. State CLI exit0 accepted/read/replay, exit3 rejected/unknown worker, exit2 malformed CLI/file. DB and journals local runtime files, never commit them. Input fixtures synthetic and not live pricing/quality evidence.

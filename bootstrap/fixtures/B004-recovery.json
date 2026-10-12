@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "unitId": "demo-episode",
+  "revision": 1,
+  "budget": {
+    "baselineMinor": 100,
+    "repairPercent": 20,
+    "projectRemainingMinor": 1000,
+    "monthRemainingMinor": 1000
+  },
+  "defect": "camera",
+  "unsuccessfulAttempts": 2,
+  "confirmedMinor": 70,
+  "pendingUpperBoundMinor": 0,
+  "remainingInitialMinor": 10,
+  "repairEstimateMinor": 10,
+  "changedStrategy": true,
+  "affectedSceneIds": [
+    "scene1"
+  ],
+  "retainedAssetIds": [
+    "image1"
+  ]
+}

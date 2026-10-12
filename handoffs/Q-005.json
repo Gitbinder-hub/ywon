@@ -1,0 +1,124 @@
+{
+  "task_id": "Q-005",
+  "agent": "cline/act",
+  "session": "2026-10-06T09:24:25+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-005 9 real Google-live runs T1x3+T2x3+T3x3 per frozen baseline: 8 new + reuse google-p0-002. Each 1 text+3 image+1 TTS+FFmpeg 1280x720 h264/aac. Strict 30+-2: 1/9 pass (29.13s usable), 8/9 reject short. Cost 9*110300=992700 \\.993 within cap, new spend 882400 \\.882, R not spent. Human 52min. Rework: enforce narration/pad, 3-run smoke \\.397.",
+  "changed_files": [
+    "bootstrap/fixtures/P0-T1-sky.json",
+    "bootstrap/fixtures/P0-T1-sky-003.json",
+    "bootstrap/fixtures/P0-T2-photosynthesis.json",
+    "bootstrap/fixtures/P0-T2-photosynthesis-002.json",
+    "bootstrap/fixtures/P0-T2-photosynthesis-003.json",
+    "bootstrap/fixtures/P0-T3-recycling.json",
+    "bootstrap/fixtures/P0-T3-recycling-002.json",
+    "bootstrap/fixtures/P0-T3-recycling-003.json",
+    "reports/Q005_BASELINE_FREEZE_2026-10-06.md",
+    "reports/eval/P0-001.json",
+    "reports/eval/P0-002.json",
+    "reports/eval/P0-003.json",
+    "reports/eval/P0-004.json",
+    "reports/eval/P0-005.json",
+    "reports/eval/P0-006.json",
+    "reports/eval/P0-007.json",
+    "reports/eval/P0-008.json",
+    "reports/eval/P0-009.json",
+    "reports/P0_EVAL_AGGREGATE_2026-10-06.md",
+    "reports/P0_EVAL_AGGREGATE_2026-10-06_B.md",
+    "handoffs/Q-005.json"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/P0_EVAL_AGGREGATE_2026-10-06.md",
+      "notes": "PASS spec/task/handoff/archive. 9 MP4 decodeable via ffprobe."
+    },
+    {
+      "command": "node --env-file=.env scripts/p005_probe.mjs --live x8 + reuse google-p0-002",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "outputs/p0-t*/manifest.json",
+      "notes": "8 live 2026-10-06 + google-p0-002 completed 5 calls each gemini-3.5-flash-lite/3.1-flash-lite-image/3.8-flash-lite-tts Kore 110300/cap250000 withinCap true 1attempt 0unknown"
+    },
+    {
+      "command": "node scripts/p005_status.mjs ffprobe",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "outputs/*/result.mp4",
+      "notes": "Durations 24.04,27.88,26.88,26.54,29.13,25.96,26.79,26.46,24.13 only 29.13 inside 30+-2. 8 reject duration_outside_30+-2 h264 1280x720 aac bytes 623k-1138k"
+    },
+    {
+      "command": "node scripts/q005_gen1.mjs",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/eval/P0-001..009.json",
+      "notes": "Per-run JSON inputHash models prompts assetHashes sha mp4 sha/bytes/duration cost B/R/C attempts 1/1 rejected[] humanReview rubric minutes critical acceptance 1/9 11.1%"
+    },
+    {
+      "command": "aggregate cost/human",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/P0_EVAL_AGGREGATE_2026-10-06.md",
+      "notes": "Cost B_total 992700 \\.993 new 882400 \\.882 R198540 not spent C1191240 cost/accepted \\.993 Human 52min p50 6 waste~1 reuse0 invoice pending n=9 screening"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "outputs/p0-t1-sky-002/manifest.json",
+        "reports/eval/P0-001.json",
+        "reports/Q005_BASELINE_FREEZE_2026-10-06.md"
+      ],
+      "reason": "9 runs T1x3+T2x3+T3x3 per freeze: inputs/prompts/models/assets hashes costs all attempts 1/1 each 0 hidden 0 unknown 0 rejected 45 billed units 8 new live +1 reuse"
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "reports/eval/P0-001.json",
+        "reports/P0_EVAL_AGGREGATE_2026-10-06.md"
+      ],
+      "reason": "Human rubric usable/minor/major/reject+8 critical+minutes/reason cost B/R/C min/p50/max per attempt/provider withinCap invoice pending intervention 52min p50 6 recurring defects systematic short 8/9 median26.67 published per-run+aggregate small-sample disclaimer"
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "reports/P0_EVAL_AGGREGATE_2026-10-06.md",
+        "reports/P0_EVAL_AGGREGATE_2026-10-06_B.md"
+      ],
+      "reason": "Rework verdict not hidden: 11% strict acceptance cost/accepted \\.99 gap explicit, n=9 screening disclaimer, next scope enforce narration>=60w/pad apad/tpad 3-run smoke \\.397 then full 9"
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Systematic short 8/9 <28s due to -shortest on wav 41-51w vs 60 target",
+    "Estimate != invoice taxes/FX pending",
+    "Russia not in ai.google.dev regions excerpt - block risk",
+    "Rubric screening needs Oleg owner sign-off VLM advisory only"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner review reports/eval/P0-00X.json + aggregates",
+    "Q-005G go/rework/pivot recommended rework enforce narration/pad 3-run smoke \\.397",
+    "Re-verify prices/regions at rework start 2 attempts pause-before-3rd unknown->reconcile"
+  ],
+  "recommended_next_tasks": [
+    "Q-005G"
+  ],
+  "required_owner_checks": [
+    "Accept 1/9 strict fact and rework not hidden go",
+    "Confirm rework 3-run smoke 330900+66180 micros within cap 250000/run",
+    "Human sign-off rubric per P0-00X.json"
+  ],
+  "costs": {
+    "known_usd": 0.8824,
+    "notes": "New paid this session 8*110300=882400 \\.8824 + google-p0-002 historic 110300 in Q-002 total 992700 \\.993 R20% 198540 not spent estimate preflight not invoice taxes/FX unknown within per-run cap \\.25"
+  }
+}

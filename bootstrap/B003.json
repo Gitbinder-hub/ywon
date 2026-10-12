@@ -1,0 +1,18 @@
+{
+  "task_id": "B-003",
+  "status": "REVIEW",
+  "owner": "Oleg",
+  "owner_authorized_at": "2026-10-02T15:35:16+07:00",
+  "authorization": "Owner selected bounded pre-P0 offline UX prototype exception in the survey",
+  "scope": "localhost-only three entry modes; one browser/origin versioned brief; rule-based missing questions and labeled outline; editable script/scenes; materials/assumptions/unknown-cost cards; explicit current-plan approval; one-way handoff to existing B-002 owned-material montage",
+  "out_of_scope": "AI/TTS/provider integration, paid calls, production onboarding/auth/cloud/tenant/queue/budget/deploy/publication, autonomous self-modification, accepted P0/P1/P2",
+  "paid_calls": false,
+  "new_runtime_dependencies": false,
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "full_repository_regression": "PASS: full make check 117 tests + separate real Chromium 10 = 127, zero skips; full typecheck and project validate/status/next PASS on exact owner ZIP snapshot 2d03aef",
+  "handoff": "bootstrap/B003_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-02-guided/verification.json",
+  "base_commit": "60eeabc2799061963683ddd720a48b012aa26d04",
+  "full_repository_evidence": "bootstrap/evidence/2026-10-02-full/verification.json"
+}

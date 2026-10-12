@@ -1,0 +1,28 @@
+{
+  "id": "B-057",
+  "title": "Unsigned Windows installer (per-user EXE, shortcuts, uninstall)",
+  "date": "2026-10-05",
+  "base_review": "B-056",
+  "mode": "REVIEW",
+  "version": "0.0.6",
+  "displayName": "Ywon Companion",
+  "defaults": { "desktopShortcut": true, "autostart": false },
+  "artifacts": {
+    "installerExe": "outputs/companion-windows-installer-2026-10-05/Ywon-Companion-Setup-0.0.6.exe",
+    "installerSize": 208384,
+    "installerSha256": "09bed4ba2f1022f458a32a0cbd808c772460a183b8d8d18a1281f89a1ad66540",
+    "payloadZip": "outputs/companion-windows-installer-2026-10-05/Ywon-Companion-0.0.6.zip",
+    "payloadFiles": 70,
+    "manifest": "outputs/companion-windows-installer-2026-10-05/manifest.json",
+    "sources": ["installer/YwonInstaller.cs", "installer/YwonUninstaller.cs", "scripts/build_installer.py"]
+  },
+  "install": {
+    "perUserDir": "%LOCALAPPDATA%\\Ywon\\Ywon Companion",
+    "requiresAdmin": false,
+    "registryUninstall": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\YwonCompanion",
+    "registryRun": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\YwonCompanion",
+    "smartScreen": "expected warning for unsigned pilot"
+  },
+  "evidence": "reports/evidence/companion-windows-installer-2026-10-05.json",
+  "notRun": ["GUI dialog visual", "autostart ON", "Windows 11", "signed MSIX", "tray"]
+}

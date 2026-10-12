@@ -1,0 +1,88 @@
+{
+  "task_id": "Q-043",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-043 Founding creator and dogfooding plan (P3 prototype): cohort draft with fees/eligibility/lifetime/support and honest negative allowed, disclosure/consent/privacy-safe metrics no viral guarantee, own channels same permission/budget/review no auto post. packages/founding-creator/src/types+index, 3 tests PASS (117 total).",
+  "changed_files": [
+    "packages/founding-creator/src/types.ts",
+    "packages/founding-creator/src/index.ts",
+    "tests/founding-creator.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/founding-creator.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/founding-creator.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/founding-creator.test.ts",
+      "notes": "3/3 PASS: AC1 cohort with negative allowed, AC2 disclosure/privacy no viral, AC3 same boundaries no auto post"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts tests/external-users.test.ts tests/founding-creator.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/founding-creator.test.ts",
+      "notes": "117/117 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/founding-creator/src/types.ts",
+        "packages/founding-creator/src/index.ts",
+        "tests/founding-creator.test.ts"
+      ],
+      "reason": "Cohort draft validates fees/eligibility/lifetime/support and requires negativeReviewAllowed true."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/founding-creator/src/index.ts",
+        "tests/founding-creator.test.ts"
+      ],
+      "reason": "Disclosure required, privacy-safe metrics, no viral/coercion guarantee, testimonial without coercion."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/founding-creator/src/index.ts",
+        "tests/founding-creator.test.ts"
+      ],
+      "reason": "Own channels same permission/budget/review boundaries, auto posting denied."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Offer is stub, not real legal/billing cohort enrollment",
+    "Metrics privacy stubbed as boolean, not differential privacy evidence"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-043 then gate Q-017G P3",
+    "Q-017G decides demand/cost for P4 branch"
+  ],
+  "recommended_next_tasks": [
+    "Q-017G"
+  ],
+  "required_owner_checks": [
+    "Confirm cohort draft acceptable vs real offer",
+    "Review disclosure before pilot"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

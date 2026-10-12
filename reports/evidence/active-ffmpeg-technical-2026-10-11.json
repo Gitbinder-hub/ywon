@@ -1,0 +1,46 @@
+{
+  "skillId": "ffmpeg-technical",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 48,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "1ea43bcf81fb392ca21a9c479d7c9e42b22bcaaf5c7af9a4a3b4d5da121dadb5"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "e547b160c97de0514023826746047179ffeeae43d30138158d5a9d7f6086ff49"
+  },
+  "canary": {
+    "skillId": "ffmpeg-technical",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:28.255Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "14126daf2291700e…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; orbit forbidden honest",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:28.257Z"
+}

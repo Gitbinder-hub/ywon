@@ -1,0 +1,13 @@
+  createDocument(input:DocInput):Result<EditableDocument>{
+    if(!SAFE_ID.test(input.id)) return {ok:false,code:'invalid_id'};
+    if(!SAFE_ID.test(input.workspaceId)) return {ok:false,code:'invalid_workspaceId'};
+    if(!SAFE_ID.test(input.itemId)) return {ok:false,code:'invalid_itemId'};
+    const item=this.items.get(this.k(input.workspaceId,input.itemId)); if(!item) return {ok:false,code:'item_not_found'};
+    if(item.workspaceId!==input.workspaceId) return {ok:false,code:'tenant_denied'};
+    if(this.docs.has(this.k(input.workspaceId,input.id))) return {ok:false,code:'already_exists'};
+    const compat:Record<string,string[]>={ image:['canvas'], text:['text'], video:['timeline'], sequence:['sequence'] };
+    if(!compat[item.kind]!.includes(input.kind)) return {ok:false,code:'kind_incompatible',reason:item.kind+' not compatible with '+input.kind};
+    const doc:EditableDocument={ id:input.id, workspaceId:input.workspaceId, itemId:input.itemId, schemaVersion:SCHEMA_VERSION, kind:input.kind, coordinateSpace:input.coordinateSpace??'canonical', timebase:input.timebase??null, colorProfile:input.colorProfile??null, currentRevisionRef:null, createdAt:nowIso(), updatedAt:nowIso() };
+    this.docs.set(this.k(input.workspaceId,input.id),{...doc}); this.audit.push('document.create '+this.k(input.workspaceId,input.id)+' kind='+input.kind); return {ok:true,value:{...doc}};
+  }
+  getDocument(workspaceId:string,id:string):EditableDocument|null{ const v=this.docs.get(this.k(workspaceId,id)); return v?{...v}:null; }

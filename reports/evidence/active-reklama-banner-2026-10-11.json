@@ -1,0 +1,46 @@
+{
+  "skillId": "reklama-banner",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 43,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "1029f277f623207bb821cf05fccf3fa4ee7dbe824ed7344205af79215c62ad29"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "85641facc95d895992280360506e432ea4cfd4d3c9c7cb2c18e1a5af07c468e4"
+  },
+  "canary": {
+    "skillId": "reklama-banner",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:28.318Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "240668d0fa889127…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; rollback does not refund; new version does not mutate accepted manifest",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:28.320Z"
+}

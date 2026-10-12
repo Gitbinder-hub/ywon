@@ -1,0 +1,89 @@
+{
+  "task_id": "Q-016",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-016 Series of real episodes (P3 prototype): aggregate no cherry-pick with evidence pinned, root cause + repair cost + threshold uncertainty, critical incidents separate and gate-blocking. packages/episode-eval/src/types+index, 3 tests PASS (111 total).",
+  "changed_files": [
+    "packages/episode-eval/src/types.ts",
+    "packages/episode-eval/src/index.ts",
+    "tests/episode-eval.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/episode-eval.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/episode-eval.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/episode-eval.test.ts",
+      "notes": "3/3 PASS: AC1 no cherry-pick all pinned, AC2 root cause threshold, AC3 critical incidents block expansion"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/episode-eval.test.ts",
+      "notes": "111/111 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/episode-eval/src/types.ts",
+        "packages/episode-eval/src/index.ts",
+        "tests/episode-eval.test.ts"
+      ],
+      "reason": "Diverse episodes with QA/cost/human/evidence per run, aggregate includes failed not cherry-picked, totalHumanMin and allEvidencePinned tracked."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/episode-eval/src/index.ts",
+        "tests/episode-eval.test.ts"
+      ],
+      "reason": "rootCauses groups by cause with avgRepairCost, thresholdWithUncertainty returns rework/low when failures exist, report pinned."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/episode-eval/src/index.ts",
+        "tests/episode-eval.test.ts"
+      ],
+      "reason": "Budget/privacy/publish incidents tracked separately, criticalResolved blocks expansion while unresolved."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Episodes are stub records, not real provider renders with human rubric",
+    "Incident resolution is boolean, not linked to actual policy/budget fix evidence"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-016 then Q-017 5 external users before Q-017G gate",
+    "Q-043 founding creator plan in parallel"
+  ],
+  "recommended_next_tasks": [
+    "Q-017",
+    "Q-043"
+  ],
+  "required_owner_checks": [
+    "Confirm P3 stub diversity acceptable vs real episode evidence",
+    "Review critical-blocking semantics before Q-017G"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype). Note Q-016 paid=true but stubbed."
+  }
+}

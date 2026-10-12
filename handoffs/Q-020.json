@@ -1,0 +1,87 @@
+{
+  "task_id": "Q-020",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-020 Experiments and improvement proposals (P4 prototype): preregistered design/sample/window/metric/cost/stop, all outcomes win/loss/inconclusive/invalid supported without forced success, strategy proposed to owner and tested on known dataset. packages/experiments/src/types+index, 3 tests PASS (126 total).",
+  "changed_files": [
+    "packages/experiments/src/types.ts",
+    "packages/experiments/src/index.ts",
+    "tests/experiments.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/experiments.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/experiments.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/experiments.test.ts",
+      "notes": "3/3 PASS: AC1 preregister, AC2 all outcomes, AC3 owner proposal + known dataset"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts tests/studio-acceptance.test.ts tests/episode-eval.test.ts tests/external-users.test.ts tests/founding-creator.test.ts tests/analytics-import.test.ts tests/golden-library.test.ts tests/experiments.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/experiments.test.ts",
+      "notes": "126/126 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/experiments/src/types.ts",
+        "packages/experiments/src/index.ts",
+        "tests/experiments.test.ts"
+      ],
+      "reason": "Preregister requires design/sample/window/metric/cost/stop and flag true, missing fields denied."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/experiments/src/index.ts",
+        "tests/experiments.test.ts"
+      ],
+      "reason": "All four outcomes win/loss/inconclusive/invalid accepted, forced success not required, not preregistered denied."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/experiments/src/index.ts",
+        "tests/experiments.test.ts"
+      ],
+      "reason": "Strategy change proposedToOwner with hash, testedOnKnownDataset requires registry + dataset."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Pre-registration in-memory, not Postgres + immutable log",
+    "No real metric measurement — stubbed as string"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-020 then gate Q-020G P4"
+  ],
+  "recommended_next_tasks": [
+    "Q-020G"
+  ],
+  "required_owner_checks": [
+    "Confirm P4 experiment stubs acceptable for offline gate",
+    "Review real metric plan before live P4 experiments"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

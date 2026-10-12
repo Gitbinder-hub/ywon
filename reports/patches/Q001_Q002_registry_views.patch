@@ -1,0 +1,182 @@
+--- a/tasks/project.json
++++ b/tasks/project.json
+@@ -1,7 +1,7 @@
+ {
+   "schema_version": 1,
+   "spec_version": "0.4.0",
+-  "updated_at": "2026-10-01T08:52:39Z",
++  "updated_at": "2026-10-03T06:03:03+00:00",
+   "product_implementation": "not_started",
+   "current_phase": "P0",
+   "task_history_policy": "DONE requires owner acceptance; REVIEW does not unblock dependencies",
+@@ -32,7 +32,7 @@
+       "phase": "P0",
+       "kind": "owner_gate",
+       "enabled": true,
+-      "status": "TODO",
++      "status": "DONE",
+       "depends_on": [],
+       "context": [
+         "docs/governance/14_OPEN_DECISIONS.md",
+@@ -62,14 +62,27 @@
+       "scope": "Владелец принимает v0.4 и рамки P0",
+       "out_of_scope": "Другие этапы/неподтверждённые расширения, production deployment без решения владельца.",
+       "paid_calls": false,
+-      "assignee": null,
+-      "session": null,
+-      "handoff": null,
+-      "checkpoint": null,
+-      "block_reason": null,
+-      "review_note": null,
+-      "acceptance": null,
+-      "history": []
++      "assignee": "Oleg Gitbinder",
++      "session": "2026-10-03T05:26:47+00:00",
++      "handoff": "handoffs/Q-001.json",
++      "checkpoint": null,
++      "block_reason": null,
++      "review_note": null,
++      "acceptance": {
++        "by": "Oleg Gitbinder",
++        "at": "2026-10-03T05:26:47+00:00",
++        "note": "Explicit owner confirmation 2026-10-03 12:24 Asia/Bangkok: Q-001 accepted for Q-002/Q-003 preparation at zero spend; no stage or paid execution approval",
++        "owner_confirmed": true,
++        "handoff_sha256": "879c30cc42593de247689d0417192bea34841ea5313921f128fa6a6fad6f0ff5"
++      },
++      "history": [
++        {
++          "at": "2026-10-03T05:26:47+00:00",
++          "action": "owner_gate",
++          "by": "Oleg Gitbinder",
++          "note": "Explicit owner confirmation 2026-10-03 12:24 Asia/Bangkok: Q-001 accepted for Q-002/Q-003 preparation at zero spend; no stage or paid execution approval"
++        }
++      ]
+     },
+     {
+       "id": "Q-002",
+@@ -77,7 +90,7 @@
+       "phase": "P0",
+       "kind": "implementation",
+       "enabled": true,
+-      "status": "TODO",
++      "status": "REVIEW",
+       "depends_on": [
+         "Q-001"
+       ],
+@@ -103,14 +116,27 @@
+       "scope": "Проверить реальные API, цены, права и совместимость",
+       "out_of_scope": "Установка непроверенных навыков, широкий Router/Studio, paid benchmarks до Q-003.",
+       "paid_calls": false,
+-      "assignee": null,
+-      "session": null,
+-      "handoff": null,
+-      "checkpoint": null,
+-      "block_reason": null,
+-      "review_note": null,
+-      "acceptance": null,
+-      "history": []
++      "assignee": "Notion AI",
++      "session": "Ywoom-q002-20261003",
++      "handoff": "handoffs/Q-002.json",
++      "checkpoint": null,
++      "block_reason": null,
++      "review_note": null,
++      "acceptance": null,
++      "history": [
++        {
++          "at": "2026-10-03T05:26:47+00:00",
++          "action": "start",
++          "by": "Notion AI",
++          "note": ""
++        },
++        {
++          "at": "2026-10-03T06:03:03+00:00",
++          "action": "submit",
++          "by": "Notion AI",
++          "note": "handoffs/Q-002.json"
++        }
++      ]
+     },
+     {
+       "id": "Q-003",
+--- a/tasks/BACKLOG.md
++++ b/tasks/BACKLOG.md
+@@ -5,8 +5,8 @@
+ 
+ ## P0
+ 
+-### Q-001 Владелец принимает v0.4 и рамки P0 [TODO]
+-- kind: owner_gate; paid_calls: False; agent: -
++### Q-001 Владелец принимает v0.4 и рамки P0 [DONE]
++- kind: owner_gate; paid_calls: False; agent: Oleg Gitbinder
+ - depends: none
+ - context: `docs/governance/14_OPEN_DECISIONS.md`, `docs/product/17_MASTER_PLAN.md`, `docs/quality/19_VALIDATION_PROTOCOL.md`, `docs/CHANGE_IMPACT_v0.4.md`, `docs/localization/LANGUAGE_COVERAGE.md`
+ - scope: Владелец принимает v0.4 и рамки P0
+@@ -16,11 +16,11 @@
+   - AC2: Записаны утверждённые live-eval/development cap, валюта, период, stop rule и разрешение paid calls либо явно zero spend.
+   - AC3: Записаны поддерживаемые pilot language/voice/material rights и manual review.
+   - AC4: Отчёт approval без секретов содержит owner/date/choices; unresolved choices явно перечислены.
+-- handoff/checkpoint: -
+-- blocker: -
+-
+-### Q-002 Проверить реальные API, цены, права и совместимость [TODO]
+-- kind: implementation; paid_calls: False; agent: -
++- handoff/checkpoint: handoffs/Q-001.json
++- blocker: -
++
++### Q-002 Проверить реальные API, цены, права и совместимость [REVIEW]
++- kind: implementation; paid_calls: False; agent: Notion AI
+ - depends: Q-001
+ - context: `docs/production/06_MODEL_ROUTER.md`, `docs/security/13_POLICIES_RISKS.md`, `docs/research/HIGGSFIELD_EXPRESS_RESEARCH.md`
+ - scope: Проверить реальные API, цены, права и совместимость
+@@ -29,7 +29,7 @@
+   - AC1: Для каждого кандидата official source/checked_at/model ID/region/access/commercial rights записаны.
+   - AC2: Duration/rounding/audio/ref/control/idempotency/cancel/retention ограничения подтверждены или unknown.
+   - AC3: Выбран минимальный image/TTS/video path и резерв, с владельцем согласованы стоимость и ограничения.
+-- handoff/checkpoint: -
++- handoff/checkpoint: handoffs/Q-002.json
+ - blocker: -
+ 
+ ### Q-003 Согласовать задания, quality rubric и план реальных evals [TODO]
+--- a/docs/STATE.md
++++ b/docs/STATE.md
+@@ -4,23 +4,23 @@
+ Current phase: P0
+ Accepted product implementation: not_started
+ Bootstrap implementation: REVIEW (does not accept P0/P1)
+-Registry updated_at: 2026-10-01T08:52:39Z
++Registry updated_at: 2026-10-03T06:03:03+00:00
+ 
+ Это состояние задач, не доказательство работоспособности продукта.
+ Источник: tasks/project.json; полная цель: tasks/features.json и docs/product/17_MASTER_PLAN.md.
+ REVIEW не равно DONE. Моки/spec tests не равно real media acceptance.
+ 
+ ## Counts
+-BLOCKED: 0 | DOING: 0 | DONE: 0 | REVIEW: 0 | TODO: 50
++BLOCKED: 0 | DOING: 0 | DONE: 1 | REVIEW: 1 | TODO: 48
+ 
+ ## Active / awaiting review
+-- None
++- Q-002 REVIEW: Проверить реальные API, цены, права и совместимость | agent=Notion AI | handoff=handoffs/Q-002.json | blocker=-
+ 
+ ## Ready now
+-- Q-001 (owner_gate): Владелец принимает v0.4 и рамки P0
++- No ready tasks; inspect gates/dependencies/blockers.
+ 
+ ## Last accepted
+-- None; no product tasks accepted.
++- Q-001 | by=Oleg Gitbinder | at=2026-10-03T05:26:47+00:00 | evidence=handoffs/Q-001.json
+ 
+ ## Next agent
+ 1. AGENTS.md → validate/status/next → ready task context → last handoff → actual git diff.
+--- a/docs/FEATURE_STATUS.md
++++ b/docs/FEATURE_STATUS.md
+@@ -18,7 +18,7 @@
+ | F13 Публикация и платформы | P2 | unimplemented | Q-015, Q-033 |
+ | F14 Аналитика audience/retention | P4 | unimplemented | Q-018 |
+ | F15 Budget/Cost Ledger/reserve | P1 | unimplemented | Q-009, Q-037, Q-033 |
+-| F16 Model Router/direct/aggregator | P0 | unimplemented | Q-002, Q-013, Q-032 |
++| F16 Model Router/direct/aggregator | P0 | partial_or_under_review | Q-002, Q-013, Q-032 |
+ | F17 Skill Runtime и evals | P2 | unimplemented | Q-013, Q-032 |
+ | F18 Cinema rig/60+ camera presets | P5 | unimplemented | Q-026 |
+ | F19 Blender previz/3D/control | P5 | unimplemented | Q-026 |

@@ -1,0 +1,46 @@
+{
+  "skillId": "b-roll-planning",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 50,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "ef7593c5f8d65c0e6309c55535f5d41f814fe75773204e2e42ed694601706f81"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "abd4439a1b31dc361fe277d0b769546d0e85797ebce80d14441f6e33bf4a4633"
+  },
+  "canary": {
+    "skillId": "b-roll-planning",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:27.840Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "37c39b74b49f0243…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; rights gate forbidden synthetic",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:27.847Z"
+}

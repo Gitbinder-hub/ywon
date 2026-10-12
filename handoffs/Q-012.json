@@ -1,0 +1,90 @@
+{
+  "task_id": "Q-012",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-012 Director Chat, cards and typed approvals (P2 prototype): validated DirectorCommand by schema/role/version, cards script/estimate/revise/stop with revision/hash stale guard, approval single-use version/hash/attempt bound, LLM prose injection is data not authority (parseLlmOutput→validateCommand), budget/policy mutation guard. packages/director-chat/src/types+index, 6 tests PASS (74 total).",
+  "changed_files": [
+    "packages/director-chat/src/types.ts",
+    "packages/director-chat/src/index.ts",
+    "tests/director-chat.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/director-chat.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/director-chat.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/director-chat.test.ts",
+      "notes": "6/6 PASS: AC1 schema/role/version + cards revision/hash, AC2 injection is data + budget/policy mutation guard no direct provider side effect, AC3 stale approval invalidated single-use version/hash/attempt duplicate/malformed cases"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/director-chat.test.ts",
+      "notes": "74/74 PASS (10 budget+6 workflow+9 auth+11 api+4 contracts+9 editable+8 shell+9 cost-vis+6 director+1 auth-api extra), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/director-chat/src/types.ts",
+        "packages/director-chat/src/index.ts",
+        "tests/director-chat.test.ts"
+      ],
+      "reason": "Commands validated by schema/role/version via validateCommand; cards script_ready/estimate/revise/stop carry revision/hash/attempt binding with stale invalidation (isCardStale/invalidateStaleCards), version mismatch denied."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/director-chat/src/index.ts",
+        "tests/director-chat.test.ts"
+      ],
+      "reason": "No direct provider side effect or policy/budget bypass from LLM: parseLlmOutput only succeeds via validateCommand exact schema; injection string stays as chat text, and budget/policy mutation payloads (increase_budget/bypass_policy) flagged by isBudgetOrPolicyMutation independent of model prose."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/director-chat/src/index.ts",
+        "tests/director-chat.test.ts"
+      ],
+      "reason": "Stale artifact approvals invalidated: approval revision/hash/attempt binding enforced single-use (used flag, expiry, hash/attempt mismatch denies); malformed outputs and injection cases covered (empty/too-long/unknown field), duplicate submission denied via CommandDedup (commandId reuse with different payload rejected)."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Offline cards/approvals in-memory only, not yet Postgres durable approval table",
+    "Provider execution wiring intentionally absent — typed commands do not trigger worker/side effect",
+    "Model router cost guard not yet integrated with BudgetLedger reserve deny"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-012 then Q-013 Skill Runtime Router and Q-042 dispatcher",
+    "Q-039 editors + Q-040 journey narrow slices before Q-014 pipeline"
+  ],
+  "recommended_next_tasks": [
+    "Q-013",
+    "Q-042"
+  ],
+  "required_owner_checks": [
+    "Confirm typed command/approval gate acceptable for P2 pilot",
+    "Review LLM prose-as-data boundary before wiring provider"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

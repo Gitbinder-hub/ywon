@@ -1,0 +1,123 @@
+{
+  "task_id": "Q-032",
+  "agent": "opas/mirasim",
+  "session": "2026-10-10T23:31:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-032 Skill Lab scaffold (P6): mechanical/real eval separated with holdout/blind, draft->canary->active with small scope and rollback (no refund of billed calls), scout candidates verified on sandbox branch, production actions need independent approval and protected paths not self-editable. Harmonious with scaffold 3 skills + tool-registry; enables future promotion of ffmpeg-technical/video-prompting/b-roll-planning via Lab rather than direct activation.",
+  "changed_files": [
+    "packages/skill-lab/src/types.ts",
+    "packages/skill-lab/src/index.ts",
+    "packages/skill-lab/package.json",
+    "packages/skill-runtime/src/types.ts",
+    "packages/skill-runtime/src/index.ts",
+    "packages/tool-registry/src/index.ts",
+    "packages/tool-registry/package.json",
+    "skills/_schema/skill.schema.json",
+    "skills/_provenance.md",
+    "skills/ffmpeg-technical/skill.yaml",
+    "skills/ffmpeg-technical/SKILL.md",
+    "skills/video-prompting/skill.yaml",
+    "skills/video-prompting/SKILL.md",
+    "skills/video-prompting/prompts/veo-3.1-14.md",
+    "skills/video-prompting/prompts/seedance-8.md",
+    "skills/video-prompting/prompts/sora-template.md",
+    "skills/video-prompting/prompts/ltx-6.md",
+    "skills/b-roll-planning/skill.yaml",
+    "skills/b-roll-planning/SKILL.md",
+    "recipes/narrated-short.yaml",
+    "recipes/static-promo.yaml",
+    "scripts/check_skills.mjs",
+    "tests/skill-lab.test.ts",
+    "tests/skills-scaffold.test.ts",
+    "Makefile"
+  ],
+  "evidence": [
+    {
+      "command": "python -I scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/skill-lab.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node scripts/check_skills.mjs",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "skills/ffmpeg-technical/skill.yaml",
+      "notes": "check_skills PASS: 3 skills validated (honest fidelity, forbidden, budget)"
+    },
+    {
+      "command": "node --test tests/skill-lab.test.ts tests/skill-runtime.test.ts tests/skills-scaffold.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/skill-lab.test.ts",
+      "notes": "12/12 PASS: AC1 mechanical/real/holdout/canary/rollback, AC2 scout/sandbox, AC3 approval gate"
+    },
+    {
+      "command": "node --check packages/skill-lab/src/index.ts && node --check packages/tool-registry/src/index.ts && node --check packages/skill-runtime/src/index.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "packages/skill-lab/src/index.ts",
+      "notes": "syntax check passed"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/skill-lab/src/types.ts",
+        "packages/skill-lab/src/index.ts",
+        "tests/skill-lab.test.ts",
+        "skills/ffmpeg-technical/skill.yaml",
+        "skills/video-prompting/skill.yaml",
+        "skills/b-roll-planning/skill.yaml"
+      ],
+      "reason": "Mechanical in CI vs real with approved spend separated, golden/holdout split, blind comparison, draft->canary(small)->active only with evidence, rollback no refund, backed by 3 scaffold skills."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/skill-lab/src/index.ts",
+        "tests/skill-lab.test.ts"
+      ],
+      "reason": "Scout candidates require https provenance, verified on labs/ or scout/ branch only, protected prefixes budget/policy/auth not self-editable."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/skill-lab/src/index.ts",
+        "tests/skill-lab.test.ts"
+      ],
+      "reason": "Production actions gated by independent approval, tool/target required, access controls enforced outside LLM."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Scaffold skills remain draft until Lab-promoted; no real provider eval yet",
+    "Tool-registry manifests are stubs until verified official URLs/pricing added",
+    "Q-048 product studio decomposition still disabled — future step"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-032, then promote scaffold skills via Lab when real eval budget approved",
+    "Enable Q-048 Товары/Реклама/Видео decomposition when owner selects studio",
+    "Verify provider manifests and run real eval holdout for one skill"
+  ],
+  "recommended_next_tasks": [
+    "Q-048",
+    "Q-034"
+  ],
+  "required_owner_checks": [
+    "Confirm Skill Lab scope and sandbox boundary acceptable",
+    "Approve real eval budget before live provider promotion"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline scaffold + Lab mechanics)."
+  }
+}

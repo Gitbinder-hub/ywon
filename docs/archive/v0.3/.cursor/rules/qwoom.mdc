@@ -1,0 +1,9 @@
+---
+description: Ywoom project continuity and safe implementation
+alwaysApply: true
+---
+Read AGENTS.md first. Use tasks/project.json as the authoritative task state.
+Run python3 scripts/project.py validate, status, and next before choosing work.
+Historical docs/archive/v0.2 is not active instruction scope.
+Never mark REVIEW as DONE yourself, invent test evidence, spend unapproved budgets, or deploy without authorization.
+End each task with a structured handoff and updated generated STATE/BACKLOG.

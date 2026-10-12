@@ -1,0 +1,18 @@
+{
+  "node": "24.14.1",
+  "python": "3.13.14",
+  "typescript": "7.0.2",
+  "nodeTypes": "18.19.130",
+  "runtimeDependencies": [],
+  "registryInstallVerified": false,
+  "productionToolchainAccepted": false,
+  "npm": "11.11.0",
+  "offlineCacheInstallVerified": true,
+  "cleanOfflineCiVerified": true,
+  "lockfilePresent": true,
+  "nodeTypesRuntimeMismatch": "provisional Node18 definitions on Node24; not P1 acceptance",
+  "vulnerabilityAudit": "not_run",
+  "registrySignatureValidation": "not_run",
+  "verifiedPlatform": "linux-x64",
+  "currentEvidence": "bootstrap/evidence/2026-10-01-toolchain/"
+}

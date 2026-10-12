@@ -1,0 +1,52 @@
+﻿# docs/production/15_STUDIO_SKILLS.md â€” prompt_guidance with model-specific templates
+id: video-prompting
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: prompt_guidance
+input_schema:
+  type: object
+  required: [brief, style, target_duration_sec]
+  properties:
+    brief: { type: string, minLength: 1, maxLength: 4000 }
+    style: { type: string, enum: [clean-professional, premium-minimalist, flat-motion-graphics, minimalist-diagram] }
+    target_duration_sec: { type: integer, minimum: 3, maximum: 60 }
+    language: { type: string, enum: [en, ru], default: en }
+    aspect: { type: string, enum: ["16:9", "9:16", "1:1"], default: "16:9" }
+    protected_entities: { type: array, items: { type: string } }
+output_schema:
+  type: object
+  required: [prompts, negative_prompts, manifest_hash]
+  properties:
+    prompts: { type: array, items: { type: string, minLength: 1 } }
+    negative_prompts: { type: array, items: { type: string } }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+    fidelity_note: { type: string }
+required_capabilities: [text-gen]
+optional_capabilities: [veo-3.1, seedance-2.5, sora-2, ltx-2]
+budget:
+  limitMinor: 3000
+  worstCaseMinor: 3000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 600
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_brief, select_template, render_prompts, fidelity_note, report]
+approval: [prompts]
+model_templates:
+  veo-3.1: prompts/veo-3.1-14.md
+  seedance-2.5: prompts/seedance-8.md
+  sora-2: prompts/sora-template.md
+  ltx-2: prompts/ltx-6.md
+supported_outcomes: [prompts_ready]
+degraded_outcomes: [template_fallback_to_generic]
+unsupported_outcomes: [unknown_model_template]
+forbidden_this_iteration: [orbit_without_geometry, synthetic_testimonial]
+curiosity_reserve: 7
+presets: []

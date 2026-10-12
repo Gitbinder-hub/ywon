@@ -1,0 +1,33 @@
+{
+  "source_attachment": "Ywoom-spec (1).zip",
+  "sha256": "51038bec3bae6b2fcd70e620c8cf9f0875fcb256372ff728c2dfd42e5de90f80",
+  "files": {
+    "docs/adr/0001-modular-monolith-contracts-first.md": "b4909cb0f5eb30454b2ac8afebacdfa68a0d125218a7cab10a93180baa7005d0",
+    "docs/01_VISION.md": "b78b49ea71707c0a867af1214b4a804a7e46c72137e12d494e7c47d0e3d4255c",
+    "docs/02_PRD_Ywoom_MVP.md": "eced7a5752bbacf5afdd242f2bcbac5b40521d6c85687acbbf340e2678b3ae03",
+    "docs/03_ARCHITECTURE.md": "9056d603ed6670f01ca20a17e4c68ffe673cd3f5f1c4ef0265dafd84e056d10a",
+    "docs/04_DATA_MODEL.md": "a61407517ea4a6cd6a17286e398cff5382b64c49d60036aef57382b883554dea",
+    "docs/05_PIPELINE.md": "ad260539140360445f5a907e85c20df85c70fd057bbd97c6e463a0326a306888",
+    "docs/06_MODEL_ROUTER.md": "5427283f46cb219d6a964e097918ff1a7fda8e916ea85d07f74855417301bace",
+    "docs/07_CREATOR_GENOME.md": "163c8dc2a64617e08fa661242ea66b87130de9a1a586ef0e1c54e3942a4ca383",
+    "docs/08_SELF_IMPROVEMENT.md": "98cea7142273050a8d01b2ed713bdd84951e4a9cb9c514a487dcc0cb31f39ffe",
+    "docs/09_JEWEL_CORE.md": "5784e55b9e712b83f6fa5807926ef800e9f26497cf7b8bd512530a0469936454",
+    "docs/10_COST_AND_BUDGET.md": "9ca4bc0eb4442dc4ed4ac3b6813099cbe8f59760753aa707a81cc5a9530f3ddc",
+    "docs/11_ROADMAP.md": "0206d4bf96e6d34f3f58050f6443394caf77dd7c84d9ea093bb84d9cc08aead6",
+    "docs/12_QUALITY_AND_TESTING.md": "15e02138021f1a8ae25b0a37d548fad66d56f40a646ed408c5f9c31be0782c7e",
+    "docs/13_POLICIES_RISKS.md": "3416e85e380ac73504d04f1ef3794331553e6e23fbdec507aa34d012d3f5a984",
+    "docs/14_OPEN_DECISIONS.md": "29648411efcba486e02c7ab5c421779371970b2eaefe8c10f032f0d93d021902",
+    "docs/STATE.md": "6d4b732c105aecb5ef42b454f91a6da0226aab1a8dc12548d2b55bf863dd9e73",
+    "docs/15_STUDIO_SKILLS.md": "fa75c519133b3550f5ed32bc454a36e042016f2b5b94077ab1218699b649e87e",
+    "docs/16_LOCALIZATION.md": "cd49957c31d263910f2661a7c422ce24b3c3f79448dbbb90c765795ef93045c1",
+    "docs/research/HIGGSFIELD_EXPRESS_RESEARCH.md": "a8ba04013039271e65a650c1741b08f2de29c4e7d5e047491c3a9abc506da600",
+    "tasks/BACKLOG.md": "654c4ce87ed28b5848b5c80713e82fd0320ed5381ad0c6dcee4e7b45e33fd4b3",
+    "prompts/architect.md": "553f27cdce91048a2bbde44cddfc82d9bfebfe0a7643ba23fbd42e23081911b1",
+    "prompts/auditor.md": "e71f27fa3421af438e0e24fb09952482ce778bf90eea3a9bd93700721e311b8d",
+    "prompts/implementer.md": "6eb3ddc6faa7b6a1df107915cff2e2c636a9de45bf6f5bc58d6f2bdd19bcf53c",
+    "README.md": "714d977a769d36bad9fc839aa128cd85d195fdfe796c9b6a28152e5d093a1e9c",
+    "AGENTS.md": "6ba25005adf51a479dc8791133adaec96718845e05f3202ed51e2d462426b449",
+    "CLAUDE.md": "6ba25005adf51a479dc8791133adaec96718845e05f3202ed51e2d462426b449",
+    "CHANGELOG.md": "83f8554f1e871d8ee7e866e279fccda5bb3cc900db33585d577d79e01522eb00"
+  }
+}

@@ -1,0 +1,44 @@
+﻿# Bot factory â€” Telegram / Discord / web widget Ð±Ð¾Ñ‚Ñ‹ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
+id: bot-factory
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: supported_control
+input_schema:
+  type: object
+  required: [platform, goal]
+  properties:
+    platform: { type: string, enum: [telegram, discord, web_widget], default: telegram }
+    goal: { type: string, minLength: 1, maxLength: 3000 }
+    commands: { type: array, items: { type: string, maxLength: 64 } }
+    language: { type: string, enum: [typescript, python], default: typescript }
+output_schema:
+  type: object
+  required: [artifact_id, manifest_hash, qa]
+  properties:
+    artifact_id: { type: string }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+    qa: { type: object, properties: { commands_ok: { type: boolean }, preview_url: { type: string } } }
+required_capabilities: [bot-runtime]
+optional_capabilities: [telegram-api, discord-api, text-gen]
+budget:
+  limitMinor: 5000
+  worstCaseMinor: 5000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 900
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_goal, scaffold_bot, qa_commands, report]
+approval: [qa_commands]
+supported_outcomes: [bot_scaffold_ready]
+degraded_outcomes: [stub_without_token]
+unsupported_outcomes: [unknown_platform, missing_goal]
+forbidden_this_iteration: [token_in_artifact, auto_publish_without_approval]
+curiosity_reserve: 6
+presets: []

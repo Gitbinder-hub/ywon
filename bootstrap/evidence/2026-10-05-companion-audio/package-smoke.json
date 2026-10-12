@@ -1,0 +1,9 @@
+{
+  "extractedAudioHost": "pass",
+  "extractedBrowserAssets": "pass",
+  "darkIdleNoOverflow": "pass",
+  "defaultMicrophoneOff": "pass",
+  "pageErrors": [],
+  "platform": "Linux Chromium",
+  "windowsLauncher": "not_run"
+}

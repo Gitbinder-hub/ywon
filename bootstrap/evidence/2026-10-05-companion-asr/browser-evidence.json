@@ -1,0 +1,62 @@
+{
+  "platform": "Linux Chromium/Python3.13",
+  "actualEngine": true,
+  "input": "synthetic browser device playing repeated public Russian word",
+  "actualWorklet": true,
+  "windowsNotRun": true,
+  "coreCommandWasOwnerEdited": true,
+  "generalSpeechQualityNotMeasured": true,
+  "cases": [
+    {
+      "name": "configured engine does not enable recording or local transfer by default",
+      "status": "pass"
+    },
+    {
+      "name": "separate local PCM/process consent required after microphone consent",
+      "status": "pass"
+    },
+    {
+      "name": "actual AudioWorklet16k PCM to actual Vosk to review-only Russian draft",
+      "status": "pass"
+    },
+    {
+      "name": "missing file context preserves editable draft without rerecording",
+      "status": "pass"
+    },
+    {
+      "name": "explicit owner-edited review creates shared-core read-only proposal, not task execution",
+      "status": "pass"
+    },
+    {
+      "name": "ASR opt-out aborts/discards result while permitted microphone meter remains available",
+      "status": "pass"
+    },
+    {
+      "name": "mute stops recording/microphone and clears private draft/UI",
+      "status": "pass"
+    },
+    {
+      "name": "focused Escape stops microphone and closes capture",
+      "status": "pass"
+    },
+    {
+      "name": "390px recognition/review UI no horizontal overflow, controls>=44px",
+      "status": "pass"
+    },
+    {
+      "name": "bounded binary PCM only to exact local origin; no external page requests/errors",
+      "status": "pass"
+    }
+  ],
+  "pcmRequestSizes": [
+    129938,
+    33250
+  ],
+  "externalPageRequests": 0,
+  "pageErrors": [],
+  "screenshots": [
+    "asr-draft-desktop.png",
+    "asr-proposal-desktop.png",
+    "asr-mobile.png"
+  ]
+}

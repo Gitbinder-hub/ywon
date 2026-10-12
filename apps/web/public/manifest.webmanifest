@@ -1,0 +1,12 @@
+{
+  "name": "Ywoom — Архитектор Ywon",
+  "short_name": "Ywoom",
+  "description": "Ywon ведёт через фабрики: контент, фриланс, боты, код. Windows · веб · мобилка.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#3a3c45",
+  "theme_color": "#3a3c45",
+  "icons": [{ "src": "/Ywoom.ico", "sizes": "32x32", "type": "image/x-icon" }],
+  "lang": "ru"
+}

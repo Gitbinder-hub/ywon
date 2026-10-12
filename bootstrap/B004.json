@@ -1,0 +1,42 @@
+{
+  "task_id": "B-004",
+  "status": "REVIEW",
+  "owner": "Oleg",
+  "owner_authorized_at": "2026-10-03T20:15:59+07:00",
+  "authorization": "Owner requested continuing code work and delegated selection of a bounded block; assistant selected offline Architect preflight/recovery only",
+  "scope": "isolated typed offline preflight/DAG/fixture-compatible routing/cumulative monetary previews/recovery proposals/CLI/tests; no existing production runtime integration",
+  "out_of_scope": "paid/API/generative execution, live pricing/quality, production auth/ledger/reservations/queue/provider reconciliation/publishing/deploy, full Q-001/P0/P1 acceptance, protected path mutations",
+  "paid_calls": false,
+  "new_runtime_dependencies": false,
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "base_commit": "e60383479bb2c34959a23fe272ffff1f6bb56a52",
+  "handoff": "bootstrap/B004_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-03-architect/verification.json",
+  "ac": [
+    {
+      "id": "AC1",
+      "text": "Validate bounded typed scene/capability/asset data and reject unsupported control/fidelity/unknown price."
+    },
+    {
+      "id": "AC2",
+      "text": "Generate deterministic pinned DAG without external execution; no input mutation."
+    },
+    {
+      "id": "AC3",
+      "text": "Preview complete declared initial costs, monetary reserve and ancestor allowance with unknown !=0."
+    },
+    {
+      "id": "AC4",
+      "text": "Prepare recovery/stop proposals; third failure boundary, unknown paid and rights checks."
+    },
+    {
+      "id": "AC5",
+      "text": "Real local CLI/tests/typecheck, bounded inputs and no overwrite."
+    },
+    {
+      "id": "AC6",
+      "text": "Handoff describes real checks, limits, stage/permission boundary and next integration."
+    }
+  ]
+}

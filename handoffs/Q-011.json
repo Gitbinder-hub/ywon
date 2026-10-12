@@ -1,0 +1,89 @@
+{
+  "task_id": "Q-011",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-011 Short onboarding, Genome and series canon (P2 prototype): mandatory fields validated without owner bypass, progressive save/resume, fact tiers with explicit confirm gate, versioned Bible per series with isolation and primary-channel language pin. packages/genome/src/types+index, 3 tests PASS (94 total).",
+  "changed_files": [
+    "packages/genome/src/types.ts",
+    "packages/genome/src/index.ts",
+    "tests/genome.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/genome.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/genome.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/genome.test.ts",
+      "notes": "3/3 PASS: AC1 mandatory without bypass, AC2 save/resume + tiers + versioned Bible, AC3 series isolation + language pin"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/genome.test.ts",
+      "notes": "94/94 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/genome/src/types.ts",
+        "packages/genome/src/index.ts",
+        "tests/genome.test.ts"
+      ],
+      "reason": "Required language/presentation/budget/consents/review/storagePolicy validated; missing/bad language rejected; same path for all users, no owner bypass."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/genome/src/index.ts",
+        "tests/genome.test.ts"
+      ],
+      "reason": "Progressive save/resume, fact tiers confirmed/inferred/experimental with explicit confirm gate, versioned Bible put/get with version pin."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/genome/src/index.ts",
+        "tests/genome.test.ts"
+      ],
+      "reason": "Series isolation via canAccess (B cannot see A), primary-channel language pinned per series bible, no cross-series leak."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "BibleStore in-memory only, not yet Postgres series/bible tables",
+    "Language allowlist static en/ru, fr not yet supported"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-011 then Q-040 journey and Q-014 pipeline",
+    "Q-040 three entrances with Genome + editors + router"
+  ],
+  "recommended_next_tasks": [
+    "Q-040",
+    "Q-014"
+  ],
+  "required_owner_checks": [
+    "Confirm mandatory gating acceptable vs optional flow",
+    "Review isolation per series before multi-series pilot"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

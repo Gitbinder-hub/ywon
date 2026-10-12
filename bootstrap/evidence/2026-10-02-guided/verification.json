@@ -1,0 +1,44 @@
+{
+  "task": "B-003",
+  "status": "REVIEW",
+  "authorization": "Oleg survey choice 2026-10-02 15:35:16 Asia/Bangkok: bounded pre-P0 offline UX prototype exception",
+  "base": "60eeabc2799061963683ddd720a48b012aa26d04",
+  "scope_results": {
+    "new_node_core_http_syntax": {
+      "pass": 19,
+      "fail": 0,
+      "skipped": 0
+    },
+    "real_chromium": {
+      "pass": 10,
+      "fail": 0,
+      "skipped": 0
+    },
+    "strict_typecheck": "PASS restored runtime subset + new TS tests, not full repo"
+  },
+  "tools": {
+    "node": "24.14.1",
+    "python": "3.13.14",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "ffmpeg": "7.0.2-static"
+  },
+  "media_evidence": "real browser brief→project→own-file UI uploads→real FFmpeg 30s portrait MP4→download hash→full decode; synthetic PNG + tone, NOT speech",
+  "diagnostic_mp4_sha256": "95025760a91c17a3e1e209f29de5a1682089690b26a2b737ac04a07b72d1c597",
+  "full_make_check": "NOT_RUN; complete repository checkout unavailable (DNS), historical 98 tests not rerun",
+  "project_validate_status_next": "NOT_RUN; full source/context/archive not available locally",
+  "github_ci": "UNKNOWN; prior access 403",
+  "provider_calls": 0,
+  "estimated_total_cost": null,
+  "product_stage_acceptance": false,
+  "owner_acceptance": null,
+  "known_limits": [
+    "single browser/origin draft; Web Locks required; no accounts/cloud sync",
+    "rule-based questions/outline only; no AI/TTS/provider route",
+    "manual script/scene/material review required; template placeholders cannot approve",
+    "one-way handoff; studio edits do not sync back to browser brief",
+    "single Chromium desktop/mobile-emulation smoke only; no WCAG/native/cross-browser certification"
+  ]
+}

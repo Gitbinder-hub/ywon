@@ -1,0 +1,47 @@
+﻿# docs/studio/MODES_AND_RECIPES.md â€” Ð’Ð¸Ð´ÐµÐ¾: Shorts/Reels, 30-60Ñ
+id: video-shorts
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: prompt_guidance
+input_schema:
+  type: object
+  required: [hook, voice, durationSec]
+  properties:
+    hook: { type: string, minLength: 1, maxLength: 280 }
+    voice: { type: string, enum: [neutral, energetic, warm], default: neutral }
+    durationSec: { type: integer, minimum: 30, maximum: 60 }
+    music: { type: string }
+    platform: { type: string, enum: ["9:16", "16:9", "1:1"], default: "9:16" }
+    source_material_ids: { type: array, items: { type: string } }
+output_schema:
+  type: object
+  required: [artifact_id, preview_url, manifest_hash, qa]
+  properties:
+    artifact_id: { type: string }
+    preview_url: { type: string }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+    qa: { type: object, properties: { duration_ok: { type: boolean }, source_sufficient: { type: boolean }, hook_present: { type: boolean } } }
+required_capabilities: [ffmpeg-transform]
+optional_capabilities: [video-gen, tts, music-gen]
+budget:
+  limitMinor: 7000
+  worstCaseMinor: 7000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 2
+  backoffMs: 900
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [validate_hook_duration, check_source_sufficiency, assemble_timeline, add_voice_music, qa_duration_hook, report]
+approval: [qa_duration_hook]
+supported_outcomes: [short_ready]
+degraded_outcomes: [trimmed_to_fit_platform]
+unsupported_outcomes: [insufficient_source_material, hook_missing]
+forbidden_this_iteration: [clips_from_unusable_source, synthetic_voice_without_consent]
+curiosity_reserve: 6
+presets: []

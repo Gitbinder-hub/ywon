@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ywoom — Подписки</title>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#3a3c45">
+<link rel="stylesheet" href="/design.css">
+<script src="/pwa.js" defer></script><script src="/home.js" defer></script><script src="/billing.js" defer></script>
+</head>
+<body>
+<div class="yw-shell" style="position:relative;overflow:hidden;width:100%;min-height:100vh;display:flex;color:#ecebf4;font-family:'Rubik','Nunito',system-ui,sans-serif;background:#3a3c45">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+<div style="position:absolute;left:-120px;bottom:-140px;width:520px;height:460px;border-radius:50%;background:#7d9cff;opacity:.11;filter:blur(90px)"></div>
+<div style="position:absolute;left:46%;top:-160px;width:420px;height:320px;border-radius:50%;background:#a58cf5;opacity:.10;filter:blur(90px)"></div>
+<div style="position:absolute;right:-140px;bottom:-120px;width:520px;height:420px;border-radius:50%;background:#f58a9e;opacity:.11;filter:blur(90px)"></div>
+</div>
+
+<nav class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
+<div style="padding:0 16px 28px">
+<div style="font-size:26px;font-weight:600;letter-spacing:.12em">YWOOM</div>
+<div class="m" style="font-size:12px;margin-top:4px">Автономная мастерская контента</div>
+</div>
+<a class="nav" href="/"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"></path></svg></span>Главная</a>
+<a class="nav" href="/studio"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>Студия</a>
+<a class="nav" href="/journey"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span>Контент-план</a>
+<a class="nav" href="/skills"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span>Скилы</a>
+<a class="nav conv" aria-current="page" href="/billing" style="color:#fff"><span class="ic zone" style="color:#2a2b35"><i style="left:-30%;top:-30%;width:90%;height:90%;background:#f58a9e"></i><i style="right:-30%;bottom:-30%;width:90%;height:90%;background:#b9a6ff"></i><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"></path></svg></span>Аналитика</a>
+<a class="nav" href="/settings"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"></path><circle cx="15" cy="8" r="2"></circle><circle cx="9" cy="16" r="2"></circle></svg></span>Настройки</a>
+<div class="hol" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div><div class="m" style="font-size:12px">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600">$—</div></div>
+<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap">Пополнить</a>
+</div>
+</nav>
+
+<main class="yw-main" style="position:relative;flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:22px">
+<header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+<div><div class="m" style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Архитектор · Наблюдение</div><h1 style="margin:0;font-size:30px;font-weight:500;letter-spacing:-.01em;line-height:1.1">Наблюдение и экономика</h1><p class="m" style="margin:6px 0 0;font-size:13px">Публикации, retention, ledger и резерв · Подписки внизу — без Stripe, локально в памяти.</p></div>
+</header>
+<section class="card" style="border-radius:22px"><div class="t">Ledger & Cost Gate</div><div id="observer-ledger" class="m" style="margin-top:8px;font-size:13px">Загрузка…</div><p class="m" style="font-size:12px;margin-top:8px">Baseline неизменен · amendments отдельными версиями · Hard cap: episode/project/month jointly. См. docs/economics/COST_VISIBILITY.md</p></section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:12px">Вход</h2>
+<div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end">
+<label class="m" style="font-size:13px">Email<input id="email" type="email" placeholder="you@example.com" maxlength="120" style="display:block;width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#35373f;color:#ecebf4"></label>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button id="login" class="btn conv" style="padding:10px 18px;border-radius:18px;font-size:13px;color:#fff">Войти</button><button id="me" class="btn hol" style="padding:10px 16px;border-radius:18px;font-size:13px">Сессия</button></div>
+</div>
+<p id="auth-status" role="status" class="m" style="margin-top:10px;font-size:13px;min-height:16px"></p>
+</section>
+
+<section>
+<h2 class="t" style="margin-bottom:12px">Тарифы</h2>
+<div id="plans-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px"></div>
+<div id="trial-box" class="card" hidden style="margin:10px 0;border-radius:18px"></div>
+<p id="sub-status" role="status" class="m" style="margin-top:10px;font-size:13px;min-height:16px"></p>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:10px">Промокод</h2>
+<div id="promo-box" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+<input id="promo-input" placeholder="YWOOM2026 или WELCOME" maxlength="24" style="flex:1;min-width:200px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#35373f;color:#ecebf4">
+<button id="promo-apply" class="btn conv" style="padding:10px 18px;border-radius:18px;font-size:13px;color:#fff">Применить</button>
+<span id="promo-msg" class="m" style="font-size:13px"></span>
+</div>
+<p class="m" style="margin-top:8px;font-size:12px">Mock: YWOOM2026 → Pro 7д, WELCOME → Pro 3д. Требует вход.</p>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:8px">История подписок</h2>
+<div id="billing-history" style="margin-top:8px;font-size:13px" aria-live="polite">Загрузка…</div>
+</section>
+
+<section class="card" style="border-radius:22px">
+<h2 class="t" style="margin-bottom:8px">Что дальше</h2>
+<p class="m" style="font-size:13px;line-height:1.5">Free — до 3 проектов. Pro откроет всё без лимитов. Studio — команды (скоро). В 0.16 лимиты Free/Pro реально режут: Free — до 3 проектов.</p>
+</section>
+
+<footer style="border-top:1px solid rgba(255,255,255,.08);padding-top:14px;color:#8ea0bf;font-size:12px;display:flex;gap:12px;flex-wrap:wrap"><a href="/" style="color:#b7c8ff">Автономная мастерская</a><a href="/studio" style="color:#b7c8ff">Студия</a><a href="/journey" style="color:#b7c8ff">Маршрут</a></footer>
+</main>
+</div>
+</body></html>

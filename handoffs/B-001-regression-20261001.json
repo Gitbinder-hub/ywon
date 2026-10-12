@@ -1,0 +1,117 @@
+{
+  "task_id": "B-001",
+  "agent": "Notion AI / local Computer sandbox",
+  "session": "2026-10-01-regression-verification",
+  "branch": "local/b001-regression-20261001",
+  "base_commit": "072d416ce7d348227c7efe14ae5254802f45d680",
+  "work_commit": "0298ed6f1b0188745ef96ad118a1a0bdd137baf8",
+  "summary": "Bounded B-001 regression follow-up only; four transport tests, actual verification and typecheck blocker. REVIEW unchanged; not product acceptance.",
+  "changed_files": [
+    "tests/api.test.ts",
+    "bootstrap/HANDOFF.md",
+    "bootstrap/STATUS.md",
+    "tasks/BOOTSTRAP.md",
+    "handoffs/B-001-regression-20261001.json",
+    "bootstrap/evidence/2026-10-01-regression/make-check.txt",
+    "bootstrap/evidence/2026-10-01-regression/node-tests.txt",
+    "bootstrap/evidence/2026-10-01-regression/media-tests.txt",
+    "bootstrap/evidence/2026-10-01-regression/spec-check.txt",
+    "bootstrap/evidence/2026-10-01-regression/startup-smoke.txt"
+  ],
+  "evidence": [
+    {
+      "command": "node --test tests/*.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-regression/node-tests.txt",
+      "notes": "16 tests; 0 skips"
+    },
+    {
+      "command": "python3 -m unittest discover -s workers/media -v",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-regression/media-tests.txt",
+      "notes": "3 tests; real WAV ffprobe; 0 skips"
+    },
+    {
+      "command": "make spec-check",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-regression/spec-check.txt",
+      "notes": "validate and 44 spec tests; no product acceptance"
+    },
+    {
+      "command": "make check",
+      "exit_code": 2,
+      "result": "fail",
+      "artifact": "bootstrap/evidence/2026-10-01-regression/make-check.txt",
+      "notes": "TS2688 missing Node types; later make stages not_run, separate suites run"
+    },
+    {
+      "command": "Python subprocess CLI health/UI startup smoke",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "bootstrap/evidence/2026-10-01-regression/startup-smoke.txt",
+      "notes": "actual node CLI; localhost; process terminated"
+    },
+    {
+      "command": "node --check apps/web/public/app.js",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": null,
+      "notes": "syntax only, not browser behavior"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "followup_transport_regressions",
+      "result": "pass",
+      "evidence": [
+        "bootstrap/evidence/2026-10-01-regression/node-tests.txt"
+      ],
+      "reason": "four added tests pass without runtime changes"
+    },
+    {
+      "id": "complete_typecheck",
+      "result": "fail",
+      "evidence": [
+        "bootstrap/evidence/2026-10-01-regression/make-check.txt"
+      ],
+      "reason": "missing @types/node; not waived"
+    }
+  ],
+  "not_done": [
+    "Remote import/PR/CI not inspected or modified",
+    "No registry task start/submit/accept: only B-001 verification follow-up, not Q implementation",
+    "Browser/e2e/a11y/production security/load and real generative media not_run",
+    "No audited install/lockfile or complete typecheck"
+  ],
+  "risks": [
+    "Local git baseline is synthetic ZIP history, not remote ancestry; never overwrite remote with it",
+    "Regression tests are not P0/P1 evidence",
+    "Shipping manifest is original and intentionally drifts after development",
+    "Historical remote hashes and full-check PASS are not freshly verified"
+  ],
+  "blockers": [
+    "TS2688: missing @types/node; make check not green",
+    "Remote full v0.4 import unresolved if resuming GitHub work",
+    "Q-001 owner gate TODO; no approved paid budget"
+  ],
+  "next_steps": [
+    "Before remote work finish approved full v0.4 import preserving code/history",
+    "Review dev-toolchain installation/typings and lockfile; rerun typecheck/make check",
+    "Owner decides Q-001 scope, languages/voice/rights and spend limits"
+  ],
+  "recommended_next_tasks": [
+    "Q-001 (owner only)",
+    "B-001 tooling verification follow-up"
+  ],
+  "required_owner_checks": [
+    "Review diff and rerun tests",
+    "Do not infer stage acceptance or paid budget from this follow-up"
+  ],
+  "costs": {
+    "known_usd": null,
+    "notes": "No paid provider calls/deployment/push/package install; assistant/compute costs unknown, not zero"
+  }
+}

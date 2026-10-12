@@ -1,0 +1,26 @@
+{
+  "task_id": "B-001",
+  "agent": "Notion AI / local Computer + GitHub MCP",
+  "session": "2026-10-02-client-reliability",
+  "branch": "bootstrap/spec-v04-foundation (remote); local/b001-client-reliability-20261002 (synthetic local)",
+  "base_commit": "020ed0e709dabd49d8037c9d8166fc35d995a2fa",
+  "work_commit": "5d43bca72c64fd699968d3cfe6f8ade8ade733fd",
+  "summary": "Bounded existing-client fixes; 11 red/green VM tests; owner scenario recorded without gate acceptance. Remote work commit to be checked after MCP push.",
+  "changed_files": ["apps/web/public/app.js", "apps/web/public/index.html", "apps/web/public/locales/en.json", "apps/web/public/locales/ru.json", "tests/client.test.ts", "reports/P0_SCENARIO_2026-10-02.md", "bootstrap/HANDOFF.md", "bootstrap/STATUS.md", "bootstrap/evidence/2026-10-02-client/verification.json", "handoffs/B-001-client-20261002.json"],
+  "evidence": [
+    { "command": "node --test tests/client.test.ts (before/after)", "exit_code": 0, "result": "pass", "artifact": "bootstrap/evidence/2026-10-02-client/verification.json", "notes": "Before 9 failures/2 pass; after 11 pass; VM DOM/fetch fixture, not real browser" },
+    { "command": "make check", "exit_code": 0, "result": "pass", "artifact": "bootstrap/evidence/2026-10-02-client/verification.json", "notes": "typecheck/syntax + 30 Node/3 media/44 spec/10 transfer; no skips" },
+    { "command": "actual Node CLI localhost HTTP smoke", "exit_code": 0, "result": "pass", "artifact": "bootstrap/evidence/2026-10-02-client/verification.json", "notes": "updated assets/catalogs/health served; process terminated" }
+  ],
+  "ac_results": [
+    { "id": "locale_and_input_safety", "result": "pass", "evidence": ["bootstrap/evidence/2026-10-02-client/verification.json"], "reason": "status follows active UI locale; content language/text unchanged; stale errors isolated" },
+    { "id": "recoverable_requests", "result": "pass", "evidence": ["bootstrap/evidence/2026-10-02-client/verification.json"], "reason": "server/non-JSON/network handled, repeated pending submit ignored" }
+  ],
+  "not_done": ["Real-browser/visual/a11y/e2e not_run", "No provider/generation/auth/editor or production functionality", "Q-001 full scope/financial decisions incomplete; no gate/accept", "GitHub CI unknown; raw latest logs retained locally"],
+  "risks": ["VM fixtures are not browser acceptance", "Node18 types on Node24 provisional; no security/signature audit", "Synthetic local history cannot replace remote", "Owner startup report is not full acceptance of new fixes"],
+  "blockers": ["Only Q-001 owner gate ready before dependent Q work"],
+  "next_steps": ["Pull remote branch and manually check UI locale/status while preserving input", "Finish actual Q-001 staged-scope/cap/period/stop decisions before Q-002/Q-006"],
+  "recommended_next_tasks": ["Q-001 (owner only)"],
+  "required_owner_checks": ["Review small client diff; test UI locale and dry-run locally", "Do not infer paid budget, B-001/P0/P1 acceptance"],
+  "costs": { "known_usd": null, "notes": "No paid provider/deploy calls; assistant/compute unknown" }
+}

@@ -1,0 +1,255 @@
+/* Ywoom Design — canonical from board Главная · тёмная (38f9f2f8). Fixes: 3.1 m6 scroll + 3.1d responsive. Ref layout: left-first viewport */
+html{overflow-x:hidden;height:100%}
+body{min-height:100vh;overflow-x:hidden;min-width:0;margin:0;height:100%}
+.yw-shell{min-height:100vh;min-width:0;display:flex;overflow:hidden;height:100vh;gap:0}
+.yw-main{min-width:0;flex:1;padding:28px 32px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.yw-nav{flex:0 0 250px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.yw-grid{display:grid;grid-template-columns:320px 1fr 340px;gap:20px;align-items:start;min-width:0;align-content:start}
+.yw-header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.yw-header-title{min-width:220px}
+.yw-header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1;justify-content:flex-end;min-width:280px}
+.yw-search{flex:1 1 320px;min-width:280px;max-width:520px;height:50px;border-radius:25px;display:flex;align-items:center;gap:12px;padding:0 14px 0 20px}
+.yw-factories{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
+a{color:inherit;text-decoration:none}
+a.btn, a.nav{color:inherit}
+.m a{color:#b7c8ff}
+@media(max-width:1280px){.yw-grid{grid-template-columns:280px 1fr 300px;gap:18px}.yw-main{padding:22px 24px}}
+@media(max-width:1100px){.yw-grid{grid-template-columns:1fr 1fr;gap:18px}.yw-grid > div:nth-child(2){grid-column:1 / -1;order:-1}}
+@media(max-width:900px){.yw-shell{flex-direction:column;height:auto;overflow:visible}.yw-main{padding:16px;height:auto;overflow:visible}.yw-nav{flex:none;width:100%}}
+@media(max-width:640px){.yw-grid{grid-template-columns:1fr;gap:16px}.yw-grid > div:nth-child(2){grid-column:auto;order:0}.yw-factories{grid-template-columns:1fr !important}.yw-header{gap:16px}.yw-header-title{min-width:0;flex:1 1 100%}.yw-header-actions{min-width:0;flex:1 1 100%}.yw-search{min-width:0;max-width:none;flex:1 1 100%}}
+/* arabic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nErXyi0A.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nMrXyi0A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("Rubik-Cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nDrXyi0A.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nPrXyi0A.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("Rubik-Latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nErXyi0A.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nMrXyi0A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("Rubik-Cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nDrXyi0A.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nPrXyi0A.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("Rubik-Latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nErXyi0A.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nMrXyi0A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("Rubik-Cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nDrXyi0A.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nPrXyi0A.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("Rubik-Latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;background:#3a3c45}
+*{box-sizing:border-box}
+button,input{font-family:inherit}
+button{color:inherit;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+:focus-visible{outline:2px solid #7d9cff;outline-offset:3px}
+input::placeholder{color:#a9aabb}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.conv{background:#4a4c57;box-shadow:-5px -5px 12px rgba(255,255,255,.06),7px 7px 16px rgba(10,10,16,.5),inset 1.5px 1.5px 1.5px rgba(255,255,255,.14),inset -2px -2px 3px rgba(10,10,16,.3)}
+.hol{background:#35373f;box-shadow:inset 5px 5px 11px rgba(10,10,16,.55),inset -4px -4px 9px rgba(255,255,255,.05)}
+.card{background:#43454f;padding:22px 24px;box-shadow:-8px -8px 20px rgba(255,255,255,.05),12px 12px 28px rgba(10,10,16,.5),inset 2px 2px 2px rgba(255,255,255,.1),inset -2px -2px 3px rgba(10,10,16,.28)}
+.rim{border-radius:50%;background:#5a5c68;box-shadow:-5px -5px 12px rgba(255,255,255,.07),7px 7px 16px rgba(10,10,16,.55),inset 2px 2px 3px rgba(255,255,255,.28),inset -3px -3px 5px rgba(10,10,16,.4)}
+.btn{transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:none;box-shadow:inset 4px 4px 9px rgba(10,10,16,.55),inset -3px -3px 8px rgba(255,255,255,.05)}
+.t{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#ecebf4}
+.m{color:#b8b9c8}
+.bead{width:12px;height:12px;border-radius:50%;flex:none;background:var(--c);box-shadow:inset 1px 1px 2px rgba(255,255,255,.6),inset -1px -2px 3px rgba(10,10,16,.4),0 2px 5px rgba(10,10,16,.45)}
+.zone{position:relative;overflow:hidden;isolation:isolate;background:#86a3ff;box-shadow:inset 2px 2px 4px rgba(255,255,255,.45),inset -2px -3px 5px rgba(45,55,140,.35)}
+.zone i{position:absolute;border-radius:50%;filter:blur(9px);z-index:-1}
+.nav{display:flex;align-items:center;gap:14px;width:100%;padding:7px 16px 7px 7px;border-radius:30px;font-size:15px;color:#b8b9c8;transition:color .2s,background .2s}
+.nav:hover{color:#fff}
+.ic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.row{display:flex;align-items:center;gap:12px;width:100%;padding:10px 16px 10px 14px;border-radius:20px;transition:transform .2s}
+.row:hover{transform:translateX(3px)}
+.ln{width:14px;height:2px;margin-bottom:30px;background:rgba(255,255,255,.18)}
+.flow{stroke-dasharray:3 8;animation:flow 1.8s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-11}}
+.orb{position:absolute;inset:-70px;animation:drift 16s linear infinite}
+.orb2{position:absolute;inset:-70px;animation:drift 27s linear infinite reverse}
+.ball{position:absolute;border-radius:50%;background:#7d9cff;filter:blur(28px);animation:breathe 4.2s ease-in-out infinite}
+@keyframes breathe{0%{opacity:.35;transform:scale(.85)}22%{opacity:.8}41%{opacity:.5;transform:scale(1.05)}63%{opacity:.85;transform:scale(1.15)}82%{opacity:.4}100%{opacity:.35;transform:scale(.85)}}
+.eflow{stroke-dasharray:14 50;animation:ef 2.2s linear infinite}
+@keyframes ef{from{stroke-dashoffset:0}to{stroke-dashoffset:64}}
+.go{position:relative;height:64px;margin:0 0 2px 26px;padding:0;background:none;transition:transform .2s}
+.go:hover{transform:translateY(-2px)}
+.go::before{content:"";position:absolute;inset:-6px -34px -6px -6px;border:1.5px solid rgba(125,156,255,.55);border-radius:44px 18px 44px 18px;animation:ring 2.8s ease-out infinite;pointer-events:none}
+@keyframes ring{0%{transform:scale(.96);opacity:.8}100%{transform:scale(1.1);opacity:0}}
+.gb{display:flex;align-items:center;height:64px;padding:0 60px 0 32px;border-radius:38px 12px 38px 12px;background:#7d9cff;color:#1b2038;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;box-shadow:-4px -4px 10px rgba(255,255,255,.07),8px 10px 22px rgba(10,10,16,.55),inset 2px 2px 3px rgba(225,235,255,.7),inset -3px -4px 6px rgba(35,50,150,.5)}
+.go:active .gb{box-shadow:inset 4px 5px 10px rgba(25,40,130,.6),inset -3px -3px 6px rgba(200,215,255,.35)}
+.gp{position:absolute;right:-26px;top:50%;margin-top:-31px;width:62px;height:62px;padding:6px}
+@keyframes drift{to{transform:rotate(360deg)}}
+.halo{position:absolute;border-radius:50%;filter:blur(18px)}
+@keyframes shim{0%{opacity:.5;transform:scale(.9)}16%{opacity:.95}29%{opacity:.6}47%{opacity:1;transform:scale(1.08)}68%{opacity:.55}83%{opacity:.9}100%{opacity:.5;transform:scale(.9)}}
+@keyframes glint{0%,100%{filter:drop-shadow(0 0 5px rgba(125,156,255,.35))}38%{filter:drop-shadow(0 0 14px rgba(125,156,255,.85))}72%{filter:drop-shadow(0 0 8px rgba(170,190,255,.55))}}
+@keyframes tw{0%,100%{opacity:.1;transform:scale(.5)}50%{opacity:1;transform:scale(1)}}
+.h1{animation:shim 3.7s ease-in-out infinite}
+.h2{animation:shim 2.9s ease-in-out infinite reverse}
+.yy{animation:glint 3.3s ease-in-out infinite}
+.sp{position:absolute;animation:tw 2.6s ease-in-out infinite}
+.tg{position:relative;display:inline-block;width:64px;height:34px}
+.tg input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:2}
+.trk{position:absolute;inset:0;border-radius:17px;background:#35373f;box-shadow:inset 4px 4px 9px rgba(10,10,16,.6),inset -3px -3px 8px rgba(255,255,255,.05);transition:background .25s}
+.trk::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:#aeb0bd;box-shadow:2px 3px 6px rgba(10,10,16,.55),inset 1px 1px 2px rgba(255,255,255,.6);transition:left .25s,background .25s}
+.tg input:checked + .trk{background:#7d9cff}
+.tg input:checked + .trk::after{left:34px;background:#3a3c45;box-shadow:2px 3px 6px rgba(10,10,16,.5),inset 1px 1px 2px rgba(255,255,255,.25),0 0 0 2px #b7c8ff}
+.tg input:focus-visible + .trk{outline:2px solid #7d9cff;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.flow,.orb,.orb2,.ball,.h1,.h2,.yy,.sp,.eflow,.go::before{animation:none}}
+/* m1: WebView2/desktop chrome — ensure 1440 layout fits without blue links */
+html{background:#3a3c45;scrollbar-width:thin;scrollbar-color:#5a5c68 transparent}
+body{background:#3a3c45;color:#ecebf4}
+.yw-shell{background:#3a3c45;min-height:100vh}
+.yw-nav .m{white-space:nowrap}
+.yw-nav{overflow:hidden}
+/* fix: native <a> inside gray cards looked blue in WebView2 — force inherit */
+.card a, .hol a, .yw-nav a{color:inherit;text-decoration:none}
+.card a:hover, .hol a:hover, .yw-nav a:hover{color:#fff}
+.m{color:#b8b9c8}
+@media(display-mode: standalone){
+  #pwa-install{display:none !important}
+}
+/* balance pill */
+.yw-balance{white-space:nowrap}

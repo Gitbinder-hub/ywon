@@ -1,0 +1,108 @@
+{
+  "task_id": "Q-006",
+  "agent": "cline/act",
+  "session": "2026-10-06T10:35:00+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-006 scaffold: ADR0001 accepted + ADR0007 decided+pinned stack (Fastify/Next/pg-boss/S3/OIDC), contracts tenant/versioned, infra migration 001 tenant consistency, make check vs spec-check separated, WinGet ffmpeg resolver + pad fix for 30±2. validate PASS, 7/7 google-live pass, symlink test Win limitation documented. РФ риск снят per owner.",
+  "changed_files": [
+    "docs/adr/0001-modular-monolith-contracts-first.md",
+    "docs/adr/0007-working-prototype-stack.md",
+    "packages/architect/src/google-live.ts",
+    "scripts/architect_google_spike.ts",
+    "tests/architect-google-live.test.ts",
+    "reports/Q006_SCAFFOLD_2026-10-06.md"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "reports/Q006_SCAFFOLD_2026-10-06.md",
+      "notes": "PASS spec/task/handoff/archive consistency P0/P1 DONE 6 DOING 1"
+    },
+    {
+      "command": "node --test tests/architect-google-live.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/architect-google-live.test.ts",
+      "notes": "7/7 pass mocked paid MP4 decodeable via WinGet ffprobe, key never leaked, no blind retry"
+    },
+    {
+      "command": "node --test tests/architect.test.ts",
+      "exit_code": 1,
+      "result": "fail",
+      "artifact": "tests/architect.test.ts",
+      "notes": "39/40 pass; 1 fail symlink Windows permissions (symlink creation requires privilege) -> expected 0 not 2, documented as Win limitation not product defect"
+    },
+    {
+      "command": "manual review ADR and scaffold",
+      "exit_code": null,
+      "result": "pass",
+      "artifact": "docs/adr/0007-working-prototype-stack.md",
+      "notes": "Stack pinned decided in Q-006, migrations typed, make check vs spec-check separated, no new runtime deps"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "docs/adr/0001-modular-monolith-contracts-first.md",
+        "docs/adr/0007-working-prototype-stack.md",
+        "reports/Q006_SCAFFOLD_2026-10-06.md"
+      ],
+      "reason": "ADR0001 accepted + ADR0007 decided/pinned concrete stack before scaffold; monorepo reproducible local run, no invented defaults"
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "reports/Q006_SCAFFOLD_2026-10-06.md",
+        "docs/architecture/04_DATA_MODEL.md"
+      ],
+      "reason": "Contracts include primary channel/language/bible versions/consents/operations/reservations tenant+versions"
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "reports/Q006_SCAFFOLD_2026-10-06.md"
+      ],
+      "reason": "Schema/migrations cover tenant consistency constraints and safety; offline 001 migration present, Postgres not required yet"
+    },
+    {
+      "id": "AC4",
+      "result": "pass",
+      "evidence": [
+        "reports/Q006_SCAFFOLD_2026-10-06.md",
+        "Makefile"
+      ],
+      "reason": "make check explicit vs spec-check separated, mock-only CI not claimed as live acceptance"
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Symlink test fails on Windows without privilege — documented not product bypass",
+    "Postgres/S3 not yet running — migrations only offline",
+    "No live 3-run smoke yet — duration pad verified via mocked MP4 only"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Q-007 tenant/auth/device pairing",
+    "Q-008 durable execution/recovery + Q-009 budget atomicity",
+    "3-run live smoke --live T1/T2/T3 with GEMINI_API_KEY to validate 30±2 fix before full 9-run"
+  ],
+  "recommended_next_tasks": [
+    "Q-007"
+  ],
+  "required_owner_checks": [
+    "Confirm Win symlink limitation documented acceptable",
+    "Approve Q-007 start within existing pay-as-you-go cap"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls in Q-006 (offline scaffold only). Estimated spend remains 0.993 baseline; smoke 0.397 pending explicit owner run."
+  }
+}

@@ -1,0 +1,13 @@
+  applyCommand(input:{documentId:string; workspaceId:string; baseRevision:number|null; idempotencyKey:string; newJson:AnyDocumentJson; actor:string; changeReason:string; fontRefs?:string[]; sourceAssetRefs?:string[]; rendererVersion?:string|null}):Result<{revision:DocumentRevision; created:boolean}>{
+    if(!SAFE_ID.test(input.idempotencyKey)) return {ok:false,code:'invalid_idempotencyKey'};
+    const idemKey=input.workspaceId+':'+input.documentId+':'+input.idempotencyKey;
+    const existing=this.commands.get(idemKey); if(existing){ const revs=this.revisions.get(input.documentId)??[]; const found=revs.find(r=>String(r.revision)===existing); if(found) return {ok:true,value:{revision:{...found},created:false}}; return {ok:false,code:'idempotency_revisions_lost'}; }
+    const docBefore=this.docs.get(this.k(input.workspaceId,input.documentId)); if(!docBefore) return {ok:false,code:'document_not_found'};
+    if(input.baseRevision!==null && (docBefore.currentRevisionRef??0)!==input.baseRevision) return {ok:false,code:'conflict_base_revision'};
+    if(input.baseRevision===null && docBefore.currentRevisionRef!==null) return {ok:false,code:'conflict_base_revision'};
+    if(sizeBytes(input.newJson)>MAX_JSON_BYTES) return {ok:false,code:'json_too_large'};
+    const g=checkDocumentGrammar(docBefore.kind, input.newJson as unknown as Record<string,unknown>); if(!g.ok) return {ok:false,code:(g as unknown as {code:string}).code};
+    const r=this._createRevision({ documentId:input.documentId, workspaceId:input.workspaceId, actor:input.actor, changeReason:input.changeReason, baseRevision:input.baseRevision, newJson:input.newJson, rendererVersion:input.rendererVersion??null, fontRefs:input.fontRefs??[], sourceAssetRefs:input.sourceAssetRefs??[] });
+    if(!r.ok) return r as unknown as Result<{revision:DocumentRevision; created:boolean}>;
+    this.commands.set(idemKey,String(r.value.revision)); return {ok:true,value:{revision:r.value,created:true}};
+  }

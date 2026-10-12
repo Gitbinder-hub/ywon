@@ -1,0 +1,63 @@
+{
+  "task_id": "B-004",
+  "base_commit": "e60383479bb2c34959a23fe272ffff1f6bb56a52",
+  "environment": {
+    "node": "24.14.1",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130",
+    "os": "Linux sandbox",
+    "source_scope": "reconstructed scoped files, not full repo checkout"
+  },
+  "checks": [
+    {
+      "command": "tsc -p bootstrap/B004.tsconfig.json --typeRoots <preinstalled>/@types",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "command": "node --test tests/architect.test.ts",
+      "result": "pass",
+      "exit_code": 0,
+      "tests": 40,
+      "failures": 0,
+      "skips": 0
+    },
+    {
+      "command": "node scripts/architect_preflight.ts plan --input bootstrap/fixtures/B004-plan.json",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "command": "node scripts/architect_preflight.ts recover --input bootstrap/fixtures/B004-recovery.json",
+      "result": "pass",
+      "exit_code": 3,
+      "expected_exit_code": 3
+    }
+  ],
+  "not_run": [
+    "full make check/spec-check",
+    "project.py validate/status/next",
+    "existing regression suites",
+    "GitHub CI",
+    "browser/UI",
+    "real media/providers/quality/economics",
+    "production auth/budget/queue"
+  ],
+  "paid_provider_calls": 0,
+  "local_compute_and_assistant_cost_usd": null,
+  "owner_acceptance": null,
+  "source_sha256": {
+    "packages/architect/src/index.ts": "6b45d685744b1a36fefc9769bf45cffbf816a2354c89552e3c3bb4e97edea9e1",
+    "scripts/architect_preflight.ts": "b5d36d7879277e902b05a0bd960ab62ab16fd31cec6de26343b0d1483dca42c6",
+    "tests/architect.test.ts": "a603ad90b80d14131adbc0df03aff580dcc78289c8866ccd06445b1e0c52b222",
+    "bootstrap/fixtures/B004-plan.json": "bc6763048a863016ed6dfa556c3c9aa39774872c0283cccf73c90360e087353f",
+    "bootstrap/fixtures/B004-recovery.json": "21be1ee11ecf7bc40470b02fb361fc4791209de301d8e3259642e2ccd97e1317",
+    "bootstrap/B004.tsconfig.json": "db8d287f5f89a8a8c4148cd2f93a9e5981d68e16bff84baf8026e8ec3d513942",
+    "packages/architect/README.md": "5d9d380dc291ddfe20b568248e84d66701636b053fd2ab6e3f7f2c5e658f6202",
+    "bootstrap/B004.json": "dff5884c5eee6052c2557fc900e591c3fc13762e01bdafe41a69e130259fdabb",
+    "bootstrap/B004_HANDOFF.md": "136c2c1ec5e5a3d9bbe48e1868850dd8c9b724d1ed77d227cae49e4778e255e7",
+    "bootstrap/evidence/2026-10-03-architect/tests.log": "0628821a692d8d8a3d09acccee3d74a9e84cf733a85f7f2f5df4ed93d6efe5db",
+    "bootstrap/evidence/2026-10-03-architect/plan-report.json": "6232949a2b47c6bbb5534e57c9c02c4d804e2c33155268e79eb29836c70068d0",
+    "bootstrap/evidence/2026-10-03-architect/recovery-report.json": "f8c7f0647f392550c4c3d964709e042cda5ef9ca6fc37440dff6918801e769db"
+  }
+}

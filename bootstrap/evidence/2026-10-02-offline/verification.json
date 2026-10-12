@@ -1,0 +1,35 @@
+{
+  "task": "B-002",
+  "status": "REVIEW",
+  "command": "Ywoom_EVIDENCE_DIR=<local path> make check",
+  "result": "PASS",
+  "counts": {
+    "node": 37,
+    "media_python": 7,
+    "spec": 44,
+    "transfer": 10,
+    "skips": 0
+  },
+  "node": "v24.14.1",
+  "python": "Python 3.13.14",
+  "ffmpeg": "ffmpeg version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2024 the FFmpeg developers",
+  "real_media_evidence": "synthetic fixtures through real FFmpeg; demo two scenes + 30s portrait + 60s landscape; download hash/range/decode/repeat/cancel/failure",
+  "tested_upload_formats": [
+    "PNG",
+    "JPEG",
+    "WAV",
+    "MP3",
+    "M4A"
+  ],
+  "browser_evidence": "3 VM fixture tests only; actual browser/visual/a11y NOT RUN",
+  "provider_calls": 0,
+  "p0_p1_acceptance": false,
+  "cost": null,
+  "remote_base": "b90c853634c1654ea6b73356038c4163a80083f1",
+  "remote_implementation_upload": "complete; runtime source verified",
+  "github_ci": "unknown; previous HTTP403",
+  "diagnostic_mp4_sha256": "0ee9aecd2ee4a1c981b643670b3799dd5620a82f2a93cd98eaa3b5761fb8415a",
+  "clean_archive_reproducibility": "PASS: extract ZIP, npm ci --offline --ignore-scripts --no-audit --no-fund, make check; same 98 tests, zero skips",
+  "remote_code_commit": "4502eb2a3b836384cf732731c75478263f3711e1",
+  "publication_repeat_check": "PASS: make check, same 98 tests, zero skips"
+}

@@ -1,0 +1,58 @@
+{
+  "task": "B-003",
+  "status": "REVIEW",
+  "validated_at": "2026-10-02 after owner attachment at 19:42 Asia/Bangkok",
+  "tested_source_commit": "2d03aef0fa3ccf69231a10e0d92a96d8a15263e9",
+  "archive_sha256": "8a683b69129c99a9620fe73d7da95bf2d4e4b3274ec94336c19c13513419ebaa",
+  "archive_file_count": 303,
+  "source_root_tree": "10ced96210e4bb5ec310e2456bb449e501960486",
+  "source_verification": "all 27 top-level GitHub file/tree hashes MATCH; covers complete 303-file source snapshot; ZIP has no Git ancestry",
+  "offline_npm_ci": "PASS: --offline --ignore-scripts --no-audit --no-fund; exact pinned dev tools from cache; 4 installed packages including platform TS and undici-types; no new dependencies",
+  "project_validate": "PASS",
+  "project_status": "PASS: P0, TODO=50, DONE=0",
+  "project_next": "Q-001 owner_gate",
+  "full_make_check": {
+    "result": "PASS",
+    "node": 56,
+    "python_media": 7,
+    "spec": 44,
+    "transfer": 10,
+    "total": 117,
+    "fail": 0,
+    "skipped": 0,
+    "full_strict_typecheck": "PASS",
+    "app_studio_js_syntax": "PASS"
+  },
+  "separate_real_chromium": {
+    "pass": 10,
+    "fail": 0,
+    "skipped": 0
+  },
+  "combined_test_total": 127,
+  "source_unchanged_after_tests": true,
+  "tools": {
+    "node": "24.14.1",
+    "python": "3.13.14",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "ffmpeg": "7.0.2-static"
+  },
+  "diagnostic_mp4_sha256": "95025760a91c17a3e1e209f29de5a1682089690b26a2b737ac04a07b72d1c597",
+  "media_evidence": "real browser brief→approval→studio→synthetic PNG/tone upload→30s portrait MP4→download hash/full decode; NOT speech quality",
+  "github_ci": "UNKNOWN: latest retrieval HTTP403; local PASS is not CI PASS",
+  "historical_package_check": "NOT_RUN: PACKAGE_MANIFEST/check_package.py verifies the historical delivered B-001 release snapshot, not current branch release certification",
+  "provider_calls": 0,
+  "actual_compute_cost": null,
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "remaining_limits": [
+    "RU-only/local browser-origin brief/Web Locks; one-way studio handoff",
+    "No AI/TTS/provider route, prices, cloud/auth/tenant/queue/budget/production deployment",
+    "No actual speech quality, other OS/browsers/native/screen-reader/full WCAG/load/security acceptance",
+    "Node18 typings on Node24 provisional; no vulnerability/registry-signature audit"
+  ],
+  "production_task_mutations": false,
+  "test_isolation_note": "spec tests use owner-gate/start/submit/accept fixtures only inside temporary copied repositories; transfer tests use disposable local Git fixtures, not a replacement for genuine remote history"
+}

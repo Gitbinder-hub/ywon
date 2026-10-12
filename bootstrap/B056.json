@@ -1,0 +1,14 @@
+{
+  "task_id": "B-056",
+  "status": "REVIEW",
+  "base_commit": "978c39d9ec00dba0237a5702d01dda8fb1b174a7",
+  "owner_authorized_at": "2026-10-05",
+  "authorization": "Owner asked to continue Ywon implementation; bounded no-paid optional offline recognition",
+  "scope": "Pinned Russian Vosk PCM-to-transient-draft and explicit reviewed shared-core intake; no execution",
+  "out_of_scope": "General LLM/TTS/duplex/addressability, Windows certification/native release, cloud/paid calls/keys/tool execution, registry/Q/policy/budget/main/deploy",
+  "owner_acceptance": null,
+  "product_stage_acceptance": false,
+  "paid_calls": false,
+  "handoff": "bootstrap/B056_HANDOFF.md",
+  "evidence": "bootstrap/evidence/2026-10-05-companion-asr/verification.json"
+}

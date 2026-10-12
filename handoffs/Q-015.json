@@ -1,0 +1,89 @@
+{
+  "task_id": "Q-015",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-015 Media library, manual publishing and optional YouTube API (P2 prototype): rights/provenance/availability + manual publish package with manifest hash, YouTube optional with audit/quota/OAuth/disclosure recorded and documented limitation, duplicate/reconcile/approval-version tests. packages/media-library/src/types+index, 3 tests PASS (105 total).",
+  "changed_files": [
+    "packages/media-library/src/types.ts",
+    "packages/media-library/src/index.ts",
+    "tests/media-library.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/media-library.test.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/media-library.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/media-library.test.ts",
+      "notes": "3/3 PASS: AC1 rights/availability/provenance + manual package, AC2 YouTube optional documented, AC3 duplicate/reconcile/approval or limitation"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts tests/director-chat.test.ts tests/skill-runtime.test.ts tests/dispatcher.test.ts tests/design-system.test.ts tests/editors.test.ts tests/genome.test.ts tests/journeys.test.ts tests/pipeline.test.ts tests/media-library.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/media-library.test.ts",
+      "notes": "105/105 PASS, no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/media-library/src/types.ts",
+        "packages/media-library/src/index.ts",
+        "tests/media-library.test.ts"
+      ],
+      "reason": "Library ingests with rightsApproved gate and provenanceHash/availability, manual publish builds manifestHash package only for available items."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/media-library/src/index.ts",
+        "tests/media-library.test.ts"
+      ],
+      "reason": "YouTube state records auditNote/quota/OAuth/disclosure officially and API is optional — disabled by default with documented limitation."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/media-library/src/index.ts",
+        "tests/media-library.test.ts"
+      ],
+      "reason": "When disabled returns documented limitation; when enabled duplicate guard and approval-version reconcile tested, different approval version not duplicate."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Manual publish hash stub not yet S3 object + signed URL",
+    "YouTube actual quota/OAuth flow not implemented — documented as optional"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-015 then Q-041 usability before P2 gate Q-015G",
+    "Q-041 studio novice E2E"
+  ],
+  "recommended_next_tasks": [
+    "Q-041",
+    "Q-015G"
+  ],
+  "required_owner_checks": [
+    "Confirm manual publish complete path acceptable without YouTube",
+    "Review YouTube optional limitation disclosure"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

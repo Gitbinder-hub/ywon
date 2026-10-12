@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "task": "B-060 LARGE",
+  "version": "0.0.7",
+  "builtAt": "2026-10-06T04:24:11.256166+00:00",
+  "host": "Windows 10 19045 x64 csc4.0.30319 Node24 Python3.14",
+  "artifacts": {
+    "installer": {
+      "file": "Ywon-Companion-Setup-0.0.7.exe",
+      "size": 224768,
+      "sha256": "e6078cc3b2d13cc66316ba949e13862be9651c33ae98a2879be4a910a93f9f73",
+      "path": "outputs/companion-windows-installer-2026-10-06/Ywon-Companion-Setup-0.0.7.exe"
+    },
+    "payloadZip": {
+      "file": "Ywon-Companion-0.0.7.zip",
+      "size": 202570,
+      "sha256": "3266ffbf1253f37880115f7493e4981a0dbe2d09a89e9580d5f2519302ad61af"
+    },
+    "uninstall": {
+      "file": "uninstall.exe",
+      "size": 7168,
+      "sha256": "fa583b59323089dc4d08459909293f3786700efbd114ae0dde48d7954d3ab8a8"
+    },
+    "tray": {
+      "file": "YwonTray.exe",
+      "size": 13312,
+      "sha256": "9380b4f1a5e9dfe348410124ae0c28bc8ef504deca88fbe0fb7abd6160719853",
+      "shaTmp": "9380b4f1a5e9dfe348410124ae0c28bc8ef504deca88fbe0fb7abd6160719853",
+      "checks": [
+        "REGEX http://127.0.0.1:\\d+",
+        "CreateNoWindow/RedirectStandardOutput/WindowStyle.Hidden",
+        "ShowBalloonTip"
+      ],
+      "features": [
+        "auto-open http://127.0.0.1:PORT",
+        "ContextMenu Open/Check/Setup-ASR/Exit",
+        "--minimized balloon",
+        "--check registry/lnk"
+      ]
+    },
+    "stream": [
+      "workers/companion/asr_stream_worker.py 5249",
+      "packages/companion/src/asr-stream-process.ts 10194",
+      "packages/companion/src/audio-host.ts /api/audio/asr-stream",
+      "apps/desktop-companion/pcm-stream-capture.mjs 1632 + audio-client.mjs YwonStartLiveStream"
+    ]
+  },
+  "trayVerification": {
+    "compile": "csc winexe RC0 13312 + AllocConsole/AttachConsole + help non-blocking fix (UserInteractive && !Redirected) -> RC0 for --help/--check",
+    "runtime": {
+      "--help": "RC0 out help text no TIMEOUT (fixed)",
+      "--check": "RC0 out Ywon Companion check OK lines (installDir/Ywon.cmd/startmenu/desktop/HKCU Uninstall)",
+      "stage --help": "RC0",
+      "minimized/balloon": "NOT_RUN needs GUI live run"
+    },
+    "static": {
+      "DefaultDir": "LocalApplicationData/Ywon Companion",
+      "DoCheck": "HKCU Uninstall+Run + lnc Existence",
+      "StartServer": "CreateNoWindow/RedirectStandardOutput/WindowStyle.Hidden BeginOutputReadLine",
+      "OnOutput": "Regex http://127.0.0.1:\\d+ -> url capture -> Process.Start or ShowBalloonTip if minimized",
+      "Main": "--minimized/--check/--help EnableVisualStyles NotifyIcon ContextMenuStrip itemSetup Timer1800 Application.Run tray.Visible+server.Kill",
+      "Ui": "unicode escapes Открыть Ywon/Проверить установку/Настройка ASR/Выход + balloon Локальный сервер запущен"
+    }
+  },
+  "liveStreaming": {
+    "worker": "asr_stream_worker.py 4-byte LE 0=finalize 0xFFFFFFFF=exit partial/final JSON",
+    "adapter": "asr-stream-process.ts VoskStreamProcess queue+waiters timeout",
+    "host": "audio-host.ts chunked octet-stream X-Ywon-Session/Sequence/Last lane.enabled+voice.active gates",
+    "client": "pcm-stream-capture.mjs AudioWorkletProcessor Ywon-pcm-stream 1024 + audio-client.mjs YwonStartLiveStream fetch chunked",
+    "status": "CODE_WRITTEN_VERIFIED_COMPILE_NOT_LIVE_MIC"
+  },
+  "payloadStageFiles": 75,
+  "build": {
+    "csc": [
+      "uninstall 7168 RC0",
+      "setup 224768 RC0"
+    ],
+    "zipInner": "3266ffbf1253f37880115f7493e4981a0dbe2d09a89e9580d5f2519302ad61af",
+    "installerSha256": "e6078cc3b2d13cc66316ba949e13862be9651c33ae98a2879be4a910a93f9f73"
+  },
+  "installMode": "per-user %LOCALAPPDATA%\\Ywon\\Ywon Companion no admin shortcuts Start+Desktop Run OFF default SmartScreen expected",
+  "productionReady": false,
+  "paidCalls": 0
+}

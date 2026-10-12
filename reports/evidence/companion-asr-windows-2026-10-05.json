@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-05",
+  "scope": "bounded B-056 Windows ASR setup continuation; REVIEW",
+  "archive": "outputs/companion-windows-asr-2026-10-05/Ywon-Companion-Windows-0.0.4.zip",
+  "sha256": "a298cf884d0c2ec4fd9d6589f9ed0df1d50c37a3fa77e0ddfef98248c64eb680",
+  "bytes": 182992,
+  "files": 69,
+  "environment": {"os": "Windows 10 build 19045 x64", "node": "24.19.0", "python": "3.14.8", "git_checkout": false},
+  "checks": {
+    "source_tree_validate_status_next": "PASS",
+    "scoped_architect_full_links": "PASS",
+    "python_pipe_default_encoding": "cp1252",
+    "python_pipe_explicit_utf8_russian_json": "PASS",
+    "packaged_in_process_node_tests": {"pass": 69, "fail": 0, "skipped": 0},
+    "offline_setup_unit_tests": {"pass": 7, "fail": 0},
+    "setup_cmd_readonly_preflight": "PASS; installed=false microphoneEnabled=false paidCalls=false",
+    "zip_crc_and_extracted_manifest": "PASS",
+    "private_runtime_bundled": false,
+    "current_pypi_metadata": "NOT_RUN_SUCCESSFULLY: network sandbox WinError10061; expanded-network request not executed, automatic approval review HTTP503",
+    "real_install_native_vosk_and_speech": "NOT_RUN",
+    "typescript_compiler_full_suite_ci": "NOT_RUN",
+    "hardware_microphone_windows11": "NOT_RUN"
+  },
+  "initial_failures": [
+    "Node 68-test run: 67 pass, 1 fail because synchronous spawn EPERM was not redacted; implementation fixed, final 69 pass",
+    "Python initial fixture writes/cleanup blocked by private tempfile ACL; moved fixtures to validated workspace paths",
+    "Python malformed-backslash fixture normalized by Windows zipfile; corrected to actual backslash traversal, final 7 pass"
+  ],
+  "changes": [
+    "explicit isolated Python UTF-8 worker argv",
+    "redacted synchronous spawn failure and busy-lane release",
+    "explicit local setup helper and source package 0.0.4",
+    "setup privacy ignore patterns and instructions"
+  ],
+  "dependencies_or_model_installed": false,
+  "microphone_activated": false,
+  "paid_calls": 0,
+  "q_state_changed": false,
+  "original_archives_changed": false,
+  "production_ready": false,
+  "handoff": "reports/COMPANION_ASR_WINDOWS_2026-10-05.md",
+  "transitions_retained": ["TR-05", "TR-06", "TR-10"]
+}

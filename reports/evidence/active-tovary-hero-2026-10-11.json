@@ -1,0 +1,46 @@
+{
+  "skillId": "tovary-hero",
+  "version": "1.0.0",
+  "labStage": "active",
+  "scope": "small_then_active",
+  "holdout": {
+    "goldenIds": [
+      "c1",
+      "c2"
+    ],
+    "holdoutIds": [
+      "c3",
+      "c4"
+    ],
+    "seed": 42,
+    "honest": true
+  },
+  "mechanical": {
+    "outcome": "pass",
+    "reportHash": "c2f9f10ec4e522f6d08112e890d211ce0077578564dc2d58aa4b1949b900ce7d"
+  },
+  "real": {
+    "outcome": "pass",
+    "budgetApproved": true,
+    "reportHash": "6fea99941fca2027663aaf4de7dd7b08a9f27df9f76f5cad51a0795696086917"
+  },
+  "canary": {
+    "skillId": "tovary-hero",
+    "version": "1.0.0",
+    "scope": "small",
+    "enabledAt": "2026-10-10T17:17:28.715Z",
+    "active": true
+  },
+  "marketplace": {
+    "verified": true,
+    "published": true,
+    "signature": "16de5b3a22f63d7a…"
+  },
+  "rollbackProof": {
+    "previousStage": "active",
+    "billedRefund": false
+  },
+  "gateNote": "draft→canary→active only via evidence/approval; rollback does not refund; new version does not mutate accepted manifest",
+  "yamlStatus": "active",
+  "at": "2026-10-10T17:17:28.717Z"
+}

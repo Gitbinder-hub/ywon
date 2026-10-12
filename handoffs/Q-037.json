@@ -1,0 +1,88 @@
+{
+  "task_id": "Q-037",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-037 Cost estimate projections, baseline and >10% alerts (P1 prototype): immutable CostBaseline with hash/version/amendedFrom, pending/confirmed/corrected projection without double counting (reserved separate), strict >10% threshold (exactly +10% no alert, +10.01% alerts), cumulative/zero/FX/stale/hard cap/headroom tested, notification dedup/version and ack vs approval semantics, final report with all attempts. packages/budget/src/cost-visibility.ts, 9 tests PASS (68 total).",
+  "changed_files": [
+    "packages/budget/src/cost-visibility.ts",
+    "tests/cost-visibility.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "packages/budget/src/cost-visibility.ts",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/cost-visibility.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/cost-visibility.test.ts",
+      "notes": "9/9 PASS: AC1 immutable baseline/amend/no double count, AC2 strict >10% / cumulative/zero/FX/stale/hard cap, AC3 dedup/version ack vs approval final report all attempts"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts tests/cost-visibility.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/cost-visibility.test.ts",
+      "notes": "68/68 PASS (10 budget+6 workflow+9 auth+11 api+4 contracts+9 editable+8 shell+9 cost-vis+1 auth-api extra), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/budget/src/cost-visibility.ts",
+        "tests/cost-visibility.test.ts"
+      ],
+      "reason": "Immutable baseline with hash/version/pricingVersion/items/amendedFrom, explicit amendBaseline increments version; projection = confirmed+pending_upper+remaining+repair with reserved displayed separately not double-counted; pending=null => unbounded requires reconcile."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/budget/src/cost-visibility.ts",
+        "tests/cost-visibility.test.ts"
+      ],
+      "reason": "Strict >10% (forecast*10 > baseline*11): +9% no alert, exactly +10% no alert, +10.01% alert; cumulative rises vs original baseline; zero baseline any positive requires approval; stale/unknown/unbounded => stale_or_unbounded with refresh required; hard cap blocks even below +10%; FX via minor units."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/budget/src/cost-visibility.ts",
+        "tests/cost-visibility.test.ts"
+      ],
+      "reason": "Notifications dedup by scopeId:baselineId:v{version}:outcome, version bump resets dedup, requiresApproval separate from notification; ack returns ack key but does not imply approval (approval is new amended baseline); final report contains original/latest approved/actual/all attempts."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "Prototype thresholds use in-memory CostBaseline, not yet Postgres price version/checked_at/validity expiry",
+    "Hard cap enforcement is evaluation-time decision, not yet wired to BudgetLedger reserve deny",
+    "Dedup is in-memory Set, needs persisted notification state in production"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-037 then Q-010G P1 gate",
+    "Q-012 Director Chat / Q-013 Skill Runtime / Q-042 dispatcher for P2"
+  ],
+  "recommended_next_tasks": [
+    "Q-010G",
+    "Q-012"
+  ],
+  "required_owner_checks": [
+    "Confirm immutable baseline and strict >10% semantics acceptable for P1",
+    "Review dedup and ack-vs-approval boundary before P2"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

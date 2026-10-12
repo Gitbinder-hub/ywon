@@ -1,0 +1,17 @@
+name: spec-pack-check
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/project.py validate
+      - run: python3 -m unittest discover -s tests_spec -v
+# Offline spec checks only. No secrets/paid APIs/product media tests.

@@ -1,0 +1,43 @@
+﻿# docs/product â€œÐ°Ð²Ñ‚Ð¾-Ñ€Ð°Ð±Ð¾Ñ‚Ð° Ð½Ð° Ñ„Ñ€Ð¸Ð»Ð°Ð½ÑÐµâ€ â€” Kwork / FL, Ð½Ð¾ Ð½Ðµ Ð¾Ð±ÐµÑ‰Ð°ÐµÑ‚ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ð¸
+id: freelance-autopilot
+version: "1.0.0"
+status: active
+scope: studio
+execution_fidelity: supported_control
+input_schema:
+  type: object
+  required: [query]
+  properties:
+    query: { type: string, minLength: 2, maxLength: 120 }
+    platforms: { type: array, items: { type: string, enum: [kwork, fl, freelancer] }, default: [kwork] }
+    budget_floor_minor: { type: integer, minimum: 0, default: 0 }
+output_schema:
+  type: object
+  required: [drafts, forecastMinor, manifest_hash]
+  properties:
+    drafts: { type: array, items: { type: object, required: [project_id, bid_text, estimateMinor], properties: { project_id: { type: integer }, bid_text: { type: string }, estimateMinor: { type: integer } } } }
+    forecastMinor: { type: integer }
+    manifest_hash: { type: string, pattern: "^[a-f0-9]{64}$" }
+required_capabilities: [exchange-search]
+optional_capabilities: [freelancer-api, kwork-api]
+budget:
+  limitMinor: 3000
+  worstCaseMinor: 3000
+  currency: USD
+  cancellationRule: forfeit
+retries:
+  maxAttempts: 1
+  backoffMs: 0
+reports:
+  deliveryReport: true
+  costReport: true
+  qaReport: true
+  openIssues: true
+steps: [search_projects, estimate_cost, draft_bids, gate_10percent, await_human_approval, report]
+approval: [await_human_approval]
+supported_outcomes: [drafts_ready_awaiting_approval]
+degraded_outcomes: [no_projects_matched]
+unsupported_outcomes: [platform_unreachable]
+forbidden_this_iteration: [auto_bid_without_approval, assumed_revenue]
+curiosity_reserve: 5
+presets: []

@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ywoom â€” Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/shell.css"><script src="/shell.js" defer></script><script src="/studio.js" defer></script><script src="/studio-journey.js" defer></script></head>
+<body><div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">Ywoom<span>FACTORY</span></div>
+  <div class="hint">Ð¡Ñ‚ÑƒÐ´Ð¸Ñ â€” ÑÐ¾Ð±ÐµÑ€Ð¸ Ñ€Ð¾Ð»Ð¸Ðº Ð¸Ð· ÑÐ²Ð¾Ð¸Ñ… Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ð¾Ð².</div>
+  <nav class="side-nav">
+    <a href="/"><span class="ico">â—‰</span> Ð—Ð°Ð²Ð¾Ð´</a>
+    <a href="/studio" class="active"><span class="ico">ðŸŽ¬</span> Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</a>
+    <a href="/journey"><span class="ico">ðŸ§­</span> ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚</a>
+    <a href="/billing"><span class="ico">ðŸ’³</span> ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</a>
+  </nav>
+  <div class="side-sep"></div>
+  <nav class="side-nav"><a href="/studio" class="active"><span class="ico">ðŸ“</span> ÐŸÑ€Ð¾ÐµÐºÑ‚Ñ‹</a><a href="/settings"><span class="ico">âš™ï¸</span> ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸</a></nav>
+  <div class="sidebar-footer"><span class="dot"></span>Ywoom <span id="ver-label">0.16</span> Â· <span style="color:#8ea0bf">Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</span></div>
+</aside>
+<div class="app-content">
+  <div class="app-top"><div class="crumb"><a href="/" style="color:var(--muted)">Ð—Ð°Ð²Ð¾Ð´</a> Â· <strong>Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</strong></div><div class="app-top-actions"><input id="dash-query" placeholder="ÐŸÐ¾Ð¸ÑÐº Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°..." style="padding:8px 12px;border-radius:10px;border:1px solid var(--line2);background:var(--bg2);color:var(--text);width:220px"><a href="/billing" class="btn">ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</a></div></div>
+  <main class="page" style="max-width:1280px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div><h1 class="h1" style="margin:6px 0 4px">Ð¡Ñ‚ÑƒÐ´Ð¸Ñ</h1><p class="sub" style="margin:0">Ð¡Ð¾Ð±ÐµÑ€Ð¸ Ñ€Ð¾Ð»Ð¸Ðº: ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ â†’ ÑÑ†ÐµÐ½Ñ‹ â†’ Ð¾Ð·Ð²ÑƒÑ‡ÐºÐ° Ð¸ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸ â†’ MP4.</p></div>
+      <div style="display:flex;gap:10px"><button id="new" class="btn">+ ÐÐ¾Ð²Ñ‹Ð¹</button><button id="demo" class="btn btn-primary">Ð”ÐµÐ¼Ð¾-Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ñ‹</button></div>
+    </div>
+    <section id="dash" style="margin:16px 0 10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0"><h2 class="h2" style="margin:0">ÐŸÑ€Ð¾ÐµÐºÑ‚Ñ‹</h2><span class="sub" id="dash-count"></span></div>
+      <div id="dash-grid" class="projects"></div>
+      <div id="dash-empty" class="empty" hidden>
+        <div style="font-size:28px">ðŸŽ¬</div><h3>ÐŸÐ¾ÐºÐ° Ð¿ÑƒÑÑ‚Ð¾ â€” Ð½Ð°Ñ‡Ð½Ð¸ Ñ Ð´ÐµÐ¼Ð¾</h3><p class="sub">ÐžÐ´Ð¸Ð½ ÐºÐ»Ð¸Ðº â€” ÑÐ¸Ð½Ñ‚ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ ÑÑ†ÐµÐ½Ñ‹ Ð¸ Ð¾Ð·Ð²ÑƒÑ‡ÐºÐ°. ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ ÑÐ±Ð¾Ñ€ÐºÑƒ, Ð½Ðµ ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸.</p>
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:10px"><button class="btn btn-primary" onclick="document.getElementById('demo').click()">Ð”ÐµÐ¼Ð¾-Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ñ‹</button><button class="btn" onclick="document.getElementById('new').click()">ÐÐ¾Ð²Ñ‹Ð¹ Ð¿Ñ€Ð¾ÐµÐºÑ‚</button></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;margin:10px 0"><select id="projects" aria-label="ÐŸÑ€Ð¾ÐµÐºÑ‚Ñ‹" style="max-width:360px" hidden><option value="">Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð¿Ñ€Ð¾ÐµÐºÑ‚</option></select><span class="sub">Ð‘Ñ‹ÑÑ‚Ñ€Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€ (ÑÑ‚Ð°Ñ€Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº)</span></div>
+    </section>
+    <p id="message" role="status" aria-live="polite" style="min-height:18px;color:#e8c36a"></p>
+    <div class="layout"><section><fieldset id="editor"><legend>ÐŸÑ€Ð¾ÐµÐºÑ‚</legend>
+      <label>ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ<input id="title" maxlength="120" placeholder="ÐœÐ¾Ð¹ Ñ€Ð¾Ð»Ð¸Ðº"></label>
+      <label>Ð¡Ñ†ÐµÐ½Ð°Ñ€Ð¸Ð¹<textarea id="script" rows="5" maxlength="4000" placeholder="Ð’Ð²ÐµÐ´Ð¸ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ â€” Ð¿ÑƒÑÑ‚Ð°Ñ ÑÑ‚Ñ€Ð¾ÐºÐ° = Ð½Ð¾Ð²Ð°Ñ ÑÑ†ÐµÐ½Ð°."></textarea></label>
+      <button id="split" class="btn">Ð Ð°Ð·Ð±Ð¸Ñ‚ÑŒ Ð½Ð° ÑÑ†ÐµÐ½Ñ‹</button>
+      <div class="grid2"><label>Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ, ÑÐµÐº.<input id="duration" type="number" min="30" max="60" step="1" value="30"></label><label>Ð¤Ð¾Ñ€Ð¼Ð°Ñ‚<select id="aspect"><option value="portrait">9:16 Â· 720Ã—1280</option><option value="landscape">16:9 Â· 1280Ã—720</option></select></label></div>
+      <label class="check"><input id="rights" type="checkbox"> ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´Ð°ÑŽ Ð¿Ñ€Ð°Ð²Ð¾ Ð½Ð° Ð·Ð°Ð³Ñ€ÑƒÐ¶Ð°ÐµÐ¼Ñ‹Ðµ Ñ„Ð°Ð¹Ð»Ñ‹</label>
+      <label>ÐžÐ·Ð²ÑƒÑ‡ÐºÐ°: WAV / MP3 / M4A, Ð´Ð¾ 12 MiB<input id="audio" type="file" accept=".wav,.mp3,.m4a"></label><p id="audio-info" class="sub">ÐžÐ·Ð²ÑƒÑ‡ÐºÐ° Ð½Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð°</p>
+      <label class="check"><input id="trim" type="checkbox"> ÐžÐ±Ñ€ÐµÐ·Ð°Ñ‚ÑŒ Ð¾Ð·Ð²ÑƒÑ‡ÐºÑƒ Ð¿Ð¾Ð´ Ð´Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ</label>
+      <h2 class="h2" style="margin-top:14px">Ð¡Ñ†ÐµÐ½Ñ‹ <span class="sub" style="font-weight:400">â€” Ñ‚ÑÐ½Ð¸ Ð·Ð° â ¿ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð¿Ð¾Ñ€ÑÐ´Ð¾Ðº</span></h2><div id="timeline" style="display:flex;gap:6px;margin:10px 0;overflow-x:auto;padding:4px 0"></div><p class="sub" style="font-size:12px">1â€“6 ÑÑ†ÐµÐ½ Â· drag & drop Â· ÑÑ‚Ñ€ÐµÐ»ÐºÐ¸ â†‘â†“ Â· ÐºÐ»Ð¸Ðº Ð¿Ð¾ Ð·Ð¾Ð½Ðµ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸.</p><div id="scenes"></div><button id="add" class="btn">+ Ð¡Ñ†ÐµÐ½Ð°</button>
+    </fieldset><div style="display:flex;gap:10px;margin:14px 0"><button id="save" class="btn">Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ</button><button id="render" class="btn btn-primary">Ð¡Ð¾Ð±Ñ€Ð°Ñ‚ÑŒ MP4</button><button id="cancel" class="btn" disabled>ÐžÑ‚Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ</button></div><p id="revision" class="sub"></p></section>
+    <section><h2 class="h2">Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚</h2><p id="job-status" class="sub">Ð¡Ð±Ð¾Ñ€ÐºÐ° Ð½Ðµ Ð·Ð°Ð¿ÑƒÑÐºÐ°Ð»Ð°ÑÑŒ</p><progress id="progress" max="1" value="0"></progress><video id="player" controls playsinline hidden></video><p><a id="download" hidden>Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ MP4</a> <a id="report" hidden target="_blank" rel="noopener">ÐžÑ‚Ñ‡Ñ‘Ñ‚ / Ñ…ÐµÑˆÐ¸</a></p>
+      <section class="verified-panel"><h2 class="h2">ÐŸÑ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð½Ñ‹Ðµ Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸</h2><p class="sub">ÐœÐµÑ‚Ð°Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð· Ð»Ð¾ÐºÐ°Ð»ÑŒÐ½Ð¾Ð³Ð¾ receipt-store.</p><label>ID Ð·Ð°Ð¿ÑƒÑÐºÐ°<input id="verified-run-id" maxlength="64" placeholder="google-p0-002" autocomplete="off"></label><button id="verified-load" type="button" class="btn">ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ</button><p id="verified-status" role="status" aria-live="polite"></p><div id="verified-card" class="verified-card" hidden><p><strong id="verified-badge">Ð›Ð¾ÐºÐ°Ð»ÑŒÐ½Ð¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ½</strong></p><dl><div><dt>Ð—Ð°Ð¿ÑƒÑÐº</dt><dd id="verified-run"></dd></div><div><dt>Ð’Ð¸Ð´ÐµÐ¾</dt><dd id="verified-format"></dd></div><div><dt>Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ</dt><dd id="verified-duration"></dd></div><div><dt>SHA-256</dt><dd id="verified-sha"></dd></div></dl><button id="verified-attach" type="button" class="btn" disabled>ÐŸÑ€Ð¸Ð²ÑÐ·Ð°Ñ‚ÑŒ Ðº Ð¿Ñ€Ð¾ÐµÐºÑ‚Ñƒ</button><p id="verified-reference-status" class="sub"></p><p class="evidence-actions"><a id="verified-evidence" hidden target="_blank" rel="noopener">ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ evidence</a><a id="verified-evidence-download" hidden download>Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ evidence</a></p></div></section>
+      <h2 class="h2" style="margin-top:18px">Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ</h2><div id="history"></div>
+    </section></div>
+    <footer style="margin-top:18px;border-top:1px solid var(--line);padding-top:14px;color:#7a8599;font-size:11px">Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Node 24, Python 3.10+, FFmpeg. <a href="/">Ð—Ð°Ð²Ð¾Ð´</a> Â· <a href="/billing">ÐŸÐ¾Ð´Ð¿Ð¸ÑÐºÐ¸</a></footer>
+  </main>
+</div>
+</div>
+</body></html>

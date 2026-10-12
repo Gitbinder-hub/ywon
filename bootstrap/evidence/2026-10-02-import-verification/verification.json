@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-02",
+  "repository": "Ywoom-space/Ywoom",
+  "branch": "bootstrap/spec-v04-foundation",
+  "remote_import_commit": "6fbb5d8c6de6566773a541ecb51a221e9803fb14",
+  "local_compared_commit": "71d7cf0",
+  "local_tree_sha": "5b7505dfd51e3e0ce0c724eb78f138dd4b6750e7",
+  "local_file_count": 267,
+  "root_entry_count": 26,
+  "all_root_paths_types_and_blob_or_tree_hashes_match": true,
+  "matching_directory_tree_ids_cover_recursive_contents": true,
+  "root_file_executable_modes": "not separately queried",
+  "remote_import": "complete_verified",
+  "main_unchanged": "971b26aca5d3dbb29d6d95239a9b395b83cfb978",
+  "pr": { "number": 1, "draft": true, "merged": false },
+  "checks": {
+    "command": "make check",
+    "exit_code": 0,
+    "typecheck": "pass",
+    "js_syntax": "pass",
+    "node": { "pass": 19, "skipped": 0 },
+    "media": { "pass": 3, "skipped": 0 },
+    "spec": { "pass": 44, "skipped": 0 },
+    "transfer": { "pass": 10, "skipped": 0 }
+  },
+  "github_ci": "unknown: check-run read HTTP403",
+  "latest_raw_check_log": "retained in agent computer; previous same-source raw log at bootstrap/evidence/2026-10-01-transfer-kit/make-check.txt",
+  "source_of_remote_import": "Owner normal commit/push; remote history preserved",
+  "product_stage_acceptance": false,
+  "paid_provider_calls": 0,
+  "costs": { "known_usd": null, "notes": "No paid provider/deploy calls; assistant/compute costs unknown, not zero" }
+}

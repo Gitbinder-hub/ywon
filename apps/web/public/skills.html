@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ywoom — Скилы</title>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#3a3c45">
+<link rel="stylesheet" href="/design.css"><link rel="stylesheet" href="/skills.css">
+<script src="/pwa.js" defer></script><script src="/home.js" defer></script><script src="/skills.js" defer></script>
+</head>
+<body>
+<div class="yw-shell" style="position:relative;overflow:hidden;width:100%;min-height:100vh;display:flex;color:#ecebf4;font-family:'Rubik','Nunito',system-ui,sans-serif;background:#3a3c45">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+<div style="position:absolute;left:-120px;bottom:-140px;width:520px;height:460px;border-radius:50%;background:#7d9cff;opacity:.11;filter:blur(90px)"></div>
+<div style="position:absolute;left:46%;top:-160px;width:420px;height:320px;border-radius:50%;background:#a58cf5;opacity:.10;filter:blur(90px)"></div>
+<div style="position:absolute;right:-140px;bottom:-120px;width:520px;height:420px;border-radius:50%;background:#f58a9e;opacity:.11;filter:blur(90px)"></div>
+</div>
+
+<nav class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
+<div style="padding:0 16px 28px">
+<div style="font-size:26px;font-weight:600;letter-spacing:.12em">YWOOM</div>
+<div class="m" style="font-size:12px;margin-top:4px">Автономная мастерская контента</div>
+</div>
+<a class="nav" href="/"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"></path></svg></span>Главная</a>
+<a class="nav" href="/studio"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>Студия</a>
+<a class="nav" href="/journey"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span>Контент-план</a>
+<a class="nav conv" aria-current="page" href="/skills" style="color:#fff"><span class="ic zone" style="color:#2a2b35"><i style="left:-30%;top:-30%;width:90%;height:90%;background:#f58a9e"></i><i style="right:-30%;bottom:-30%;width:90%;height:90%;background:#b9a6ff"></i><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span>Скилы</a>
+<a class="nav" href="/billing"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"></path></svg></span>Аналитика</a>
+<a class="nav" href="/settings"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"></path><circle cx="15" cy="8" r="2"></circle><circle cx="9" cy="16" r="2"></circle></svg></span>Настройки</a>
+<div class="hol" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div><div class="m" style="font-size:12px">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600">$—</div></div>
+<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap">Пополнить</a>
+</div>
+</nav>
+
+<main class="yw-main" style="position:relative;flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:22px">
+<header style="display:flex;justify-content:space-between;gap:24px;align-items:flex-start;flex-wrap:wrap">
+<div><div class="m" style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Архитектор · Скилы</div><h1 style="margin:0;font-size:30px;font-weight:500;letter-spacing:-.01em;line-height:1.1">Скилы — рецепты фабрик</h1><p class="m" style="margin:6px 0 0;font-size:13px">Каждый скил — typed recipe: входы → шаги → отчёт. Фильтр по фабрике ниже. Правка → draft → Лаба → canary → active.</p><p class="m" id="skills-sub" style="font-size:12px;margin-top:4px;min-height:14px"></p></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<input id="skills-query" placeholder="Поиск скила..." style="padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:#35373f;color:#ecebf4;min-width:200px">
+<select id="skills-filter" class="btn hol" style="padding:10px 14px;border-radius:14px"><option value="">Все fidelity</option><option value="2d_approximation">2d_approximation</option><option value="prompt_guidance">prompt_guidance</option><option value="supported_control">supported_control</option><option value="exact_3d">exact_3d</option></select>
+</div>
+</header>
+
+<div class="card" style="border-radius:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center">
+<div style="display:flex;gap:8px;flex-wrap:wrap" id="skills-chips" class="skills-chips"></div>
+<div class="m" style="font-size:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span id="factory-line">Мастерская: Товары · Реклама · Видео · Код/Боты · Фриланс</span><span style="border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;background:rgba(255,255,255,.05)">Y</span></div>
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="hol" style="padding:8px 14px;border-radius:20px;font-size:12px;font-weight:600" id="badge-total">— скилов</span><span class="hol" style="padding:8px 14px;border-radius:20px;font-size:12px" id="badge-draft">draft —</span></div>
+
+<div id="skills-grid" class="skills-grid"></div>
+<div id="skills-empty" class="hol" hidden style="border-radius:22px;padding:32px;text-align:center"><div style="font-size:28px">◆</div><h3 style="margin:8px 0">Скилы не загрузились</h3><p class="m" id="skills-error" style="font-size:13px">Проверь что автономная мастерская запущен.</p><button class="btn conv" style="padding:10px 18px;border-radius:18px;color:#fff;margin-top:12px" onclick="location.reload()">Обновить</button></div>
+
+<footer style="border-top:1px solid rgba(255,255,255,.08);padding-top:14px;color:#8ea0bf;font-size:12px;display:flex;gap:12px;flex-wrap:wrap">Скилы — механизм из OpenMontage, код оригинальный. <a href="/settings" style="color:#b7c8ff">Настройки</a> · <a href="/" style="color:#b7c8ff">Автономная мастерская</a></footer>
+</main>
+</div>
+
+<div id="skill-drawer" class="drawer" hidden>
+  <div class="drawer-backdrop" data-close-drawer></div>
+  <div class="drawer-panel">
+    <div class="drawer-head"><div><div class="drawer-title" id="drawer-title">—</div><div class="m" id="drawer-sub">—</div></div><button class="btn hol" style="padding:8px 12px;border-radius:12px" data-close-drawer>✕</button></div>
+    <div class="drawer-tabs"><button class="tab active" data-tab="read">Читать</button><button class="tab" data-tab="edit">Править → версия</button><button class="tab" data-tab="lab">Лаба</button></div>
+    <div class="drawer-body">
+      <section data-panel="read"><div id="drawer-read" class="prose"></div></section>
+      <section data-panel="edit" hidden><p class="m" style="font-size:13px">Правка не перезаписывает молча. Создаст <code id="next-version" style="background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px">—</code> draft → механический eval в CI → real eval с approved spend → canary small → active.</p><textarea id="drawer-yaml" spellcheck="false"></textarea><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button id="drawer-save" class="btn conv" style="padding:10px 16px;border-radius:18px;color:#fff">Создать новую версию draft</button><button class="btn hol" style="padding:10px 16px;border-radius:18px" data-close-drawer>Отмена</button></div><p class="m" id="drawer-edit-hint" style="font-size:12px;margin-top:8px"></p></section>
+      <section data-panel="lab" hidden><div id="drawer-lab" class="prose"></div></section>
+    </div>
+  </div>
+</div>
+</body></html>

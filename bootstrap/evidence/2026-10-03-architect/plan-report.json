@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "report": {
+    "schemaVersion": 1,
+    "mode": "offline_preflight",
+    "executionAllowed": false,
+    "budgetReserved": false,
+    "status": "ready_for_review",
+    "fingerprint": "a1201a7f7e84778b890395587fd08248e8e5f3f26d2a91bf1d12e9095cd6d3e2",
+    "unitId": "demo-episode",
+    "revision": 1,
+    "currency": "USD",
+    "baselineMinor": 100,
+    "repairReserveMinor": 20,
+    "unitCapMinor": 120,
+    "effectiveCapMinor": 120,
+    "estimatedInitialMinor": 50,
+    "nodes": [
+      {
+        "id": "produce.scene1",
+        "sceneId": "scene1",
+        "kind": "produce",
+        "dependsOn": [],
+        "capabilityId": "fixture-2d",
+        "capabilityVersion": "v1",
+        "inputHash": "978fd18c26b3b5904f06ed3f357a7fa602f09dffa9c1c92fd097e541ed94321c",
+        "estimatedMinor": 40
+      },
+      {
+        "id": "assemble",
+        "sceneId": null,
+        "kind": "assemble",
+        "dependsOn": [
+          "produce.scene1"
+        ],
+        "capabilityId": null,
+        "capabilityVersion": null,
+        "inputHash": "e3eff337bc729ad2b8f207db8b5f1679304d9bb5756870e2a3771aa099fca3bc",
+        "estimatedMinor": 5
+      },
+      {
+        "id": "qa",
+        "sceneId": null,
+        "kind": "qa",
+        "dependsOn": [
+          "assemble"
+        ],
+        "capabilityId": null,
+        "capabilityVersion": null,
+        "inputHash": "760df36a9be3b87218a08ce88204b81615d1bc83688d4c1a0d5eec4bed13bc21",
+        "estimatedMinor": 5
+      }
+    ],
+    "issues": [],
+    "limitations": [
+      "Fixture-declared capabilities/prices, not verified live provider terms.",
+      "Production auth/reservations/pending liabilities are NOT implemented.",
+      "Assembly/QA are planned nodes; supplied local cost estimates are not measured compute charges.",
+      "No model/Blender/renderer invocation or quality guarantee."
+    ]
+  }
+}

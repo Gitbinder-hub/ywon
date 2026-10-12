@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "base_commit": "7522d78d1e2bc9b24a6a083cd13bf02c799904d5",
+  "scope": "B-055 scoped genuine partial source",
+  "tools": {
+    "node": "24.14.1",
+    "typescript": "7.0.2",
+    "node_types": "18.19.130"
+  },
+  "node_tests": {
+    "total": 124,
+    "passed": 124,
+    "failed": 0,
+    "skipped": 0,
+    "retained": 103,
+    "new_host": 13,
+    "new_audio_device": 8
+  },
+  "strict_typecheck": {
+    "result": "pass",
+    "configuration": "bootstrap/B051.tsconfig.json",
+    "local_override": "Only installed typeRoots; original strict options retained",
+    "browser_modules": "JS syntax/unit/browser checks, not TS typed"
+  },
+  "browser_tests": {
+    "platform": "Linux headless Chromium",
+    "input": "browser fake audio device backed by synthetic WAV",
+    "actualWebAudio": true,
+    "realUserMicrophone": false,
+    "windowsNotRun": true,
+    "cases": [
+      {
+        "name": "initial microphone off; consent required",
+        "status": "pass"
+      },
+      {
+        "name": "real Chromium getUserMedia/WebAudio with synthetic input, meter positive",
+        "status": "pass"
+      },
+      {
+        "name": "WebAudio test-tone output interrupted while microphone remains active",
+        "status": "pass"
+      },
+      {
+        "name": "mute physically ends actual Chromium media tracks",
+        "status": "pass"
+      },
+      {
+        "name": "withdraw consent stops actual capture",
+        "status": "pass"
+      },
+      {
+        "name": "blur event cleanup stops actual capture",
+        "status": "pass"
+      },
+      {
+        "name": "desktop layout no horizontal overflow",
+        "status": "pass"
+      },
+      {
+        "name": "390px layout no horizontal overflow; controls >=44px",
+        "status": "pass"
+      },
+      {
+        "name": "new controller view revokes old view and stops its media tracks",
+        "status": "pass"
+      },
+      {
+        "name": "late microphone permission/stream resolution after mute cannot resurrect capture",
+        "status": "pass"
+      },
+      {
+        "name": "late old stream cannot stop a newer explicitly activated capture",
+        "status": "pass"
+      },
+      {
+        "name": "simulated permission denial cleans controller and displays error",
+        "status": "pass"
+      },
+      {
+        "name": "45-second idle actually closes browser media tracks despite status polling",
+        "status": "pass"
+      },
+      {
+        "name": "local process loss stops actual browser audio",
+        "status": "pass"
+      },
+      {
+        "name": "no external page requests/raw audio payloads or page errors",
+        "status": "pass"
+      }
+    ],
+    "externalPageRequests": 0,
+    "pageErrors": [],
+    "postPayloadKeys": [
+      "command",
+      "sequence"
+    ],
+    "screenshots": [
+      "desktop-idle.png",
+      "desktop-active.png",
+      "desktop-muted.png",
+      "mobile-idle.png",
+      "permission-error.png"
+    ]
+  },
+  "visual_qa": {
+    "result": "pass",
+    "inspected": [
+      "desktop-idle.png",
+      "desktop-active.png",
+      "desktop-muted.png",
+      "mobile-idle.png",
+      "permission-error.png",
+      "dark-idle.png"
+    ],
+    "screenshot_sha256": {
+      "desktop-idle.png": "0d756352c5e8d59bdac2b5f4d0e4816e7767b5e9e35297277af8f9d84cb4709d",
+      "desktop-active.png": "767068297645ec6f22145c02b8fbf5c21c621e66e548e12795df342b788cf86f",
+      "desktop-muted.png": "bdc355332f50fce8d7941a4d5cffd322eb332ec4fe08083a3576352400afdd3a",
+      "mobile-idle.png": "430627f965538b73a2677fdfa4b2428cb448e47eeac6c8ca3f1dbc8bdf05bf1f",
+      "permission-error.png": "4fc588004b8dc9bb9ca97235799d415f4cf1a21df05b6caed380e75bdb0883cf",
+      "dark-idle.png": "a9e344f6848555ab92e3f674186c7037a90ce1af247b1b43f73b81308358370d"
+    },
+    "static_capture_helper": "run and inspected; natural vertical flow, no horizontal/overlay/resource errors",
+    "contrast": {
+      "muted_light": 6.27,
+      "primary_light": 5.94,
+      "control_border_light": 3.48,
+      "muted_dark": 8.73,
+      "primary_dark": 8.66,
+      "control_border_dark": 4.73
+    },
+    "full_wcag": false,
+    "dark_interactive_not_run": true
+  },
+  "initial_attempt": {
+    "result": "one failed negative Host test",
+    "cause": "Node fetch ignores supplied Host header",
+    "fix": "Used actual node:http Host request; production guard unchanged",
+    "final": "124/124 PASS"
+  },
+  "provider_calls": 0,
+  "paid_calls": 0,
+  "audio_upload": false,
+  "microphone_device": "Chromium fake input, not real user microphone",
+  "loopback_http": true,
+  "not_run": [
+    "full checkout make/spec-check/project.py/CI",
+    "Windows10/11/macOS/Linux desktop hardware/native client install and permission tests",
+    "ASR/TTS/LLM/live audio/addressability/AEC quality/latency/CPU benchmark",
+    "SaaS auth/pairing/cloud/paid meter/provider invoice",
+    "installer signing/update/public release"
+  ],
+  "product_stage_acceptance": false,
+  "owner_acceptance": null,
+  "tested_source_sha256": {
+    "packages/companion/src/audio-host.ts": "cbf8f429bcd447fd853e905e5a3b6b3d0b07150d15a983d45889f20e6bd8fe76",
+    "packages/companion/src/voice-session.ts": "592c083b1106cd6b85a2b7e6e6d73415aa6e881d43bf07bc71927be4471cd9a4",
+    "apps/desktop-companion/audio-device.mjs": "94c2ccd0fd85d974e56f4a6b7ae520ce1054d928b393753068a277e3116be487",
+    "apps/desktop-companion/audio-client.mjs": "6e2b365026fffcefe49d3361fe723cabe02142915068423fac864b8f46becb66",
+    "apps/desktop-companion/audio.html": "dba7cc08f7e38c6e0d7aeabb06d53a745b2f84e173b45bb85d9fef9b36a41023",
+    "apps/desktop-companion/audio.css": "14a9b6af8554cfd581efc9ee345c735c49814c8c83ad570b449572744cc16826",
+    "scripts/companion_audio.ts": "b5fe4ec8695efad7dff5d24571f910424a5562c29035ecad4175de378ccd9ab3",
+    "tests/companion-audio-host.test.ts": "e3038fdd5a386209c8184d1667d5b7dda2167b2665dd86b931035b90ab0c4168",
+    "tests/companion-audio-device.test.mjs": "7bff3a385c4c8938092f9073162b465ad77d950671f4561d598f8017c240b4b5",
+    "bootstrap/B051.tsconfig.json": "1d4cabf5e2b8091c6e7d24abb56060feed5b5c1877d22670528aa915e90748a8"
+  },
+  "package_verification": {
+    "zip_crc": "pass",
+    "manifest_sha256": "pass",
+    "extracted_tests": {
+      "total": 99,
+      "passed": 99,
+      "failed": 0,
+      "skipped": 0
+    },
+    "smoke": {
+      "extractedAudioHost": "pass",
+      "extractedBrowserAssets": "pass",
+      "darkIdleNoOverflow": "pass",
+      "defaultMicrophoneOff": "pass",
+      "pageErrors": [],
+      "platform": "Linux Chromium",
+      "windowsLauncher": "not_run"
+    },
+    "unsigned": true,
+    "windows_launcher": "not_run"
+  }
+}

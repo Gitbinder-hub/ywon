@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "amendment_id": "A-20261003",
+  "spec_version": "0.4.0",
+  "status_policy": "No task statuses here; tasks/project.json is sole source of truth",
+  "task_overlays": [
+    {
+      "task_id": "Q-006",
+      "context_additions": [
+        "docs/architecture/ARCHITECT_FOUNDATION.md",
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md",
+        "docs/adr/0007-working-prototype-stack.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-006-1",
+          "text": "Typed Mission/WorldState/Decision/Capability/Evidence/GenerationUnit contracts; versions/tenant links; no new unbounded tools."
+        },
+        {
+          "id": "A-20261005-Q-006-1",
+          "text": "Design shared versioned device/task/outcome contracts and production-shaped stack/migration; local SQLite preview not tenant ledger; concrete choices resolved before scaffold."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-008",
+      "context_additions": [
+        "docs/production/AUTONOMOUS_EXECUTION.md",
+        "docs/production/RECOVERY_CONTROLLER.md",
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-008-1",
+          "text": "Recover persisted unit/attempt/envelope; unknown paid outcome reconciled without blind submit; pause drains/polls in-flight and denies new affected actions."
+        },
+        {
+          "id": "A-20261005-Q-008-1",
+          "text": "Durable server/device intent, pinned task, fencing/replay and suspend/reconnect design; lease expiry or lost acknowledgement never permits blind external resubmit."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-009",
+      "context_additions": [
+        "docs/economics/GENERATION_RESERVE.md",
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-009-1",
+          "text": "Atomically enforce frozen unit B/R/C and ancestor caps including pending liabilities; operation/attempt changes do not reset limits; unknown invoices never zero."
+        },
+        {
+          "id": "A-20261005-Q-009-1",
+          "text": "Single authoritative paid ledger/reservation across runtimes and distinct research budget; offline/stale device balance cannot authorise new paid work; usage/invoice evidence separate."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-012",
+      "context_additions": [
+        "docs/production/RECOVERY_CONTROLLER.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-012-1",
+          "text": "Recovery card presents defect/evidence/changed repair/retained assets/price; auto and manual edit modes; approval single-use version/hash/attempt bound."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-013",
+      "context_additions": [
+        "docs/studio/SCENE_COMPILER.md",
+        "docs/studio/HIGGSFIELD_SUBSTITUTION.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-013-1",
+          "text": "Preflight compiles only accepted adapter inputs; stage vs final fidelity distinguished; bounded own 2D route and typed future Blender/control target."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-014",
+      "context_additions": [
+        "docs/production/AUTONOMOUS_EXECUTION.md",
+        "docs/quality/ARCHITECT_ACCEPTANCE.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-014-1",
+          "text": "Manual pilot retained; delegated mode stays disabled until activation; targeted repairs preserve unaffected assets; two failures pause before third; reserve cannot override safety."
+        },
+        {
+          "id": "A-20261005-Q-014-1",
+          "text": "Declared lower/upper duration and narration completeness are checked independently of hash/codecs; partial output not silently accepted to satisfy cost cap."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-016",
+      "context_additions": [
+        "docs/quality/ARCHITECT_ACCEPTANCE.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md",
+        "docs/learning/COMPANION_SCENARIOS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-016-1",
+          "text": "Report all admitted units, first-generation vs first-delivery vs autonomous completion, human intervention/critical failure/all attempts costs and declared uncertainty."
+        },
+        {
+          "id": "A-20261005-Q-016-1",
+          "text": "Report actual accepted-result costs, repair/latency/interventions and unknown usage; no promised economic outcome from fixture prices/estimated rewards."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-026",
+      "context_additions": [
+        "docs/studio/SCENE_COMPILER.md",
+        "docs/studio/HIGGSFIELD_SUBSTITUTION.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-026-1",
+          "text": "Per-function substitute and real final camera/continuity benchmark; exact Blender input does not certify generative final output; no closed-backend portability assumption."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-032",
+      "context_additions": [
+        "docs/learning/EVOLUTION_AND_LAB.md",
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/learning/COMPANION_SCENARIOS.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-032-1",
+          "text": "Research/Dev sandbox separate from production; candidate→holdout→review→canary; protected tests/policy/budget cannot self-modify; new-model activation evidence."
+        },
+        {
+          "id": "A-20261005-Q-032-1",
+          "text": "Sanitised versioned cross-runtime ImprovementPackage requires destination compatibility/holdout/review/canary/rollback; scope-specific scenarios and seed exclusion; pilot does not accept full P6."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-037",
+      "context_additions": [
+        "docs/economics/GENERATION_RESERVE.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-037-1",
+          "text": "20% monetary repair preset requires explicit acceptance; strict >10% display vs authorized repair headroom; scope change excluded; third-attempt and beyond-cap repair approvals tested."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-042",
+      "context_additions": [
+        "docs/architecture/ARCHITECT_FOUNDATION.md",
+        "docs/production/RECOVERY_CONTROLLER.md",
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-042-1",
+          "text": "Architect supervises four existing roles under one dispatcher; independent code guards and QA uncertainty; no redundant mandatory calls/duplicate commands."
+        },
+        {
+          "id": "A-20261005-Q-042-1",
+          "text": "One canonical dispatcher and policy/budget semantics across adapters; roles do not duplicate calls or side effects; irreversible action auth enforced outside LLM."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-044",
+      "context_additions": [
+        "docs/architecture/ARCHITECT_FOUNDATION.md",
+        "docs/production/AUTONOMOUS_EXECUTION.md",
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md",
+        "docs/adr/0006-desktop-companion-boundary.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261003-Q-044-1",
+          "text": "Architect Factory adapter implemented as bounded contract before future shell; per-module scopes/private data/export independence; delegated publishing separate gate."
+        },
+        {
+          "id": "A-20261005-Q-044-1",
+          "text": "Specify detachable Companion contract, independent Factory availability, Windows10/11 first and Linux/macOS later; per-device/private scopes and compatibility; client implementation separately decomposed/gated, not full Personal shell."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-003",
+      "context_additions": [
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-003-1",
+          "text": "Declare strict/adaptive duration and tolerance/full narration checks before eval; technical short-WAV fixtures are not fulfillment proof."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-004",
+      "context_additions": [
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-004-1",
+          "text": "P0 spike evidence distinguishes media validity from requested duration/narration completion and estimate from actual usage/invoice; GAP-DURATION/GAP-COST not closed by docs."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-007",
+      "context_additions": [
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-007-1",
+          "text": "Authoritative tenant/actor/device pairing and revocation design; no direct laptop DB secret or caller-success authority; connected/public client activation separately gated."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-010",
+      "context_additions": [
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-010-1",
+          "text": "Scoped artifact transfer/private storage/quarantine/rights/retention; device local paths and fixture receipt never signed delivery authority; migration/restore tested."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-015",
+      "context_additions": [
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-015-1",
+          "text": "Manual export retained; official API publication independently authorised and reconciled; Desktop/browser publication not prerequisite; standard single-account path before multiaccount."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-034",
+      "context_additions": [
+        "docs/learning/COMPANION_SCENARIOS.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-034-1",
+          "text": "Tool candidate commercialization needs IP/licence/privacy/security/support/release evidence; an internal useful script is not automatically a market-ready product."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-038",
+      "context_additions": [
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-038-1",
+          "text": "Incremental authenticated working UI is distinguished from brief preview; actual responsive/a11y checks, no production claim from static screenshots."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-040",
+      "context_additions": [
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-040-1",
+          "text": "One real project/job/result/edit/export vertical slice with persistent versions and visible cost/error states, not another detached brief mock; preserve existing accepted UX scope."
+        }
+      ]
+    },
+    {
+      "task_id": "Q-041",
+      "context_additions": [
+        "docs/architecture/DESKTOP_COMPANION.md",
+        "docs/governance/IMPLEMENTATION_TRANSITIONS.md"
+      ],
+      "additional_ac": [
+        {
+          "id": "A-20261005-Q-041-1",
+          "text": "Web/staging E2E and novice evidence separated from mocks and OS runtime checks; exact tested targets/prototype limitations/transitions in handoff."
+        }
+      ]
+    }
+  ]
+}

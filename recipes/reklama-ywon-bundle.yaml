@@ -1,0 +1,19 @@
+# Reklama bundle: variants lineage + platform limits
+id: reklama-ywon-bundle
+version: "1.0.0"
+status: draft
+kind: image
+recipes: [reklama-banner]
+steps:
+  - id: validate_offer
+    inputs: [offer, audience, landing_url, proofs]
+  - id: check_limits
+    gate: PlatformLimits
+  - id: variants
+    skill: reklama-banner
+    params: { variants: 3, platform: generic }
+  - id: lineage_qa
+    checks: [variants_lineage, claims_checked]
+  - id: export
+    outputs: [png_sequence, manifest, cost_report]
+provenance: { family: Реклама, base: reklama-banner }

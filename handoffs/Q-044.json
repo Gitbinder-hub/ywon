@@ -1,0 +1,96 @@
+{
+  "task_id": "Q-044",
+  "agent": "claude/opus-5.5",
+  "session": "2026-10-08T03:36:05+00:00",
+  "branch": "not_available",
+  "base_commit": "not_available",
+  "work_commit": "pending",
+  "summary": "Q-044 Factory boundary for future JEWEL shell (P1 prototype): typed ModuleContract/Delegation/CrossModuleConsent/DeepLink/FactoryCommand in packages/platform-shell, migration 006 module_registry/delegations/consents/deep_links, per-module distinct scopes, scoped delegation (purpose/retention/expiry/revocation), cross-module private-data consent gate, stable deep links with tenant checks, delegated publishing separate gate, factory export independent of shell outage, future personal/business/capital/physical remain future with boundary v1. 8 tests PASS (59 total).",
+  "changed_files": [
+    "packages/platform-shell/src/types.ts",
+    "packages/platform-shell/src/index.ts",
+    "infra/migrations/006_platform_shell.sql",
+    "tests/platform-shell.test.ts"
+  ],
+  "evidence": [
+    {
+      "command": "python scripts/project.py validate",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "infra/migrations/006_platform_shell.sql",
+      "notes": "PASS spec/task/handoff/archive consistency"
+    },
+    {
+      "command": "node --test tests/platform-shell.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/platform-shell.test.ts",
+      "notes": "8/8 PASS: AC1 typed commands/deep links/scoped delegation/distinct scopes/monolith retained, AC2 cross-module consent purpose+retention tenant+revocation+role escalation denied, AC3 future shell not implemented factory export independent publishing separate gate versioning migration"
+    },
+    {
+      "command": "node --test tests/budget-reserve.test.ts tests/workflow-durable.test.ts tests/contracts.test.ts tests/auth-tenant.test.ts tests/auth-api.test.ts tests/api.test.ts tests/editable-document.test.ts tests/platform-shell.test.ts",
+      "exit_code": 0,
+      "result": "pass",
+      "artifact": "tests/platform-shell.test.ts",
+      "notes": "59/59 PASS (10 budget+6 workflow+9 auth+11 api+4 contracts+9 editable+8 shell+2 auth-api), no live paid calls"
+    }
+  ],
+  "ac_results": [
+    {
+      "id": "AC1",
+      "result": "pass",
+      "evidence": [
+        "packages/platform-shell/src/types.ts",
+        "packages/platform-shell/src/index.ts",
+        "tests/platform-shell.test.ts",
+        "infra/migrations/006_platform_shell.sql"
+      ],
+      "reason": "Typed module commands (factory.create_project/generate/export/review/get_status) validated, deep links /factory/{ws}/... stable, scoped delegation with purpose/retention/expiry/revocation and per-module distinct scopes (factory vs personal etc), current monolith retained (no microservices introduced)."
+    },
+    {
+      "id": "AC2",
+      "result": "pass",
+      "evidence": [
+        "packages/platform-shell/src/index.ts",
+        "tests/platform-shell.test.ts",
+        "infra/migrations/006_platform_shell.sql"
+      ],
+      "reason": "Cross-module private data transfer requires explicit CrossModuleConsent with purpose/retention/delegation binding; DENIED for missing purpose, wrong tenant, revoked/expired delegation, and scope_module_mismatch; deep link tenant checks deny cross-tenant and unauthenticated; factory:read cannot mint personal:read; revocation/expiry blocks."
+    },
+    {
+      "id": "AC3",
+      "result": "pass",
+      "evidence": [
+        "packages/platform-shell/src/index.ts",
+        "tests/platform-shell.test.ts",
+        "infra/migrations/006_platform_shell.sql",
+        "docs/architecture/PLATFORM_SHELL.md"
+      ],
+      "reason": "Future personal/business/capital/physical modules remain future (personal.status=future), factory active with exportIndependent=true and independent access when shell down, boundaryVersion=1 on all 6 modules, docs reference preserved, no full Personal shell activation."
+    }
+  ],
+  "not_done": [],
+  "risks": [
+    "In-memory prototype only — migration 006 is offline SQL, needs real Postgres + RLS + pg-boss integration",
+    "Per-module scope enforcement is code-level prefix check, not yet DB RLS; needs Q-012 auth enforcement",
+    "Desktop Companion future adapter not gated here — remains future module"
+  ],
+  "blockers": [],
+  "next_steps": [
+    "Owner accept Q-044 + Q-009 + Q-036 to unblock Q-010G P1 gate",
+    "Q-012 Director Chat typed approvals, Q-013 Skill Runtime Router, then Q-014 pipeline"
+  ],
+  "recommended_next_tasks": [
+    "Q-010G",
+    "Q-012",
+    "Q-013"
+  ],
+  "required_owner_checks": [
+    "Confirm factory boundary typed contracts and delegation/consent gates acceptable for P1",
+    "Review future personal/business/capital/physical remain future (no shell activation implied)"
+  ],
+  "costs": {
+    "known_usd": 0,
+    "notes": "No paid calls (offline prototype)."
+  }
+}

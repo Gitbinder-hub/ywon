@@ -1,0 +1,53 @@
+python3 scripts/project.py validate
+PASS: spec/task/handoff/archive consistency. Product/media NOT tested.
+python3 -m unittest discover -s tests_spec -v
+test_accepted_handoff_tampering_detected (test_project.ContinuityTests.test_accepted_handoff_tampering_detected) ... ok
+test_agent_cannot_accept_without_explicit_owner_declaration (test_project.ContinuityTests.test_agent_cannot_accept_without_explicit_owner_declaration) ... ok
+test_agent_rules_match (test_project.ContinuityTests.test_agent_rules_match) ... ok
+test_blocker_prevents_accept (test_project.ContinuityTests.test_blocker_prevents_accept) ... ok
+test_cannot_start_twice (test_project.ContinuityTests.test_cannot_start_twice) ... ok
+test_checkpoint_preserves_doing (test_project.ContinuityTests.test_checkpoint_preserves_doing) ... ok
+test_cyclic_dependencies_detected (test_project.ContinuityTests.test_cyclic_dependencies_detected) ... ok
+test_dependencies_block_start (test_project.ContinuityTests.test_dependencies_block_start) ... ok
+test_duplicate_ids_detected (test_project.ContinuityTests.test_duplicate_ids_detected) ... ok
+test_feature_link_to_unknown_task_rejected (test_project.ContinuityTests.test_feature_link_to_unknown_task_rejected) ... ok
+test_first_ready_owner_gate_only (test_project.ContinuityTests.test_first_ready_owner_gate_only) ... ok
+test_future_task_disabled (test_project.ContinuityTests.test_future_task_disabled) ... ok
+test_generated_view_drift_detected (test_project.ContinuityTests.test_generated_view_drift_detected) ... ok
+test_initial_pack_valid (test_project.ContinuityTests.test_initial_pack_valid) ... ok
+test_missing_ac_not_submittable (test_project.ContinuityTests.test_missing_ac_not_submittable) ... ok
+test_missing_evidence_path_rejected (test_project.ContinuityTests.test_missing_evidence_path_rejected) ... ok
+test_no_path_escape (test_project.ContinuityTests.test_no_path_escape) ... ok
+test_not_run_cannot_be_accepted (test_project.ContinuityTests.test_not_run_cannot_be_accepted) ... ok
+test_original_archive_tampering_detected (test_project.ContinuityTests.test_original_archive_tampering_detected) ... ok
+test_owner_accept_records_proof_and_unblocks (test_project.ContinuityTests.test_owner_accept_records_proof_and_unblocks) ... ok
+test_owner_decision_unblocks_next (test_project.ContinuityTests.test_owner_decision_unblocks_next) ... ok
+test_owner_gate_requires_report_and_flag (test_project.ContinuityTests.test_owner_gate_requires_report_and_flag) ... ok
+test_owner_task_needs_confirmation (test_project.ContinuityTests.test_owner_task_needs_confirmation) ... ok
+test_pass_needs_evidence (test_project.ContinuityTests.test_pass_needs_evidence) ... ok
+test_phase_cannot_skip_unaccepted_gate (test_project.ContinuityTests.test_phase_cannot_skip_unaccepted_gate) ... ok
+test_reject_returns_to_todo_not_done (test_project.ContinuityTests.test_reject_returns_to_todo_not_done) ... ok
+test_resume_requires_owner (test_project.ContinuityTests.test_resume_requires_owner) ... ok
+test_review_does_not_unblock_dependencies (test_project.ContinuityTests.test_review_does_not_unblock_dependencies) ... ok
+test_selected_branch_requires_gate_dependency (test_project.ContinuityTests.test_selected_branch_requires_gate_dependency) ... ok
+test_template_is_not_approval (test_project.ContinuityTests.test_template_is_not_approval) ... ok
+test_tool_does_not_write_state_on_failed_mutation (test_project.ContinuityTests.test_tool_does_not_write_state_on_failed_mutation) ... ERROR: Q-002 is not ready: phase/status/enabled/dependencies
+ok
+test_active_contexts_not_archival (test_v04.V04Checks.test_active_contexts_not_archival) ... ok
+test_original_features_preserved_mobile_promoted (test_v04.V04Checks.test_original_features_preserved_mobile_promoted) ... ok
+test_p1_gate_contains_document_cost_shell (test_v04.V04Checks.test_p1_gate_contains_document_cost_shell) ... ok
+test_p2_gate_contains_editor_evidence (test_v04.V04Checks.test_p2_gate_contains_editor_evidence) ... ok
+test_release_gate_requires_mobile_ancestry (test_v04.V04Checks.test_release_gate_requires_mobile_ancestry) ... ok
+test_release_required_task_not_disabled (test_v04.V04Checks.test_release_required_task_not_disabled) ... ok
+test_requirement_duplicates (test_v04.V04Checks.test_requirement_duplicates) ... ok
+test_requirement_missing_doc (test_v04.V04Checks.test_requirement_missing_doc) ... ok
+test_requirement_unknown_feature (test_v04.V04Checks.test_requirement_unknown_feature) ... ok
+test_requirement_unknown_task (test_v04.V04Checks.test_requirement_unknown_task) ... ok
+test_source_snapshot_matches_original_manifest (test_v04.V04Checks.test_source_snapshot_matches_original_manifest) ... ok
+test_v03_archive_tamper (test_v04.V04Checks.test_v03_archive_tamper) ... ok
+test_v04_valid_and_unimplemented (test_v04.V04Checks.test_v04_valid_and_unimplemented) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 1.451s
+
+OK

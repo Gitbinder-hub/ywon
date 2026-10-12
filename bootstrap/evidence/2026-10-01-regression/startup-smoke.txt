@@ -1,0 +1,3 @@
+PASS: actual CLI process; health dry_run/productReady=false; static UI HTTP 200
+Server terminated; exit code: 0
+Ywoom dry-run: http://127.0.0.1:47075

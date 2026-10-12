@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-02",
+  "verified_code_commit": "439af347fa8514835bf841b48f32961166efbcce",
+  "commit_url": "https://github.com/Ywoom-space/Ywoom/commit/439af347fa8514835bf841b48f32961166efbcce",
+  "intended_changed_file_count": 10,
+  "changed_scope_checked": "client JS/HTML/two catalogs/test and scenario/evidence/handoff/status only; no protected or runtime API change",
+  "remote_local_matching_git_objects": {
+    "apps/web/public/app.js": "bffafd69fcf8efb6c4b9c6ab407e067ca1b8d812",
+    "apps/web/public/index.html": "d7bfc5a47ac2f63527d55ff4c6f61fff4cec335c",
+    "apps/web/public/locales": "8f22a91c6c0b60916dc89299004977737b011713",
+    "tests/client.test.ts": "340b5cced8664d74e20eee786b70cf84b5e7b333"
+  },
+  "final_local_make_check": "PASS: strict typecheck/JS syntax + 30 Node/3 media/44 spec/10 transfer; no skips",
+  "real_browser_evidence": "not_run; client tests use VM DOM/fetch fixtures",
+  "github_ci": "unknown; no CI success claim",
+  "paid_provider_calls": 0,
+  "owner_gate_acceptance": false
+}

@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="ru"><head>
+<html lang="ru" class="no-js"><head>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ywoom — центр управления</title>
 <link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#3a3c45">
 <link rel="stylesheet" href="/design.css">
 <script src="/pwa.js" defer></script><script src="/home.js" defer></script><script src="/shell.js" defer></script><script src="/app.js" defer></script>
+<script src="/drawer.js" defer></script>
 </head>
 <body>
 <div class="yw-shell" style="position:relative;overflow:hidden;width:100%;min-height:100vh;display:flex;color:#ecebf4;font-family:'Rubik','Nunito',system-ui,sans-serif;background:#3a3c45">
@@ -14,102 +16,128 @@
 <div style="position:absolute;right:-140px;bottom:-120px;width:520px;height:420px;border-radius:50%;background:#f58a9e;opacity:.11;filter:blur(90px)"></div>
 </div>
 
-<nav class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
+<nav id="yw-nav" class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
 <div style="padding:0 16px 28px">
 <div style="font-size:26px;font-weight:600;letter-spacing:.12em">YWOOM</div>
 <div class="m" style="font-size:12px;margin-top:4px">Автономная мастерская контента</div>
 </div>
-<button class="nav conv" aria-current="page" style="color:#fff"><span class="ic zone" style="color:#2a2b35"><i style="left:-30%;top:-30%;width:90%;height:90%;background:#f58a9e"></i><i style="right:-30%;bottom:-30%;width:90%;height:90%;background:#b9a6ff"></i><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"></path></svg></span>Главная</button>
-<a class="nav" href="/studio"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>Студия</a>
-<a class="nav" href="/journey"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span>Контент-план</a>
-<a class="nav" href="/skills"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span>Скилы</a>
-<a class="nav" href="/billing"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"></path></svg></span>Аналитика</a>
-<a class="nav" href="/settings"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"></path><circle cx="15" cy="8" r="2"></circle><circle cx="9" cy="16" r="2"></circle></svg></span>Настройки</a>
-<div class="hol" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
-<div><div class="m" style="font-size:12px">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600">$—</div></div>
-<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap">Пополнить</a>
+<button class="nav conv" aria-current="page" style="color:#fff"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/home.png" srcset="/icons/ywoom3d/1024/home.png 2x" width="40" height="40" alt="" loading="lazy">Главная</button>
+<a class="nav" href="/studio"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/studio.png" srcset="/icons/ywoom3d/1024/studio.png 2x" width="40" height="40" alt="" loading="lazy">Студия</a>
+<a class="nav" href="/journey"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/plan.png" srcset="/icons/ywoom3d/1024/plan.png 2x" width="40" height="40" alt="" loading="lazy">Контент-план</a>
+<a class="nav" href="/skills"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/avatars.png" srcset="/icons/ywoom3d/1024/avatars.png 2x" width="40" height="40" alt="" loading="lazy">Скилы</a>
+<a class="nav" href="/architect"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/director.png" srcset="/icons/ywoom3d/1024/director.png 2x" width="40" height="40" alt="" loading="lazy">Архитектор</a>
+<a class="nav" href="/billing"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/analytics.png" srcset="/icons/ywoom3d/1024/analytics.png 2x" width="40" height="40" alt="" loading="lazy">Аналитика</a>
+<a class="nav" href="/settings"><img class="ico3d ico3d--nav" src="/icons/ywoom3d/512/settings.png" srcset="/icons/ywoom3d/1024/settings.png 2x" width="40" height="40" alt="" loading="lazy">Настройки</a>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+<a href="/install" class="hol" style="border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:8px;font-size:12px;color:#b8b9c8;text-decoration:none"><span style="font-size:14px">⤓</span><span>Установка · скачать</span><span class="m" style="margin-left:auto;font-size:10px;border:1px solid rgba(255,255,255,.10);border-radius:999px;padding:2px 6px">PWA</span></a>
+<div class="hol yw-balance-wrap" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0">
+<div style="flex:1;min-width:0"><div class="m" style="font-size:12px;white-space:nowrap">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;min-width:0;display:block">$—</div></div>
+<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;flex:none">Пополнить</a>
 </div>
 </nav>
+<div class="yw-nav-backdrop" id="yw-nav-backdrop" hidden></div>
 
 <main class="yw-main" style="position:relative;flex:1;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:20px">
 
 <header class="yw-header">
+<div class="yw-header-row-top">
+<button id="yw-nav-arrow" class="yw-nav-arrow" type="button" aria-label="Свернуть меню" hidden style="width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,.10);background:#35373f;color:#b8b9c8;display:none;align-items:center;justify-content:center;font-size:14px;flex:none">‹</button>
+<button class="yw-burger" aria-label="Меню" aria-expanded="false" aria-controls="yw-nav"><span></span><span></span><span></span></button>
 <div class="yw-header-title">
 <div class="m" style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Архитектор Ywon</div>
-<h1 style="margin:0;font-size:28px;font-weight:500;letter-spacing:-.01em;line-height:1.1">Запусти что угодно — Ywon поведёт</h1>
+<h1 style="margin:0;font-size:clamp(18px,5.2vw,28px);font-weight:500;letter-spacing:-.01em;line-height:1.15;overflow-wrap:break-word;max-width:100%">Запусти что угодно — Ywon поведёт</h1>
 </div>
-<div class="yw-header-actions">
-<label class="hol yw-search">
+<div class="yw-header-top-actions">
+<button class="btn rim yw-search-toggle" id="yw-search-toggle" aria-label="Поиск" aria-expanded="false" aria-controls="yw-search-panel" style="width:52px;height:52px;flex:none;display:flex;align-items:center;justify-content:center"><svg class="i" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></svg></button>
+<button class="btn rim" id="yw-notify" aria-label="Уведомления" style="position:relative;width:52px;height:52px;flex:none;display:flex;align-items:center;justify-content:center"><svg class="i" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"></path></svg><span class="bead" style="--c:#f58a9e;position:absolute;top:10px;right:11px;width:10px;height:10px" id="yw-notify-bead" hidden></span></button>
+<a class="btn conv" href="/settings" id="yw-profile-link" style="height:52px;padding:0 20px 0 8px;border-radius:26px;display:flex;align-items:center;gap:12px;font-size:14px;white-space:nowrap;text-decoration:none"><span class="hol" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span><span id="yw-profile">Профиль</span></a>
+</div>
+</div>
+<div id="yw-search-panel" class="yw-search-panel" hidden>
+<label class="hol yw-search" style="flex:1;margin:0">
 <svg class="i" width="18" height="18" viewBox="0 0 24 24" style="color:#b8b9c8;flex:none" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></svg>
-<input type="text" aria-label="Поиск или команда режиссёру" id="yw-search" placeholder="Найти или попросить режиссёра…" style="flex:1;min-width:0;background:none;border:0;outline:0;color:#ecebf4;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+<input type="text" aria-label="Поиск или команда Архитектору" id="yw-search" placeholder="Найти или попросить Архитектора…" style="flex:1;min-width:0;background:none;border:0;outline:0;color:#ecebf4;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
 <span class="m" style="font-size:11px;border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:3px 7px;white-space:nowrap;flex:none">Ctrl K</span>
 </label>
-<button class="btn rim" id="yw-notify" aria-label="Уведомления" style="position:relative;width:52px;height:52px;flex:none;display:flex;align-items:center;justify-content:center"><svg class="i" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"></path></svg><span class="bead" style="--c:#f58a9e;position:absolute;top:10px;right:11px;width:10px;height:10px" id="yw-notify-bead" hidden></span></button>
-<a class="btn conv" href="/settings" style="height:52px;padding:0 20px 0 8px;border-radius:26px;display:flex;align-items:center;gap:12px;font-size:14px;white-space:nowrap;text-decoration:none"><span class="hol" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none"><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span><span id="yw-profile">Профиль</span></a>
+<button class="btn hol yw-search-close" id="yw-search-close" aria-label="Закрыть поиск" style="width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;color:#b8b9c8">✕</button>
 </div>
 </header>
 
-<div class="yw-grid">
+<div id="yw-dash-toolbar" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 2px">
+<button id="yw-new-widget" class="btn conv" type="button" style="height:36px;padding:0 14px;border-radius:18px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;flex:none">＋ Новый виджет</button>
+<div style="position:relative;flex:none">
+<button id="yw-trash-toggle" class="btn hol" type="button" aria-expanded="false" aria-controls="yw-trash-panel" style="height:36px;padding:0 14px;border-radius:18px;font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:8px">🗑 Корзина <span id="yw-trash-count" class="m" style="font-size:11px;min-width:18px;height:18px;border-radius:9px;background:rgba(125,156,255,.18);display:inline-flex;align-items:center;justify-content:center;padding:0 5px">0</span></button>
+<div id="yw-trash-panel" hidden style="position:absolute;left:0;top:calc(100% + 8px);z-index:30;min-width:280px;max-width:min(360px,92vw);max-height:320px;overflow:auto;-webkit-overflow-scrolling:touch;background:#43454f;border-radius:18px;padding:10px;box-shadow:-8px -8px 20px rgba(255,255,255,.05),12px 12px 28px rgba(10,10,16,.5),inset 1px 1px 1px rgba(255,255,255,.08)"></div>
+</div>
+<span class="yw-tip" id="yw-tip-desktop-wrap" style="position:relative"><button id="yw-tip-toggle-desktop" class="btn hol" type="button" aria-label="Подсказка" aria-expanded="false" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex:none">ⓘ</button><span id="yw-tip-panel-desktop" class="yw-tip-panel" hidden role="tooltip" style="position:absolute;left:auto;right:0;top:calc(100% + 8px);min-width:260px;max-width:88vw;background:#43454f;border-radius:16px;padding:10px 12px;box-shadow:0 10px 28px rgba(10,10,16,.45),inset 1px 1px 1px rgba(255,255,255,.08);z-index:12;font-size:12px;line-height:1.4;color:#b8b9c8;white-space:normal">Как виджет на телефоне — добавь через Архитектора / Установить PWA</span></span>
+</div>
+<!-- DASHBOARD GRID: left | center(agent fixed) | right — tetris with widget wrappers -->
+<div class="yw-grid" id="yw-arch-grid" style="position:relative">
+<svg id="yw-arch-svg" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:1"></svg>
 
-<div style="display:flex;flex-direction:column;gap:16px;min-width:0">
-<section class="card" style="border-radius:28px 28px 28px 14px;padding:16px 18px" aria-label="Конвейер">
+<div id="yw-col-left" style="display:flex;flex-direction:column;gap:16px;min-width:0">
+<!-- PORTFOLIO fixed -->
+<section id="yw-widget-portfolio" class="card yw-widget" data-widget="portfolio" data-widget-id="portfolio" data-locked="false" draggable="true" data-widget-kind="grid" style="--w:1;--h:1;border-radius:28px 28px 28px 14px;padding:16px 18px" aria-label="Портфель">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 8px"><span class="widget-handle" aria-hidden="true" title="Перетащить">⠿</span><span class="t" style="font-size:11px;flex:1">Портфель</span><span id="yw-dash-toolbar-mobile" style="display:none;align-items:center;gap:6px;flex:none"><button id="yw-new-widget-m" class="btn conv" type="button" aria-label="Новый виджет" style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1">＋</button><button id="yw-trash-toggle-m" class="btn hol" type="button" aria-label="Корзина" aria-expanded="false" aria-controls="yw-trash-panel" style="min-width:32px;height:32px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 8px;font-size:12px">🗑<span id="yw-trash-count-m" class="m" style="font-size:10px;min-width:14px;height:14px;border-radius:7px;background:rgba(125,156,255,.18);display:inline-flex;align-items:center;justify-content:center;padding:0 3px">0</span></button><span class="yw-tip" style="position:relative"><button id="yw-tip-toggle" class="btn hol" type="button" aria-label="Подсказка" aria-expanded="false" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px">ⓘ</button><span id="yw-tip-panel" class="yw-tip-panel" hidden role="tooltip">Как виджет на телефоне — добавь через Архитектора / Установить PWA</span></span></span><button class="yw-widget-remove btn hol" data-remove="portfolio" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button><button class="yw-widget-edit btn hol" data-edit="portfolio" aria-label="Изменить Портфель" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✎</button></div>
+<div id="yw-portfolio-body">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span id="yw-portfolio-count" style="font-size:22px;font-weight:600">—</span><select id="yw-portfolio-switch" aria-label="Выбор проекта портфеля" style="flex:1;min-width:120px;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:5px 8px;font-size:12px;max-width:100%"><option value="">Ближайший</option></select></div>
+<div id="yw-portfolio-last" class="m" style="font-size:11px;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">загрузка…</div>
+<div id="yw-portfolio-tags" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"></div>
+<div class="hol" style="height:16px;border-radius:8px;padding:4px;display:flex;gap:3px;margin-top:10px" aria-hidden="true" id="yw-portfolio-pipe"><i style="flex:1;border-radius:6px;background:#7d9cff"></i><i style="flex:1;border-radius:6px;background:#a58cf5"></i><i style="flex:1;border-radius:6px;background:#d777d0"></i><i style="flex:1;border-radius:6px;background:#f58a9e"></i></div>
+<div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px"><span class="m" style="font-size:11px;cursor:help" title="Автономность = заполненность конвейера">Автономия</span><span id="yw-portfolio-auto" style="font-size:12px;font-weight:600;color:#b7c8ff;cursor:help" title="Автономность = заполненность конвейера">—</span></div>
+</div>
+</section>
+<!-- CONVEYOR widget -->
+<section id="yw-card-conveyor" class="card yw-widget" data-widget="conveyor" data-widget-id="conveyor" data-arch-card="conveyor" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;border-radius:28px 28px 28px 14px;padding:16px 18px" aria-label="Конвейер">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 6px"><span class="widget-handle" aria-hidden="true" title="Перетащить">⠿</span><span class="t" style="font-size:11px;flex:1">Конвейер</span><button class="yw-widget-remove btn hol" data-remove="conveyor" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button></div>
 <div style="display:flex;align-items:center;justify-content:space-between">
-<div class="t" style="font-size:11px">Конвейер</div>
 <span id="yw-conveyor-hint" class="m" style="font-size:11px;white-space:nowrap">—</span>
 </div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin:12px 0 10px;gap:6px">
-<div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1"><span class="rim" style="padding:4px"><span class="hol" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a6 6 0 0 0-3.5 10.9V17h7v-2.1A6 6 0 0 0 12 4zM9.5 20h5"></path></svg></span></span>Идея</div>
-<span class="ln" style="background:#7d9cff;margin-top:14px;flex:none"></span>
-<div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:600;flex:1"><span class="zone" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>Генерация</div>
-<span class="ln" style="margin-top:14px;flex:none"></span>
-<div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1"><span class="rim" style="padding:4px"><span class="hol" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></span>Проверка</div>
-<span class="ln" style="margin-top:14px;flex:none"></span>
-<div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1"><span class="rim" style="padding:4px"><span class="hol" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14-7-5 14-3-6z"></path></svg></span></span>Выход</div>
+<div id="yw-conveyor-steps" style="display:flex;align-items:center;justify-content:space-between;margin:12px 0 10px;gap:6px">
+<a href="/studio?stage=idea" data-stage="idea" class="yw-conv-step" style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1;text-decoration:none;color:inherit"><img class="ico3d ico3d--block" src="/icons/ywoom3d/512/pipeline.png" srcset="/icons/ywoom3d/1024/pipeline.png 2x" width="38" height="38" alt="" loading="lazy">Идея</a>
+<span class="ln" style="flex:none"></span>
+<a href="/studio?stage=generate" data-stage="generate" class="yw-conv-step" style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1;text-decoration:none;color:inherit"><img class="ico3d ico3d--block" src="/icons/ywoom3d/512/pipeline.png" srcset="/icons/ywoom3d/1024/pipeline.png 2x" width="38" height="38" alt="" loading="lazy">Генерация</a>
+<span class="ln" style="flex:none"></span>
+<a href="/studio?stage=review" data-stage="review" class="yw-conv-step" style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1;text-decoration:none;color:inherit"><img class="ico3d ico3d--block" src="/icons/ywoom3d/512/approve.png" srcset="/icons/ywoom3d/1024/approve.png 2x" width="38" height="38" alt="" loading="lazy">Проверка</a>
+<span class="ln" style="flex:none"></span>
+<a href="/studio?stage=publish" data-stage="publish" class="yw-conv-step" style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;flex:1;text-decoration:none;color:inherit"><img class="ico3d ico3d--block" src="/icons/ywoom3d/512/publish.png" srcset="/icons/ywoom3d/1024/publish.png 2x" width="38" height="38" alt="" loading="lazy">Выход</a>
 </div>
-<div class="hol" style="height:16px;border-radius:8px;padding:4px;display:flex;gap:3px" aria-hidden="true"><i style="flex:1;border-radius:6px;background:#7d9cff"></i><i style="flex:1;border-radius:6px;background:#a58cf5"></i><i style="flex:1;border-radius:6px;background:#d777d0"></i><i style="flex:1;border-radius:6px;background:#f58a9e"></i><i style="flex:1;border-radius:6px;background:#4a4c57"></i></div>
+<div class="hol" style="height:16px;border-radius:8px;padding:4px;display:flex;gap:3px" aria-hidden="true" id="yw-conveyor-bar"><i style="flex:1;border-radius:6px;background:#7d9cff"></i><i style="flex:1;border-radius:6px;background:#a58cf5"></i><i style="flex:1;border-radius:6px;background:#d777d0"></i><i style="flex:1;border-radius:6px;background:#4a4c57"></i></div>
+<div id="yw-conveyor-pct" class="m" style="font-size:11px;margin-top:6px">—</div>
 </section>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-<section class="card" style="padding:12px 10px;border-radius:18px 28px 28px 28px;display:flex;flex-direction:column;align-items:center" aria-label="Автономия">
-<div class="t" style="font-size:11px;align-self:flex-start">Автономия</div>
-<div style="position:relative;width:84px;height:84px;margin-top:6px">
+<div data-pair="auto" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<section id="yw-card-autonomy" class="card yw-widget" data-widget="autonomy" data-widget-id="autonomy" data-arch-card="autonomy" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;padding:12px 10px;border-radius:18px 28px 28px 28px;display:flex;flex-direction:column;align-items:center" aria-label="Автономия">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:6px;align-self:stretch;margin:-4px 0 4px"><span class="widget-handle" aria-hidden="true">⠿</span><span class="t" style="font-size:10px;flex:1">Автономия</span><button class="yw-widget-remove btn hol" data-remove="autonomy" aria-label="Удалить" style="padding:3px 6px;border-radius:8px;font-size:10px;flex:none">✕</button></div>
+<div class="t" style="font-size:11px;align-self:flex-start;display:none">Автономия</div>
+<div style="position:relative;width:84px;height:84px;margin-top:2px">
 <svg width="84" height="84" viewBox="0 0 120 120" aria-hidden="true" style="position:absolute;inset:0"><g fill="none" stroke-width="6"><path d="M28.9 91.1 A44 44 0 1 1 91.1 91.1" pathLength="100" stroke="rgba(255,255,255,.16)" stroke-dasharray="0.9 4.655"></path><path d="M28.9 91.1 A44 44 0 1 1 100.65 43.16" id="yw-auto-ring" pathLength="75" stroke="#7d9cff" stroke-dasharray="0.9 4.655"></path></g></svg>
 <div class="rim" style="position:absolute;inset:14px;padding:4px"><div class="hol" style="position:relative;width:100%;height:100%;border-radius:50%"><span class="bead" style="--c:#7d9cff;position:absolute;left:50%;top:18%;margin-left:-6px"></span></div></div>
 </div>
 <div id="yw-autonomy-label" style="font-size:12px;font-weight:500;margin-top:4px">—</div>
 </section>
-<section class="card" style="padding:12px 10px;border-radius:28px 18px 28px 28px;display:flex;flex-direction:column;align-items:center" aria-label="Автопилот">
-<div class="t" style="font-size:11px;align-self:flex-start">Автопилот</div>
-<label class="tg" style="margin:18px 0 8px;transform:scale(.9)"><input type="checkbox" role="switch" id="yw-autopilot" checked aria-label="Автопилот"><span class="trk"></span></label>
+<section class="card yw-widget" data-widget="autopilot" data-widget-id="autopilot" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;padding:12px 10px;border-radius:28px 18px 28px 28px;display:flex;flex-direction:column;align-items:center" aria-label="Автопилот">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:6px;align-self:stretch;margin:-4px 0 4px"><span class="widget-handle" aria-hidden="true">⠿</span><span class="t" style="font-size:10px;flex:1">Автопилот</span><button class="yw-widget-remove btn hol" data-remove="autopilot" aria-label="Удалить" style="padding:3px 6px;border-radius:8px;font-size:10px;flex:none">✕</button></div>
+<div class="t" style="font-size:11px;align-self:flex-start;display:none">Автопилот</div>
+<label class="tg" style="margin:12px 0 8px;transform:scale(.9)" title="Глобальный автопилот для всех процессов — пауза/резюме по каждому см. в Карточке процесса"><input type="checkbox" role="switch" id="yw-autopilot" checked aria-label="Автопилот" title="Глобальный автопилот для всех процессов — пауза/резюме по каждому см. в Карточке процесса"><span class="trk"></span></label>
 <div id="yw-autopilot-label" class="m" style="font-size:11px">—</div>
 </section>
 </div>
-<section class="card" style="border-radius:18px 28px 28px 28px;padding:14px 16px;display:flex;flex-direction:column" aria-label="Лучший контент">
-<div class="t" style="font-size:11px;margin-bottom:8px">Лучший контент</div>
+<section id="yw-card-best" class="card yw-widget" data-widget="best" data-widget-id="best" data-arch-card="best" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;border-radius:18px 28px 28px 28px;padding:14px 16px;display:flex;flex-direction:column" aria-label="Лучший контент">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 6px"><span class="widget-handle" aria-hidden="true">⠿</span><span class="t" style="font-size:11px;flex:1">Лучший контент</span><button class="yw-widget-remove btn hol" data-remove="best" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button></div>
+<div class="t" style="font-size:11px;margin-bottom:8px;display:none">Лучший контент</div>
 <div class="hol" id="yw-best" style="border-radius:20px;padding:8px;display:flex;flex-direction:column;gap:6px;min-height:50px"><div class="m" style="padding:6px;font-size:12px">Загружаю…</div></div>
 <div id="yw-best-hint" class="m" style="font-size:11px;margin-top:6px;line-height:1.3"></div>
 </section>
 </div>
 
-<div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:0;padding:4px 0;align-self:stretch">
-<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:0;left:-12px;width:calc(100% + 24px);height:100%;overflow:visible;pointer-events:none">
-<g fill="none" stroke="#f4e6da" stroke-opacity=".26" stroke-width="1.2" stroke-linecap="round">
-<path class="flow" vector-effect="non-scaling-stroke" d="M50 42 C28 42 20 16 0 16"></path>
-<path class="flow" vector-effect="non-scaling-stroke" d="M50 58 C28 58 20 84 0 84"></path>
-<path class="flow" vector-effect="non-scaling-stroke" d="M50 42 C72 42 80 16 100 16"></path>
-<path class="flow" vector-effect="non-scaling-stroke" d="M50 58 C72 58 80 84 100 84"></path>
-</g>
-</svg>
-<span class="bead" style="--c:#7d9cff;position:absolute;left:-14px;top:14%"></span>
-<span class="bead" style="--c:#a58cf5;position:absolute;left:-14px;top:86%"></span>
-<span class="bead" style="--c:#f58a9e;position:absolute;right:-14px;top:16%"></span>
-<span class="bead" style="--c:#7d9cff;position:absolute;right:-14px;top:86%"></span>
+<div id="yw-arch-center" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:0;padding:4px 0;align-self:stretch;grid-area:auto">
 <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;max-width:300px;text-align:center">
 <div class="t" style="font-size:11px;letter-spacing:.12em">Сейчас</div>
-<div class="hol" style="border-radius:20px 20px 20px 8px;padding:10px 14px;display:flex;gap:8px;align-items:center;text-align:left;max-width:100%"><span class="bead" style="--c:#7d9cff;flex:none"></span><span style="font-size:12px;line-height:1.3"><b style="font-weight:600;color:#b7c8ff">Режиссёр</b> <span id="yw-now">Загружаю…</span></span></div>
+<div class="hol" style="border-radius:20px 20px 20px 8px;padding:10px 14px;display:flex;gap:8px;align-items:center;text-align:left;max-width:100%"><span class="bead" style="--c:#7d9cff;flex:none"></span><span style="font-size:12px;line-height:1.3"><b style="font-weight:600;color:#b7c8ff">Архитектор</b> <span id="yw-now">Загружаю…</span></span></div>
 <div id="yw-next" class="m" style="font-size:11px;min-height:14px"></div>
 </div>
 <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;width:100%">
-<div style="position:relative;width:180px;height:180px;flex:none;margin:0 auto">
+<div id="yw-arch-ring" role="button" tabindex="0" aria-label="Показать активные процессы" title="Нажми чтобы увидеть активные процессы" style="position:relative;width:180px;height:180px;flex:none;margin:0 auto;cursor:pointer">
 <div aria-hidden="true">
 <div style="position:absolute;inset:6px;border-radius:50%;background:#7d9cff;opacity:.12;filter:blur(16px)"></div>
 <div class="orb"><i class="ball" style="left:55%;top:42%;width:100px;height:100px;margin-left:-50px;margin-top:-50px"></i></div>
@@ -136,26 +164,52 @@
 <svg class="sp" width="8" height="8" viewBox="0 0 14 14" aria-hidden="true" style="right:20px;top:30px;animation-delay:-1s"><path d="M7 0l1.4 5.6L14 7l-5.6 1.4L7 14l-1.4-5.6L0 7l5.6-1.4z" fill="#b7c8ff"></path></svg>
 </div>
 </div>
-<div id="yw-progress" role="img" aria-label="Выполнено плана месяца" style="position:absolute;inset:0;--a:0deg;transform:rotate(var(--a));pointer-events:none">
+<div id="yw-progress" role="img" aria-label="Выполнено плана месяца" style="position:absolute;inset:0;--a:0deg;transform:rotate(var(--a));pointer-events:none;cursor:pointer" title="Активные процессы">
 <div class="rim" style="position:absolute;left:50%;top:-10px;margin-left:-20px;width:40px;height:40px;padding:3px;transform:rotate(calc(-1*var(--a)))"><span class="zone" style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#1b2038"><span id="yw-progress-pct">—</span></span></div>
 </div>
 </div>
+<!-- ring popup -->
+<div id="yw-ring-popup" hidden role="dialog" aria-modal="true" aria-label="Активные процессы" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;min-width:280px;max-width:360px;width:90%;max-height:70vh;overflow:auto">
+<div class="card" style="border-radius:20px;padding:16px 16px 14px;position:relative">
+<button id="yw-ring-popup-close" aria-label="Закрыть" style="position:absolute;right:10px;top:10px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center" class="btn hol">✕</button>
+<div class="t" style="font-size:12px;margin-bottom:10px;padding-right:24px">Активные процессы</div>
+<div id="yw-ring-popup-list" style="display:flex;flex-direction:column;gap:8px"></div>
+<div id="yw-ring-popup-empty" class="m" style="font-size:12px;padding:8px 0" hidden>Нет активных — запусти фабрику.</div>
+</div>
+</div>
+<div id="yw-ring-popup-backdrop" hidden style="position:absolute;inset:0;z-index:19;background:rgba(10,10,16,.42);backdrop-filter:blur(4px);border-radius:28px"></div>
 <div style="text-align:center">
-<div class="t" style="font-size:11px">Режиссёр</div>
+<div class="t" style="font-size:11px">Архитектор</div>
 <div class="m" style="font-size:11px;margin-top:3px;display:flex;align-items:center;justify-content:center;gap:6px"><span class="bead" style="--c:#7d9cff;flex:none"></span><span id="yw-director-text">—</span></div>
 </div>
 </div>
-<button class="go" style="height:48px;margin-top:2px;transform:scale(.88)"><span class="gb" style="height:48px;padding:0 44px 0 22px;font-size:13px">Новая задача</span><span class="rim gp" style="width:48px;height:48px;margin-top:-24px"><span class="hol" style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#f3e6dc"><svg class="i" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></span></button>
+<div class="go-wrap" style="grid-column:1/-1;display:flex;justify-content:center;align-items:center;width:100%;margin:2px 0 0"><button class="go" style="height:48px;transform:scale(.88)"><span class="gb" style="height:48px;padding:0 44px 0 22px;font-size:13px">Новая задача</span><span class="rim gp" style="width:48px;height:48px;margin-top:-24px"><span class="hol" style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#f3e6dc"><svg class="i" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></span></button></div>
 </div>
 
-<div style="display:flex;flex-direction:column;gap:12px;min-width:0">
-<section class="card" style="border-radius:22px 14px 28px 28px;padding:12px 14px" aria-label="Очередь публикаций">
-<div class="t" style="font-size:11px;margin-bottom:8px">Очередь публикаций</div>
+<div id="yw-col-right" style="display:flex;flex-direction:column;gap:12px;min-width:0">
+<!-- ECONOMY fixed -->
+<section id="yw-widget-economy" class="card yw-widget" data-widget="economy" data-widget-id="economy" data-locked="false" draggable="true" data-widget-kind="grid" style="--w:1;--h:1;border-radius:22px 14px 28px 28px;padding:16px 18px" aria-label="Экономика">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 8px"><span class="widget-handle" aria-hidden="true" title="Перетащить">⠿</span><span class="t" style="font-size:11px;flex:1">Экономика</span><button class="yw-widget-remove btn hol" data-remove="economy" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button><button class="yw-widget-edit btn hol" data-edit="economy" aria-label="Изменить Экономику" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✎</button></div>
+<div id="yw-economy-body">
+<div style="display:flex;align-items:baseline;gap:8px"><span id="yw-economy-eff" style="font-size:22px;font-weight:600;color:#b7c8ff">—%</span><span class="m" style="font-size:11px;cursor:help" title="Доля проектов, обновлённых за последние 6 недель">удержание · 6 нед</span></div>
+<div class="hol" style="border-radius:14px;padding:8px;margin-top:8px;height:72px;display:flex"><svg id="yw-economy-spark" viewBox="0 0 310 72" fill="none" aria-hidden="true" style="width:100%;height:100%"><g stroke="rgba(255,255,255,.08)" stroke-dasharray="3 5"><path d="M30 12H300M30 36H300M30 60H300"></path></g><path id="yw-economy-area" d="M30 56 L30 56 Z" fill="#f58a9e" fill-opacity=".14"></path><path id="yw-economy-line" d="M30 56 L300 56" stroke="#f4e6da" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;flex-wrap:wrap">
+<span style="display:flex;align-items:center;gap:6px"><span class="m" style="font-size:11px;cursor:help" title="Тариф из /api/billing/limits">Тариф</span><b id="yw-economy-balance" style="font-size:13px" title="Тариф: Free — до 3 проектов">—</b></span>
+<span class="m" id="yw-economy-limit" style="font-size:11px;border:1px solid rgba(255,255,255,.10);border-radius:999px;padding:3px 8px;cursor:help" title="Тариф: Free — до 3 проектов">Free · лимит 3 проекта</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span class="m" style="font-size:11px;cursor:help" title="Локальное хранилище (.Ywoom-offline/assets) · облако если S3 настроен">Хранилище</span><span id="yw-economy-storage" style="font-size:12px;font-weight:600;cursor:help" title="Локально">— MiB</span></div>
+</div>
+</section>
+<section id="yw-card-queue" class="card yw-widget" data-widget="queue" data-widget-id="queue" data-arch-card="queue" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;border-radius:22px 14px 28px 28px;padding:12px 14px" aria-label="Очередь публикаций">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 6px"><span class="widget-handle" aria-hidden="true">⠿</span><span class="t" style="font-size:11px;flex:1">Очередь</span><button class="yw-widget-remove btn hol" data-remove="queue" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button></div>
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><select id="yw-queue-switch" aria-label="Переключить очередь (проект)" style="flex:1;min-width:0;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:5px 8px;font-size:11px"><option value="">Ближайший</option></select><span class="m" style="font-size:10px;white-space:nowrap">→ Портфель</span></div>
+<div class="t" style="font-size:11px;margin-bottom:8px;display:none">Очередь публикаций</div>
 <div class="hol" id="yw-queue" style="border-radius:20px;padding:8px;display:flex;flex-direction:column;gap:6px;min-height:50px"><div class="m" style="padding:6px;font-size:12px">Загружаю…</div></div>
 </section>
-<section class="card" style="border-radius:22px 28px 14px 28px;padding:12px 14px;display:flex;flex-direction:column" aria-label="Эффективность">
-<div class="t" style="font-size:11px">Эффективность</div>
-<div style="display:flex;align-items:baseline;gap:8px;margin:6px 0 6px"><span id="yw-eff-pct" style="font-size:22px;font-weight:500;color:#b7c8ff;line-height:1">—</span><span class="m" style="font-size:11px">удержание за 6 недель</span></div>
+<section id="yw-card-eff" class="card yw-widget" data-widget="eff" data-widget-id="eff" data-arch-card="eff" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;border-radius:22px 28px 14px 28px;padding:12px 14px;display:flex;flex-direction:column" aria-label="Эффективность">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 6px"><span class="widget-handle" aria-hidden="true">⠿</span><span class="t" style="font-size:11px;flex:1">Эффективность</span><button class="yw-widget-remove btn hol" data-remove="eff" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button></div>
+<div class="t" style="font-size:11px;display:none">Эффективность</div>
+<div style="display:flex;align-items:baseline;gap:8px;margin:6px 0 6px"><span id="yw-eff-pct" style="font-size:22px;font-weight:500;color:#b7c8ff;line-height:1">—</span><span class="m" style="font-size:11px;cursor:help" title="Доля проектов, обновлённых за последние 6 недель · линия связана с данными ниже">удержание за 6 недель</span></div>
 <div class="hol" style="border-radius:16px;padding:8px;display:flex;height:80px">
 <svg viewBox="0 0 310 90" fill="none" aria-hidden="true" style="width:100%;height:100%">
 <g stroke="rgba(255,255,255,.1)" stroke-dasharray="3 5"><path d="M30 15H300M30 40H300M30 65H300"></path></g>
@@ -166,7 +220,14 @@
 </svg>
 </div>
 </section>
+<section id="yw-card-agents" class="card yw-widget" data-widget="agents" data-widget-id="agents" data-arch-card="agents" data-widget-kind="grid" draggable="true" style="--w:1;--h:1;border-radius:22px 28px 14px 28px;padding:12px 14px" aria-label="Активные агенты">
+<div class="yw-widget-head" style="display:flex;align-items:center;gap:8px;margin:-4px 0 6px"><span class="widget-handle" aria-hidden="true">⠿</span><span class="t" style="font-size:11px;flex:1">Агенты</span><span id="yw-agents-count" class="m" style="font-size:10px;border:1px solid rgba(255,255,255,.10);border-radius:999px;padding:2px 7px">—</span><button class="yw-widget-remove btn hol" data-remove="agents" aria-label="Удалить" style="padding:4px 8px;border-radius:10px;font-size:11px;flex:none">✕</button></div>
+<div id="yw-agents-list" style="display:flex;flex-direction:column;gap:6px;min-height:40px"><div class="m" style="font-size:12px;padding:6px">Загружаю…</div></div>
+</section>
+<!-- custom widgets injected here by JS -->
+<div id="yw-custom-slot" style="display:contents"></div>
 </div>
+<div id="yw-row-bottom" hidden style="grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;min-height:56px;border:1.5px dashed rgba(125,156,255,.28);border-radius:18px;padding:12px;background:rgba(125,156,255,.04);align-content:flex-start"><span class="m" style="font-size:11px;opacity:.7;align-self:center">Перетащи сюда — 6-й ряд (появится когда в обеих колонках ≥5 блоков)</span></div>
 
 </div>
 <section class="card" style="margin:12px 0 0;border-radius:16px;box-sizing:border-box;padding:12px 14px">
@@ -174,35 +235,64 @@
 <div class="t" style="font-size:11px">Фабрики → быстрый переход</div>
 <span class="m" style="font-size:11px;white-space:nowrap">Ywon · Strategist / Producer / Quality / Guardian</span>
 </div>
+<a href="/architect" class="card yw-arch-cta" style="display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:16px;padding:14px 16px;text-decoration:none;min-width:0">
+<div style="display:flex;align-items:center;gap:12px;min-width:0;flex:1"><span class="zone" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1b2038;flex:none">✦</span><div style="min-width:0"><div style="font-weight:600;font-size:14px;overflow-wrap:break-word">Архитектор Ywon — универсальный помощник</div><div class="m" style="font-size:12px;overflow-wrap:break-word">Диалог · Архитектура · Код · Интеграции — в контексте проекта</div></div></div>
+<span class="btn conv" style="min-height:36px;padding:10px 14px;border-radius:12px;font-size:13px;flex:none;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center">Открыть Архитектора</span>
+</a>
 <div id="yw-factories" class="yw-factories" style="margin-top:10px">
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;align-items:center;gap:10px"><span class="zone" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1b2038;flex:none;font-size:12px">≡</span><div><div style="font-weight:600;font-size:13px">Контент-Завод</div><div class="m" style="font-size:11px">Сцены → озвучка → MP4 · 30–60с</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/folder.png" srcset="/icons/ywoom3d/1024/folder.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Контент-Завод</div><div class="m" style="font-size:11px">Сцены → озвучка → MP4 · 30–60с</div></div></div>
 <a href="/studio" class="btn conv" style="padding:8px 14px;border-radius:12px;color:#fff;text-align:center;text-decoration:none;font-size:13px">Открыть фабрику</a>
 </div>
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;align-items:center;gap:10px"><span class="hol" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:12px">◉</span><div><div style="font-weight:600;font-size:13px">Фриланс-Автопилот</div><div class="m" style="font-size:11px">Поиск проектов → черновики ставок</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/studio.png" srcset="/icons/ywoom3d/1024/studio.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Фриланс-Автопилот</div><div class="m" style="font-size:11px">Поиск проектов → черновики ставок</div></div></div>
 <a href="/journey?factory=freelance-autopilot" class="btn hol" style="padding:8px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px">Настроить</a>
 </div>
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;align-items:center;gap:10px"><span class="hol" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:12px">✦</span><div><div style="font-weight:600;font-size:13px">Бот-Фабрика</div><div class="m" style="font-size:11px">Telegram / Discord / виджет</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/plan.png" srcset="/icons/ywoom3d/1024/plan.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Бот-Фабрика</div><div class="m" style="font-size:11px">Telegram / Discord / виджет</div></div></div>
 <a href="/journey?factory=bot-factory" class="btn hol" style="padding:8px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px">Настроить</a>
 </div>
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;align-items:center;gap:10px"><span class="hol" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:12px">&lt;/&gt;</span><div><div style="font-weight:600;font-size:13px">Код-Скаффолд</div><div class="m" style="font-size:11px">Заготовка проекта → репо</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/director.png" srcset="/icons/ywoom3d/1024/director.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Код-Скаффолд</div><div class="m" style="font-size:11px">Заготовка проекта → репо</div></div></div>
 <a href="/journey?factory=code-scaffold" class="btn hol" style="padding:8px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px">Настроить</a>
 </div>
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;align-items:center;gap:10px"><span class="zone" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1b2038;flex:none;font-size:12px">TG</span><div><div style="font-weight:600;font-size:13px">Сеть Telegram-каналов</div><div class="m" style="font-size:11px">Контент-план → черновики → по расписанию</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/folder.png" srcset="/icons/ywoom3d/1024/folder.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Сеть Telegram-каналов</div><div class="m" style="font-size:11px">Контент-план → черновики → по расписанию</div></div></div>
 <a href="/journey?factory=telegram-network" class="btn hol" style="padding:8px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px">Настроить</a>
 </div>
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;opacity:.72">
-<div style="display:flex;align-items:center;gap:10px"><span class="hol" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:11px">◎</span><div><div style="font-weight:600;font-size:13px">Cinema / Blender · P5</div><div class="m" style="font-size:11px">Exact 3D, 60+ пресетов — после гейта</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/folder.png" srcset="/icons/ywoom3d/1024/folder.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Cinema / Blender · P5</div><div class="m" style="font-size:11px">Exact 3D, 60+ пресетов — после гейта</div></div></div>
 <span class="m" style="font-size:11px;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:4px 8px;align-self:flex-start">После P5G</span>
 </div>
 <div class="hol" style="border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;opacity:.72">
-<div style="display:flex;align-items:center;gap:10px"><span class="hol" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:11px">⬢</span><div><div style="font-weight:600;font-size:13px">Physical / Business — FUTURE</div><div class="m" style="font-size:11px">Personal shell F41 — опционально</div></div></div>
+<div style="display:flex;align-items:center;gap:10px"><img class="ico3d ico3d--factory" src="/icons/ywoom3d/512/folder.png" srcset="/icons/ywoom3d/1024/folder.png 2x" width="28" height="28" alt="" loading="lazy"><div><div style="font-weight:600;font-size:13px">Physical / Business — FUTURE</div><div class="m" style="font-size:11px">Personal shell F41 — опционально</div></div></div>
 <span class="m" style="font-size:11px;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:4px 8px;align-self:flex-start">FUTURE</span>
 </div>
 </div>
 </section>
+<!-- W8: freeform edit modal -->
+<div id="yw-edit-modal" hidden role="dialog" aria-modal="true" aria-labelledby="yw-edit-title" style="position:fixed;inset:0;z-index:80;display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain">
+<div id="yw-edit-backdrop" style="position:fixed;inset:0;background:rgba(10,10,16,.56);backdrop-filter:blur(6px)"></div>
+<div class="card" style="position:relative;z-index:1;width:min(560px,96vw);max-height:min(88vh, calc(100dvh - 32px));overflow:auto;-webkit-overflow-scrolling:touch;border-radius:22px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;flex:none;margin:auto 0">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><h2 id="yw-edit-title" style="margin:0;font-size:15px;font-weight:600">Изменить виджет — Архитектор</h2><button id="yw-edit-close" class="btn hol" type="button" aria-label="Закрыть" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none">✕</button></div>
+<p class="m" style="margin:0;font-size:12px;line-height:1.4">Опиши свободным текстом что изменить: график, поля, верстку, данные. Быстрые тогглы ниже — для Портфеля/Экономики.</p>
+<textarea id="yw-edit-prompt" rows="4" placeholder="Опиши, что изменить: график, поля, верстку, данные — свободным текстом" style="width:100%;min-height:88px;resize:vertical;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.4;outline:0"></textarea>
+<div id="yw-edit-chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+<label class="m" style="font-size:11px;display:flex;flex-direction:column;gap:6px">Кастомный CSS (опционально)<textarea id="yw-edit-css" rows="2" placeholder=".card{…}" style="width:100%;min-height:44px;resize:vertical;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 10px;font-size:12px;outline:0"></textarea></label>
+<div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap"><button id="yw-edit-cancel" class="btn hol" type="button" style="height:36px;padding:0 14px;border-radius:18px;font-size:12px">Отмена</button><button id="yw-edit-apply" class="btn conv" type="button" style="height:36px;padding:0 16px;border-radius:18px;font-size:12px;font-weight:600">Применить</button></div>
+<div class="m" style="font-size:11px">Сохраняется локально в ywoom_dashboard_v1. Если /api/architect доступен — отправится туда.</div>
+</div>
+</div>
+<!-- W8: new widget modal -->
+<div id="yw-new-widget-modal" hidden role="dialog" aria-modal="true" aria-labelledby="yw-new-title" style="position:fixed;inset:0;z-index:80;display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain">
+<div id="yw-new-backdrop" style="position:fixed;inset:0;background:rgba(10,10,16,.56);backdrop-filter:blur(6px)"></div>
+<div class="card" style="position:relative;z-index:1;width:min(520px,96vw);max-height:min(88vh, calc(100dvh - 32px));overflow:auto;-webkit-overflow-scrolling:touch;border-radius:22px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;flex:none;margin:auto 0">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><h2 id="yw-new-title" style="margin:0;font-size:15px;font-weight:600">Новый виджет</h2><button id="yw-new-close" class="btn hol" type="button" aria-label="Закрыть" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none">✕</button></div>
+<label style="display:flex;flex-direction:column;gap:6px"><span class="m" style="font-size:11px">Заголовок</span><input id="yw-new-name" type="text" placeholder="Например: Выручка" style="width:100%;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-size:13px;outline:0"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span class="m" style="font-size:11px">Вид</span><select id="yw-new-kind" style="width:100%;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-size:13px;outline:0"><option value="grid">Сетка (grid)</option><option value="widget">PWA виджет (widget)</option></select></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span class="m" style="font-size:11px">Задача / описание — что показать</span><textarea id="yw-new-desc" rows="3" placeholder="Опиши задачу: какие данные, график, метрика. Уйдёт Архитектору." style="width:100%;min-height:72px;resize:vertical;background:#35373f;color:#ecebf4;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.4;outline:0"></textarea></label>
+<div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap"><button id="yw-new-cancel" class="btn hol" type="button" style="height:36px;padding:0 14px;border-radius:18px;font-size:12px">Отмена</button><button id="yw-new-create" class="btn conv" type="button" style="height:36px;padding:0 16px;border-radius:18px;font-size:12px;font-weight:600">Создать</button></div>
+<p class="m" style="margin:0;font-size:11px;line-height:1.4">Разместится на дашборде. Как виджет на телефоне — добавь через Архитектора / «Установить PWA».</p>
+</div>
+</div>
 </body></html>

@@ -4,7 +4,9 @@
 <title>Ywoom — Студия</title>
 <link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#3a3c45">
 <link rel="stylesheet" href="/design.css">
+<link rel="stylesheet" href="/studio.css">
 <script src="/pwa.js" defer></script><script src="/home.js" defer></script><script src="/studio.js" defer></script><script src="/studio-journey.js" defer></script><script src="/shell.js" defer></script><script src="/app.js" defer></script>
+<script src="/drawer.js" defer></script>
 </head>
 <body>
 <div class="yw-shell" style="position:relative;overflow:hidden;width:100%;min-height:900px;display:flex;color:#ecebf4;font-family:'Rubik','Nunito',system-ui,sans-serif;background:#3a3c45">
@@ -15,29 +17,199 @@
 </div>
 
 <!-- sidebar -->
-<nav class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
+<nav id="yw-nav" class="yw-nav" aria-label="Основная навигация" style="position:relative;width:250px;flex:none;display:flex;flex-direction:column;gap:8px;padding:32px 18px 28px;border-right:1px solid rgba(255,255,255,.06)">
 <div style="padding:0 16px 28px">
 <div style="font-size:26px;font-weight:600;letter-spacing:.12em">YWOOM</div>
 <div class="m" style="font-size:12px;margin-top:4px">Автономная мастерская контента</div>
 </div>
-<a class="nav" href="/"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"></path></svg></span>Главная</a>
-<a class="nav conv" aria-current="page" href="/studio" style="color:#fff"><span class="ic zone" style="color:#2a2b35"><i style="left:-30%;top:-30%;width:90%;height:90%;background:#f58a9e"></i><i style="right:-30%;bottom:-30%;width:90%;height:90%;background:#b9a6ff"></i><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg></span>Студия</a>
-<a class="nav" href="/journey"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span>Контент-план</a>
-<a class="nav" href="/skills"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5"></circle><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"></path></svg></span>Скилы</a>
-<a class="nav" href="/billing"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"></path></svg></span>Аналитика</a>
-<a class="nav" href="/settings"><span class="ic hol"><svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"></path><circle cx="15" cy="8" r="2"></circle><circle cx="9" cy="16" r="2"></circle></svg></span>Настройки</a>
-<div class="hol" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between">
-<div><div class="m" style="font-size:12px">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600">$—</div></div>
-<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none">Пополнить</a>
+<a class="nav" href="/"><span class="bicon bicon--nav bicon--zone" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M24.9 14.6 L31.2 18.4 L31.2 32.2 L22.6 36.6 L22.6 22.2 Z" fill="#3f4eb8" opacity=".95"/><path d="M12.2 18.4 L22.6 8.2 L31.2 18.4 L22.6 22.2 Z" fill="#c6d4ff"/><path d="M22.1 9.2 L12 18.2 L12 31.2 L22.1 35.4 L30.8 31.2 L30.8 18.2 Z" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".9" stroke-linejoin="round"/><path d="M12 18.2 L22.1 9.2 L30.8 18.2 L22.1 22.1 Z" fill="#ffffff"/><path d="M22.1 22.1 L22.1 33.6" stroke="#4a5fe0" stroke-width="1.9" stroke-linecap="round" opacity=".9"/><path d="M17.8 25.8 L22.1 29.6 L26.4 25.8" fill="none" stroke="#4a5fe0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="21.2" cy="14.6" rx="5.2" ry="2.7" fill="white" opacity=".62"/><circle cx="22.6" cy="12.2" r="1.45" fill="white" opacity=".96"/></g></svg></span>Главная</a>
+<a class="nav conv" aria-current="page" href="/studio" style="color:#fff"><span class="bicon bicon--nav" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M20.9 8.6 L23.1 15.9 L31.3 17.1 L25.4 21.5 L27 29.2 L20.9 25.4 L14.8 29.2 L16.4 21.5 L10.5 17.1 L18.7 15.9 Z" fill="#4a5cb8" opacity=".95" transform="translate(1.2 1.4)"/><path d="M20 7.4 L22.2 14.9 L30.6 16 24.7 20.7 L26.3 28.7 L20 24.8 L13.7 28.7 L15.3 20.7 L9.4 16 17.8 14.9 Z" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85" stroke-linejoin="round"/><path d="M20 7.4 L22.2 14.9 L30.6 16 20 19.4 Z" fill="white" opacity=".92"/><path d="M9.4 16 15.3 20.7 L13.7 28.7 L20 24.8 Z" fill="#d6dcff" opacity=".9"/><ellipse cx="18.2" cy="13.2" rx="3.6" ry="2.1" fill="white" opacity=".62"/><circle cx="20" cy="14.4" r="1.7" fill="white" opacity=".96"/></g></svg></span>Студия</a>
+<a class="nav" href="/journey"><span class="bicon bicon--nav" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><rect x="11.2" y="14.2" width="22" height="18" rx="3.6" fill="#4a5cb8" opacity=".95"/><rect x="8.6" y="11.8" width="22" height="18" rx="3.6" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85"/><rect x="8.6" y="11.8" width="22" height="5.2" rx="3.6" fill="white" opacity=".92"/><rect x="8.6" y="14.8" width="22" height="3.2" rx="1.2" fill="#c6d4ff" opacity=".55"/><path d="M13.2 8.6 V13.2 M25.2 8.6 V13.2" stroke="#4a5fe0" stroke-width="1.8" stroke-linecap="round"/><circle cx="13.2" cy="8.2" r="1.6" fill="#4a5fe0" stroke="white" stroke-width=".9"/><circle cx="25.2" cy="8.2" r="1.6" fill="#4a5fe0" stroke="white" stroke-width=".9"/><rect x="12.2" y="18.6" width="5.6" height="4.6" rx="1.3" fill="#a58cf5" stroke="#7d6fe6" stroke-width=".7"/><rect x="19.4" y="18.6" width="5.6" height="4.6" rx="1.3" fill="#7d9cff" stroke="#5b6fe0" stroke-width=".7"/><ellipse cx="13.8" cy="19.4" rx="1.4" ry=".9" fill="white" opacity=".55"/><ellipse cx="21" cy="19.4" rx="1.4" ry=".9" fill="white" opacity=".55"/><path d="M26.6 11.8 L30.6 15.8 L30.6 11.8 Z" fill="white" opacity=".96"/><path d="M26.6 11.8 L30.6 15.8 L26.6 15.8 Z" fill="#b9c8ff"/></g></svg></span>Контент-план</a>
+<a class="nav" href="/skills"><span class="bicon bicon--nav" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><ellipse cx="17.8" cy="22.2" rx="8.6" ry="10.6" fill="#3f4eb8" opacity=".95"/><ellipse cx="24.3" cy="22.2" rx="8.6" ry="10.6" fill="#6b3fb8" opacity=".9"/><ellipse cx="15.2" cy="19.6" rx="8.4" ry="10.2" fill="none" stroke="#eef2ff" stroke-width="3.4" stroke-linecap="round"/><ellipse cx="24.8" cy="19.6" rx="8.4" ry="10.2" fill="none" stroke="#e9ddff" stroke-width="3.4" stroke-linecap="round"/><ellipse cx="15.2" cy="19.6" rx="5.8" ry="7.2" fill="#c6d4ff" opacity=".38"/><ellipse cx="24.8" cy="19.6" rx="5.8" ry="7.2" fill="#d9c6ff" opacity=".38"/><path d="M19.2 18.2 Q20 16.6 20.8 18.2" fill="none" stroke="#eef2ff" stroke-width="1.8" stroke-linecap="round"/><path d="M11.2 13.2 A8.4 10.2 0 0 1 19.2 12.2" fill="none" stroke="white" stroke-width="1.35" stroke-linecap="round" opacity=".78"/><path d="M20.8 12.2 A8.4 10.2 0 0 1 28.8 13.2" fill="none" stroke="white" stroke-width="1.35" stroke-linecap="round" opacity=".78"/><circle cx="13.2" cy="14.2" r="2" fill="white" opacity=".92"/><circle cx="25.8" cy="14.2" r="2" fill="white" opacity=".92"/></g></svg></span>Скилы</a>
+<a class="nav" href="/architect"><span class="bicon bicon--nav" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M13.6 29.2 L21.2 17.8 L28.8 29.2" fill="none" stroke="#3f4eb8" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/><path d="M21.2 17.8 L21.2 33.6" fill="none" stroke="#3f4eb8" stroke-width="5.4" stroke-linecap="round" opacity=".95"/><path d="M11 27.4 L20 13 29 27.4" fill="none" stroke="#eef2ff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 13 L20 31.2" fill="none" stroke="#eef2ff" stroke-width="3.2" stroke-linecap="round"/><path d="M11 27.4 L14.6 23.2 L20 31 25.4 23.2 L29 27.4 Z" fill="#d6dcff" opacity=".95" stroke="#b9c8ff" stroke-width=".7" stroke-linejoin="round"/><path d="M14.6 23.2 L20 15.8 L20 31 Z" fill="white" opacity=".55"/><circle cx="20" cy="10.8" r="1.65" fill="white" opacity=".96" stroke="#b9c8ff" stroke-width=".7"/></g></svg></span>Архитектор</a>
+<a class="nav" href="/billing"><span class="bicon bicon--nav" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M11.2 29.2 L11.2 23.2 L15.2 23.2 L15.2 19.2 L19.2 19.2 L19.2 15.2 L23.2 15.2 L23.2 13.2 L31.2 13.2 L31.2 29.2 Z" fill="#3f4eb8" opacity=".95"/><path d="M8.6 27.2 L8.6 21.2 L12.6 21.2 L12.6 17.2 L16.6 17.2 L16.6 13.2 L20.6 13.2 L20.6 11.2 L28.6 11.2 L28.6 27.2 Z" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85" stroke-linejoin="round"/><path d="M8.6 21.2 L28.6 11.2 L31 13.2 L11 23.2 Z" fill="white" opacity=".88"/><path d="M12.6 17.2 L20.6 13.2 L23 15.2 L15 19.2 Z" fill="white" opacity=".72"/><rect x="8.6" y="27.2" width="20" height="2.6" rx="1.3" fill="#f58a9e" opacity=".96"/><rect x="9.2" y="22.2" width="2.8" height="4.2" rx=".8" fill="#7d9cff" opacity=".95"/><rect x="13.6" y="18.2" width="2.8" height="8.2" rx=".8" fill="#a58cf5" opacity=".95"/><rect x="18" y="14.2" width="2.8" height="12.2" rx=".8" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".6"/><ellipse cx="10.6" cy="22.6" rx=".9" ry=".55" fill="white" opacity=".7"/><ellipse cx="15" cy="18.6" rx=".9" ry=".55" fill="white" opacity=".7"/><ellipse cx="19.4" cy="14.6" rx=".9" ry=".55" fill="white" opacity=".7"/><circle cx="28.6" cy="11.2" r="2.1" fill="#f58a9e" stroke="white" stroke-width="1"/><circle cx="28.6" cy="10.6" r=".7" fill="white" opacity=".92"/></g></svg></span>Аналитика</a>
+<a class="nav" href="/settings"><span class="bicon bicon--nav" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><rect x="9.2" y="13.7" width="24" height="7" rx="3.5" fill="#3f4eb8" opacity=".95"/><rect x="9.2" y="22.7" width="24" height="7" rx="3.5" fill="#3f4eb8" opacity=".95"/><rect x="6.6" y="11.4" width="24" height="7" rx="3.5" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85"/><rect x="6.6" y="20.4" width="24" height="7" rx="3.5" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85"/><rect x="6.6" y="11.4" width="24" height="3.2" rx="3.5" fill="white" opacity=".92"/><rect x="6.6" y="20.4" width="24" height="3.2" rx="3.5" fill="white" opacity=".92"/><rect x="19" y="8.2" width="7.2" height="13.4" rx="3.6" fill="#5b6fe0" stroke="#3f4eb8" stroke-width=".7"/><rect x="18.2" y="7.4" width="7.2" height="13.4" rx="3.6" fill="#7d9cff" stroke="white" stroke-width=".95"/><ellipse cx="21.8" cy="9.2" rx="2.1" ry="1.3" fill="white" opacity=".72"/><rect x="12.2" y="17.2" width="7.2" height="13.4" rx="3.6" fill="#6b3fb8" stroke="#4a2ea0" stroke-width=".7"/><rect x="11.4" y="16.4" width="7.2" height="13.4" rx="3.6" fill="#a58cf5" stroke="white" stroke-width=".95"/><ellipse cx="15" cy="18.2" rx="2.1" ry="1.3" fill="white" opacity=".72"/></g></svg></span>Настройки</a>
+<div class="hol yw-balance-wrap" style="margin-top:auto;border-radius:26px 26px 26px 12px;padding:16px 16px 16px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0">
+<div style="flex:1;min-width:0"><div class="m" style="font-size:12px;white-space:nowrap">Баланс</div><div id="yw-balance" style="font-size:22px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;min-width:0;display:block">$—</div></div>
+<a class="btn conv" href="/billing" style="height:38px;padding:0 16px;border-radius:19px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;flex:none">Пополнить</a>
 </div>
 </nav>
+<div class="yw-nav-backdrop" id="yw-nav-backdrop" hidden></div>
 
 <!-- main -->
 <main class="yw-main" style="position:relative;flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:22px">
 <header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+<button class="yw-burger" aria-label="Меню" aria-expanded="false" aria-controls="yw-nav"><span></span><span></span><span></span></button>
 <div><div class="m" style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">Архитектор · Фабрика контента</div><h1 style="margin:0;font-size:30px;font-weight:500;letter-spacing:-.01em">Собери ролик из своих материалов</h1><p class="m" style="margin-top:6px;font-size:13px">Сценарий → сцены → озвучка и картинки → MP4 (30–60с, до 6 сцен) · Вернись на Главную чтобы запустить другую фабрику</p></div>
-<div style="display:flex;gap:10px;flex-wrap:wrap"><button id="new" class="btn conv" style="padding:10px 16px;border-radius:18px;font-size:13px;font-weight:600;color:#fff">+ Новый</button><button id="import-btn" class="btn hol" style="padding:10px 16px;border-radius:18px;font-size:13px">Импорт</button><button id="export-all" class="btn hol" style="padding:10px 16px;border-radius:18px;font-size:13px">Экспорт всех</button><button id="demo" class="btn zone" style="padding:10px 16px;border-radius:18px;font-size:13px;font-weight:600;color:#1b2038">Демо</button></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button id="new" class="btn conv" style="padding:10px 16px;border-radius:18px;font-size:13px;font-weight:600;color:#fff">+ Новый</button><button id="import-btn" class="btn hol" style="padding:10px 16px;border-radius:18px;font-size:13px">Импорт</button><button id="export-all" class="btn hol" style="padding:10px 16px;border-radius:18px;font-size:13px">Экспорт всех</button><a href="/image-editor" class="btn hol" style="padding:10px 16px;border-radius:18px;font-size:13px;text-decoration:none;display:inline-flex;align-items:center">Редактор изображений</a><button id="demo" class="btn zone" style="padding:10px 16px;border-radius:18px;font-size:13px;font-weight:600;color:#1b2038">Демо</button></div>
 </header>
+
+<!-- ============ W4: mode switch ============ -->
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+<div id="yw-studio-mode" class="yw-mode-switch" role="tablist" aria-label="Режим студии" data-active="auto">
+<span class="yw-mode-indicator" aria-hidden="true"></span>
+<button type="button" class="yw-mode-btn is-active" role="tab" aria-selected="true" aria-controls="mode-auto" id="mode-tab-auto" data-mode="auto">
+<svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>
+Auto Pipeline
+</button>
+<button type="button" class="yw-mode-btn" role="tab" aria-selected="false" aria-controls="mode-manual" id="mode-tab-manual" data-mode="manual">
+<svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+Manual
+</button>
+</div>
+<span class="m" id="mode-hint" style="font-size:12px;max-width:520px;line-height:1.4">Автопилот — визуальный конвейер: Идея → Генерация → Проверка → Выход. Нажми узел чтобы вмешаться.</span>
+</div>
+</div>
+
+<!-- ============ AUTO PIPELINE PANEL ============ -->
+<div id="mode-auto" class="yw-mode-panel" role="tabpanel" aria-labelledby="mode-tab-auto">
+<section class="card yw-auto-pipeline-card" aria-label="Автопилот пайплайн">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+<div class="t">Автопилот — конвейер</div>
+<span class="m" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase">Нажми узел чтобы вмешаться · hover для деталей</span>
+</div>
+
+<!-- Pipeline DAG: 4 interactive nodes -->
+<div class="yw-pipeline" id="yw-pipeline">
+<!-- Node: Идея -->
+<button type="button" class="yw-pipe-node" data-node="idea" data-state="ready" aria-label="Идея — вмешаться">
+<span class="bicon bicon--block" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M23 9.2 L29 13.2 L27 25.2 L19 29.2 L13 23.2 L17 11.2 Z" fill="#3f4eb8" opacity=".95"/><path d="M20.6 7.6 L26.6 11.6 L24.6 23.6 L16.6 27.6 L10.6 21.6 L14.6 9.6 Z" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85" stroke-linejoin="round"/><path d="M14.6 9.6 L20.6 7.6 L26.6 11.6 L16.8 15.6 Z" fill="white" opacity=".92"/><path d="M16.6 27.6 L16.6 33.2" stroke="#4a5fe0" stroke-width="2.2" stroke-linecap="round"/><path d="M13.6 33.6 H22" stroke="#b9c8ff" stroke-width="1.9" stroke-linecap="round"/><ellipse cx="18.4" cy="11.8" rx="4.2" ry="2.2" fill="white" opacity=".55"/><circle cx="18.2" cy="17.6" r="2" fill="#7d9cff" stroke="white" stroke-width=".9"/><circle cx="18.2" cy="17" r=".7" fill="white" opacity=".96"/></g></svg></span>
+<span class="yw-pipe-title">Идея</span>
+<span class="yw-pipe-desc">Сценарий и стиль.<br>Задай тему или загрузи текст.</span>
+<span class="yw-pipe-state">готов</span>
+</button>
+<span class="yw-pipe-conn" aria-hidden="true"><i></i></span>
+<!-- Node: Генерация -->
+<button type="button" class="yw-pipe-node" data-node="generate" data-state="ready" aria-label="Генерация — вмешаться">
+<span class="bicon bicon--block bicon--zone" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M22 8.6 L23.8 15 31.4 16.2 L25.6 20.4 L27.4 27.8 L21.6 24 15.8 27.8 L17.6 20.4 L11.8 16.2 L19.4 15 Z" fill="#b89a2a" opacity=".95" transform="translate(1 1.2)"/><path d="M20.6 7 L22.6 14.6 L31 15.8 L25 20.4 L26.8 28.4 L20.6 24.6 L14.4 28.4 L16.2 20.4 L10.2 15.8 L18.6 14.6 Z" fill="#ffe27a" stroke="#d4b84a" stroke-width=".75" stroke-linejoin="round"/><path d="M20.6 7 L22.6 14.6 L31 15.8 L20.6 19 Z" fill="white" opacity=".88"/><path d="M10.2 15.8 L16.2 20.4 L14.4 28.4 L20.6 24.6 Z" fill="#f5d36a" opacity=".9"/><ellipse cx="19.2" cy="12.2" rx="3.2" ry="1.8" fill="white" opacity=".62"/><path d="M9 9.4 L12 12.4 M31 9.4 L28 12.4 M9 28.6 L12 25.6 M31 28.6 L28 25.6" stroke="white" stroke-width="1.45" stroke-linecap="round" opacity=".96"/></g></svg></span>
+<span class="yw-pipe-title">Генерация</span>
+<span class="yw-pipe-desc">Сцены · озвучка · картинки.<br>Генерация идёт по пресеты.</span>
+<span class="yw-pipe-state">ожидает</span>
+</button>
+<span class="yw-pipe-conn is-dim" aria-hidden="true"><i></i></span>
+<!-- Node: Проверка -->
+<button type="button" class="yw-pipe-node" data-node="review" data-state="ready" aria-label="Проверка — вмешаться">
+<span class="bicon bicon--block" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M13 15.2 L23 9.2 L33 15.2 L33 29.2 L23 35.2 L13 29.2 Z" fill="#3f4eb8" opacity=".95"/><path d="M10.8 13.2 L20.6 7 30.4 13.2 L30.4 27.2 L20.6 33.4 L10.8 27.2 Z" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85" stroke-linejoin="round"/><path d="M10.8 13.2 L20.6 7 30.4 13.2 L20.6 19.2 Z" fill="white" opacity=".88"/><path d="M20.6 19.2 L30.4 13.2 L30.4 27.2 L20.6 33.4 Z" fill="#d6dcff" opacity=".96"/><path d="M14.6 21.2 L19.2 25.8 L27.8 16.2" fill="none" stroke="#2a4bd8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6 21.2 L19.2 25.8 L27.8 16.2" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".42"/><ellipse cx="18.6" cy="11.6" rx="4.8" ry="2.4" fill="white" opacity=".52"/></g></svg></span>
+<span class="yw-pipe-title">Проверка</span>
+<span class="yw-pipe-desc">Guardian проверяет<br>качество и лимиты.</span>
+<span class="yw-pipe-state">ожидает</span>
+</button>
+<span class="yw-pipe-conn is-dim" aria-hidden="true"><i></i></span>
+<!-- Node: Выход -->
+<button type="button" class="yw-pipe-node" data-node="output" data-state="ready" aria-label="Выход — результат">
+<span class="bicon bicon--block" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><g><path d="M13 21.2 L33 11.2 L25 31.2 L21 23.2 L13 21.2 Z" fill="#3f4eb8" opacity=".95"/><path d="M10.8 19.2 L30.8 9.2 L22.8 29.2 L18.8 21.2 L10.8 19.2 Z" fill="#eef2ff" stroke="#b9c8ff" stroke-width=".85" stroke-linejoin="round"/><path d="M10.8 19.2 L30.8 9.2 L18.8 21.2 Z" fill="white" opacity=".92"/><path d="M18.8 21.2 L22.8 29.2 L14.4 27 Z" fill="#a58cf5" stroke="#7d6fe6" stroke-width=".6" stroke-linejoin="round"/><path d="M14.4 21.2 L18.8 21.2 L20 23.2 L14.4 27 Z" fill="#d6dcff"/><ellipse cx="16.2" cy="16.2" rx="3.8" ry="1.9" fill="white" opacity=".52"/></g></svg></span>
+<span class="yw-pipe-title">Выход</span>
+<span class="yw-pipe-desc">MP4 30–60с · до 6 сцен.<br>Скачай или опубликуй.</span>
+<span class="yw-pipe-state">ожидает</span>
+</button>
+</div>
+
+<!-- Expand detail (hidden until node clicked) -->
+<div id="pipeline-detail" hidden class="yw-pipe-detail" role="region" aria-live="polite">
+<span class="m" id="pipeline-detail-text" style="flex:1">Выбери узел чтобы вмешаться.</span>
+<button type="button" id="pipeline-detail-close" class="btn hol" style="padding:6px 12px;border-radius:999px;font-size:12px;white-space:nowrap">Закрыть</button>
+</div>
+
+<!-- Meta: пресеты / скиллы / бюджет -->
+<div class="yw-auto-meta" aria-label="Параметры автопилота">
+<span class="chip"><span class="bead" style="--c:#7d9cff;flex:none"></span> Пресет: <strong id="auto-preset" style="color:#ecebf4">Стандарт · 720p</strong></span>
+<span class="chip"><span class="bead" style="--c:#a58cf5;flex:none"></span> Скиллы: <strong style="color:#ecebf4">Producer + Guardian</strong></span>
+<span class="chip"><span class="bead" style="--c:#f58a9e;flex:none"></span> Бюджет: <strong id="auto-budget" style="color:#ecebf4">локально · 0 $</strong></span>
+<span class="chip" style="gap:4px"><span class="m" style="font-size:11px">Длительность</span> <strong id="auto-duration-badge" style="color:#ecebf4">30с · 9:16</strong></span>
+</div>
+
+<!-- Actions -->
+<div class="yw-auto-actions">
+<button type="button" id="auto-run" class="btn zone" style="padding:11px 18px;border-radius:18px;font-size:13px;font-weight:700;color:#1b2038;display:inline-flex;align-items:center;gap:8px">
+<svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l10 7-10 7z"></path></svg>
+Запустить автопилот
+</button>
+<button type="button" id="auto-intervene" class="btn hol" style="padding:11px 16px;border-radius:18px;font-size:13px;display:inline-flex;align-items:center;gap:8px">
+<svg class="i" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+Вмешаться
+</button>
+<span class="m" style="font-size:11px;align-self:center;line-height:1.3">«Вмешаться» — открой любой узел и поправь сценарий, стиль или сцену до сборки.</span>
+</div>
+
+<!-- Simplified 3-step flow -->
+<div class="yw-auto-steps" aria-label="Упрощённый поток">
+<div class="yw-auto-step">
+<div class="step-h">01 · Материалы</div>
+<div class="step-t">Загрузить материалы</div>
+<div class="step-d">Сценарий, озвучка (WAV/MP3/M4A) и картинки сцен. Права подтверждаются чекбоксом.</div>
+<a href="#studio-core" class="m" style="font-size:12px;color:#b7c8ff;display:inline-block;margin-top:8px">Перейти к загрузке →</a>
+</div>
+<div class="yw-auto-step">
+<div class="step-h">02 · Стиль</div>
+<div class="step-t">Выбрать стиль</div>
+<div class="step-d">Пресет Авто-мастерской: формат 9:16 / 16:9, длительность и уровень автономии.</div>
+<a href="#auto-preset" class="m" style="font-size:12px;color:#b7c8ff;display:inline-block;margin-top:8px">Пресеты в параметрах ↑</a>
+</div>
+<div class="yw-auto-step" style="border:1px solid rgba(125,156,255,.18)">
+<div class="step-h">03 · Сборка</div>
+<div class="step-t">Собрать</div>
+<div class="step-d"><strong style="color:#ecebf4">Собрать MP4</strong> — локальная сборка без платных API. Плеер и отчёт появятся справа.</div>
+<button type="button" onclick="document.getElementById('render')?.click()" class="btn conv" style="margin-top:8px;padding:8px 14px;border-radius:14px;font-size:12px;color:#fff">Собрать MP4</button>
+</div>
+</div>
+</section>
+</div>
+<!-- /mode-auto -->
+
+<!-- ============ MANUAL PANEL ============ -->
+<div id="mode-manual" class="yw-mode-panel" role="tabpanel" aria-labelledby="mode-tab-manual" hidden>
+<div class="yw-manual-tabs" role="tablist" aria-label="Ручной режим">
+<button type="button" class="yw-manual-tab is-active" role="tab" aria-selected="true" aria-controls="manual-video-container" data-manual-tab="video">Видео-редактор</button>
+<button type="button" class="yw-manual-tab" role="tab" aria-selected="false" aria-controls="manual-image-container" data-manual-tab="image">Фото-редактор</button>
+</div>
+
+<!-- Manual: Video -->
+<div id="manual-video-container" class="yw-manual-pane card" style="border-radius:22px" role="tabpanel" aria-label="Видео-редактор">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+<div>
+<div class="t" style="margin-bottom:4px">Видео-редактор — ручной монтаж</div>
+<p class="m" style="font-size:12px;margin:0;max-width:560px">Полный контроль: сцены, таймлайн, оверлеи и плашки. Тяни сцены за ⠿, правий каждую плашку, добавляй картинки. Прокрути ниже — весь редактор уже на странице (сцены / timeline / плеер).</p>
+</div>
+<a href="/video-editor" class="btn zone" style="padding:10px 16px;border-radius:18px;font-size:13px;font-weight:600;color:#1b2038;text-decoration:none;display:inline-flex;align-items:center;gap:6px">Открыть полный редактор → /video-editor</a>
+</div>
+<div class="yw-manual-placeholder" style="margin-top:14px">
+<div class="m" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase">Контейнер W2</div>
+<div style="font-size:14px;font-weight:600;color:#ecebf4;margin-top:6px">Здесь смонтируется timeline W2</div>
+<div class="m" style="font-size:12px;margin-top:4px">Сейчас используй блок «Сцены — тяни за ⠿» и «Результат» ниже. После интеграции W2 этот контейнер заполнится канвасом монтажа.</div>
+<div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+<span class="chip" style="font-size:11px;padding:6px 10px;border-radius:999px;background:#35373f;box-shadow:inset 3px 3px 8px rgba(10,10,16,.45);border:1px solid rgba(255,255,255,.06);color:#b8b9c8">Сцены · до 6</span>
+<span class="chip" style="font-size:11px;padding:6px 10px;border-radius:999px;background:#35373f;box-shadow:inset 3px 3px 8px rgba(10,10,16,.45);border:1px solid rgba(255,255,255,.06);color:#b8b9c8">Timeline · drag & drop</span>
+<span class="chip" style="font-size:11px;padding:6px 10px;border-radius:999px;background:#35373f;box-shadow:inset 3px 3px 8px rgba(10,10,16,.45);border:1px solid rgba(255,255,255,.06);color:#b8b9c8">Оверлеи · плашки</span>
+</div>
+</div>
+<p class="m" style="font-size:11px;margin-top:10px">Заглушка-контейнер <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px;color:#ecebf4">div#manual-video-container</code> — W2 заполнит её позже. Все существующие сцены/timeline/плеер уже работают ниже.</p>
+</div>
+
+<!-- Manual: Image -->
+<div id="manual-image-container" class="yw-manual-pane card" style="border-radius:22px" role="tabpanel" aria-label="Фото-редактор" hidden>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+<div>
+<div class="t" style="margin-bottom:4px">Фото-редактор — кадры сцен</div>
+<p class="m" style="font-size:12px;margin:0;max-width:560px">Правий каждую картинку сцены отдельно: кадрирование, фильтры и экспорт. Заглушка для W3 — позже здесь появится полноценный редактор кадров.</p>
+</div>
+<a href="/image-editor" class="btn zone" style="padding:10px 16px;border-radius:18px;font-size:13px;font-weight:600;color:#1b2038;text-decoration:none;display:inline-flex;align-items:center;gap:6px">Открыть полный редактор → /image-editor</a>
+</div>
+<div class="yw-manual-placeholder" style="margin-top:14px">
+<div class="m" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase">Контейнер W3</div>
+<div style="font-size:14px;font-weight:600;color:#ecebf4;margin-top:6px">Здесь появится редактор кадров W3</div>
+<div class="m" style="font-size:12px;margin-top:4px">Загрузи картинку в любую сцену ниже, затем открой полный фото-редактор. Этот контейнер — точка монтирования W3.</div>
+<div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+<span class="chip" style="font-size:11px;padding:6px 10px;border-radius:999px;background:#35373f;box-shadow:inset 3px 3px 8px rgba(10,10,16,.45);border:1px solid rgba(255,255,255,.06);color:#b8b9c8">Кадр сцены · PNG/JPEG</span>
+<span class="chip" style="font-size:11px;padding:6px 10px;border-radius:999px;background:#35373f;box-shadow:inset 3px 3px 8px rgba(10,10,16,.45);border:1px solid rgba(255,255,255,.06);color:#b8b9c8">Фильтры · кроп</span>
+<span class="chip" style="font-size:11px;padding:6px 10px;border-radius:999px;background:#35373f;box-shadow:inset 3px 3px 8px rgba(10,10,16,.45);border:1px solid rgba(255,255,255,.06);color:#b8b9c8">Экспорт · в сцену</span>
+</div>
+</div>
+<p class="m" style="font-size:11px;margin-top:10px">Заглушка-контейнер <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px;color:#ecebf4">div#manual-image-container</code> — W3 заполнит её позже.</p>
+</div>
+<p class="m" style="font-size:11px;margin-top:10px">Ручной режим = полный контроль. Весь существующий функционал (сцены, timeline, плеер) — в блоке ниже. Переключи под-вкладку чтобы выбрать редактор.</p>
+</div>
+<!-- /mode-manual -->
 
 <div id="share-notice" hidden class="hol" style="border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:12px"></div>
 
@@ -53,9 +225,10 @@
 
 <p id="message" role="status" aria-live="polite" style="min-height:18px;color:#b7c8ff;font-size:12px"></p>
 
-<div style="display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start">
+<!-- Studio core: проект + результат (shared between modes) -->
+<div id="studio-core" style="display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start">
 <section class="card" style="border-radius:22px">
-<div class="t" style="margin-bottom:12px">Проект</div>
+<div class="t" style="margin-bottom:12px">Проект <span class="m" id="core-mode-badge" style="font-size:11px;letter-spacing:.08em;text-transform:none;font-weight:400">· Автопилот — упрощённо</span></div>
 <label class="m" style="font-size:13px">Название<input id="title" maxlength="120" placeholder="Мой ролик" style="display:block;width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#35373f;color:#ecebf4"></label>
 <div style="display:flex;gap:8px;align-items:end;flex-wrap:wrap;margin:10px 0"><label class="m" style="flex:1;min-width:180px;font-size:13px">Теги — Enter<input id="tag-input" placeholder="добавь тег" maxlength="20" style="display:block;width:100%;margin-top:6px;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#35373f;color:#ecebf4"></label><button id="tag-add" type="button" class="btn hol" style="padding:8px 12px;border-radius:12px">+ Тег</button></div>
 <div id="tag-box" style="display:flex;gap:6px;flex-wrap:wrap"></div><span id="tag-hint" class="m" style="font-size:11px"></span>

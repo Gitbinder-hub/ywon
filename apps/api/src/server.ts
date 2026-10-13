@@ -17,7 +17,12 @@ import * as billing from './billing.ts';
 const VERSION = '3.1';
 const MAX_BODY = 16 * 1024;
 const staticFiles = new Map([
+  ['/architect', ['architect.html', 'text/html; charset=utf-8']],
+  ['/architect.js', ['architect.js', 'text/javascript; charset=utf-8']],
+  ['/architect.css', ['architect.css', 'text/css; charset=utf-8']],
   ['/', ['index.html', 'text/html; charset=utf-8']],
+  ['/install', ['install.html', 'text/html; charset=utf-8']],
+  ['/drawer.js', ['drawer.js', 'text/javascript; charset=utf-8']],
   ['/design.css', ['design.css', 'text/css; charset=utf-8']],
   ['/home.js', ['home.js', 'text/javascript; charset=utf-8']],
   ['/pwa.js', ['pwa.js', 'text/javascript; charset=utf-8']],
@@ -36,14 +41,50 @@ const staticFiles = new Map([
   ['/skills', ['skills.html', 'text/html; charset=utf-8']],
   ['/skills.js', ['skills.js', 'text/javascript; charset=utf-8']],
   ['/skills.css', ['skills.css', 'text/css; charset=utf-8']],
+  ['/video-editor', ['video-editor.html', 'text/html; charset=utf-8']],
+  ['/video-editor.js', ['video-editor.js', 'text/javascript; charset=utf-8']],
+  ['/video-editor.css', ['video-editor.css', 'text/css; charset=utf-8']],
   ['/manifest.webmanifest', ['manifest.webmanifest', 'application/manifest+json; charset=utf-8']],
   ['/sw.js', ['sw.js', 'text/javascript; charset=utf-8']],
+  ['/image-editor', ['image-editor.html', 'text/html; charset=utf-8']],
+  ['/image-editor.js', ['image-editor.js', 'text/javascript; charset=utf-8']],
+  ['/image-editor.css', ['image-editor.css', 'text/css; charset=utf-8']],
   ['/Rubik-Cyrillic.woff2', ['Rubik-Cyrillic.woff2', 'font/woff2']],
   ['/Rubik-Latin.woff2', ['Rubik-Latin.woff2', 'font/woff2']],
   ['/Ywoom.ico', ['Ywoom.ico', 'image/x-icon']],
   ['/favicon.ico', ['Ywoom.ico', 'image/x-icon']],
   ['/locales/en.json', ['locales/en.json', 'application/json; charset=utf-8']],
   ['/locales/ru.json', ['locales/ru.json', 'application/json; charset=utf-8']],
+  ['/icons/ywoom3d/512/home.png', ['icons/ywoom3d/512/home.png', 'image/png']],
+  ['/icons/ywoom3d/512/studio.png', ['icons/ywoom3d/512/studio.png', 'image/png']],
+  ['/icons/ywoom3d/512/plan.png', ['icons/ywoom3d/512/plan.png', 'image/png']],
+  ['/icons/ywoom3d/512/avatars.png', ['icons/ywoom3d/512/avatars.png', 'image/png']],
+  ['/icons/ywoom3d/512/director.png', ['icons/ywoom3d/512/director.png', 'image/png']],
+  ['/icons/ywoom3d/512/analytics.png', ['icons/ywoom3d/512/analytics.png', 'image/png']],
+  ['/icons/ywoom3d/512/settings.png', ['icons/ywoom3d/512/settings.png', 'image/png']],
+  ['/icons/ywoom3d/512/pipeline.png', ['icons/ywoom3d/512/pipeline.png', 'image/png']],
+  ['/icons/ywoom3d/512/approve.png', ['icons/ywoom3d/512/approve.png', 'image/png']],
+  ['/icons/ywoom3d/512/publish.png', ['icons/ywoom3d/512/publish.png', 'image/png']],
+  ['/icons/ywoom3d/512/balance.png', ['icons/ywoom3d/512/balance.png', 'image/png']],
+  ['/icons/ywoom3d/512/search.png', ['icons/ywoom3d/512/search.png', 'image/png']],
+  ['/icons/ywoom3d/512/bell.png', ['icons/ywoom3d/512/bell.png', 'image/png']],
+  ['/icons/ywoom3d/512/folder.png', ['icons/ywoom3d/512/folder.png', 'image/png']],
+  ['/icons/ywoom3d/512/wardrobe.png', ['icons/ywoom3d/512/wardrobe.png', 'image/png']],
+  ['/icons/ywoom3d/1024/home.png', ['icons/ywoom3d/1024/home.png', 'image/png']],
+  ['/icons/ywoom3d/1024/studio.png', ['icons/ywoom3d/1024/studio.png', 'image/png']],
+  ['/icons/ywoom3d/1024/plan.png', ['icons/ywoom3d/1024/plan.png', 'image/png']],
+  ['/icons/ywoom3d/1024/avatars.png', ['icons/ywoom3d/1024/avatars.png', 'image/png']],
+  ['/icons/ywoom3d/1024/director.png', ['icons/ywoom3d/1024/director.png', 'image/png']],
+  ['/icons/ywoom3d/1024/analytics.png', ['icons/ywoom3d/1024/analytics.png', 'image/png']],
+  ['/icons/ywoom3d/1024/settings.png', ['icons/ywoom3d/1024/settings.png', 'image/png']],
+  ['/icons/ywoom3d/1024/pipeline.png', ['icons/ywoom3d/1024/pipeline.png', 'image/png']],
+  ['/icons/ywoom3d/1024/approve.png', ['icons/ywoom3d/1024/approve.png', 'image/png']],
+  ['/icons/ywoom3d/1024/publish.png', ['icons/ywoom3d/1024/publish.png', 'image/png']],
+  ['/icons/ywoom3d/1024/balance.png', ['icons/ywoom3d/1024/balance.png', 'image/png']],
+  ['/icons/ywoom3d/1024/bell.png', ['icons/ywoom3d/1024/bell.png', 'image/png']],
+  ['/icons/ywoom3d/1024/search.png', ['icons/ywoom3d/1024/search.png', 'image/png']],
+  ['/icons/ywoom3d/1024/folder.png', ['icons/ywoom3d/1024/folder.png', 'image/png']],
+  ['/icons/ywoom3d/1024/wardrobe.png', ['icons/ywoom3d/1024/wardrobe.png', 'image/png']],
 ]);
 function json(res: ServerResponse, status: number, body: unknown): void {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -198,6 +239,15 @@ async function handle(req: IncomingMessage, res: ServerResponse, offline: Return
     const prompts: string[] = [];
     if (fs.existsSync(promptsDir)) for (const f of fs.readdirSync(promptsDir).filter((f: string) => f.endsWith('.md'))) prompts.push(f);
     json(res, 200, { id, yaml, md, prompts }); return;
+  }
+  if (req.method === 'GET' && url.pathname === '/api/agents') {
+    const agents = [
+      { id: 'strategist', role: 'Strategist', status: 'active', task: 'Планирует контент-неделю', uptime: '2ч 14м' },
+      { id: 'producer', role: 'Producer', status: 'active', task: 'Собирает сцены MP4', uptime: '47м' },
+      { id: 'quality', role: 'Quality', status: 'idle', task: 'Ждёт проверку', uptime: '—' },
+      { id: 'guardian', role: 'Guardian', status: 'active', task: 'Мониторит лимиты', uptime: '5ч 02м' },
+    ];
+    json(res, 200, { agents }); return;
   }
   if (req.method === 'GET' && url.pathname === '/api/factories') {
     try {

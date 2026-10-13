@@ -492,6 +492,174 @@ window.addEventListener('keydown', (e)=>{
   if(e.key==='/' && !e.ctrlKey && !e.metaKey && e.target.tagName==='BODY'){ e.preventDefault(); const q=document.getElementById('dash-query'); if(q){ q.focus(); } }
   if(e.key==='Escape'){ const h=document.getElementById('help-overlay'); if(h && !h.hidden) h.hidden=true; }
 });
+// ===== W4: studio mode switch (Auto Pipeline vs Manual) =====
+(function(){
+  const LS_MODE='ywoom_studio_mode', LS_MANUAL='ywoom_manual_tab';
+  const MAP={idea:{title:'Идея — сценарий и стиль',hint:'Правишь название/сценарий/теги. «Разбить на сцены» возьмёт абзацы как сцены.',focus:'script'}, generate:{title:'Генерация — сцены и медиа',hint:'Правишь каждую плашку, картинки сцен (PNG/JPEG) и озвучку. Тяни сцены за ⠿.',focus:'scenes'}, review:{title:'Проверка — Guardian',hint:'Проверь пресеты, длительность и формат перед сборкой. Assembly без платных API.',focus:'duration'}, output:{title:'Выход — MP4',hint:'Собери MP4, смотри плеер и отчёт справа. Экспорт — JSON проекта.',focus:'player'}};
+  let activeNode=null;
+  function getMode(){
+    const qs=new URLSearchParams(location.search);
+    const qm=qs.get('mode');
+    if(qm==='auto'||qm==='manual') return qm;
+    const ls=localStorage.getItem(LS_MODE);
+    return ls==='manual' ? 'manual' : 'auto';
+  }
+  function getManualTab(){
+    const qs=new URLSearchParams(location.search);
+    const qm=qs.get('manualTab')||qs.get('tab');
+    if(qm==='video'||qm==='image') return qm;
+    const ls=localStorage.getItem(LS_MANUAL);
+    return ls==='image' ? 'image' : 'video';
+  }
+  function setUrl(mode, manualTab){
+    const url=new URL(location.href);
+    url.searchParams.set('mode', mode);
+    if(manualTab) url.searchParams.set('manualTab', manualTab);
+    history.replaceState(null,'',url.toString());
+  }
+  function syncUi(){
+    const mode=getMode();
+    const manualTab=getManualTab();
+    const sw=document.getElementById('studio-mode-switch');
+    if(sw) sw.setAttribute('data-active', mode);
+    document.querySelectorAll('#studio-mode-switch .yw-mode-btn').forEach(b=>{
+      const a=b.getAttribute('data-mode')===mode;
+      b.classList.toggle('is-active', a);
+      b.setAttribute('aria-selected', a?'true':'false');
+    });
+    const pAuto=document.getElementById('mode-auto'), pMan=document.getElementById('mode-manual');
+    if(pAuto) pAuto.hidden = mode!=='auto';
+    if(pMan) pMan.hidden = mode!=='manual';
+    const hint=document.getElementById('mode-hint');
+    if(hint){
+      hint.textContent = mode==='auto'
+        ? 'Автопилот — визуальный конвейер: Идея → Генерация → Проверка → Выход. Нажми узел чтобы вмешаться.'
+        : 'Ручной — видеоредактор и фоторедактор. Ниже — полный контроль: сцены, timeline, оверлеи, плеер.';
+    }
+    const badge=document.getElementById('core-mode-badge');
+    if(badge) badge.textContent = mode==='auto' ? '· Автопилот — упрощённо' : '· Ручной — полный контроль';
+    // manual sub-tabs
+    document.querySelectorAll('.yw-manual-tab').forEach(b=>{
+      const a=b.getAttribute('data-manual-tab')===manualTab;
+      b.classList.toggle('is-active', a);
+      b.setAttribute('aria-selected', a?'true':'false');
+    });
+    const v=document.getElementById('manual-video-container'), im=document.getElementById('manual-image-container');
+    if(v) v.hidden = manualTab!=='video';
+    if(im) im.hidden = manualTab!=='image';
+    // pipeline node visuals reflect project/job a bit: if job running, mark generate as generating
+    syncPipelineStates();
+  }
+  function syncPipelineStates(){
+    const nodes=document.querySelectorAll('.yw-pipe-node');
+    if(!nodes.length) return;
+    const dur=Number(document.getElementById('duration')?.value)||30;
+    const asp=document.getElementById('aspect')?.value||'portrait';
+    const jb=document.getElementById('auto-duration-badge'); if(jb) jb.textContent = dur+'с · '+(asp==='portrait'?'9:16':'16:9');
+    const st=document.getElementById('job-status')?.textContent||'';
+    const isRunning=/running|cancelling/i.test(st);
+    const isDone=/succeeded/i.test(st);
+    const isFail=/failed/i.test(st);
+    nodes.forEach(n=>{
+      const k=n.getAttribute('data-node');
+      let state='ready';
+      if(k==='generate' && isRunning) state='generating';
+      else if(k==='review' && isRunning) state='generating';
+      else if(k==='output' && isDone) state='done';
+      else if(isFail && k==='output') state='failed';
+      else if(project && scenes.length){
+        if(k==='idea' && (project.title||project.script)) state='done';
+        if(k==='generate' && scenes.some(s=>s.text||s.imageId)) state='done';
+        if(k==='output' && isDone) state='done';
+      }
+      n.setAttribute('data-state', state);
+      const label=n.querySelector('.yw-pipe-state');
+      if(label){
+        label.textContent = state==='generating' ? 'идёт…' : state==='done' ? 'готово' : state==='failed' ? 'ошибка' : state==='ready' && k!=='idea' ? 'ожидает' : 'готов';
+      }
+      const icon=n.querySelector('.yw-pipe-icon');
+      if(icon){
+        icon.classList.toggle('zone', state==='generating' || state==='done');
+        icon.classList.toggle('hol', !(state==='generating' || state==='done'));
+      }
+      n.classList.toggle('is-expanded', activeNode===k);
+    });
+    const conns=document.querySelectorAll('.yw-pipe-conn');
+    conns.forEach(c=> c.classList.toggle('is-dim', !isDone && !isRunning));
+  }
+  function openDetail(node){
+    activeNode = activeNode===node ? null : node;
+    const box=document.getElementById('pipeline-detail');
+    const txt=document.getElementById('pipeline-detail-text');
+    if(!box || !txt){ syncPipelineStates(); return; }
+    if(!activeNode){ box.hidden=true; syncPipelineStates(); return; }
+    const m=MAP[activeNode]||MAP.idea;
+    txt.textContent = m.title + ' — ' + m.hint;
+    box.hidden=false;
+    syncPipelineStates();
+    // gentle scroll/focus hint
+    if(m.focus){
+      const el=document.getElementById(m.focus);
+      if(el && activeNode!=='output'){ el.scrollIntoView({behavior:'smooth', block:'center'}); setTimeout(()=>{ try{ el.focus({preventScroll:true}); }catch{} }, 400); }
+      else if(activeNode==='output'){ document.getElementById('studio-core')?.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+  }
+  function bind(){
+    document.querySelectorAll('#studio-mode-switch .yw-mode-btn').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const m=b.getAttribute('data-mode');
+        if(!m) return;
+        localStorage.setItem(LS_MODE, m);
+        setUrl(m, getManualTab());
+        syncUi();
+      });
+    });
+    document.querySelectorAll('.yw-manual-tab').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const t=b.getAttribute('data-manual-tab');
+        if(!t) return;
+        localStorage.setItem(LS_MANUAL, t);
+        localStorage.setItem(LS_MODE, 'manual');
+        setUrl('manual', t);
+        syncUi();
+      });
+    });
+    document.querySelectorAll('.yw-pipe-node').forEach(n=>{
+      n.addEventListener('click', ()=> openDetail(n.getAttribute('data-node')));
+    });
+    document.getElementById('pipeline-detail-close')?.addEventListener('click', ()=>{ activeNode=null; const box=document.getElementById('pipeline-detail'); if(box) box.hidden=true; syncPipelineStates(); });
+    document.getElementById('auto-run')?.addEventListener('click', ()=> document.getElementById('render')?.click());
+    document.getElementById('auto-intervene')?.addEventListener('click', ()=>{
+      if(!activeNode) activeNode='idea';
+      openDetail(activeNode);
+      message('Режим вмешательства: правишь узел «'+(MAP[activeNode]?.title||activeNode)+'» — сохрани и собери.');
+    });
+    // keep budget/preset sync with title/aspect changes
+    ['duration','aspect','title','script'].forEach(id=>{
+      document.getElementById(id)?.addEventListener('input', syncPipelineStates);
+      document.getElementById(id)?.addEventListener('change', syncPipelineStates);
+    });
+    // observe job-status text changes
+    const js=document.getElementById('job-status');
+    if(js){
+      const mo=new MutationObserver(syncPipelineStates);
+      mo.observe(js, {childList:true, characterData:true, subtree:true});
+    }
+    // verify button stays inside pipeline card on small screens — no JS needed
+  }
+  // init early even before refreshProjects
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', ()=>{ bind(); syncUi(); });
+  else { bind(); syncUi(); }
+  // re-sync after project load
+  const _origApply = window.apply;
+  if(typeof apply==='function'){
+    const orig=apply;
+    window.apply = function(p){ const r=orig(p); try{ syncUi(); syncPipelineStates(); }catch{} return r; };
+  }
+  // also sync shortly after page load (project may be fetched later)
+  setTimeout(syncUi, 800);
+  setTimeout(syncUi, 2000);
+})();
 drawScenes(); refreshProjects().catch((e) => message('Не удалось загрузить локальные проекты: ' + e.message));
 // help overlay (?) — create once
 (() => {
@@ -694,3 +862,92 @@ if (typeof URLSearchParams !== 'undefined' && window.location) {
     }catch{}
   }
 }
+
+// W4: studio mode switch (Auto pipeline vs Manual) — appended to studio.js
+(function(){
+  var modeEl=document.getElementById('yw-studio-mode'); if(!modeEl) return;
+  var autoPanel=document.getElementById('mode-auto'), manualPanel=document.getElementById('mode-manual');
+  var autoBtns=[].slice.call(modeEl.querySelectorAll('[data-mode]'));
+  var manualBtns=[].slice.call(document.querySelectorAll('[data-manual-tab]'));
+  var manualPanes=[].slice.call(document.querySelectorAll('.yw-manual-pane'));
+  var LS_MODE='ywoom_studio_mode', LS_MANUAL='ywoom_manual_tab';
+  function syncUi(){
+    var url=new URL(location.href);
+    var qMode=url.searchParams.get('mode');
+    var mode=(qMode==='auto'||qMode==='manual')?qMode:(localStorage.getItem(LS_MODE)||'auto');
+    if(mode!=='auto'&&mode!=='manual') mode='auto';
+    var manualTab=(url.searchParams.get('manualTab')==='image'||url.searchParams.get('manualTab')==='video')?url.searchParams.get('manualTab'):(localStorage.getItem(LS_MANUAL)||'video');
+    // support both id names: mode-auto/mode-manual panels and legacy yw-auto/minimal; also sync mode-hint + core badge
+    var modeHint=document.getElementById('mode-hint'); if(modeHint) modeHint.textContent = mode==='auto' ? 'Автопилот — визуальный конвейер: Идея → Генерация → Проверка → Выход.' : 'Ручной — полный контроль: сцены/timeline/плеер + отдельные редакторы.';
+    var coreBadge=document.getElementById('core-mode-badge'); if(coreBadge) coreBadge.textContent = mode==='auto' ? '· Автопилот — упрощённо' : '· Ручной — полный контроль';
+    modeEl.dataset.active=mode;
+    autoBtns.forEach(function(b){ var on=b.dataset.mode===mode; b.classList.toggle('is-active',on); b.setAttribute('aria-selected', String(on)); });
+    if(autoPanel) autoPanel.hidden=mode!=='auto';
+    if(manualPanel) manualPanel.hidden=mode!=='manual';
+    manualBtns.forEach(function(b){ var on=b.dataset.manualTab===manualTab; b.classList.toggle('is-active',on); b.setAttribute('aria-selected', String(on)); });
+    // rich block uses id manual-video-container / manual-image-container + hidden attribute per pane
+    var mv=document.getElementById('manual-video-container'), mi=document.getElementById('manual-image-container');
+    if(mv) mv.hidden = manualTab!=='video';
+    if(mi) mi.hidden = manualTab!=='image';
+    // also support generic panes via data attr
+    manualPanes.forEach(function(p){ if(p.id!=='manual-video-container'&&p.id!=='manual-image-container') p.hidden=p.dataset.manualPane!==manualTab; });
+    syncPipeline();
+  }
+  function syncPipeline(){
+    var st=document.getElementById('job-status'); var txt=st?st.textContent:'';
+    var run=/running|cancelling/i.test(txt), done=/succeeded/i.test(txt), fail=/failed/i.test(txt);
+    document.querySelectorAll('.yw-pipe-node').forEach(function(n){
+      if(run) n.dataset.state='generating'; else if(fail) n.dataset.state='failed'; else if(done) n.dataset.state='done';
+    });
+    var fmt=document.getElementById('yw-auto-format'), asp=document.getElementById('aspect'), dur=document.getElementById('duration');
+    if(fmt&&asp) fmt.textContent=(asp.value==='portrait'?'720x1280':'1280x720')+(dur?' '+dur.value+'s':'');
+  }
+  function setUrl(mode, manualTab){
+    var u=new URL(location.href); u.searchParams.set('mode',mode); if(manualTab) u.searchParams.set('manualTab',manualTab); history.replaceState(null,'',u.toString());
+  }
+  autoBtns.forEach(function(b){ b.addEventListener('click', function(){ var m=b.dataset.mode; localStorage.setItem(LS_MODE,m); setUrl(m, localStorage.getItem(LS_MANUAL)||'video'); syncUi(); }); });
+  manualBtns.forEach(function(b){ b.addEventListener('click', function(){ var t=b.dataset.manualTab; localStorage.setItem(LS_MANUAL,t); var cur=modeEl.dataset.active||'manual'; setUrl(cur,t); syncUi(); }); });
+  var detail=document.getElementById('pipeline-detail')||document.getElementById('yw-pipe-detail'), detailText=document.getElementById('pipeline-detail-text')||document.getElementById('yw-pipe-detail-text');
+  document.querySelectorAll('.yw-pipe-node').forEach(function(n){
+    n.addEventListener('click', function(){
+      if(!detail||!detailText) return;
+      var map={idea:'Idea — brief, goals, audience. Source: Journey or manual.', generate:'Generation — scenes + audio + images. Preset and format.', review:'Review — targeted edits without overwriting accepted.', publish:'Publish — export JSON/MP4, share link.'};
+      detailText.textContent=map[n.dataset.node]||'Pipeline node';
+      detail.hidden=false; detail.style.display='flex';
+      document.querySelectorAll('.yw-pipe-node').forEach(function(x){ x.classList.remove('is-expanded');});
+      n.classList.add('is-expanded');
+    });
+  });
+  var closeBtn=document.getElementById('pipeline-detail-close')||document.getElementById('yw-pipe-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ if(detail){ detail.hidden=true; detail.style.display='none'; } if(detail) detail.style.display='none'; document.querySelectorAll('.yw-pipe-node').forEach(function(x){ x.classList.remove('is-expanded');}); });
+  var actBtn=document.getElementById('yw-pipe-action')||document.getElementById('pipeline-detail-close');
+  // yw-pipe-action is the intervene button inside detail; rich block uses separate ids
+  var interveneBtn=document.getElementById('yw-pipe-action')||document.getElementById('auto-intervene');
+  if(interveneBtn) interveneBtn.addEventListener('click', function(){
+    var node=document.querySelector('.yw-pipe-node.is-expanded'); if(!node) return;
+    var id=node.dataset.node;
+    if(id==='idea') location.href='/journey';
+    else if(id==='generate') { var el=document.getElementById('title'); if(el) el.scrollIntoView({behavior:'smooth'}); }
+    else if(id==='review') { var el2=document.getElementById('history-box'); if(el2) el2.scrollIntoView({behavior:'smooth'}); }
+    else if(id==='publish'||id==='output') { var el3=document.getElementById('download'); if(el3) el3.scrollIntoView({behavior:'smooth'}); }
+  });
+  if(actBtn && actBtn!==interveneBtn) actBtn.addEventListener('click', function(){
+    var node=document.querySelector('.yw-pipe-node.is-expanded'); if(!node) return;
+    var id=node.dataset.node;
+    if(id==='idea') location.href='/journey';
+    else if(id==='generate') { var el=document.getElementById('title'); if(el) el.scrollIntoView({behavior:'smooth'}); }
+    else if(id==='review') { var el2=document.getElementById('history-box'); if(el2) el2.scrollIntoView({behavior:'smooth'}); }
+    else if(id==='publish'||id==='output') { var el3=document.getElementById('download'); if(el3) el3.scrollIntoView({behavior:'smooth'}); }
+  });
+  var runBtn=document.getElementById('auto-run')||document.getElementById('yw-auto-run');
+  if(runBtn) runBtn.addEventListener('click', function(){ var r=document.getElementById('render'); if(r) r.click(); });
+  var pauseBtn=document.getElementById('auto-intervene')||document.getElementById('yw-auto-pause');
+  if(pauseBtn && pauseBtn.id!=='yw-pipe-action') pauseBtn.addEventListener('click', function(){ var c=document.getElementById('cancel'); if(c) c.click(); });
+  var stEl=document.getElementById('job-status');
+  if(stEl) { var obs=new MutationObserver(syncPipeline); obs.observe(stEl,{childList:true,characterData:true,subtree:true}); }
+  var durEl=document.getElementById('duration'); if(durEl) durEl.addEventListener('change', syncPipeline);
+  var aspEl=document.getElementById('aspect'); if(aspEl) aspEl.addEventListener('change', syncPipeline);
+  syncUi();
+  if(typeof window.apply==='function'){ var _orig=window.apply; window.apply=function(p){ var r=_orig(p); setTimeout(syncUi,80); return r; }; }
+})();
+

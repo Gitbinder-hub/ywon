@@ -835,9 +835,12 @@
   function initDashboardDrag(){
     var grid=gid('yw-arch-grid'); if(!grid) return;
     var dragging=null, ghost=null, offsetX=0, offsetY=0, origCol=null, origNext=null, origPair=null;
+    // rAF + hysteresis state for smooth insertion (no jump)
+    var _raf=0, _lastX=0, _lastY=0, _lastBefore=null, _lastCol=null, _stableSince=0;
     function onHandleDown(e){
       var head=e.target.closest('.widget-handle'); if(!head) return;
-      var card=head.closest('.yw-widget'); if(!card || card.dataset.locked==='true') return;
+      var card=head.closest('.yw-widget'); if(!card) return;
+      // allow all widgets (portfolio/economy now movable) — no locked gate
       e.preventDefault();
       dragging=card;
       origCol=card.parentElement;
@@ -852,9 +855,11 @@
       ghost.style.left='0'; ghost.style.top='0';
       ghost.style.transform='translate3d('+(e.clientX - offsetX)+'px,'+(e.clientY - offsetY)+'px,0) rotate(.4deg)';
       ghost.style.pointerEvents='none'; document.body.append(ghost);
-      card.style.opacity='.28'; card.style.transition='transform .16s ease, opacity .16s ease';
+      card.style.opacity='.18'; card.style.transition='opacity .2s ease';
+      // smooth displacement of neighbours
       grid.classList.add('is-dragging');
-      grid.querySelectorAll('.yw-widget').forEach(function(w){ if(w!==card) w.style.transition='transform .18s ease, opacity .18s ease'; });
+      grid.querySelectorAll('.yw-widget').forEach(function(w){ if(w!==card) w.style.transition='transform .24s cubic-bezier(.22,1,.36,1), opacity .2s ease'; });
+      _lastBefore=null; _lastCol=null; _stableSince=0;
       updateBottomRowAvailability();
       document.addEventListener('pointermove', onMove); document.addEventListener('pointerup', onUp);
       if(e.target.setPointerCapture) try{ e.target.setPointerCapture(e.pointerId); }catch(_){}
@@ -892,85 +897,94 @@
       // keep marker right before dragging element is not needed — marker is visual only; remove before saving layout
     }
     function _removeDropMarker(){ if(_dropMarker && _dropMarker.parentElement) _dropMarker.parentElement.removeChild(_dropMarker); }
-    function onMove(e){
-      if(!dragging||!ghost) return;
-      ghost.style.transform='translate3d('+(e.clientX - offsetX)+'px,'+(e.clientY - offsetY)+'px,0) rotate(.4deg)';
-      // subtle feedback on grid alignment, not left-based
-      var _snap = (Math.abs(e.clientX%8)<1.2 || Math.abs(e.clientY%8)<1.2);
-      ghost.style.outline = _snap ? '1px dashed rgba(125,156,255,.35)' : '';
+    function _chooseTargetCol(cx, cy){
       var left=gid('yw-col-left'), right=gid('yw-col-right'), center=gid('yw-arch-center'), bottom=gid('yw-row-bottom');
+      var el=document.elementFromPoint(cx, cy);
       var targetCol=null, isBottom=false;
-      var el=document.elementFromPoint(e.clientX, e.clientY);
       if(el){
         if(el.closest && el.closest('#yw-row-bottom')){ targetCol=bottom; isBottom=true; }
         else if(el.closest && el.closest('#yw-col-left')) targetCol=left;
         else if(el.closest && el.closest('#yw-col-right')) targetCol=right;
         if(!targetCol && center && bottom && !bottom.hidden){
           var gr=grid.getBoundingClientRect(), cr=center.getBoundingClientRect(), br=bottom.getBoundingClientRect();
-          if(e.clientY > br.top - 16) { targetCol=bottom; isBottom=true; }
-          else { targetCol = e.clientX < cr.left ? left : (e.clientX > cr.right ? right : (e.clientX < gr.left + gr.width/2 ? left : right)); }
+          if(cy > br.top - 16) { targetCol=bottom; isBottom=true; }
+          else { targetCol = cx < cr.left ? left : (cx > cr.right ? right : (cx < gr.left + gr.width/2 ? left : right)); }
         } else if(!targetCol && center){
           var gr2=grid.getBoundingClientRect(), cr2=center.getBoundingClientRect();
-          targetCol = e.clientX < cr2.left ? left : (e.clientX > cr2.right ? right : (e.clientX < gr2.left + gr2.width/2 ? left : right));
+          targetCol = cx < cr2.left ? left : (cx > cr2.right ? right : (cx < gr2.left + gr2.width/2 ? left : right));
         }
       } else {
         var gr3=grid.getBoundingClientRect(), cr3=center?center.getBoundingClientRect():null;
-        if(bottom && !bottom.hidden && e.clientY > bottom.getBoundingClientRect().top - 20) { targetCol=bottom; isBottom=true; }
-        else if(cr3) targetCol = e.clientX < cr3.left ? left : (e.clientX > cr3.right ? right : (e.clientX < gr3.left + gr3.width/2 ? left : right));
-        else targetCol = e.clientX < gr3.left + gr3.width/2 ? left : right;
+        if(bottom && !bottom.hidden && cy > bottom.getBoundingClientRect().top - 20) { targetCol=bottom; isBottom=true; }
+        else if(cr3) targetCol = cx < cr3.left ? left : (cx > cr3.right ? right : (cx < gr3.left + gr3.width/2 ? left : right));
+        else targetCol = cx < gr3.left + gr3.width/2 ? left : right;
       }
-      if(!targetCol) return;
-      // bottom-row: only allow if enabled OR already has children (existing bottom row stays). Otherwise reroute to side column.
-      var _wasBottomDisabled = isBottom && targetCol.getAttribute('data-disabled')==='1' && !targetCol.querySelector('.yw-widget');
-      if(_wasBottomDisabled){
-        _removeDropMarker();
-        isBottom=false; targetCol = e.clientX < grid.getBoundingClientRect().left + grid.getBoundingClientRect().width/2 ? left : right;
+      // bottom-row gate
+      if(isBottom && targetCol && targetCol.getAttribute('data-disabled')==='1' && !targetCol.querySelector('.yw-widget')){
+        isBottom=false; targetCol = cx < grid.getBoundingClientRect().left + grid.getBoundingClientRect().width/2 ? left : right;
       }
-      // keep marker visible and neighbours nudged live
-      // clear previous neighbour nudge
+      return {col:targetCol, isBottom:isBottom};
+    }
+    function _applyDragAt(cx, cy){
+      if(!dragging) return;
+      var info=_chooseTargetCol(cx, cy);
+      var targetCol=info.col; if(!targetCol) return;
+      var isBottom=info.isBottom;
+      var before=findInsertionIndex(targetCol, cy);
+      // hysteresis: don't thrash insertion point on tiny moves near center — require stable target or column change
+      var sameAsLast = (before === _lastBefore && targetCol === _lastCol);
+      if(!sameAsLast){
+        var now=Date.now();
+        if(_lastCol!==targetCol){ _lastBefore=before; _lastCol=targetCol; _stableSince=now; }
+        else if(now - _stableSince < 48){ return; }
+        else { _lastBefore=before; _lastCol=targetCol; _stableSince=now; }
+      }
+      // nudge neighbours with gap animation
       grid.querySelectorAll('.yw-widget').forEach(function(w){ if(w!==dragging) w.style.transform=''; });
       if(isBottom){
-        var before=findInsertionIndex(targetCol, e.clientY);
-        // marker before insertion point
         _placeDropMarker(targetCol, before);
-        if(before){ before.style.transform='translateY(4px)'; }
-        // also nudge next sibling if any
+        if(before) before.style.transform='translateY(4px)';
         dragging.style.flex='1 1 280px';
-        // actually insert dragging at marker position (marker is visual, dragging follows)
         if(before) targetCol.insertBefore(dragging, before);
         else {
-          // marker is last; dragging goes before marker to keep visual order
           if(_dropMarker && _dropMarker.parentElement===targetCol) targetCol.insertBefore(dragging, _dropMarker);
           else targetCol.appendChild(dragging);
         }
-        targetCol.classList.add('yw-widget-drop');
-        setTimeout(function(c){ c.classList.remove('yw-widget-drop'); }, 180, targetCol);
+        targetCol.classList.add('yw-widget-drop'); setTimeout(function(c){ if(c) c.classList.remove('yw-widget-drop'); }, 220, targetCol);
       } else {
-        // if marker was in bottom, remove it when moving to side
         if(_dropMarker && _dropMarker.parentElement && _dropMarker.parentElement!==targetCol) _removeDropMarker();
         dragging.style.flex='';
-        var before2=findInsertionIndex(targetCol, e.clientY);
-        _placeDropMarker(targetCol, before2||null);
-        if(before2) before2.style.transform='translateY(4px)';
-        if(before2) targetCol.insertBefore(dragging, before2);
+        _placeDropMarker(targetCol, before||null);
+        if(before) before.style.transform='translateY(4px)';
+        if(before) targetCol.insertBefore(dragging, before);
         else {
           if(_dropMarker && _dropMarker.parentElement===targetCol) targetCol.insertBefore(dragging, _dropMarker);
           else targetCol.appendChild(dragging);
         }
-        targetCol.classList.add('yw-widget-drop'); setTimeout(function(c){ c.classList.remove('yw-widget-drop'); }, 180, targetCol);
+        targetCol.classList.add('yw-widget-drop'); setTimeout(function(c){ if(c) c.classList.remove('yw-widget-drop'); }, 220, targetCol);
         var did=dragging.getAttribute('data-widget-id');
         if(did==='autonomy' || did==='autopilot') tryRewrapPair(targetCol);
       }
-      // live bottom availability
       updateBottomRowAvailability();
+    }
+    function onMove(e){
+      if(!dragging||!ghost) return;
+      _lastX=e.clientX; _lastY=e.clientY;
+      ghost.style.transform='translate3d('+(e.clientX - offsetX)+'px,'+(e.clientY - offsetY)+'px,0) rotate(.4deg)';
+      var _snap = (Math.abs(e.clientX%8)<1.2 || Math.abs(e.clientY%8)<1.2);
+      ghost.style.outline = _snap ? '1px dashed rgba(125,156,255,.35)' : '';
+      if(!_raf) _raf=requestAnimationFrame(function(){ _raf=0; _applyDragAt(_lastX,_lastY); });
     }
     function onUp(e){
       document.removeEventListener('pointermove', onMove); document.removeEventListener('pointerup', onUp);
+      if(_raf){ cancelAnimationFrame(_raf); _raf=0; }
+      // flush last position if any pending
+      if(dragging && _lastCol) _applyDragAt(_lastX,_lastY);
       _removeDropMarker();
       if(ghost) ghost.remove(); ghost=null;
       if(dragging){ dragging.style.opacity=''; dragging.style.transform=''; dragging.style.flex=''; }
       grid.classList.remove('is-dragging');
-      grid.querySelectorAll('.yw-widget').forEach(function(w){ w.style.transform=''; w.style.transition=''; });
+      grid.querySelectorAll('.yw-widget').forEach(function(w){ w.style.transform=''; /* keep transition for drop-in */ });
       if(dragging){
         var left=gid('yw-col-left'), right=gid('yw-col-right'), bottom=gid('yw-row-bottom');
         var inLeft=dragging.parentElement===left, inRight=dragging.parentElement===right, inBottom=bottom && dragging.parentElement===bottom;
@@ -994,7 +1008,7 @@
       var id=btn.getAttribute('data-remove');
       if(!id) return;
       var card=document.querySelector('.yw-widget[data-widget-id="'+id+'"]');
-      if(card && card.dataset.locked==='true') return;
+      // all widgets removable now; no locked exception
       var cur=dashLoad();
       var removed=cur.layout.find(function(x){ return x.id===id; });
       if(removed) trashPush(removed);
@@ -1276,23 +1290,22 @@
         st.textContent='@keyframes archFlow{to{stroke-dashoffset:-11}} .arch-line--dash{stroke-dasharray:3 8;animation:archFlow 1.7s linear infinite} .arch-line--dash.is-fast{animation-duration:.85s} @keyframes archBeadPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.9}}';
         document.head.appendChild(st);
       }
+      var narrowInit = isNarrow();
       cards.forEach(function(c){
         var g=document.createElementNS(NS,'g');
         g.setAttribute('class','arch-conn'); g.setAttribute('data-key',c.key);
-        // glow
+        // glow/core/dash — thicker on mobile for visibility
         var glow=document.createElementNS(NS,'path');
         glow.setAttribute('class','arch-line arch-line--glow');
-        glow.setAttribute('fill','none'); glow.setAttribute('stroke',c.color); glow.setAttribute('stroke-width','7'); glow.setAttribute('opacity','0.18');
+        glow.setAttribute('fill','none'); glow.setAttribute('stroke',c.color); glow.setAttribute('stroke-width', narrowInit ? '8.5' : '7'); glow.setAttribute('opacity', narrowInit ? '0.26' : '0.18');
         g.appendChild(glow);
-        // core
         var core=document.createElementNS(NS,'path');
         core.setAttribute('class','arch-line arch-line--core');
-        core.setAttribute('fill','none'); core.setAttribute('stroke','url(#arch-g-'+c.key+')'); core.setAttribute('stroke-width','1.6'); core.setAttribute('opacity','1');
+        core.setAttribute('fill','none'); core.setAttribute('stroke','url(#arch-g-'+c.key+')'); core.setAttribute('stroke-width', narrowInit ? '2.1' : '1.6'); core.setAttribute('opacity','1');
         g.appendChild(core);
-        // dash
         var dash=document.createElementNS(NS,'path');
         dash.setAttribute('class','arch-line arch-line--dash');
-        dash.setAttribute('fill','none'); dash.setAttribute('stroke','#f4e6da'); dash.setAttribute('stroke-width','1.25'); dash.setAttribute('stroke-linecap','round'); dash.setAttribute('opacity','0.92');
+        dash.setAttribute('fill','none'); dash.setAttribute('stroke','#f4e6da'); dash.setAttribute('stroke-width', narrowInit ? '1.55' : '1.25'); dash.setAttribute('stroke-linecap','round'); dash.setAttribute('opacity', narrowInit ? '0.96' : '0.92');
         g.appendChild(dash);
         // bead
         var bead=document.createElementNS(NS,'circle');
@@ -1307,21 +1320,18 @@
       });
     }
     function clamp(v,a,b){ return Math.max(a, Math.min(b,v)); }
-    function anchorAtTorusCenter(rect, rx, ry){
-      var narrow = window.matchMedia('(max-width:640px)').matches;
-      if(narrow){
-        // mobile single column: spread lines to outer edges alternately so they don't bunch in center (red sketch)
-        // assign side by card index parity via distance but bias to alternate
-        var leftDist = Math.hypot((rect.left+1)-rx, (rect.top+rect.height/2)-ry);
-        var rightDist = Math.hypot((rect.right-1)-rx, (rect.top+rect.height/2)-ry);
-        // small bias: if distances are close (< 40px), alternate by rect top to spread
-        if(Math.abs(leftDist-rightDist) < 40){
-          var useLeft = (Math.floor(rect.top/100) % 2 === 0);
-          if(useLeft) return {x: rect.left+1, y: rect.top+rect.height/2, side:'left'};
-          return {x: rect.right-1, y: rect.top+rect.height/2, side:'right'};
-        }
-        if(leftDist < rightDist) return {x: rect.left+1, y: rect.top+rect.height/2, side:'left'};
-        return {x: rect.right-1, y: rect.top+rect.height/2, side:'right'};
+    var isSingleCol=function(){
+      return window.matchMedia('(max-width:640px)').matches || (grid && grid.getBoundingClientRect().width <= 640);
+    };
+    function anchorAtTorusCenter(rect, rx, ry, idx, cKey){
+      var single = isSingleCol();
+      if(single){
+        var isLeft = (cKey==='conveyor' || cKey==='best' || (cKey!=='queue' && cKey!=='eff' && typeof idx==='number' && idx % 2 === 0));
+        return {
+          x: isLeft ? (rect.left + 2) : (rect.right - 2),
+          y: rect.top + rect.height * 0.42,
+          side: isLeft ? 'left' : 'right'
+        };
       }
       var candidates=[
         {x: rect.right - 1, y: rect.top + rect.height/2, side:'right'},
@@ -1340,31 +1350,39 @@
     var closestPointOnRect = anchorAtTorusCenter;
     var raf=0, beadT=0;
     var paths={};
-    function buildPath(sx,sy,ax,ay, narrow, idx){
+    function buildMobilePath(sx, sy, ax, ay, gx, gy_enter, isLeft, ang){
+      if(ay <= gy_enter + 24){
+        var c1x = sx + Math.cos(ang)*35;
+        var c1y = sy + 15;
+        var c2x = isLeft ? Math.min(gx, ax - 10) : Math.max(gx, ax + 10);
+        var c2y = ay - 10;
+        return 'M '+sx.toFixed(1)+' '+sy.toFixed(1)+
+               ' C '+c1x.toFixed(1)+' '+c1y.toFixed(1)+' '+c2x.toFixed(1)+' '+c2y.toFixed(1)+' '+ax.toFixed(1)+' '+ay.toFixed(1);
+      }
+      var c1x = sx + Math.cos(ang) * 45;
+      var c1y = sy + Math.max(8, Math.sin(ang) * 32);
+      var c2x = gx;
+      var c2y = gy_enter - 35;
+      var c3x = gx;
+      var c3y = ay - 6;
+      var c4x = isLeft ? (ax - 8) : (ax + 8);
+      var c4y = ay;
+      return 'M '+sx.toFixed(1)+' '+sy.toFixed(1)+
+             ' C '+c1x.toFixed(1)+' '+c1y.toFixed(1)+' '+c2x.toFixed(1)+' '+c2y.toFixed(1)+' '+gx.toFixed(1)+' '+gy_enter.toFixed(1)+
+             ' L '+gx.toFixed(1)+' '+(ay - 22).toFixed(1)+
+             ' C '+c3x.toFixed(1)+' '+c3y.toFixed(1)+' '+c4x.toFixed(1)+' '+c4y.toFixed(1)+' '+ax.toFixed(1)+' '+ay.toFixed(1);
+    }
+    function buildPath(sx,sy,ax,ay, narrow, idx, gridW){
       var dx=ax-sx, dy=ay-sy;
       var len=Math.hypot(dx,dy);
       idx = idx|0;
       var isLeft = dx < 0;
       var isRight = dx > 0;
-      if(narrow){
-        // mobile single column: route via outer gutters (grid has 16px padding), never through center
-        var gutterOffset = isLeft ? -14 : 14;
-        var fan = (idx - 1.5) * 14;
-        var gx = ax + gutterOffset;
-        var c1x = sx + dx * 0.30 + fan * 0.40;
-        var c1y = sy + dy * 0.22 + fan * 0.16;
-        var c2x = gx + fan * 0.22;
-        var c2y = ay + fan * 0.10;
-        return 'M'+sx.toFixed(1)+' '+sy.toFixed(1)+' C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+' '+c2x.toFixed(1)+' '+c2y.toFixed(1)+' '+ax.toFixed(1)+' '+ay.toFixed(1);
-      }
-      // desktop: orthogonal corridor to avoid crossing blocks — exit ring, go H to column gap, then V, then H to anchor center
-      // gap between center and side columns is ~20px; estimate as 18% of dx from ring to card
+      // desktop / tablet corridor
       var gapMid = sx + dx * 0.52;
-      var splay = (idx - 1.5) * 10; // distinct Y slots for right-bottom 3 lines
-      // For left cards, gapMid slightly right; for right cards, gapMid slightly left — improves corridor
+      var splay = (idx - 1.5) * 10;
       if(isLeft) gapMid += 14;
       else if(isRight) gapMid -= 14;
-      // Add extra spread for cards below ring to separate 3 bottom tracks
       var belowBoost = ay > sy ? (idx * 5) : 0;
       var c1x = gapMid + splay * 0.42 + belowBoost * 0.35;
       var c1y = sy + (ay - sy) * 0.14 + splay * 0.18;
@@ -1376,9 +1394,8 @@
       return 'M'+sx.toFixed(1)+' '+sy.toFixed(1)+' C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+' '+c2x.toFixed(1)+' '+c2y.toFixed(1)+' '+ax.toFixed(1)+' '+ay.toFixed(1);
     }
     function update(){
-      var narrow=isNarrow();
+      var single=isSingleCol();
       applyBeadMetrics();
-      // always show lines; on mobile ring is top row so vertical mode
       Object.keys(groups).forEach(function(k){ groups[k].g.style.display=''; });
       var gridRect=grid.getBoundingClientRect();
       var ringRect=ring.getBoundingClientRect();
@@ -1386,35 +1403,97 @@
       var rx = ringRect.left + ringRect.width/2;
       var ry = ringRect.top + ringRect.height/2;
       var radius = ringRect.width/2 * 0.88;
-      // ensure svg covers grid exactly (inset:0 already, but ensure viewBox not needed)
-      // compute per card
+
+      if(single){
+        // Mobile single-column: lines originate from left & right sides of ring,
+        // hug the screen edges in outer gutters, bypassing all center blocks (portfolio, new task, architect)
+        // Group cards into left and right, order each by vertical position
+        var cardData = cards.map(function(c, idx){
+          var el=document.getElementById(c.id);
+          var cr = el ? el.getBoundingClientRect() : null;
+          var isLeft = (c.key==='conveyor' || c.key==='best' || (c.key!=='queue' && c.key!=='eff' && idx % 2 === 0));
+          return { card: c, el: el, cr: cr, isLeft: isLeft, idx: idx };
+        }).filter(function(d){ return d.cr && d.cr.width > 0; });
+
+        var leftCards = cardData.filter(function(d){ return d.isLeft; }).sort(function(a,b){ return a.cr.top - b.cr.top; });
+        var rightCards = cardData.filter(function(d){ return !d.isLeft; }).sort(function(a,b){ return a.cr.top - b.cr.top; });
+
+        var gy_enter = ry + radius + 22 - gridRect.top;
+
+        cardData.forEach(function(item){
+          var c = item.card;
+          var gr = groups[c.key];
+          if(!gr) return;
+          var cr = item.cr;
+          var isLeft = item.isLeft;
+          var sideRank = isLeft ? leftCards.indexOf(item) : rightCards.indexOf(item);
+          var isLower = (sideRank > 0); // lower card travels further down, uses outer gutter
+
+          // Angles on ring: left flank 148° / 175°, right flank 32° / 8° (near 30% badge)
+          var angRad;
+          if(isLeft){
+            angRad = isLower ? (174 * Math.PI / 180) : (148 * Math.PI / 180);
+          } else {
+            angRad = isLower ? (8 * Math.PI / 180) : (32 * Math.PI / 180);
+          }
+
+          var sx = rx + Math.cos(angRad)*radius - gridRect.left;
+          var sy = ry + Math.sin(angRad)*radius - gridRect.top;
+
+          var cL = cr.left - gridRect.left;
+          var cR = cr.right - gridRect.left;
+
+          // Gutter X: outer gutter closer to edge, inner gutter closer to card
+          var gx;
+          if(isLeft){
+            gx = isLower ? Math.max(4, cL - 13) : Math.max(10, cL - 6);
+          } else {
+            gx = isLower ? Math.min(gridRect.width - 4, cR + 13) : Math.min(gridRect.width - 10, cR + 6);
+          }
+
+          var ax = isLeft ? (cL + 2) : (cR - 2);
+          var ay = cr.top - gridRect.top + cr.height * 0.40;
+
+          var d = buildMobilePath(sx, sy, ax, ay, gx, gy_enter, isLeft, angRad);
+          gr.glow.setAttribute('d', d);
+          gr.core.setAttribute('d', d);
+          gr.dash.setAttribute('d', d);
+          paths[c.key] = d;
+
+          var lg = document.getElementById('arch-g-'+c.key);
+          if(lg){
+            lg.setAttribute('x1', String(sx)); lg.setAttribute('y1', String(sy));
+            lg.setAttribute('x2', String(ax)); lg.setAttribute('y2', String(ay));
+          }
+        });
+        return;
+      }
+
+      // Desktop & Tablet multi-column layout
       cards.forEach(function(c, idx){
         var card=document.getElementById(c.id);
         var gr=groups[c.key];
         if(!card||!gr) return;
         var cr=card.getBoundingClientRect();
         if(!cr.width) { gr.g.style.display='none'; return; }
-        var anchor=anchorAtTorusCenter(cr, rx, ry);
+        var anchor=anchorAtTorusCenter(cr, rx, ry, idx, c.key);
         var ang=Math.atan2(anchor.y - ry, anchor.x - rx);
         var sx = rx + Math.cos(ang)*radius;
         var sy = ry + Math.sin(ang)*radius;
         var ax = anchor.x;
         var ay = anchor.y;
-        // to svg local
         var lsx=sx - gridRect.left, lsy=sy - gridRect.top;
         var lax=ax - gridRect.left, lay=ay - gridRect.top;
-        var d=buildPath(lsx, lsy, lax, lay, narrow, idx);
+        var d=buildPath(lsx, lsy, lax, lay, false, idx, gridRect.width);
         gr.glow.setAttribute('d', d);
         gr.core.setAttribute('d', d);
         gr.dash.setAttribute('d', d);
         paths[c.key]=d;
-        // update gradient coords
         var lg=document.getElementById('arch-g-'+c.key);
         if(lg){
           lg.setAttribute('x1', String(lsx)); lg.setAttribute('y1', String(lsy));
           lg.setAttribute('x2', String(lax)); lg.setAttribute('y2', String(lay));
         }
-        // bead will be positioned in tick loop
       });
     }
     function tick(now){

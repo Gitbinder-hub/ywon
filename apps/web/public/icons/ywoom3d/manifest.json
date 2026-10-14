@@ -1,0 +1,269 @@
+{
+  "generatedAt": "2026-10-13T13:38:10.947Z",
+  "engine": "three@0.160.0 WebGL",
+  "bible": "tools/icons-3d/style-bible.json",
+  "palette": [
+    "#F2E8D9",
+    "#C5E86C",
+    "#8B9CFF",
+    "#FF9A6B",
+    "#6ED3E0"
+  ],
+  "icons": [
+    {
+      "id": "home",
+      "title": "Главная",
+      "purpose": "Главная",
+      "alt": "Главная — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/home.png",
+        "png_512_no_shadow": "no-shadow/512/home.png",
+        "png_256_shadow": "with-shadow/256/home.png",
+        "png_128_shadow": "with-shadow/128/home.png",
+        "png_64_shadow": "with-shadow/64/home.png",
+        "webp_256": "webp/256/home.webp",
+        "webp_128": "webp/128/home.webp",
+        "glb": "glb/home.glb",
+        "turret": "turret/home.png"
+      }
+    },
+    {
+      "id": "pipeline",
+      "title": "Конвейер",
+      "purpose": "Конвейер",
+      "alt": "Конвейер — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/pipeline.png",
+        "png_512_no_shadow": "no-shadow/512/pipeline.png",
+        "png_256_shadow": "with-shadow/256/pipeline.png",
+        "png_128_shadow": "with-shadow/128/pipeline.png",
+        "png_64_shadow": "with-shadow/64/pipeline.png",
+        "webp_256": "webp/256/pipeline.webp",
+        "webp_128": "webp/128/pipeline.webp",
+        "glb": "glb/pipeline.glb",
+        "turret": "turret/pipeline.png"
+      }
+    },
+    {
+      "id": "studio",
+      "title": "Студия",
+      "purpose": "Студия",
+      "alt": "Студия — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/studio.png",
+        "png_512_no_shadow": "no-shadow/512/studio.png",
+        "png_256_shadow": "with-shadow/256/studio.png",
+        "png_128_shadow": "with-shadow/128/studio.png",
+        "png_64_shadow": "with-shadow/64/studio.png",
+        "webp_256": "webp/256/studio.webp",
+        "webp_128": "webp/128/studio.webp",
+        "glb": "glb/studio.glb",
+        "turret": "turret/studio.png"
+      }
+    },
+    {
+      "id": "plan",
+      "title": "План",
+      "purpose": "Контент-план",
+      "alt": "План — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/plan.png",
+        "png_512_no_shadow": "no-shadow/512/plan.png",
+        "png_256_shadow": "with-shadow/256/plan.png",
+        "png_128_shadow": "with-shadow/128/plan.png",
+        "png_64_shadow": "with-shadow/64/plan.png",
+        "webp_256": "webp/256/plan.webp",
+        "webp_128": "webp/128/plan.webp",
+        "glb": "glb/plan.glb",
+        "turret": "turret/plan.png"
+      }
+    },
+    {
+      "id": "avatars",
+      "title": "Аватары",
+      "purpose": "Аватары/персонаж",
+      "alt": "Аватары — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/avatars.png",
+        "png_512_no_shadow": "no-shadow/512/avatars.png",
+        "png_256_shadow": "with-shadow/256/avatars.png",
+        "png_128_shadow": "with-shadow/128/avatars.png",
+        "png_64_shadow": "with-shadow/64/avatars.png",
+        "webp_256": "webp/256/avatars.webp",
+        "webp_128": "webp/128/avatars.webp",
+        "glb": "glb/avatars.glb",
+        "turret": "turret/avatars.png"
+      }
+    },
+    {
+      "id": "wardrobe",
+      "title": "Гардероб",
+      "purpose": "Гардероб",
+      "alt": "Гардероб — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/wardrobe.png",
+        "png_512_no_shadow": "no-shadow/512/wardrobe.png",
+        "png_256_shadow": "with-shadow/256/wardrobe.png",
+        "png_128_shadow": "with-shadow/128/wardrobe.png",
+        "png_64_shadow": "with-shadow/64/wardrobe.png",
+        "webp_256": "webp/256/wardrobe.webp",
+        "webp_128": "webp/128/wardrobe.webp",
+        "glb": "glb/wardrobe.glb",
+        "turret": "turret/wardrobe.png"
+      }
+    },
+    {
+      "id": "analytics",
+      "title": "Аналитика",
+      "purpose": "Аналитика",
+      "alt": "Аналитика — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/analytics.png",
+        "png_512_no_shadow": "no-shadow/512/analytics.png",
+        "png_256_shadow": "with-shadow/256/analytics.png",
+        "png_128_shadow": "with-shadow/128/analytics.png",
+        "png_64_shadow": "with-shadow/64/analytics.png",
+        "webp_256": "webp/256/analytics.webp",
+        "webp_128": "webp/128/analytics.webp",
+        "glb": "glb/analytics.glb",
+        "turret": "turret/analytics.png"
+      }
+    },
+    {
+      "id": "settings",
+      "title": "Настройки",
+      "purpose": "Настройки",
+      "alt": "Настройки — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/settings.png",
+        "png_512_no_shadow": "no-shadow/512/settings.png",
+        "png_256_shadow": "with-shadow/256/settings.png",
+        "png_128_shadow": "with-shadow/128/settings.png",
+        "png_64_shadow": "with-shadow/64/settings.png",
+        "webp_256": "webp/256/settings.webp",
+        "webp_128": "webp/128/settings.webp",
+        "glb": "glb/settings.glb",
+        "turret": "turret/settings.png"
+      }
+    },
+    {
+      "id": "balance",
+      "title": "Баланс",
+      "purpose": "Баланс/монеты",
+      "alt": "Баланс — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/balance.png",
+        "png_512_no_shadow": "no-shadow/512/balance.png",
+        "png_256_shadow": "with-shadow/256/balance.png",
+        "png_128_shadow": "with-shadow/128/balance.png",
+        "png_64_shadow": "with-shadow/64/balance.png",
+        "webp_256": "webp/256/balance.webp",
+        "webp_128": "webp/128/balance.webp",
+        "glb": "glb/balance.glb",
+        "turret": "turret/balance.png"
+      }
+    },
+    {
+      "id": "bell",
+      "title": "Колокольчик",
+      "purpose": "Уведомления",
+      "alt": "Колокольчик — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/bell.png",
+        "png_512_no_shadow": "no-shadow/512/bell.png",
+        "png_256_shadow": "with-shadow/256/bell.png",
+        "png_128_shadow": "with-shadow/128/bell.png",
+        "png_64_shadow": "with-shadow/64/bell.png",
+        "webp_256": "webp/256/bell.webp",
+        "webp_128": "webp/128/bell.webp",
+        "glb": "glb/bell.glb",
+        "turret": "turret/bell.png"
+      }
+    },
+    {
+      "id": "search",
+      "title": "Поиск",
+      "purpose": "Поиск",
+      "alt": "Поиск — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/search.png",
+        "png_512_no_shadow": "no-shadow/512/search.png",
+        "png_256_shadow": "with-shadow/256/search.png",
+        "png_128_shadow": "with-shadow/128/search.png",
+        "png_64_shadow": "with-shadow/64/search.png",
+        "webp_256": "webp/256/search.webp",
+        "webp_128": "webp/128/search.webp",
+        "glb": "glb/search.glb",
+        "turret": "turret/search.png"
+      }
+    },
+    {
+      "id": "director",
+      "title": "Y-директор",
+      "purpose": "Директор (Y)",
+      "alt": "Y-директор — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/director.png",
+        "png_512_no_shadow": "no-shadow/512/director.png",
+        "png_256_shadow": "with-shadow/256/director.png",
+        "png_128_shadow": "with-shadow/128/director.png",
+        "png_64_shadow": "with-shadow/64/director.png",
+        "webp_256": "webp/256/director.webp",
+        "webp_128": "webp/128/director.webp",
+        "glb": "glb/director.glb",
+        "turret": "turret/director.png"
+      }
+    },
+    {
+      "id": "publish",
+      "title": "Ракета",
+      "purpose": "Публикация",
+      "alt": "Ракета — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/publish.png",
+        "png_512_no_shadow": "no-shadow/512/publish.png",
+        "png_256_shadow": "with-shadow/256/publish.png",
+        "png_128_shadow": "with-shadow/128/publish.png",
+        "png_64_shadow": "with-shadow/64/publish.png",
+        "webp_256": "webp/256/publish.webp",
+        "webp_128": "webp/128/publish.webp",
+        "glb": "glb/publish.glb",
+        "turret": "turret/publish.png"
+      }
+    },
+    {
+      "id": "approve",
+      "title": "Апрув",
+      "purpose": "Подтверждение",
+      "alt": "Апрув — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/approve.png",
+        "png_512_no_shadow": "no-shadow/512/approve.png",
+        "png_256_shadow": "with-shadow/256/approve.png",
+        "png_128_shadow": "with-shadow/128/approve.png",
+        "png_64_shadow": "with-shadow/64/approve.png",
+        "webp_256": "webp/256/approve.webp",
+        "webp_128": "webp/128/approve.webp",
+        "glb": "glb/approve.glb",
+        "turret": "turret/approve.png"
+      }
+    },
+    {
+      "id": "folder",
+      "title": "Папка",
+      "purpose": "Папка",
+      "alt": "Папка — 3D иконка Ywoom",
+      "files": {
+        "png_1024_shadow": "with-shadow/1024/folder.png",
+        "png_512_no_shadow": "no-shadow/512/folder.png",
+        "png_256_shadow": "with-shadow/256/folder.png",
+        "png_128_shadow": "with-shadow/128/folder.png",
+        "png_64_shadow": "with-shadow/64/folder.png",
+        "webp_256": "webp/256/folder.webp",
+        "webp_128": "webp/128/folder.webp",
+        "glb": "glb/folder.glb",
+        "turret": "turret/folder.png"
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "Ywoom 3D Clay — Bible v1",
+  "palette": {
+    "neutral": "#F2E8D9",
+    "lime": "#C5E86C",
+    "periwinkle": "#8B9CFF",
+    "coral": "#FF9A6B",
+    "cyan": "#6ED3E0",
+    "sand_dark": "#E0D5C2",
+    "shadow": "#1E2026"
+  },
+  "camera": {
+    "fov": 22,
+    "position": [3.8, 3.2, 3.8],
+    "target": [0, 0.15, 0],
+    "comment": "3/4 top angle, isometric-ish, same for all icons"
+  },
+  "lights": {
+    "key": { "intensity": 1.35, "position": [4, 6, 3], "color": "#FFF8EE" },
+    "fill": { "intensity": 0.55, "position": [-3, 2, 4], "color": "#C8D8FF" },
+    "rim": { "intensity": 0.65, "position": [-2, 4, -4], "color": "#A8B8FF" },
+    "ambient": { "intensity": 0.42, "color": "#FFF0DD" },
+    "hemisphere": { "sky": "#FFF6E8", "ground": "#2A2E3A", "intensity": 0.35 }
+  },
+  "ground": {
+    "size": 10,
+    "receiveShadow": true,
+    "material": "shadow_catcher_transparent"
+  },
+  "material_language": {
+    "type": "MeshPhysicalMaterial",
+    "roughness": 0.62,
+    "metalness": 0.0,
+    "clearcoat": 0.12,
+    "clearcoatRoughness": 0.45,
+    "transmission": 0.0,
+    "thickness": 0.0,
+    "ior": 1.45,
+    "note": "matte clay, soft diffuse, no mirror"
+  },
+  "bevel": {
+    "enabled": true,
+    "thickness": 0.04,
+    "size": 0.03,
+    "segments": 4,
+    "note": "all edges chamfered, no sharp corners, min detail 4% of height"
+  },
+  "scale": {
+    "target_fill": "70-75% frame",
+    "padding": 0.12,
+    "centering": "visual mass, y-up"
+  },
+  "shadow": {
+    "mapSize": 2048,
+    "soft": true,
+    "opacity": 0.28,
+    "blur": 12
+  }
+}

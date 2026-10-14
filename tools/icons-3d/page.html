@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/three.module.js","three/addons/":"/three/addons/"}}</script>
+</head>
+<body>
+<canvas id="c" width="1024" height="1024"></canvas>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const canvas = document.getElementById('c');
+const palette = { sand:'#F2E8D9', sand2:'#E8DCC8', lime:'#C5E86C', periwinkle:'#8B9CFF', coral:'#FF9A6B', cyan:'#6ED3E0', dark:'#2A2E3A', lime2:'#D6EC7A' };
+
+function mat(color, extra={}){
+  return new THREE.MeshPhysicalMaterial({
+    color,
+    roughness: 0.62,
+    metalness: 0.0,
+    clearcoat: 0.12,
+    clearcoatRoughness: 0.45,
+    ...extra
+  });
+}
+const scene = new THREE.Scene();
+scene.background = null;
+
+const camera = new THREE.PerspectiveCamera(22, 1, 0.1, 100);
+camera.position.set(3.8, 3.2, 3.8);
+camera.lookAt(0, 0.15, 0);
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(1024,1024);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const amb = new THREE.AmbientLight(palette.sand, 0.42);
+scene.add(amb);
+const hemi = new THREE.HemisphereLight('#FFF6E8', '#2A2E3A', 0.35);
+scene.add(hemi);
+const key = new THREE.DirectionalLight('#FFF8EE', 1.35);
+key.position.set(4,6,3);
+key.castShadow = true;
+key.shadow.mapSize.set(2048,2048);
+key.shadow.camera.near = 0.5;
+key.shadow.camera.far = 20;
+key.shadow.camera.left=-4; key.shadow.camera.right=4; key.shadow.camera.top=4; key.shadow.camera.bottom=-4;
+key.shadow.bias = -0.0005;
+scene.add(key);
+const fill = new THREE.DirectionalLight('#C8D8FF', 0.55);
+fill.position.set(-3,2,4);
+scene.add(fill);
+const rim = new THREE.DirectionalLight('#A8B8FF', 0.65);
+rim.position.set(-2,4,-4);
+scene.add(rim);
+
+const groundGeo = new THREE.PlaneGeometry(12,12);
+const groundMat = new THREE.ShadowMaterial({ opacity: 0.28, color: 0x1E2026 });
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI/2;
+ground.position.y = -0.9;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// --- helpers with rounded edges ---
+function rbox(w,h,d,color, pos, rot){
+  const r = Math.min(w,h,d)*0.18;
+  const g = new RoundedBoxGeometry(w,h,d, 4, r);
+  const m = mat(color);
+  const mesh = new THREE.Mesh(g,m);
+  mesh.castShadow = true; mesh.receiveShadow = true;
+  if(pos) mesh.position.copy(pos);
+  if(rot) mesh.rotation.set(rot.x||0,rot.y||0,rot.z||0);
+  return mesh;
+}
+function cyl(rt,rb,h,radial, color, pos){
+  const g = new THREE.CylinderGeometry(rt,rb,h,radial||32);
+  const m = mat(color);
+  const mesh = new THREE.Mesh(g,m);
+  mesh.castShadow=true; mesh.receiveShadow=true;
+  if(pos) mesh.position.copy(pos);
+  return mesh;
+}
+function sphere(r,color,pos){
+  const g = new THREE.SphereGeometry(r, 28, 28);
+  const m = mat(color);
+  const mesh = new THREE.Mesh(g,m);
+  mesh.castShadow=true; mesh.receiveShadow=true;
+  if(pos) mesh.position.copy(pos);
+  return mesh;
+}
+function extrudeShape(shape, depth, color, pos){
+  const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled:true, bevelThickness:0.045, bevelSize:0.035, bevelSegments:5, steps:2 });
+  g.center();
+  const m = mat(color);
+  const mesh = new THREE.Mesh(g,m);
+  mesh.castShadow=true; mesh.receiveShadow=true;
+  if(pos) mesh.position.copy(pos);
+  return mesh;
+}
+
+const builders = {};
+
+builders.home = () => {
+  const g = new THREE.Group();
+  g.add(rbox(1.22,0.78,1.08, palette.sand, new THREE.Vector3(0,0,0)));
+  const shape = new THREE.Shape(); shape.moveTo(-0.78,0); shape.lineTo(0.78,0); shape.lineTo(0,0.58); shape.lineTo(-0.78,0);
+  const roof = extrudeShape(shape, 1.18, palette.coral, new THREE.Vector3(0,0.62,0));
+  roof.rotation.y = Math.PI/2;
+  roof.position.y = 0.62;
+  g.add(roof);
+  g.add(rbox(0.34,0.50,0.08, palette.sand2, new THREE.Vector3(0,-0.04,0.56)));
+  g.add(sphere(0.045, palette.periwinkle, new THREE.Vector3(0.09,-0.02,0.63)));
+  g.add(rbox(0.30,0.30,0.06, palette.cyan, new THREE.Vector3(-0.32,0.07,0.56)));
+  g.add(rbox(0.04,0.30,0.07, palette.sand2, new THREE.Vector3(-0.32,0.07,0.57)));
+  g.add(rbox(0.30,0.04,0.07, palette.sand2, new THREE.Vector3(-0.32,0.07,0.57)));
+  return g;
+};
+
+builders.pipeline = () => {
+  const g = new THREE.Group();
+  g.add(rbox(1.82,0.18,0.60, palette.dark, new THREE.Vector3(0,-0.34,0)));
+  g.add(rbox(1.76,0.10,0.56, palette.sand, new THREE.Vector3(0,-0.22,0)));
+  for(let i=-1;i<=1;i++){
+    const r = cyl(0.11,0.11,0.60,24, palette.periwinkle, new THREE.Vector3(i*0.55,-0.31,0));
+    r.rotation.z = Math.PI/2;
+    g.add(r);
+  }
+  g.add(rbox(0.40,0.32,0.36, palette.lime, new THREE.Vector3(-0.55,0.04,0)));
+  g.add(rbox(0.38,0.38,0.34, palette.coral, new THREE.Vector3(0.0,0.07,0)));
+  g.add(rbox(0.34,0.28,0.32, palette.cyan, new THREE.Vector3(0.58,0.02,0)));
+  return g;
+};
+
+builders.studio = () => {
+  const g = new THREE.Group();
+  // chunky wand like a crayon
+  const wand = cyl(0.11,0.09,1.30,20, palette.sand2, new THREE.Vector3(0,-0.04,0));
+  wand.rotation.z = Math.PI/6;
+  g.add(wand);
+  const tip = sphere(0.095, palette.sand, new THREE.Vector3(0.33,0.56,0));
+  g.add(tip);
+  const starShape = new THREE.Shape();
+  const R=0.34, r=0.15;
+  for(let i=0;i<10;i++){
+    const ang = Math.PI/2 + i*Math.PI/5;
+    const rad = i%2===0?R:r;
+    const x=Math.cos(ang)*rad, y=Math.sin(ang)*rad;
+    if(i===0) starShape.moveTo(x,y); else starShape.lineTo(x,y);
+  }
+  starShape.closePath();
+  const star = extrudeShape(starShape, 0.18, palette.lime, new THREE.Vector3(0.58,0.72,0));
+  g.add(star);
+  g.add(sphere(0.075, palette.cyan, new THREE.Vector3(0.80,0.45,0.12)));
+  g.add(sphere(0.060, palette.periwinkle, new THREE.Vector3(0.72,0.20,-0.10)));
+  g.add(sphere(0.055, palette.coral, new THREE.Vector3(0.62,0.92,0.08)));
+  return g;
+};
+
+builders.plan = () => {
+  const g = new THREE.Group();
+  g.add(rbox(1.26,1.02,0.22, palette.sand, new THREE.Vector3(0,0,0)));
+  g.add(rbox(1.26,0.28,0.24, palette.periwinkle, new THREE.Vector3(0,0.37,0.03)));
+  for(let x of [-0.35,0.35]){
+    const ring = new THREE.TorusGeometry(0.09,0.032,16,24);
+    const m = mat(palette.dark);
+    const mesh = new THREE.Mesh(ring, m);
+    mesh.position.set(x,0.55,0.12);
+    mesh.rotation.x = Math.PI/2;
+    mesh.castShadow=true;
+    g.add(mesh);
+  }
+  const colors = [palette.lime, palette.cyan, palette.coral];
+  for(let i=0;i<6;i++){
+    const col=i%3, row=Math.floor(i/3);
+    g.add(rbox(0.24,0.20,0.10, colors[col%3], new THREE.Vector3(-0.32+col*0.32, 0.08 - row*0.26, 0.14)));
+  }
+  return g;
+};
+
+builders.avatars = () => {
+  const g = new THREE.Group();
+  g.add(cyl(0.44,0.50,0.58,24, palette.periwinkle, new THREE.Vector3(0,-0.26,0)));
+  g.add(cyl(0.17,0.17,0.20,16, palette.sand2, new THREE.Vector3(0,0.10,0)));
+  g.add(sphere(0.34, palette.sand, new THREE.Vector3(0,0.44,0)));
+  const hair = sphere(0.35, palette.coral, new THREE.Vector3(0,0.54, -0.04));
+  hair.scale.set(1,0.65,1);
+  g.add(hair);
+  g.add(sphere(0.048, palette.dark, new THREE.Vector3(-0.10,0.48,0.28)));
+  g.add(sphere(0.048, palette.dark, new THREE.Vector3(0.10,0.48,0.28)));
+  return g;
+};
+
+builders.wardrobe = () => {
+  const g = new THREE.Group();
+  const hangerShape = new THREE.Shape();
+  hangerShape.moveTo(-0.48,0); hangerShape.lineTo(0,0.34); hangerShape.lineTo(0.48,0); hangerShape.lineTo(0.36,0); hangerShape.lineTo(0,0.24); hangerShape.lineTo(-0.36,0); hangerShape.closePath();
+  const hanger = extrudeShape(hangerShape, 0.10, palette.dark, new THREE.Vector3(0,0.45,0));
+  g.add(hanger);
+  const hook = new THREE.TorusGeometry(0.08,0.028,12,20, Math.PI);
+  const hookMesh = new THREE.Mesh(hook, mat(palette.dark));
+  hookMesh.position.set(0,0.77,0);
+  hookMesh.rotation.z = Math.PI;
+  hookMesh.castShadow=true;
+  g.add(hookMesh);
+  const shirtShape = new THREE.Shape();
+  shirtShape.moveTo(-0.44,0.18); shirtShape.lineTo(-0.44,-0.56); shirtShape.lineTo(0.44,-0.56); shirtShape.lineTo(0.44,0.18); shirtShape.lineTo(0.24,0.30); shirtShape.lineTo(0.09,0.18); shirtShape.lineTo(-0.09,0.18); shirtShape.lineTo(-0.24,0.30); shirtShape.closePath();
+  const shirt = extrudeShape(shirtShape, 0.18, palette.cyan, new THREE.Vector3(0,-0.05,0));
+  g.add(shirt);
+  g.add(rbox(0.20,0.15,0.05, palette.periwinkle, new THREE.Vector3(-0.14,-0.02,0.12)));
+  return g;
+};
+
+builders.analytics = () => {
+  const g = new THREE.Group();
+  g.add(rbox(1.32,0.16,0.80, palette.sand2, new THREE.Vector3(0,-0.44,0)));
+  g.add(rbox(0.32,0.58,0.32, palette.periwinkle, new THREE.Vector3(-0.42,-0.10,0)));
+  g.add(rbox(0.32,0.88,0.32, palette.lime, new THREE.Vector3(0,0.05,0)));
+  g.add(rbox(0.32,0.44,0.32, palette.coral, new THREE.Vector3(0.42,-0.18,0)));
+  g.add(rbox(0.32,0.06,0.32, palette.sand, new THREE.Vector3(-0.42,0.22,0)));
+  g.add(rbox(0.32,0.06,0.32, palette.sand, new THREE.Vector3(0,0.52,0)));
+  g.add(rbox(0.32,0.06,0.32, palette.sand, new THREE.Vector3(0.42,0.06,0)));
+  return g;
+};
+
+builders.settings = () => {
+  const g = new THREE.Group();
+  const body = cyl(0.44,0.44,0.32,32, palette.sand, new THREE.Vector3(0,0,0));
+  g.add(body);
+  for(let i=0;i<8;i++){
+    const ang=i*Math.PI/4;
+    const t = rbox(0.20,0.20,0.32, palette.sand2, new THREE.Vector3(Math.cos(ang)*0.54, Math.sin(ang)*0.54, 0));
+    t.rotation.z = ang;
+    g.add(t);
+  }
+  const hole = cyl(0.17,0.17,0.34,24, palette.dark, new THREE.Vector3(0,0,0));
+  hole.material = mat(palette.dark);
+  g.add(hole);
+  g.add(cyl(0.09,0.09,0.36,16, palette.periwinkle, new THREE.Vector3(0,0,0)));
+  return g;
+};
+
+builders.balance = () => {
+  const g = new THREE.Group();
+  for(let i=0;i<3;i++){
+    const y = -0.30 + i*0.24;
+    const coin = cyl(0.44,0.44,0.20,32, i===1? palette.lime : i===2? palette.periwinkle : palette.coral, new THREE.Vector3(0,y,0));
+    g.add(coin);
+    const top = cyl(0.36,0.36,0.03,32, palette.sand, new THREE.Vector3(0,y+0.085,0));
+    g.add(top);
+  }
+  return g;
+};
+
+builders.bell = () => {
+  const g = new THREE.Group();
+  const pts=[];
+  for(let i=0;i<=20;i++){
+    const t=i/20;
+    const y = -0.44 + t*0.88;
+    const r = 0.19 + Math.pow(t,1.6)*0.30 - Math.sin(t*Math.PI)*0.015;
+    pts.push(new THREE.Vector2(r, y));
+  }
+  const latheGeo = new THREE.LatheGeometry(pts, 32);
+  const bellMesh = new THREE.Mesh(latheGeo, mat(palette.lime));
+  bellMesh.castShadow=true; bellMesh.receiveShadow=true;
+  g.add(bellMesh);
+  g.add(sphere(0.10, palette.sand2, new THREE.Vector3(0,0.50,0)));
+  g.add(sphere(0.075, palette.dark, new THREE.Vector3(0,-0.40,0)));
+  const bow = new THREE.TorusGeometry(0.075,0.028,12,20);
+  const bowMesh = new THREE.Mesh(bow, mat(palette.coral));
+  bowMesh.position.set(0,0.62,0);
+  bowMesh.rotation.x = Math.PI/2;
+  g.add(bowMesh);
+  return g;
+};
+
+builders.search = () => {
+  const g = new THREE.Group();
+  const rimGeo = new THREE.TorusGeometry(0.36,0.085,20,32);
+  const rimMesh = new THREE.Mesh(rimGeo, mat(palette.periwinkle));
+  rimMesh.position.set(-0.10,0.14,0);
+  g.add(rimMesh);
+  const lens = cyl(0.33,0.33,0.06,32, palette.cyan, new THREE.Vector3(-0.10,0.14,0));
+  lens.material.transparent = true; lens.material.opacity = 0.88;
+  lens.rotation.x = Math.PI/2;
+  g.add(lens);
+  const handle = cyl(0.095,0.085,0.72,16, palette.sand2, new THREE.Vector3(0.38,-0.32,0));
+  handle.rotation.z = -Math.PI/5;
+  g.add(handle);
+  g.add(sphere(0.095, palette.sand2, new THREE.Vector3(0.54,-0.62,0)));
+  return g;
+};
+
+builders.director = () => {
+  const g = new THREE.Group();
+  const stem = cyl(0.105,0.105,0.72,18, palette.periwinkle, new THREE.Vector3(0,-0.20,0));
+  g.add(stem);
+  const left = cyl(0.10,0.10,0.62,18, palette.periwinkle, new THREE.Vector3(-0.20,0.24,0));
+  left.rotation.z = Math.PI/5;
+  g.add(left);
+  const right = cyl(0.10,0.10,0.62,18, palette.periwinkle, new THREE.Vector3(0.20,0.24,0));
+  right.rotation.z = -Math.PI/5;
+  g.add(right);
+  const shardShape = new THREE.Shape();
+  shardShape.moveTo(0,0.20); shardShape.lineTo(0.16,0); shardShape.lineTo(0.05,-0.16); shardShape.lineTo(-0.09,-0.06); shardShape.closePath();
+  const shard = extrudeShape(shardShape, 0.14, palette.coral, new THREE.Vector3(0.54,0.30,0.18));
+  shard.rotation.set(0.3,0.6,0.2);
+  g.add(shard);
+  g.add(sphere(0.065, palette.lime, new THREE.Vector3(0.50,0.08,0.22)));
+  return g;
+};
+
+builders.publish = () => {
+  const g = new THREE.Group();
+  g.add(cyl(0.26,0.30,0.92,24, palette.sand, new THREE.Vector3(0,0.05,0)));
+  const nose = new THREE.ConeGeometry(0.26,0.48,24);
+  const noseMesh = new THREE.Mesh(nose, mat(palette.coral));
+  noseMesh.position.set(0,0.74,0);
+  noseMesh.castShadow=true;
+  g.add(noseMesh);
+  const finShape = new THREE.Shape();
+  finShape.moveTo(0,0); finShape.lineTo(0.24,-0.10); finShape.lineTo(0.20,-0.34); finShape.lineTo(0,-0.28); finShape.closePath();
+  for(let side of [-1,1]){
+    const fin = extrudeShape(finShape, 0.09, palette.periwinkle, new THREE.Vector3(side*0.24,-0.18,0));
+    fin.rotation.y = side*Math.PI/2;
+    fin.position.x = side*0.24;
+    g.add(fin);
+  }
+  g.add(sphere(0.10, palette.cyan, new THREE.Vector3(0,0.20,0.26)));
+  const flame = new THREE.ConeGeometry(0.16,0.30,16);
+  const flameMesh = new THREE.Mesh(flame, mat(palette.lime));
+  flameMesh.position.set(0,-0.52,0);
+  flameMesh.rotation.x = Math.PI;
+  g.add(flameMesh);
+  return g;
+};
+
+builders.approve = () => {
+  const g = new THREE.Group();
+  const shieldShape = new THREE.Shape();
+  shieldShape.moveTo(0,0.54); shieldShape.bezierCurveTo(0.40,0.54,0.44,0.24,0.30,-0.08); shieldShape.lineTo(0,-0.44); shieldShape.lineTo(-0.30,-0.08); shieldShape.bezierCurveTo(-0.44,0.24,-0.40,0.54,0,0.54);
+  const shield = extrudeShape(shieldShape, 0.22, palette.lime, new THREE.Vector3(0,0,0));
+  g.add(shield);
+  const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(-0.18,0.02,0.14), new THREE.Vector3(-0.05,-0.13,0.15), new THREE.Vector3(0.22,0.19,0.15)]);
+  const tubeGeo = new THREE.TubeGeometry(curve, 20, 0.07, 12, false);
+  const tube = new THREE.Mesh(tubeGeo, mat(palette.sand));
+  tube.castShadow=true;
+  g.add(tube);
+  return g;
+};
+
+builders.folder = () => {
+  const g = new THREE.Group();
+  g.add(rbox(1.08,0.78,0.14, palette.periwinkle, new THREE.Vector3(0,-0.02, -0.08)));
+  const frontShape = new THREE.Shape();
+  frontShape.moveTo(-0.54,-0.40); frontShape.lineTo(0.54,-0.40); frontShape.lineTo(0.54,0.30); frontShape.lineTo(0.13,0.30); frontShape.lineTo(0.03,0.44); frontShape.lineTo(-0.54,0.44); frontShape.closePath();
+  const front = extrudeShape(frontShape, 0.14, palette.lime, new THREE.Vector3(0,0,0.08));
+  g.add(front);
+  g.add(rbox(0.92,0.64,0.04, palette.sand, new THREE.Vector3(0,0.08,0.04)));
+  for(let i=0;i<3;i++){
+    g.add(rbox(0.64,0.035,0.035, palette.cyan, new THREE.Vector3(-0.02,0.18 - i*0.13, 0.09)));
+  }
+  return g;
+};
+
+function fitGroup(grp){
+  const box3 = new THREE.Box3().setFromObject(grp);
+  const size = new THREE.Vector3(); box3.getSize(size);
+  const center = new THREE.Vector3(); box3.getCenter(center);
+  grp.position.sub(center);
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const scale = 1.35 / maxDim;
+  grp.scale.setScalar(scale);
+  grp.position.y += 0.15;
+}
+
+let currentGroup = null;
+function clearGroup(){
+  if(currentGroup){ scene.remove(currentGroup); currentGroup.traverse(o=>{ if(o.geometry) o.geometry.dispose(); }); currentGroup=null; }
+}
+
+async function renderIcon(id, size, withShadow, yaw=0, pitch=0){
+  clearGroup();
+  const builder = builders[id];
+  if(!builder) throw new Error('unknown '+id);
+  const grp = builder();
+  fitGroup(grp);
+  grp.rotation.y = yaw;
+  grp.rotation.x = pitch;
+  scene.add(grp);
+  currentGroup = grp;
+  ground.visible = withShadow;
+  renderer.setSize(size,size);
+  camera.aspect = 1; camera.updateProjectionMatrix();
+  renderer.render(scene, camera);
+  const dataURL = canvas.toDataURL('image/png');
+  return dataURL;
+}
+
+window.__renderIcon = renderIcon;
+window.__listIds = () => Object.keys(builders);
+window.__exportGLB = async (id) => {
+  clearGroup();
+  const grp = builders[id]();
+  fitGroup(grp);
+  const exporter = new GLTFExporter();
+  const glb = await new Promise((resolve, reject)=>{
+    exporter.parse(grp, (res)=>{
+      if(res instanceof ArrayBuffer) resolve(res);
+      else reject(new Error('not binary'));
+    }, (e)=>reject(e), { binary:true });
+  });
+  const bytes = new Uint8Array(glb);
+  let binary='';
+  const chunk=8192;
+  for(let i=0;i<bytes.length;i+=chunk) binary+=String.fromCharCode(...bytes.subarray(i,i+chunk));
+  return btoa(binary);
+};
+window.__ready = true;
+</script>
+</body>
+</html>

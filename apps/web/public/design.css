@@ -20,31 +20,26 @@ body{min-height:100vh;overflow-x:hidden;min-width:0;margin:0;height:100%}
 a{color:inherit;text-decoration:none}
 a.btn, a.nav{color:inherit}
 .m a{color:#b7c8ff}
-@media(max-width:1280px){.yw-grid{grid-template-columns:280px 1fr 300px;gap:18px}.yw-main{padding:22px 24px}}
-@media(max-width:1100px){.yw-grid{grid-template-columns:1fr 1fr;gap:18px}.yw-grid > div:nth-child(2){grid-column:1 / -1;order:-1}}
+@media(max-width:1280px) and (min-width:1101px){.yw-grid{grid-template-columns:280px 1fr 300px;gap:18px}.yw-main{padding:22px 24px}}
 @media(max-width:900px){.yw-shell{flex-direction:column;height:auto;overflow:visible}.yw-main{padding:16px;height:auto;overflow:visible}.yw-nav{flex:none;width:100%}}
-@media(max-width:640px){
-  .yw-grid{grid-template-columns:1fr;gap:16px}
-  .yw-grid > div:nth-child(2){grid-column:auto;order:0}
-  /* mobile: outer gutters for lines, blocks keep full card width */
-  .yw-grid{padding-left:16px;padding-right:16px}
-  .yw-grid > div{position:relative}
-  .yw-factories{grid-template-columns:1fr !important}
-  #yw-arch-center{order:-1}
-}
 @media(min-width:641px) and (max-width:1100px){
-  /* tablet: 2 equal columns with centered agent on top — unified, no overlap with 1100 rule */
-  .yw-grid{grid-template-columns:1fr 1fr !important;gap:18px;align-items:start}
-  .yw-grid > div:nth-child(2){grid-column:1/-1 !important;order:-1;justify-self:center;max-width:520px;width:100%}
-  #yw-arch-center{max-width:520px;width:100%;justify-self:center;grid-column:1/-1;order:-1}
-  .go-wrap{grid-column:1/-1 !important;justify-self:center;max-width:520px;width:100%}
-  #yw-col-left{grid-column:1 !important;display:flex;flex-direction:column;gap:16px;min-width:0}
-  #yw-col-right{grid-column:2 !important;display:flex;flex-direction:column;gap:16px;min-width:0}
+  /* tablet: 2 equal columns with centered agent on top spanning full width */
+  .yw-grid{grid-template-columns:1fr 1fr !important;gap:18px !important;align-items:start !important}
+  #yw-arch-center{grid-column:1 / -1 !important;grid-row:1 !important;order:-1 !important;justify-self:center !important;max-width:520px !important;width:100% !important;margin:0 auto 4px !important}
+  .go-wrap{grid-column:1 / -1 !important;justify-self:center;max-width:520px;width:100%}
+  #yw-col-left{grid-column:1 !important;grid-row:2 !important;order:1 !important;display:flex !important;flex-direction:column !important;gap:16px !important;min-width:0 !important;width:100% !important}
+  #yw-col-right{grid-column:2 !important;grid-row:2 !important;order:2 !important;display:flex !important;flex-direction:column !important;gap:16px !important;min-width:0 !important;width:100% !important}
+  #yw-row-bottom{grid-column:1 / -1 !important;order:3 !important}
   .yw-widget{width:100%;box-sizing:border-box}
 }
-@media(min-width:641px) and (max-width:900px){
-  /* 641-900: preserve 2-col grid even when shell becomes column */
-  .yw-grid{grid-template-columns:1fr 1fr !important}
+@media(max-width:640px){
+  .yw-grid{grid-template-columns:1fr !important;gap:16px;padding-left:18px;padding-right:18px}
+  #yw-arch-center{grid-column:1 !important;order:-1 !important;justify-self:center;max-width:520px;width:100%}
+  #yw-col-left{grid-column:1 !important;order:1 !important;display:flex;flex-direction:column;gap:16px;min-width:0;width:100%}
+  #yw-col-right{grid-column:1 !important;order:2 !important;display:flex;flex-direction:column;gap:16px;min-width:0;width:100%}
+  #yw-row-bottom{grid-column:1 !important;order:3 !important}
+  .yw-grid > div{position:relative}
+  .yw-factories{grid-template-columns:1fr !important}
 }
 /* arabic */
 @font-face {
@@ -531,9 +526,5 @@ body.nav-open{overflow:hidden;overscroll-behavior:none}
   .yw-tip-panel[hidden]{display:none !important}
   #yw-dash-toolbar-mobile .yw-tip-panel[hidden]{display:none !important}
 }
-/* mobile widget: PWA widget pack — widget.kind grid|widget */
-@media(max-width:900px){
-  .yw-grid{grid-template-columns:1fr;gap:14px}
-  #yw-arch-center{order:-1}
-}
+
 @media(prefers-reduced-motion:reduce){.yw-widget,.yw-widget.is-dragging{transition:none;transform:none}}

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ywoom — Редактор изображений</title>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#3a3c45">
+<link rel="stylesheet" href="/design.css">
+<link rel="stylesheet" href="/image-editor.css">
+</head>
+<body>
+<div class="ie-app" id="ie-app">
+  <!-- TOPBAR -->
+  <header class="ie-topbar" role="banner">
+    <div class="ie-brand">
+      <a href="/studio" class="ie-logo" aria-label="На главную">YW</a>
+      <div class="ie-title">
+        <b>Редактор изображений</b>
+        <span id="ie-project-title">Новый проект · 720×1280</span>
+      </div>
+    </div>
+    <div class="ie-toolbar" role="toolbar" aria-label="Инструменты">
+      <button class="ie-tool" id="btn-new" title="Новый проект (Ctrl+N)">＋ Новый</button>
+      <button class="ie-tool" id="btn-open-studio" title="Загрузить из Студии">Студия</button>
+      <label class="ie-tool" for="file-project" title="Открыть JSON проекта" style="cursor:pointer">Открыть</label>
+      <input id="file-project" type="file" accept=".json,application/json" hidden>
+      <button class="ie-tool" id="btn-save" title="Сохранить (Ctrl+S)">Сохранить</button>
+      <span class="ie-sep" aria-hidden="true"></span>
+      <button class="ie-tool" id="btn-undo" title="Отменить (Ctrl+Z)">↩</button>
+      <button class="ie-tool" id="btn-redo" title="Повторить (Ctrl+Shift+Z)">↪</button>
+      <span class="ie-sep"></span>
+      <button class="ie-tool active" id="btn-portrait" title="Портрет 720×1280">9:16</button>
+      <button class="ie-tool" id="btn-landscape" title="Ландшафт 1280×720">16:9</button>
+      <span class="ie-sep"></span>
+      <button class="ie-tool" id="btn-safe" title="Safe-area гайды">Safe</button>
+      <button class="ie-tool" id="btn-grid" title="Сетка 40px">Сетка</button>
+      <button class="ie-tool active" id="btn-snap" title="Привязка к сетке/центру">Snap</button>
+      <span class="ie-sep"></span>
+      <button class="ie-tool" id="btn-before" title="До/после (B)">До/после</button>
+      <button class="ie-tool" id="btn-restore" title="Вернуть исходник">Restore</button>
+    </div>
+    <div class="ie-top-actions">
+      <input id="ie-title-input" class="ie-input" placeholder="Название проекта" maxlength="80" style="width:160px">
+      <button class="ie-btn-ghost" id="btn-layers-drawer" aria-label="Слои">☰ Слои</button>
+      <button class="ie-btn-ghost" id="btn-props-drawer" aria-label="Свойства">Свойства ☰</button>
+      <a href="/studio" class="ie-btn-ghost" style="display:inline-flex;align-items:center">← Студия</a>
+      <button class="ie-btn-primary" id="btn-export">Экспорт</button>
+    </div>
+  </header>
+
+  <!-- WORKSPACE -->
+  <div class="ie-workspace" id="ie-workspace">
+    <!-- LEFT: layers -->
+    <aside class="ie-panel left" id="panel-layers" aria-label="Слои">
+      <div class="ie-panel-head">
+        <b>Слои</b>
+        <span class="m" id="layer-count">0</span>
+      </div>
+      <div class="ie-panel-body">
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="ie-tool" id="btn-add-text" title="Текстовый слой (T)">＋ Текст</button>
+          <button class="ie-tool" id="btn-add-rect" title="Прямоугольник">▭</button>
+          <button class="ie-tool" id="btn-add-circle" title="Круг">◯</button>
+          <button class="ie-tool" id="btn-add-badge" title="Бейдж">Badge</button>
+          <button class="ie-tool" id="btn-add-cta" title="CTA кнопка">CTA</button>
+        </div>
+        <div style="display:flex;gap:6px">
+          <label class="ie-tool" for="file-image" style="cursor:pointer;flex:1;justify-content:center">＋ Изображение</label>
+          <input id="file-image" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" hidden>
+          <button class="ie-tool" id="btn-add-image-placeholder" title="Пустой image-слой">Пусто</button>
+        </div>
+        <label class="m" style="display:flex;gap:8px;align-items:center;font-size:11px"><input id="chk-rights" type="checkbox"> Подтверждаю права на файлы (≤5MB)</label>
+        <div id="layer-list" style="display:flex;flex-direction:column;gap:6px" role="list"></div>
+        <div class="ie-help">Перетащи слой для порядка. Клик по слою — выделить. Shift+стрелки — 10px.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="ie-btn-ghost" id="btn-duplicate" style="flex:1">Дублировать</button>
+          <button class="ie-btn-ghost" id="btn-delete-layer" style="flex:1">Удалить</button>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="ie-btn-ghost" id="btn-group" style="flex:1" title="Группа — будущее: объединит выделенные">Группа</button>
+          <button class="ie-btn-ghost" id="btn-ungroup" style="flex:1">Разгруп.</button>
+        </div>
+        <div class="ie-help">Baked-текст (часть растра) помечается noneditable — переносится только удалением фона.</div>
+      </div>
+    </aside>
+
+    <!-- CENTER: canvas -->
+    <main class="ie-center" id="ie-center">
+      <div class="ie-canvas-toolbar">
+        <button class="ie-tool" id="tool-select" title="Выбор (V)" data-tool="select">↖ Выбор</button>
+        <button class="ie-tool" id="tool-hand" title="Рука (Space)">✋ Рука</button>
+        <button class="ie-tool" id="tool-crop" title="Crop/Reframe — не растягивает">Crop</button>
+        <span class="ie-sep"></span>
+        <label class="m" style="font-size:11px;display:flex;gap:6px;align-items:center"><input id="chk-keep-ratio" type="checkbox" checked> Сохранять пропорции</label>
+        <label class="m" style="font-size:11px;display:flex;gap:6px;align-items:center"><input id="chk-show-handles" type="checkbox" checked> Хэндлы</label>
+        <span class="m" style="margin-left:auto;font-size:11px" id="canvas-info">720×1280 · 100%</span>
+      </div>
+      <div class="ie-canvas-stage" id="canvas-stage">
+        <div class="ie-canvas-frame" id="canvas-frame">
+          <canvas id="ie-canvas" width="720" height="1280" aria-label="Полотно"></canvas>
+          <div class="ie-handles" id="ie-handles"></div>
+          <div class="ie-guide" id="ie-guide"></div>
+          <div class="ie-drop-hint" id="drop-hint"><div class="card" style="padding:14px 18px;border-radius:16px">Отпусти PNG/JPEG сюда (≤5MB)</div></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT: props -->
+    <aside class="ie-panel right" id="panel-props" aria-label="Свойства">
+      <div class="ie-panel-head">
+        <b>Свойства</b>
+        <span class="m" id="sel-name">Нет выделения</span>
+      </div>
+      <div class="ie-panel-body" id="props-body">
+        <!-- Transform -->
+        <div class="ie-prop-group" id="group-transform">
+          <h4>Трансформ</h4>
+          <div class="ie-row">
+            <div class="ie-field"><label>X</label><input id="inp-x" class="ie-num" type="number" step="1"></div>
+            <div class="ie-field"><label>Y</label><input id="inp-y" class="ie-num" type="number" step="1"></div>
+          </div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Ширина</label><input id="inp-w" class="ie-num" type="number" min="8" step="1"></div>
+            <div class="ie-field"><label>Высота</label><input id="inp-h" class="ie-num" type="number" min="8" step="1"></div>
+          </div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Поворот °</label><input id="inp-rot" class="ie-num" type="number" step="1"></div>
+            <div class="ie-field"><label>Непрозр. %</label><input id="inp-opacity" class="ie-num" type="range" min="0" max="100" value="100"><span id="opacity-val" class="m" style="font-size:11px">100%</span></div>
+          </div>
+          <div class="ie-row">
+            <button class="ie-tool" id="btn-front" title="На передний план">Наверх</button>
+            <button class="ie-tool" id="btn-back" title="На задний план">Назад</button>
+            <button class="ie-tool" id="btn-center-h">Центр H</button>
+            <button class="ie-tool" id="btn-center-v">Центр V</button>
+          </div>
+        </div>
+        <!-- Text -->
+        <div class="ie-prop-group" id="group-text" hidden>
+          <h4>Текст — <span id="font-name-preview" style="text-transform:none;letter-spacing:0">Rubik 500</span></h4>
+          <div class="ie-field"><label>Текст</label><textarea id="inp-text" rows="3" class="ie-input" style="height:auto;min-height:64px;padding:10px;resize:vertical"></textarea></div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Шрифт</label><select id="inp-font" class="ie-select">
+              <option value="Rubik">Rubik (Ywoom)</option>
+              <option value="Inter">Inter — system</option>
+              <option value="Arial">Arial</option>
+              <option value="Geometria">Geometria</option>
+              <option value="Manrope">Manrope</option>
+              <option value="monospace">Monospace</option>
+            </select></div>
+            <div class="ie-field"><label>Вес</label><select id="inp-weight" class="ie-select">
+              <option value="400">400 Regular</option><option value="500" selected>500 Medium</option><option value="600">600 SemiBold</option><option value="700">700 Bold</option>
+            </select></div>
+          </div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Стиль</label><select id="inp-font-style" class="ie-select"><option value="normal">Обычный</option><option value="italic">Курсив</option></select></div>
+            <div class="ie-field"><label>Размер px</label><input id="inp-font-size" class="ie-num" type="number" min="8" max="240" step="1" value="36"></div>
+          </div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Line-height</label><input id="inp-line-height" class="ie-num" type="number" min="0.8" max="2.5" step="0.05" value="1.2"></div>
+            <div class="ie-field"><label>Letter-spacing px</label><input id="inp-letter-spacing" class="ie-num" type="number" min="-4" max="20" step="0.5" value="0"></div>
+          </div>
+          <div class="ie-field"><label>Выравнивание</label><div class="ie-row" style="gap:6px">
+            <button class="ie-tool" data-align="left">Left</button><button class="ie-tool" data-align="center">Center</button><button class="ie-tool" data-align="right">Right</button>
+          </div></div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Цвет</label><input id="inp-color" class="ie-color" type="color" value="#ffffff"></div>
+            <div class="ie-field"><label>Обводка</label><input id="inp-stroke" class="ie-color" type="color" value="#000000"></div>
+            <div class="ie-field"><label>Толщина</label><input id="inp-stroke-w" class="ie-num" type="number" min="0" max="12" step="0.5" value="0"></div>
+          </div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Тень</label><select id="inp-shadow" class="ie-select"><option value="0">Нет</option><option value="1">Мягкая</option><option value="2">Жёсткая</option></select></div>
+            <div class="ie-field"><label>Цвет тени</label><input id="inp-shadow-color" class="ie-color" type="color" value="#000000"></div>
+          </div>
+          <div class="ie-row">
+            <div class="ie-field"><label>Подложка</label><select id="inp-backplate" class="ie-select"><option value="0">Нет</option><option value="1">Да</option></select></div>
+            <div class="ie-field"><label>Цвет подложки</label><input id="inp-backplate-color" class="ie-color" type="color" value="#000000"></div>
+          </div>
+          <div class="ie-help">Имя шрифта показывается выше. Glyph coverage проверяется при экспорте.</div>
+        </div>
+        <!-- Shape -->
+        <div class="ie-prop-group" id="group-shape" hidden>
+          <h4>Фигура</h4>
+          <div class="ie-row">
+            <div class="ie-field"><label>Заливка</label><input id="inp-fill" class="ie-color" type="color" value="#7d9cff"></div>
+            <div class="ie-field"><label>Обводка</label><input id="inp-shape-stroke" class="ie-color" type="color" value="#ffffff"></div>
+            <div class="ie-field"><label>Толщина</label><input id="inp-shape-stroke-w" class="ie-num" type="number" min="0" max="24" step="1" value="0"></div>
+          </div>
+          <div class="ie-field"><label>Скругление px (для прямоугольника)</label><input id="inp-radius" class="ie-num" type="number" min="0" max="200" step="1" value="16"></div>
+        </div>
+        <!-- Visibility / lock / baked -->
+        <div class="ie-prop-group">
+          <h4>Слой</h4>
+          <div class="ie-row">
+            <label class="m" style="display:flex;gap:6px;align-items:center"><input id="chk-visible" type="checkbox" checked> Видимый</label>
+            <label class="m" style="display:flex;gap:6px;align-items:center"><input id="chk-locked" type="checkbox"> Замок</label>
+            <label class="m" style="display:flex;gap:6px;align-items:center"><input id="chk-baked" type="checkbox"> Baked noneditable</label>
+          </div>
+          <div class="ie-help">Baked растровый текст — пометка noneditable при экспорте.</div>
+        </div>
+        <div class="ie-help">Стрелки — 1px, Shift+стрелки — 10px. Перетаскивание + хэндлы. Undo/redo сохраняют историю.</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- STATUSBAR -->
+  <footer class="ie-statusbar">
+    <div class="ie-zoom">
+      <button class="ie-tool" id="btn-zoom-out">−</button>
+      <input id="zoom-range" class="ie-range" type="range" min="25" max="200" value="72" step="5" aria-label="Zoom">
+      <button class="ie-tool" id="btn-zoom-in">＋</button>
+      <span id="zoom-label" class="m" style="font-size:12px;min-width:44px">72%</span>
+    </div>
+    <span class="ie-sep"></span>
+    <span class="m" id="status-coords" style="font-size:11px">—</span>
+    <span class="sp"></span>
+    <span class="m" id="status-hint" style="font-size:11px">Клик по слою — выделить · Drag — переместить · Углы — размер · Верхний хэндл — поворот</span>
+  </footer>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="ie-modal" id="export-modal" aria-hidden="true">
+  <div class="ie-modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <h3>Экспорт</h3>
+      <button class="ie-tool" id="btn-close-export">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 260px;gap:14px;margin-top:10px">
+      <div class="ie-export-preview" id="export-preview"><span class="m">Превью появится после рендера</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <label class="m" style="font-size:11px">Профиль<input id="export-profile" class="ie-select" style="width:100%;margin-top:6px" value="png">
+          <select id="export-format" class="ie-select" style="width:100%;margin-top:6px">
+            <option value="png">PNG — прозрачность, без потерь</option>
+            <option value="jpeg">JPEG — фото, меньше размер</option>
+          </select>
+        </label>
+        <label class="m" style="font-size:11px">Качество JPEG<input id="export-quality" class="ie-num" type="range" min="0.6" max="1" step="0.05" value="0.92"><span id="quality-val" class="m" style="font-size:11px">92%</span></label>
+        <label class="m" style="font-size:11px">Фон JPEG<input id="export-bg" class="ie-color" type="color" value="#3a3c45"></label>
+        <div id="baked-note" class="ie-badge" hidden>Есть baked noneditable слои</div>
+        <div class="ie-help">PNG/JPEG профили — только поддерживаемые из spec. Растровый текст помечается noneditable.</div>
+        <button class="ie-btn-primary" id="btn-download">Скачать</button>
+        <button class="ie-btn-ghost" id="btn-copy-json">Копировать JSON слоёв</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STUDIO PROJECT PICKER MODAL -->
+<div class="ie-modal" id="studio-modal" aria-hidden="true">
+  <div class="ie-modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h3>Проекты Студии</h3><button class="ie-tool" id="btn-close-studio">✕</button></div>
+    <div class="ie-help">Загружает первый кадр проекта как базовое изображение + сохраняет JSON слоёв рядом.</div>
+    <div id="studio-list" style="display:flex;flex-direction:column;gap:8px;margin-top:10px;max-height:52vh;overflow:auto"></div>
+  </div>
+</div>
+
+<script src="/image-editor.js"></script>
+</body></html>
